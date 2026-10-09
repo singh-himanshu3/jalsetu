@@ -1,0 +1,63 @@
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import { mkdtemp, rm, rmdir, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { projectApi } from './local-projects.mjs';
+
+const example = JSON.parse(await readFile(new URL('../data/evaluation/finish_by_close_parallel/north_delhi_example.json', import.meta.url), 'utf8'));
+const directory = await mkdtemp(join(tmpdir(), 'jalsetu-project-test-'));
+const path = join(directory, 'projects.json');
+const send = (res, status, body) => { res.writeHead(status, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(body)); };
+const error = (res, status, code, message) => send(res, status, { error: { code, message } });
+let adapter = await projectApi({ path, example, send, error });
+const server = http.createServer(async (req, res) => { try { if (!await adapter.handle(req, res)) error(res, 404, 'NOT_FOUND', 'Not found'); } catch { error(res, 500, 'FAILED', 'Failed'); } });
+await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const base = `http://127.0.0.1:${server.address().port}`;
+const request = async (url, body, method = 'POST', version, key = 'project-test-key') => {
+  const response = await fetch(base + url, { method, headers: { 'Content-Type': 'application/json', 'Idempotency-Key': key, ...(version === undefined ? {} : { 'If-Match': String(version) }) }, body: JSON.stringify(body) });
+  return { status: response.status, ...await response.json() };
+};
+try {
+  for (const body of [null, [], {}, { name: 'Draft', data_mode: 'operator', operating_date: '2026-10-10' }, { name: 'Draft', data_mode: 'example', operating_date: '2026-02-30' }]) assert.equal((await request('/v1/projects', body)).status, 400);
+  const created = await request('/v1/projects', { name: 'Published example exercise', data_mode: 'example', operating_date: '2026-10-10' });
+  assert.equal(created.status, 200);
+  const project = created.project, url = `/v1/projects/${project.project_id}`;
+  assert.equal(project.version, 1);
+  assert.equal(project.input.depot.opens_at.slice(0, 10), '2026-10-10');
+  const input = { ...project.input, name: 'Updated example exercise' };
+  assert.equal((await request(url, { input }, 'PUT')).status, 409);
+  const saved = await request(url, { input }, 'PUT', 1);
+  assert.equal(saved.project.version, 2);
+  assert.equal((await request(url, { input }, 'PUT', 1)).status, 409);
+  assert.equal((await request(url, { input: { ...input, data_mode: 'operator' } }, 'PUT', 2)).status, 400);
+  assert.equal((await request(url, { input: { ...input, depot: null } }, 'PUT', 2)).status, 400);
+  assert.equal((await request(url, { input: { ...input, sites: [null] } }, 'PUT', 2)).status, 400);
+  adapter = await projectApi({ path, example, send, error });
+  assert.deepEqual((await (await fetch(base + url)).json()).project, saved.project, 'Reload must preserve the exact saved draft');
+  const list = await (await fetch(base + '/v1/projects')).json();
+  assert.equal(list.projects.length, 1);
+  assert.equal(list.projects[0].name, input.name);
+  const archived = await request(`${url}/archive`, {}, 'POST', 2, 'archive');
+  assert.equal(archived.project.version, 3);
+  assert.ok(archived.project.archived_at);
+  assert.deepEqual(archived.project.input, saved.project.input);
+  assert.deepEqual((await request(`${url}/archive`, {}, 'POST', 2, 'archive')).project, archived.project);
+  assert.equal((await request(url, { input }, 'PUT', 3)).error.code, 'PROJECT_ARCHIVED');
+  assert.equal((await (await fetch(base + '/v1/projects')).json()).projects.length, 0);
+  assert.equal((await (await fetch(base + '/v1/projects?archived=true')).json()).projects.length, 1);
+  assert.equal((await request(`${url}/restore`, {}, 'POST', 2, 'restore')).status, 409);
+  assert.equal((await request(`${url}/restore`, {}, 'POST', 3, 'archive')).error.code, 'IDEMPOTENCY_CONFLICT');
+  adapter = await projectApi({ path, example, send, error });
+  assert.deepEqual((await (await fetch(base + url)).json()).project, archived.project);
+  const restored = await request(`${url}/restore`, {}, 'POST', 3, 'restore');
+  assert.equal(restored.project.version, 4);
+  assert.equal(restored.project.archived_at, null);
+  assert.deepEqual(restored.project.input, saved.project.input);
+  assert.equal((await (await fetch(base + '/v1/projects')).json()).projects.length, 1);
+  assert.equal((await (await fetch(base + '/v1/projects?archived=true')).json()).projects.length, 0);
+  console.log('Project checks passed: example-only creation, dates, drafts, conflicts, malformed inputs, restart persistence and reversible archive/restore.');
+} finally {
+  await new Promise(resolve => server.close(resolve));
+  await rm(path, { force: true }); await rm(`${path}.next`, { force: true }); await rmdir(directory);
+}

@@ -1,0 +1,542 @@
+[
+  {
+    "fixture": "balanced_supply.json",
+    "input_snapshot_sha256": "41e523d625b3a821c8d4f13e0623c42e59cccf6ef6ba833e8b9e582d1ff02992",
+    "strategy": "equal_share",
+    "metrics": {
+      "on_time_scheduled_litres": 8000,
+      "unmet_requested_litres": 0,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 1.0,
+      "median_fulfilment_ratio": 1.0,
+      "mean_fulfilment_ratio": 1.0,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 29700,
+      "total_travel_duration_seconds": 5340,
+      "latest_route_completion_time": "2026-10-10T04:42:30+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "balanced_supply.json",
+    "input_snapshot_sha256": "41e523d625b3a821c8d4f13e0623c42e59cccf6ef6ba833e8b9e582d1ff02992",
+    "strategy": "demand_proportional",
+    "metrics": {
+      "on_time_scheduled_litres": 8000,
+      "unmet_requested_litres": 0,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 1.0,
+      "median_fulfilment_ratio": 1.0,
+      "mean_fulfilment_ratio": 1.0,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 29700,
+      "total_travel_duration_seconds": 5340,
+      "latest_route_completion_time": "2026-10-10T04:42:30+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.0
+  },
+  {
+    "fixture": "balanced_supply.json",
+    "input_snapshot_sha256": "41e523d625b3a821c8d4f13e0623c42e59cccf6ef6ba833e8b9e582d1ff02992",
+    "strategy": "greedy",
+    "metrics": {
+      "on_time_scheduled_litres": 8000,
+      "unmet_requested_litres": 0,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 1.0,
+      "median_fulfilment_ratio": 1.0,
+      "mean_fulfilment_ratio": 1.0,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 29700,
+      "total_travel_duration_seconds": 5340,
+      "latest_route_completion_time": "2026-10-10T04:42:30+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "balanced_supply.json",
+    "input_snapshot_sha256": "41e523d625b3a821c8d4f13e0623c42e59cccf6ef6ba833e8b9e582d1ff02992",
+    "strategy": "jalsetu",
+    "metrics": {
+      "on_time_scheduled_litres": 8000,
+      "unmet_requested_litres": 0,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 1.0,
+      "median_fulfilment_ratio": 1.0,
+      "mean_fulfilment_ratio": 1.0,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 38700,
+      "total_travel_duration_seconds": 7080,
+      "latest_route_completion_time": "2026-10-10T04:04:30+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.125
+  },
+  {
+    "fixture": "narrow_time_windows.json",
+    "input_snapshot_sha256": "16887e153ce02956c084ac8bffb4e8b875d1e43393ad67d93dff2aa6318d4b5b",
+    "strategy": "equal_share",
+    "metrics": {
+      "on_time_scheduled_litres": 7800,
+      "unmet_requested_litres": 8300,
+      "served_site_count": 4,
+      "sites_meeting_minimum": 4,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.5,
+      "mean_fulfilment_ratio": 0.5,
+      "critical_minimum_litres": 600,
+      "high_minimum_litres": 600,
+      "total_travel_distance_metres": 21600,
+      "total_travel_duration_seconds": 3960,
+      "latest_route_completion_time": "2026-10-10T03:35:00+00:00",
+      "unserved_site_count": 4
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.0
+  },
+  {
+    "fixture": "narrow_time_windows.json",
+    "input_snapshot_sha256": "16887e153ce02956c084ac8bffb4e8b875d1e43393ad67d93dff2aa6318d4b5b",
+    "strategy": "demand_proportional",
+    "metrics": {
+      "on_time_scheduled_litres": 7800,
+      "unmet_requested_litres": 8300,
+      "served_site_count": 4,
+      "sites_meeting_minimum": 4,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.5,
+      "mean_fulfilment_ratio": 0.5,
+      "critical_minimum_litres": 600,
+      "high_minimum_litres": 600,
+      "total_travel_distance_metres": 21600,
+      "total_travel_duration_seconds": 3960,
+      "latest_route_completion_time": "2026-10-10T03:35:00+00:00",
+      "unserved_site_count": 4
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "narrow_time_windows.json",
+    "input_snapshot_sha256": "16887e153ce02956c084ac8bffb4e8b875d1e43393ad67d93dff2aa6318d4b5b",
+    "strategy": "greedy",
+    "metrics": {
+      "on_time_scheduled_litres": 7800,
+      "unmet_requested_litres": 8300,
+      "served_site_count": 4,
+      "sites_meeting_minimum": 4,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.5,
+      "mean_fulfilment_ratio": 0.5,
+      "critical_minimum_litres": 600,
+      "high_minimum_litres": 600,
+      "total_travel_distance_metres": 21600,
+      "total_travel_duration_seconds": 3960,
+      "latest_route_completion_time": "2026-10-10T03:35:00+00:00",
+      "unserved_site_count": 4
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "narrow_time_windows.json",
+    "input_snapshot_sha256": "16887e153ce02956c084ac8bffb4e8b875d1e43393ad67d93dff2aa6318d4b5b",
+    "strategy": "jalsetu",
+    "metrics": {
+      "on_time_scheduled_litres": 7800,
+      "unmet_requested_litres": 8300,
+      "served_site_count": 4,
+      "sites_meeting_minimum": 4,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.5,
+      "mean_fulfilment_ratio": 0.5,
+      "critical_minimum_litres": 600,
+      "high_minimum_litres": 600,
+      "total_travel_distance_metres": 21600,
+      "total_travel_duration_seconds": 3960,
+      "latest_route_completion_time": "2026-10-10T03:32:00+00:00",
+      "unserved_site_count": 4
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.187
+  },
+  {
+    "fixture": "north_delhi_example.json",
+    "input_snapshot_sha256": "2e2b0d10ac8bfea3e7b88b561b0d60eb5f69aee0bd5b5ec4ffb5f6730ff5755f",
+    "strategy": "equal_share",
+    "metrics": {
+      "on_time_scheduled_litres": 10800,
+      "unmet_requested_litres": 5300,
+      "served_site_count": 7,
+      "sites_meeting_minimum": 7,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.6836363636363636,
+      "mean_fulfilment_ratio": 0.6689993686868687,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 32400,
+      "total_travel_duration_seconds": 5880,
+      "latest_route_completion_time": "2026-10-10T03:49:30+00:00",
+      "unserved_site_count": 1
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "north_delhi_example.json",
+    "input_snapshot_sha256": "2e2b0d10ac8bfea3e7b88b561b0d60eb5f69aee0bd5b5ec4ffb5f6730ff5755f",
+    "strategy": "demand_proportional",
+    "metrics": {
+      "on_time_scheduled_litres": 11100,
+      "unmet_requested_litres": 5000,
+      "served_site_count": 7,
+      "sites_meeting_minimum": 7,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.7416666666666667,
+      "mean_fulfilment_ratio": 0.6535678210678211,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 34200,
+      "total_travel_duration_seconds": 6240,
+      "latest_route_completion_time": "2026-10-10T03:57:00+00:00",
+      "unserved_site_count": 1
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.015
+  },
+  {
+    "fixture": "north_delhi_example.json",
+    "input_snapshot_sha256": "2e2b0d10ac8bfea3e7b88b561b0d60eb5f69aee0bd5b5ec4ffb5f6730ff5755f",
+    "strategy": "greedy",
+    "metrics": {
+      "on_time_scheduled_litres": 10800,
+      "unmet_requested_litres": 5300,
+      "served_site_count": 6,
+      "sites_meeting_minimum": 6,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.71875,
+      "mean_fulfilment_ratio": 0.5859375,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 27900,
+      "total_travel_duration_seconds": 5040,
+      "latest_route_completion_time": "2026-10-10T03:33:30+00:00",
+      "unserved_site_count": 2
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "north_delhi_example.json",
+    "input_snapshot_sha256": "2e2b0d10ac8bfea3e7b88b561b0d60eb5f69aee0bd5b5ec4ffb5f6730ff5755f",
+    "strategy": "jalsetu",
+    "metrics": {
+      "on_time_scheduled_litres": 12000,
+      "unmet_requested_litres": 4100,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 0.2916666666666667,
+      "median_fulfilment_ratio": 0.75,
+      "mean_fulfilment_ratio": 0.6994047619047619,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 35100,
+      "total_travel_duration_seconds": 6360,
+      "latest_route_completion_time": "2026-10-10T04:31:00+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.141
+  },
+  {
+    "fixture": "stock_shortage.json",
+    "input_snapshot_sha256": "05b43ac1664e520165bdb651dacc5ce92812f3b55c115c284cd8c7f10b00a8a9",
+    "strategy": "equal_share",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 0.3,
+      "median_fulfilment_ratio": 0.4545454545454546,
+      "mean_fulfilment_ratio": 0.4680857683982684,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 29700,
+      "total_travel_duration_seconds": 5340,
+      "latest_route_completion_time": "2026-10-10T04:42:30+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.0
+  },
+  {
+    "fixture": "stock_shortage.json",
+    "input_snapshot_sha256": "05b43ac1664e520165bdb651dacc5ce92812f3b55c115c284cd8c7f10b00a8a9",
+    "strategy": "demand_proportional",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 7,
+      "sites_meeting_minimum": 7,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.4625,
+      "mean_fulfilment_ratio": 0.4129987373737374,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 27000,
+      "total_travel_duration_seconds": 4860,
+      "latest_route_completion_time": "2026-10-10T04:16:00+00:00",
+      "unserved_site_count": 1
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "stock_shortage.json",
+    "input_snapshot_sha256": "05b43ac1664e520165bdb651dacc5ce92812f3b55c115c284cd8c7f10b00a8a9",
+    "strategy": "greedy",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 0.2,
+      "median_fulfilment_ratio": 0.4017857142857143,
+      "mean_fulfilment_ratio": 0.44586309523809525,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 28800,
+      "total_travel_duration_seconds": 5160,
+      "latest_route_completion_time": "2026-10-10T04:26:30+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.0
+  },
+  {
+    "fixture": "stock_shortage.json",
+    "input_snapshot_sha256": "05b43ac1664e520165bdb651dacc5ce92812f3b55c115c284cd8c7f10b00a8a9",
+    "strategy": "jalsetu",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 4,
+      "sites_meeting_minimum": 4,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.23333333333333334,
+      "mean_fulfilment_ratio": 0.37083333333333335,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 15300,
+      "total_travel_duration_seconds": 2700,
+      "latest_route_completion_time": "2026-10-10T03:51:00+00:00",
+      "unserved_site_count": 4
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.172
+  },
+  {
+    "fixture": "vehicle_unavailable.json",
+    "input_snapshot_sha256": "bd06ca7c50e04c82d9e04f1f31c2be62161814a016bb1b307fa5996dd5318b6d",
+    "strategy": "equal_share",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 7,
+      "sites_meeting_minimum": 7,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.4356060606060606,
+      "mean_fulfilment_ratio": 0.4523042929292929,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 26100,
+      "total_travel_duration_seconds": 4680,
+      "latest_route_completion_time": "2026-10-10T04:16:00+00:00",
+      "unserved_site_count": 1
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "vehicle_unavailable.json",
+    "input_snapshot_sha256": "bd06ca7c50e04c82d9e04f1f31c2be62161814a016bb1b307fa5996dd5318b6d",
+    "strategy": "demand_proportional",
+    "metrics": {
+      "on_time_scheduled_litres": 6400,
+      "unmet_requested_litres": 9700,
+      "served_site_count": 6,
+      "sites_meeting_minimum": 6,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.4625,
+      "mean_fulfilment_ratio": 0.3574431818181818,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 22500,
+      "total_travel_duration_seconds": 4020,
+      "latest_route_completion_time": "2026-10-10T03:57:00+00:00",
+      "unserved_site_count": 2
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.015
+  },
+  {
+    "fixture": "vehicle_unavailable.json",
+    "input_snapshot_sha256": "bd06ca7c50e04c82d9e04f1f31c2be62161814a016bb1b307fa5996dd5318b6d",
+    "strategy": "greedy",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 8,
+      "sites_meeting_minimum": 8,
+      "minimum_fulfilment_ratio": 0.2,
+      "median_fulfilment_ratio": 0.4017857142857143,
+      "mean_fulfilment_ratio": 0.44586309523809525,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 27900,
+      "total_travel_duration_seconds": 4980,
+      "latest_route_completion_time": "2026-10-10T04:53:00+00:00",
+      "unserved_site_count": 0
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.016
+  },
+  {
+    "fixture": "vehicle_unavailable.json",
+    "input_snapshot_sha256": "bd06ca7c50e04c82d9e04f1f31c2be62161814a016bb1b307fa5996dd5318b6d",
+    "strategy": "jalsetu",
+    "metrics": {
+      "on_time_scheduled_litres": 7000,
+      "unmet_requested_litres": 9100,
+      "served_site_count": 4,
+      "sites_meeting_minimum": 4,
+      "minimum_fulfilment_ratio": 0.0,
+      "median_fulfilment_ratio": 0.2222222222222222,
+      "mean_fulfilment_ratio": 0.3680555555555556,
+      "critical_minimum_litres": 1200,
+      "high_minimum_litres": 1200,
+      "total_travel_distance_metres": 17100,
+      "total_travel_duration_seconds": 3060,
+      "latest_route_completion_time": "2026-10-10T03:29:00+00:00",
+      "unserved_site_count": 4
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "status": "feasible",
+    "runtime_seconds": 0.172
+  }
+]

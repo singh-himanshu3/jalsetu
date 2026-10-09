@@ -1,0 +1,437 @@
+{
+  "schema_version": "1.0",
+  "project_id": "TEST-BALANCED-SUPPLY",
+  "name": "Example North Delhi relief exercise",
+  "data_mode": "example",
+  "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+  "operating_date": "2026-10-10",
+  "timezone": "Asia/Kolkata",
+  "pilot_bounds": [
+    77.16,
+    28.66,
+    77.24,
+    28.73
+  ],
+  "increment_litres": 100,
+  "service_window_policy": "finish_by_close",
+  "loading_mode": "parallel",
+  "solver_time_limit_seconds": 5.0,
+  "random_seed": 42,
+  "travel_time_multiplier": 1.0,
+  "depot": {
+    "depot_id": "DEPOT-1",
+    "name": "Example relief depot",
+    "location": {
+      "longitude": 77.2,
+      "latitude": 28.69
+    },
+    "available_stock_litres": 12000,
+    "opens_at": "2026-10-10T07:00:00+05:30",
+    "closes_at": "2026-10-10T13:00:00+05:30",
+    "loading_duration_minutes": 15,
+    "potable_supply_confirmed": true,
+    "provenance": "example"
+  },
+  "vehicles": [
+    {
+      "vehicle_id": "VEH-1",
+      "name": "Example vehicle 1",
+      "capacity_litres": 5000,
+      "opens_at": "2026-10-10T07:00:00+05:30",
+      "closes_at": "2026-10-10T13:00:00+05:30",
+      "status": "available",
+      "provenance": "example"
+    },
+    {
+      "vehicle_id": "VEH-2",
+      "name": "Example vehicle 2",
+      "capacity_litres": 4000,
+      "opens_at": "2026-10-10T07:00:00+05:30",
+      "closes_at": "2026-10-10T13:00:00+05:30",
+      "status": "available",
+      "provenance": "example"
+    },
+    {
+      "vehicle_id": "VEH-3",
+      "name": "Example vehicle 3",
+      "capacity_litres": 3000,
+      "opens_at": "2026-10-10T07:00:00+05:30",
+      "closes_at": "2026-10-10T13:00:00+05:30",
+      "status": "available",
+      "provenance": "example"
+    }
+  ],
+  "sites": [
+    {
+      "site_id": "SITE-1",
+      "name": "Example point 1",
+      "location": {
+        "longitude": 77.19,
+        "latitude": 28.7
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "critical",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-2",
+      "name": "Example point 2",
+      "location": {
+        "longitude": 77.21,
+        "latitude": 28.71
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T10:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "critical",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-3",
+      "name": "Example point 3",
+      "location": {
+        "longitude": 77.22,
+        "latitude": 28.7
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "high",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-4",
+      "name": "Example point 4",
+      "location": {
+        "longitude": 77.23,
+        "latitude": 28.68
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "high",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-5",
+      "name": "Example point 5",
+      "location": {
+        "longitude": 77.21,
+        "latitude": 28.67
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "standard",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-6",
+      "name": "Example point 6",
+      "location": {
+        "longitude": 77.18,
+        "latitude": 28.68
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "standard",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-7",
+      "name": "Example point 7",
+      "location": {
+        "longitude": 77.18,
+        "latitude": 28.71
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "standard",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    },
+    {
+      "site_id": "SITE-8",
+      "name": "Example point 8",
+      "location": {
+        "longitude": 77.23,
+        "latitude": 28.72
+      },
+      "confirmation_status": "confirmed",
+      "requested_litres": 1000,
+      "minimum_useful_litres": 600,
+      "receiving_limit_litres": 1000,
+      "opens_at": "2026-10-10T08:00:00+05:30",
+      "closes_at": "2026-10-10T12:00:00+05:30",
+      "service_duration_minutes": 20,
+      "priority_class": "standard",
+      "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+      "provenance": "example"
+    }
+  ],
+  "travel_matrix": {
+    "snapshot_id": "EXAMPLE-MATRIX-1",
+    "node_ids": [
+      "DEPOT-1",
+      "SITE-1",
+      "SITE-2",
+      "SITE-3",
+      "SITE-4",
+      "SITE-5",
+      "SITE-6",
+      "SITE-7",
+      "SITE-8"
+    ],
+    "durations_seconds": [
+      [
+        0,
+        390,
+        480,
+        570,
+        660,
+        750,
+        840,
+        930,
+        1020
+      ],
+      [
+        390,
+        0,
+        390,
+        480,
+        570,
+        660,
+        750,
+        840,
+        930
+      ],
+      [
+        480,
+        390,
+        0,
+        390,
+        480,
+        570,
+        660,
+        750,
+        840
+      ],
+      [
+        570,
+        480,
+        390,
+        0,
+        390,
+        480,
+        570,
+        660,
+        750
+      ],
+      [
+        660,
+        570,
+        480,
+        390,
+        0,
+        390,
+        480,
+        570,
+        660
+      ],
+      [
+        750,
+        660,
+        570,
+        480,
+        390,
+        0,
+        390,
+        480,
+        570
+      ],
+      [
+        840,
+        750,
+        660,
+        570,
+        480,
+        390,
+        0,
+        390,
+        480
+      ],
+      [
+        930,
+        840,
+        750,
+        660,
+        570,
+        480,
+        390,
+        0,
+        390
+      ],
+      [
+        1020,
+        930,
+        840,
+        750,
+        660,
+        570,
+        480,
+        390,
+        0
+      ]
+    ],
+    "distances_metres": [
+      [
+        0,
+        2250,
+        2700,
+        3150,
+        3600,
+        4050,
+        4500,
+        4950,
+        5400
+      ],
+      [
+        2250,
+        0,
+        2250,
+        2700,
+        3150,
+        3600,
+        4050,
+        4500,
+        4950
+      ],
+      [
+        2700,
+        2250,
+        0,
+        2250,
+        2700,
+        3150,
+        3600,
+        4050,
+        4500
+      ],
+      [
+        3150,
+        2700,
+        2250,
+        0,
+        2250,
+        2700,
+        3150,
+        3600,
+        4050
+      ],
+      [
+        3600,
+        3150,
+        2700,
+        2250,
+        0,
+        2250,
+        2700,
+        3150,
+        3600
+      ],
+      [
+        4050,
+        3600,
+        3150,
+        2700,
+        2250,
+        0,
+        2250,
+        2700,
+        3150
+      ],
+      [
+        4500,
+        4050,
+        3600,
+        3150,
+        2700,
+        2250,
+        0,
+        2250,
+        2700
+      ],
+      [
+        4950,
+        4500,
+        4050,
+        3600,
+        3150,
+        2700,
+        2250,
+        0,
+        2250
+      ],
+      [
+        5400,
+        4950,
+        4500,
+        4050,
+        3600,
+        3150,
+        2700,
+        2250,
+        0
+      ]
+    ],
+    "provider": "Synthetic exercise fixture",
+    "provenance": "example",
+    "retrieved_at": null,
+    "represented_at": null,
+    "source_url": null,
+    "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+    "limitations": [
+      "Invented exercise travel matrix",
+      "Not road navigation, actual distance or live traffic",
+      "Locations do not establish permission to operate"
+    ]
+  }
+}

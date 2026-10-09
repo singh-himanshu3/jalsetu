@@ -1,0 +1,4467 @@
+{
+  "job_id": "0c2e5db9-9188-4aef-89a9-e8872396698a",
+  "status": "completed",
+  "mode": "offline_fixture",
+  "created_at": "2026-10-09T18:51:10.771553Z",
+  "stage": "CompleteJob",
+  "stage_history": [
+    {
+      "stage": "LoadAndValidate",
+      "completed_at": "2026-10-09T18:51:10.779666Z"
+    },
+    {
+      "stage": "GetRouteMatrix",
+      "completed_at": "2026-10-09T18:51:10.781777Z"
+    },
+    {
+      "stage": "SolveStrategies",
+      "completed_at": "2026-10-09T18:51:11.434885Z"
+    },
+    {
+      "stage": "ValidatePlans",
+      "completed_at": "2026-10-09T18:51:11.452802Z"
+    },
+    {
+      "stage": "PersistResult",
+      "completed_at": "2026-10-09T18:51:11.468461Z"
+    },
+    {
+      "stage": "ExplainResult",
+      "completed_at": "2026-10-09T18:51:11.481770Z"
+    },
+    {
+      "stage": "CompleteJob",
+      "completed_at": "2026-10-09T18:51:11.498534Z"
+    }
+  ],
+  "version": 15,
+  "correlation_id": "0c2e5db9-9188-4aef-89a9-e8872396698a",
+  "kind": "marginal",
+  "options": {
+    "extra_stock_litres": 1000,
+    "vehicle_capacity_litres": 5000,
+    "earlier_start_minutes": 30,
+    "closing_site_id": "SITE-1",
+    "later_close_minutes": 30,
+    "shorter_service_minutes": 5
+  },
+  "parent_job_id": "eafad2cb-6553-43ea-bc6e-a869eb1d0b7e",
+  "routing_source": "stored example matrix",
+  "explanation_mode": "deterministic",
+  "grounded_explanations": [
+    {
+      "mode": "deterministic",
+      "text": "Schedules 12,000 modelled litres within the declared windows. 4,100 litres of confirmed requests remain unmet. 8 confirmed points have scheduled visits. Estimates are not delivery reports; global optimality is not proved.",
+      "fact_ids": [
+        "scheduled",
+        "unmet",
+        "served"
+      ]
+    },
+    {
+      "mode": "deterministic",
+      "text": "Schedules 12,000 modelled litres within the declared windows. 4,100 litres of confirmed requests remain unmet. 8 confirmed points have scheduled visits. Estimates are not delivery reports; global optimality is not proved.",
+      "fact_ids": [
+        "scheduled",
+        "unmet",
+        "served"
+      ]
+    },
+    {
+      "mode": "deterministic",
+      "text": "Schedules 12,000 modelled litres within the declared windows. 4,100 litres of confirmed requests remain unmet. 8 confirmed points have scheduled visits. Estimates are not delivery reports; global optimality is not proved.",
+      "fact_ids": [
+        "scheduled",
+        "unmet",
+        "served"
+      ]
+    },
+    {
+      "mode": "deterministic",
+      "text": "Schedules 12,000 modelled litres within the declared windows. 4,100 litres of confirmed requests remain unmet. 8 confirmed points have scheduled visits. Estimates are not delivery reports; global optimality is not proved.",
+      "fact_ids": [
+        "scheduled",
+        "unmet",
+        "served"
+      ]
+    },
+    {
+      "mode": "deterministic",
+      "text": "Schedules 12,000 modelled litres within the declared windows. 4,100 litres of confirmed requests remain unmet. 8 confirmed points have scheduled visits. Estimates are not delivery reports; global optimality is not proved.",
+      "fact_ids": [
+        "scheduled",
+        "unmet",
+        "served"
+      ]
+    },
+    {
+      "mode": "deterministic",
+      "text": "Schedules 12,000 modelled litres within the declared windows. 4,100 litres of confirmed requests remain unmet. 8 confirmed points have scheduled visits. Estimates are not delivery reports; global optimality is not proved.",
+      "fact_ids": [
+        "scheduled",
+        "unmet",
+        "served"
+      ]
+    }
+  ],
+  "analysis": {
+    "parent_job_id": "eafad2cb-6553-43ea-bc6e-a869eb1d0b7e",
+    "parent_input_sha256": "61f55ebcab4fb1bc131ed1e2b4371473887d033a2ad715393d90c32e540cad37",
+    "options": {
+      "extra_stock_litres": 1000,
+      "vehicle_capacity_litres": 5000,
+      "earlier_start_minutes": 30,
+      "closing_site_id": "SITE-1",
+      "later_close_minutes": 30,
+      "shorter_service_minutes": 5
+    },
+    "children": [
+      {
+        "child_job_id": "2c553af6-eb86-5398-adf4-b7b729642bca",
+        "kind": "baseline",
+        "status": "completed",
+        "reason": null,
+        "input_snapshot": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "name": "Automated API test — synthetic exercise",
+          "data_mode": "example",
+          "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+          "operating_date": "2026-10-10",
+          "timezone": "Asia/Kolkata",
+          "pilot_bounds": [
+            77.16,
+            28.66,
+            77.24,
+            28.73
+          ],
+          "increment_litres": 100,
+          "service_window_policy": "finish_by_close",
+          "loading_mode": "parallel",
+          "solver_time_limit_seconds": 8,
+          "random_seed": 42,
+          "travel_time_multiplier": 1,
+          "depot": {
+            "opens_at": "2026-10-10T07:00:00+05:30",
+            "closes_at": "2026-10-10T13:00:00+05:30",
+            "depot_id": "DEPOT-1",
+            "name": "Example relief depot",
+            "location": {
+              "longitude": 77.2,
+              "latitude": 28.69
+            },
+            "available_stock_litres": 12000,
+            "loading_duration_minutes": 15,
+            "potable_supply_confirmed": true,
+            "provenance": "example"
+          },
+          "vehicles": [
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-1",
+              "name": "Example vehicle 1",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-2",
+              "name": "Example vehicle 2",
+              "capacity_litres": 4000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-3",
+              "name": "Example vehicle 3",
+              "capacity_litres": 3000,
+              "status": "available",
+              "provenance": "example"
+            }
+          ],
+          "sites": [
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-1",
+              "name": "Example point 1",
+              "location": {
+                "longitude": 77.19,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2500,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2500,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T10:00:00+05:30",
+              "site_id": "SITE-2",
+              "name": "Example point 2",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2200,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-3",
+              "name": "Example point 3",
+              "location": {
+                "longitude": 77.22,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 3000,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 3000,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-4",
+              "name": "Example point 4",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1800,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1800,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-5",
+              "name": "Example point 5",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.67
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1600,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1600,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-6",
+              "name": "Example point 6",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-7",
+              "name": "Example point 7",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1200,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-8",
+              "name": "Example point 8",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.72
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            }
+          ],
+          "travel_matrix": {
+            "snapshot_id": "EXAMPLE-MATRIX-1",
+            "node_ids": [
+              "DEPOT-1",
+              "SITE-1",
+              "SITE-2",
+              "SITE-3",
+              "SITE-4",
+              "SITE-5",
+              "SITE-6",
+              "SITE-7",
+              "SITE-8"
+            ],
+            "durations_seconds": [
+              [
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930,
+                1020
+              ],
+              [
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930
+              ],
+              [
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840
+              ],
+              [
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750
+              ],
+              [
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660
+              ],
+              [
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570
+              ],
+              [
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480
+              ],
+              [
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390
+              ],
+              [
+                1020,
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0
+              ]
+            ],
+            "distances_metres": [
+              [
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950,
+                5400
+              ],
+              [
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950
+              ],
+              [
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500
+              ],
+              [
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050
+              ],
+              [
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600
+              ],
+              [
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150
+              ],
+              [
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700
+              ],
+              [
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250
+              ],
+              [
+                5400,
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0
+              ]
+            ],
+            "provider": "Synthetic exercise fixture",
+            "provenance": "example",
+            "retrieved_at": null,
+            "represented_at": null,
+            "source_url": null,
+            "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+            "limitations": [
+              "Invented exercise travel matrix",
+              "Not road navigation, actual distance or live traffic",
+              "Locations do not establish permission to operate"
+            ]
+          }
+        },
+        "plan": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "data_mode": "example",
+          "created_at": "2026-10-09T18:51:10.877121+00:00",
+          "algorithm_version": "0.1.0",
+          "strategy": "jalsetu",
+          "status": "feasible",
+          "service_completeness": "partial",
+          "solver_status": "FEASIBLE_HEURISTIC",
+          "optimality_claim": false,
+          "approvable": true,
+          "approval_blockers": [],
+          "input_snapshot_sha256": "7e04f2320eb39f6f3e277676847b0f648ed520e503a418995e8ab619cc4f51b3",
+          "source_snapshot_ids": [
+            "EXAMPLE-MATRIX-1"
+          ],
+          "vehicle_routes": [
+            {
+              "vehicle_id": "VEH-1",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:54:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 5000,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "VEH-1:SITE-6",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-6",
+                  "sequence": 1,
+                  "planned_litres": 700,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-4",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-4",
+                  "sequence": 2,
+                  "planned_litres": 1800,
+                  "estimated_arrival": "2026-10-10T02:58:00+00:00",
+                  "estimated_departure": "2026-10-10T03:18:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-1",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-1",
+                  "sequence": 3,
+                  "planned_litres": 2500,
+                  "estimated_arrival": "2026-10-10T03:27:30+00:00",
+                  "estimated_departure": "2026-10-10T03:47:30+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 390,
+                "distance_metres": 2250
+              },
+              "travel_duration_seconds": 2280,
+              "travel_distance_metres": 12600
+            },
+            {
+              "vehicle_id": "VEH-2",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T04:31:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 4000,
+              "capacity_litres": 4000,
+              "stops": [
+                {
+                  "stop_id": "VEH-2:SITE-2",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-2",
+                  "sequence": 1,
+                  "planned_litres": 2200,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-8",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-8",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:04:00+00:00",
+                  "estimated_departure": "2026-10-10T03:24:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-7",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-7",
+                  "sequence": 3,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:30:30+00:00",
+                  "estimated_departure": "2026-10-10T03:50:30+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-5",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-5",
+                  "sequence": 4,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:58:30+00:00",
+                  "estimated_departure": "2026-10-10T04:18:30+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 750,
+                "distance_metres": 4050
+              },
+              "travel_duration_seconds": 2940,
+              "travel_distance_metres": 16200
+            },
+            {
+              "vehicle_id": "VEH-3",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T02:59:30+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3000,
+              "capacity_litres": 3000,
+              "stops": [
+                {
+                  "stop_id": "VEH-3:SITE-3",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-3",
+                  "sequence": 1,
+                  "planned_litres": 3000,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 570,
+                "distance_metres": 3150
+              },
+              "travel_duration_seconds": 1140,
+              "travel_distance_metres": 6300
+            }
+          ],
+          "site_results": [
+            {
+              "site_id": "SITE-1",
+              "requested_litres": 2500,
+              "scheduled_litres": 2500,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-2",
+              "requested_litres": 2200,
+              "scheduled_litres": 2200,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-3",
+              "requested_litres": 3000,
+              "scheduled_litres": 3000,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-4",
+              "requested_litres": 1800,
+              "scheduled_litres": 1800,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-5",
+              "requested_litres": 1600,
+              "scheduled_litres": 600,
+              "unmet_litres": 1000,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-6",
+              "requested_litres": 2400,
+              "scheduled_litres": 700,
+              "unmet_litres": 1700,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-7",
+              "requested_litres": 1200,
+              "scheduled_litres": 600,
+              "unmet_litres": 600,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-8",
+              "requested_litres": 1400,
+              "scheduled_litres": 600,
+              "unmet_litres": 800,
+              "reason": null
+            }
+          ],
+          "metrics": {
+            "on_time_scheduled_litres": 12000,
+            "unmet_requested_litres": 4100,
+            "served_site_count": 8,
+            "sites_meeting_minimum": 8,
+            "minimum_fulfilment_ratio": 0.2916666666666667,
+            "median_fulfilment_ratio": 0.75,
+            "mean_fulfilment_ratio": 0.6994047619047619,
+            "critical_minimum_litres": 1200,
+            "high_minimum_litres": 1200,
+            "total_travel_distance_metres": 35100,
+            "total_travel_duration_seconds": 6360,
+            "latest_route_completion_time": "2026-10-10T04:31:00+00:00",
+            "unserved_site_count": 0
+          },
+          "validation": {
+            "valid": true,
+            "errors": [],
+            "warnings": []
+          },
+          "iterations": [
+            {
+              "iteration": 1,
+              "allocation_status": "OPTIMAL",
+              "routing_status": "FEASIBLE_HEURISTIC",
+              "dropped_site_ids": []
+            }
+          ],
+          "runtime_seconds": 0.094,
+          "explanation": "Schedules 12,000 modelled litres within the selected windows. 4,100 litres remain unmet. A feasible heuristic result; global optimality is not proved.",
+          "limitations": [
+            "Declared requests are not independently verified needs",
+            "Arrival times come from the stored matrix, not guaranteed traffic",
+            "Synthetic matrix is not real Delhi routing",
+            "One trip per vehicle; no reloads",
+            "Sequential loading reserves slots in vehicle-ID order when selected"
+          ]
+        }
+      },
+      {
+        "child_job_id": "f1c3f8b0-ae61-57cc-be9e-8db94cd56ed0",
+        "kind": "stock",
+        "status": "completed",
+        "reason": null,
+        "input_snapshot": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "name": "Automated API test — synthetic exercise",
+          "data_mode": "example",
+          "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+          "operating_date": "2026-10-10",
+          "timezone": "Asia/Kolkata",
+          "pilot_bounds": [
+            77.16,
+            28.66,
+            77.24,
+            28.73
+          ],
+          "increment_litres": 100,
+          "service_window_policy": "finish_by_close",
+          "loading_mode": "parallel",
+          "solver_time_limit_seconds": 8,
+          "random_seed": 42,
+          "travel_time_multiplier": 1,
+          "depot": {
+            "opens_at": "2026-10-10T07:00:00+05:30",
+            "closes_at": "2026-10-10T13:00:00+05:30",
+            "depot_id": "DEPOT-1",
+            "name": "Example relief depot",
+            "location": {
+              "longitude": 77.2,
+              "latitude": 28.69
+            },
+            "available_stock_litres": 13000,
+            "loading_duration_minutes": 15,
+            "potable_supply_confirmed": true,
+            "provenance": "example"
+          },
+          "vehicles": [
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-1",
+              "name": "Example vehicle 1",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-2",
+              "name": "Example vehicle 2",
+              "capacity_litres": 4000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-3",
+              "name": "Example vehicle 3",
+              "capacity_litres": 3000,
+              "status": "available",
+              "provenance": "example"
+            }
+          ],
+          "sites": [
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-1",
+              "name": "Example point 1",
+              "location": {
+                "longitude": 77.19,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2500,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2500,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T10:00:00+05:30",
+              "site_id": "SITE-2",
+              "name": "Example point 2",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2200,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-3",
+              "name": "Example point 3",
+              "location": {
+                "longitude": 77.22,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 3000,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 3000,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-4",
+              "name": "Example point 4",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1800,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1800,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-5",
+              "name": "Example point 5",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.67
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1600,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1600,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-6",
+              "name": "Example point 6",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-7",
+              "name": "Example point 7",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1200,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-8",
+              "name": "Example point 8",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.72
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            }
+          ],
+          "travel_matrix": {
+            "snapshot_id": "EXAMPLE-MATRIX-1",
+            "node_ids": [
+              "DEPOT-1",
+              "SITE-1",
+              "SITE-2",
+              "SITE-3",
+              "SITE-4",
+              "SITE-5",
+              "SITE-6",
+              "SITE-7",
+              "SITE-8"
+            ],
+            "durations_seconds": [
+              [
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930,
+                1020
+              ],
+              [
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930
+              ],
+              [
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840
+              ],
+              [
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750
+              ],
+              [
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660
+              ],
+              [
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570
+              ],
+              [
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480
+              ],
+              [
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390
+              ],
+              [
+                1020,
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0
+              ]
+            ],
+            "distances_metres": [
+              [
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950,
+                5400
+              ],
+              [
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950
+              ],
+              [
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500
+              ],
+              [
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050
+              ],
+              [
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600
+              ],
+              [
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150
+              ],
+              [
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700
+              ],
+              [
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250
+              ],
+              [
+                5400,
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0
+              ]
+            ],
+            "provider": "Synthetic exercise fixture",
+            "provenance": "example",
+            "retrieved_at": null,
+            "represented_at": null,
+            "source_url": null,
+            "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+            "limitations": [
+              "Invented exercise travel matrix",
+              "Not road navigation, actual distance or live traffic",
+              "Locations do not establish permission to operate"
+            ]
+          }
+        },
+        "plan": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "data_mode": "example",
+          "created_at": "2026-10-09T18:51:10.958908+00:00",
+          "algorithm_version": "0.1.0",
+          "strategy": "jalsetu",
+          "status": "feasible",
+          "service_completeness": "partial",
+          "solver_status": "FEASIBLE_HEURISTIC",
+          "optimality_claim": false,
+          "approvable": true,
+          "approval_blockers": [],
+          "input_snapshot_sha256": "c472749229f994426bd863f77782e7d109990d64a0cf39a85a1d31527946c269",
+          "source_snapshot_ids": [
+            "EXAMPLE-MATRIX-1"
+          ],
+          "vehicle_routes": [
+            {
+              "vehicle_id": "VEH-1",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:54:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 5000,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "VEH-1:SITE-6",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-6",
+                  "sequence": 1,
+                  "planned_litres": 700,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-4",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-4",
+                  "sequence": 2,
+                  "planned_litres": 1800,
+                  "estimated_arrival": "2026-10-10T02:58:00+00:00",
+                  "estimated_departure": "2026-10-10T03:18:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-1",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-1",
+                  "sequence": 3,
+                  "planned_litres": 2500,
+                  "estimated_arrival": "2026-10-10T03:27:30+00:00",
+                  "estimated_departure": "2026-10-10T03:47:30+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 390,
+                "distance_metres": 2250
+              },
+              "travel_duration_seconds": 2280,
+              "travel_distance_metres": 12600
+            },
+            {
+              "vehicle_id": "VEH-2",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T04:31:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 4000,
+              "capacity_litres": 4000,
+              "stops": [
+                {
+                  "stop_id": "VEH-2:SITE-2",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-2",
+                  "sequence": 1,
+                  "planned_litres": 2200,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-8",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-8",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:04:00+00:00",
+                  "estimated_departure": "2026-10-10T03:24:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-7",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-7",
+                  "sequence": 3,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:30:30+00:00",
+                  "estimated_departure": "2026-10-10T03:50:30+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-5",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-5",
+                  "sequence": 4,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:58:30+00:00",
+                  "estimated_departure": "2026-10-10T04:18:30+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 750,
+                "distance_metres": 4050
+              },
+              "travel_duration_seconds": 2940,
+              "travel_distance_metres": 16200
+            },
+            {
+              "vehicle_id": "VEH-3",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T02:59:30+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3000,
+              "capacity_litres": 3000,
+              "stops": [
+                {
+                  "stop_id": "VEH-3:SITE-3",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-3",
+                  "sequence": 1,
+                  "planned_litres": 3000,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 570,
+                "distance_metres": 3150
+              },
+              "travel_duration_seconds": 1140,
+              "travel_distance_metres": 6300
+            }
+          ],
+          "site_results": [
+            {
+              "site_id": "SITE-1",
+              "requested_litres": 2500,
+              "scheduled_litres": 2500,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-2",
+              "requested_litres": 2200,
+              "scheduled_litres": 2200,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-3",
+              "requested_litres": 3000,
+              "scheduled_litres": 3000,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-4",
+              "requested_litres": 1800,
+              "scheduled_litres": 1800,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-5",
+              "requested_litres": 1600,
+              "scheduled_litres": 600,
+              "unmet_litres": 1000,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-6",
+              "requested_litres": 2400,
+              "scheduled_litres": 700,
+              "unmet_litres": 1700,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-7",
+              "requested_litres": 1200,
+              "scheduled_litres": 600,
+              "unmet_litres": 600,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-8",
+              "requested_litres": 1400,
+              "scheduled_litres": 600,
+              "unmet_litres": 800,
+              "reason": null
+            }
+          ],
+          "metrics": {
+            "on_time_scheduled_litres": 12000,
+            "unmet_requested_litres": 4100,
+            "served_site_count": 8,
+            "sites_meeting_minimum": 8,
+            "minimum_fulfilment_ratio": 0.2916666666666667,
+            "median_fulfilment_ratio": 0.75,
+            "mean_fulfilment_ratio": 0.6994047619047619,
+            "critical_minimum_litres": 1200,
+            "high_minimum_litres": 1200,
+            "total_travel_distance_metres": 35100,
+            "total_travel_duration_seconds": 6360,
+            "latest_route_completion_time": "2026-10-10T04:31:00+00:00",
+            "unserved_site_count": 0
+          },
+          "validation": {
+            "valid": true,
+            "errors": [],
+            "warnings": []
+          },
+          "iterations": [
+            {
+              "iteration": 1,
+              "allocation_status": "OPTIMAL",
+              "routing_status": "FEASIBLE_HEURISTIC",
+              "dropped_site_ids": []
+            }
+          ],
+          "runtime_seconds": 0.078,
+          "explanation": "Schedules 12,000 modelled litres within the selected windows. 4,100 litres remain unmet. A feasible heuristic result; global optimality is not proved.",
+          "limitations": [
+            "Declared requests are not independently verified needs",
+            "Arrival times come from the stored matrix, not guaranteed traffic",
+            "Synthetic matrix is not real Delhi routing",
+            "One trip per vehicle; no reloads",
+            "Sequential loading reserves slots in vehicle-ID order when selected"
+          ]
+        },
+        "delta": {
+          "on_time_scheduled_litres": 0,
+          "unmet_requested_litres": 0,
+          "served_site_count": 0,
+          "total_travel_distance_metres": 0,
+          "total_travel_duration_seconds": 0
+        }
+      },
+      {
+        "child_job_id": "88b2c661-04e7-5457-82e7-78d57f638947",
+        "kind": "vehicle",
+        "status": "completed",
+        "reason": null,
+        "input_snapshot": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "name": "Automated API test — synthetic exercise",
+          "data_mode": "example",
+          "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+          "operating_date": "2026-10-10",
+          "timezone": "Asia/Kolkata",
+          "pilot_bounds": [
+            77.16,
+            28.66,
+            77.24,
+            28.73
+          ],
+          "increment_litres": 100,
+          "service_window_policy": "finish_by_close",
+          "loading_mode": "parallel",
+          "solver_time_limit_seconds": 8,
+          "random_seed": 42,
+          "travel_time_multiplier": 1,
+          "depot": {
+            "opens_at": "2026-10-10T07:00:00+05:30",
+            "closes_at": "2026-10-10T13:00:00+05:30",
+            "depot_id": "DEPOT-1",
+            "name": "Example relief depot",
+            "location": {
+              "longitude": 77.2,
+              "latitude": 28.69
+            },
+            "available_stock_litres": 12000,
+            "loading_duration_minutes": 15,
+            "potable_supply_confirmed": true,
+            "provenance": "example"
+          },
+          "vehicles": [
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-1",
+              "name": "Example vehicle 1",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-2",
+              "name": "Example vehicle 2",
+              "capacity_litres": 4000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-3",
+              "name": "Example vehicle 3",
+              "capacity_litres": 3000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "EXAMPLE-EXTRA",
+              "name": "EXAMPLE additional vehicle",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            }
+          ],
+          "sites": [
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-1",
+              "name": "Example point 1",
+              "location": {
+                "longitude": 77.19,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2500,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2500,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T10:00:00+05:30",
+              "site_id": "SITE-2",
+              "name": "Example point 2",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2200,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-3",
+              "name": "Example point 3",
+              "location": {
+                "longitude": 77.22,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 3000,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 3000,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-4",
+              "name": "Example point 4",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1800,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1800,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-5",
+              "name": "Example point 5",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.67
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1600,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1600,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-6",
+              "name": "Example point 6",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-7",
+              "name": "Example point 7",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1200,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-8",
+              "name": "Example point 8",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.72
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            }
+          ],
+          "travel_matrix": {
+            "snapshot_id": "EXAMPLE-MATRIX-1",
+            "node_ids": [
+              "DEPOT-1",
+              "SITE-1",
+              "SITE-2",
+              "SITE-3",
+              "SITE-4",
+              "SITE-5",
+              "SITE-6",
+              "SITE-7",
+              "SITE-8"
+            ],
+            "durations_seconds": [
+              [
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930,
+                1020
+              ],
+              [
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930
+              ],
+              [
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840
+              ],
+              [
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750
+              ],
+              [
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660
+              ],
+              [
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570
+              ],
+              [
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480
+              ],
+              [
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390
+              ],
+              [
+                1020,
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0
+              ]
+            ],
+            "distances_metres": [
+              [
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950,
+                5400
+              ],
+              [
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950
+              ],
+              [
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500
+              ],
+              [
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050
+              ],
+              [
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600
+              ],
+              [
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150
+              ],
+              [
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700
+              ],
+              [
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250
+              ],
+              [
+                5400,
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0
+              ]
+            ],
+            "provider": "Synthetic exercise fixture",
+            "provenance": "example",
+            "retrieved_at": null,
+            "represented_at": null,
+            "source_url": null,
+            "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+            "limitations": [
+              "Invented exercise travel matrix",
+              "Not road navigation, actual distance or live traffic",
+              "Locations do not establish permission to operate"
+            ]
+          }
+        },
+        "plan": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "data_mode": "example",
+          "created_at": "2026-10-09T18:51:11.053901+00:00",
+          "algorithm_version": "0.1.0",
+          "strategy": "jalsetu",
+          "status": "feasible",
+          "service_completeness": "partial",
+          "solver_status": "FEASIBLE_HEURISTIC",
+          "optimality_claim": false,
+          "approvable": true,
+          "approval_blockers": [],
+          "input_snapshot_sha256": "de42bea5560dcd1ec43d7a336d0cd2839778b0f323488b78f474771018aaced0",
+          "source_snapshot_ids": [
+            "EXAMPLE-MATRIX-1"
+          ],
+          "vehicle_routes": [
+            {
+              "vehicle_id": "EXAMPLE-EXTRA",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:29:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3700,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "EXAMPLE-EXTRA:SITE-6",
+                  "vehicle_id": "EXAMPLE-EXTRA",
+                  "site_id": "SITE-6",
+                  "sequence": 1,
+                  "planned_litres": 700,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "EXAMPLE-EXTRA:SITE-3",
+                  "vehicle_id": "EXAMPLE-EXTRA",
+                  "site_id": "SITE-3",
+                  "sequence": 2,
+                  "planned_litres": 3000,
+                  "estimated_arrival": "2026-10-10T02:59:30+00:00",
+                  "estimated_departure": "2026-10-10T03:19:30+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 570,
+                "distance_metres": 3150
+              },
+              "travel_duration_seconds": 1980,
+              "travel_distance_metres": 10800
+            },
+            {
+              "vehicle_id": "VEH-1",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:39:30+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3100,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "VEH-1:SITE-1",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-1",
+                  "sequence": 1,
+                  "planned_litres": 2500,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-7",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-7",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:04:00+00:00",
+                  "estimated_departure": "2026-10-10T03:24:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 930,
+                "distance_metres": 4950
+              },
+              "travel_duration_seconds": 2160,
+              "travel_distance_metres": 11700
+            },
+            {
+              "vehicle_id": "VEH-2",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:29:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 2400,
+              "capacity_litres": 4000,
+              "stops": [
+                {
+                  "stop_id": "VEH-2:SITE-4",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-4",
+                  "sequence": 1,
+                  "planned_litres": 1800,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 660,
+                  "travel_distance_metres_from_previous": 3600,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-5",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-5",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T02:56:30+00:00",
+                  "estimated_departure": "2026-10-10T03:16:30+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 750,
+                "distance_metres": 4050
+              },
+              "travel_duration_seconds": 1800,
+              "travel_distance_metres": 9900
+            },
+            {
+              "vehicle_id": "VEH-3",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:41:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 2800,
+              "capacity_litres": 3000,
+              "stops": [
+                {
+                  "stop_id": "VEH-3:SITE-2",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-2",
+                  "sequence": 1,
+                  "planned_litres": 2200,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-3:SITE-8",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-8",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:04:00+00:00",
+                  "estimated_departure": "2026-10-10T03:24:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 1020,
+                "distance_metres": 5400
+              },
+              "travel_duration_seconds": 2340,
+              "travel_distance_metres": 12600
+            }
+          ],
+          "site_results": [
+            {
+              "site_id": "SITE-1",
+              "requested_litres": 2500,
+              "scheduled_litres": 2500,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-2",
+              "requested_litres": 2200,
+              "scheduled_litres": 2200,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-3",
+              "requested_litres": 3000,
+              "scheduled_litres": 3000,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-4",
+              "requested_litres": 1800,
+              "scheduled_litres": 1800,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-5",
+              "requested_litres": 1600,
+              "scheduled_litres": 600,
+              "unmet_litres": 1000,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-6",
+              "requested_litres": 2400,
+              "scheduled_litres": 700,
+              "unmet_litres": 1700,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-7",
+              "requested_litres": 1200,
+              "scheduled_litres": 600,
+              "unmet_litres": 600,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-8",
+              "requested_litres": 1400,
+              "scheduled_litres": 600,
+              "unmet_litres": 800,
+              "reason": null
+            }
+          ],
+          "metrics": {
+            "on_time_scheduled_litres": 12000,
+            "unmet_requested_litres": 4100,
+            "served_site_count": 8,
+            "sites_meeting_minimum": 8,
+            "minimum_fulfilment_ratio": 0.2916666666666667,
+            "median_fulfilment_ratio": 0.75,
+            "mean_fulfilment_ratio": 0.6994047619047619,
+            "critical_minimum_litres": 1200,
+            "high_minimum_litres": 1200,
+            "total_travel_distance_metres": 45000,
+            "total_travel_duration_seconds": 8280,
+            "latest_route_completion_time": "2026-10-10T03:41:00+00:00",
+            "unserved_site_count": 0
+          },
+          "validation": {
+            "valid": true,
+            "errors": [],
+            "warnings": []
+          },
+          "iterations": [
+            {
+              "iteration": 1,
+              "allocation_status": "OPTIMAL",
+              "routing_status": "FEASIBLE_HEURISTIC",
+              "dropped_site_ids": []
+            }
+          ],
+          "runtime_seconds": 0.094,
+          "explanation": "Schedules 12,000 modelled litres within the selected windows. 4,100 litres remain unmet. A feasible heuristic result; global optimality is not proved.",
+          "limitations": [
+            "Declared requests are not independently verified needs",
+            "Arrival times come from the stored matrix, not guaranteed traffic",
+            "Synthetic matrix is not real Delhi routing",
+            "One trip per vehicle; no reloads",
+            "Sequential loading reserves slots in vehicle-ID order when selected"
+          ]
+        },
+        "delta": {
+          "on_time_scheduled_litres": 0,
+          "unmet_requested_litres": 0,
+          "served_site_count": 0,
+          "total_travel_distance_metres": 9900,
+          "total_travel_duration_seconds": 1920
+        }
+      },
+      {
+        "child_job_id": "efc2aa66-9fd6-5416-b929-061f5644cf60",
+        "kind": "earlier_start",
+        "status": "completed",
+        "reason": null,
+        "input_snapshot": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "name": "Automated API test — synthetic exercise",
+          "data_mode": "example",
+          "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+          "operating_date": "2026-10-10",
+          "timezone": "Asia/Kolkata",
+          "pilot_bounds": [
+            77.16,
+            28.66,
+            77.24,
+            28.73
+          ],
+          "increment_litres": 100,
+          "service_window_policy": "finish_by_close",
+          "loading_mode": "parallel",
+          "solver_time_limit_seconds": 8,
+          "random_seed": 42,
+          "travel_time_multiplier": 1,
+          "depot": {
+            "opens_at": "2026-10-10T07:00:00+05:30",
+            "closes_at": "2026-10-10T13:00:00+05:30",
+            "depot_id": "DEPOT-1",
+            "name": "Example relief depot",
+            "location": {
+              "longitude": 77.2,
+              "latitude": 28.69
+            },
+            "available_stock_litres": 12000,
+            "loading_duration_minutes": 15,
+            "potable_supply_confirmed": true,
+            "provenance": "example"
+          },
+          "vehicles": [
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-1",
+              "name": "Example vehicle 1",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-2",
+              "name": "Example vehicle 2",
+              "capacity_litres": 4000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-3",
+              "name": "Example vehicle 3",
+              "capacity_litres": 3000,
+              "status": "available",
+              "provenance": "example"
+            }
+          ],
+          "sites": [
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-1",
+              "name": "Example point 1",
+              "location": {
+                "longitude": 77.19,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2500,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2500,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T10:00:00+05:30",
+              "site_id": "SITE-2",
+              "name": "Example point 2",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2200,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-3",
+              "name": "Example point 3",
+              "location": {
+                "longitude": 77.22,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 3000,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 3000,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-4",
+              "name": "Example point 4",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1800,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1800,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-5",
+              "name": "Example point 5",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.67
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1600,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1600,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-6",
+              "name": "Example point 6",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-7",
+              "name": "Example point 7",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1200,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-8",
+              "name": "Example point 8",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.72
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            }
+          ],
+          "travel_matrix": {
+            "snapshot_id": "EXAMPLE-MATRIX-1",
+            "node_ids": [
+              "DEPOT-1",
+              "SITE-1",
+              "SITE-2",
+              "SITE-3",
+              "SITE-4",
+              "SITE-5",
+              "SITE-6",
+              "SITE-7",
+              "SITE-8"
+            ],
+            "durations_seconds": [
+              [
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930,
+                1020
+              ],
+              [
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930
+              ],
+              [
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840
+              ],
+              [
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750
+              ],
+              [
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660
+              ],
+              [
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570
+              ],
+              [
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480
+              ],
+              [
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390
+              ],
+              [
+                1020,
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0
+              ]
+            ],
+            "distances_metres": [
+              [
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950,
+                5400
+              ],
+              [
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950
+              ],
+              [
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500
+              ],
+              [
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050
+              ],
+              [
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600
+              ],
+              [
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150
+              ],
+              [
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700
+              ],
+              [
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250
+              ],
+              [
+                5400,
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0
+              ]
+            ],
+            "provider": "Synthetic exercise fixture",
+            "provenance": "example",
+            "retrieved_at": null,
+            "represented_at": null,
+            "source_url": null,
+            "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+            "limitations": [
+              "Invented exercise travel matrix",
+              "Not road navigation, actual distance or live traffic",
+              "Locations do not establish permission to operate"
+            ]
+          }
+        },
+        "plan": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "data_mode": "example",
+          "created_at": "2026-10-09T18:51:11.187838+00:00",
+          "algorithm_version": "0.1.0",
+          "strategy": "jalsetu",
+          "status": "feasible",
+          "service_completeness": "partial",
+          "solver_status": "FEASIBLE_HEURISTIC",
+          "optimality_claim": false,
+          "approvable": true,
+          "approval_blockers": [],
+          "input_snapshot_sha256": "7e04f2320eb39f6f3e277676847b0f648ed520e503a418995e8ab619cc4f51b3",
+          "source_snapshot_ids": [
+            "EXAMPLE-MATRIX-1"
+          ],
+          "vehicle_routes": [
+            {
+              "vehicle_id": "VEH-1",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:54:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 5000,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "VEH-1:SITE-6",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-6",
+                  "sequence": 1,
+                  "planned_litres": 700,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-4",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-4",
+                  "sequence": 2,
+                  "planned_litres": 1800,
+                  "estimated_arrival": "2026-10-10T02:58:00+00:00",
+                  "estimated_departure": "2026-10-10T03:18:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-1",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-1",
+                  "sequence": 3,
+                  "planned_litres": 2500,
+                  "estimated_arrival": "2026-10-10T03:27:30+00:00",
+                  "estimated_departure": "2026-10-10T03:47:30+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 390,
+                "distance_metres": 2250
+              },
+              "travel_duration_seconds": 2280,
+              "travel_distance_metres": 12600
+            },
+            {
+              "vehicle_id": "VEH-2",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T04:31:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 4000,
+              "capacity_litres": 4000,
+              "stops": [
+                {
+                  "stop_id": "VEH-2:SITE-2",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-2",
+                  "sequence": 1,
+                  "planned_litres": 2200,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-8",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-8",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:04:00+00:00",
+                  "estimated_departure": "2026-10-10T03:24:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-7",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-7",
+                  "sequence": 3,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:30:30+00:00",
+                  "estimated_departure": "2026-10-10T03:50:30+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-5",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-5",
+                  "sequence": 4,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:58:30+00:00",
+                  "estimated_departure": "2026-10-10T04:18:30+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 750,
+                "distance_metres": 4050
+              },
+              "travel_duration_seconds": 2940,
+              "travel_distance_metres": 16200
+            },
+            {
+              "vehicle_id": "VEH-3",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T02:59:30+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3000,
+              "capacity_litres": 3000,
+              "stops": [
+                {
+                  "stop_id": "VEH-3:SITE-3",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-3",
+                  "sequence": 1,
+                  "planned_litres": 3000,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 570,
+                "distance_metres": 3150
+              },
+              "travel_duration_seconds": 1140,
+              "travel_distance_metres": 6300
+            }
+          ],
+          "site_results": [
+            {
+              "site_id": "SITE-1",
+              "requested_litres": 2500,
+              "scheduled_litres": 2500,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-2",
+              "requested_litres": 2200,
+              "scheduled_litres": 2200,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-3",
+              "requested_litres": 3000,
+              "scheduled_litres": 3000,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-4",
+              "requested_litres": 1800,
+              "scheduled_litres": 1800,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-5",
+              "requested_litres": 1600,
+              "scheduled_litres": 600,
+              "unmet_litres": 1000,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-6",
+              "requested_litres": 2400,
+              "scheduled_litres": 700,
+              "unmet_litres": 1700,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-7",
+              "requested_litres": 1200,
+              "scheduled_litres": 600,
+              "unmet_litres": 600,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-8",
+              "requested_litres": 1400,
+              "scheduled_litres": 600,
+              "unmet_litres": 800,
+              "reason": null
+            }
+          ],
+          "metrics": {
+            "on_time_scheduled_litres": 12000,
+            "unmet_requested_litres": 4100,
+            "served_site_count": 8,
+            "sites_meeting_minimum": 8,
+            "minimum_fulfilment_ratio": 0.2916666666666667,
+            "median_fulfilment_ratio": 0.75,
+            "mean_fulfilment_ratio": 0.6994047619047619,
+            "critical_minimum_litres": 1200,
+            "high_minimum_litres": 1200,
+            "total_travel_distance_metres": 35100,
+            "total_travel_duration_seconds": 6360,
+            "latest_route_completion_time": "2026-10-10T04:31:00+00:00",
+            "unserved_site_count": 0
+          },
+          "validation": {
+            "valid": true,
+            "errors": [],
+            "warnings": []
+          },
+          "iterations": [
+            {
+              "iteration": 1,
+              "allocation_status": "OPTIMAL",
+              "routing_status": "FEASIBLE_HEURISTIC",
+              "dropped_site_ids": []
+            }
+          ],
+          "runtime_seconds": 0.14,
+          "explanation": "Schedules 12,000 modelled litres within the selected windows. 4,100 litres remain unmet. A feasible heuristic result; global optimality is not proved.",
+          "limitations": [
+            "Declared requests are not independently verified needs",
+            "Arrival times come from the stored matrix, not guaranteed traffic",
+            "Synthetic matrix is not real Delhi routing",
+            "One trip per vehicle; no reloads",
+            "Sequential loading reserves slots in vehicle-ID order when selected"
+          ]
+        },
+        "delta": {
+          "on_time_scheduled_litres": 0,
+          "unmet_requested_litres": 0,
+          "served_site_count": 0,
+          "total_travel_distance_metres": 0,
+          "total_travel_duration_seconds": 0
+        }
+      },
+      {
+        "child_job_id": "09aaa296-e091-590f-b457-94edbdf16859",
+        "kind": "later_close",
+        "status": "completed",
+        "reason": null,
+        "input_snapshot": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "name": "Automated API test — synthetic exercise",
+          "data_mode": "example",
+          "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+          "operating_date": "2026-10-10",
+          "timezone": "Asia/Kolkata",
+          "pilot_bounds": [
+            77.16,
+            28.66,
+            77.24,
+            28.73
+          ],
+          "increment_litres": 100,
+          "service_window_policy": "finish_by_close",
+          "loading_mode": "parallel",
+          "solver_time_limit_seconds": 8,
+          "random_seed": 42,
+          "travel_time_multiplier": 1,
+          "depot": {
+            "opens_at": "2026-10-10T07:00:00+05:30",
+            "closes_at": "2026-10-10T13:00:00+05:30",
+            "depot_id": "DEPOT-1",
+            "name": "Example relief depot",
+            "location": {
+              "longitude": 77.2,
+              "latitude": 28.69
+            },
+            "available_stock_litres": 12000,
+            "loading_duration_minutes": 15,
+            "potable_supply_confirmed": true,
+            "provenance": "example"
+          },
+          "vehicles": [
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-1",
+              "name": "Example vehicle 1",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-2",
+              "name": "Example vehicle 2",
+              "capacity_litres": 4000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-3",
+              "name": "Example vehicle 3",
+              "capacity_litres": 3000,
+              "status": "available",
+              "provenance": "example"
+            }
+          ],
+          "sites": [
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:30:00+05:30",
+              "site_id": "SITE-1",
+              "name": "Example point 1",
+              "location": {
+                "longitude": 77.19,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2500,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2500,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T10:00:00+05:30",
+              "site_id": "SITE-2",
+              "name": "Example point 2",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2200,
+              "service_duration_minutes": 20,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-3",
+              "name": "Example point 3",
+              "location": {
+                "longitude": 77.22,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 3000,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 3000,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-4",
+              "name": "Example point 4",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1800,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1800,
+              "service_duration_minutes": 20,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-5",
+              "name": "Example point 5",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.67
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1600,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1600,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-6",
+              "name": "Example point 6",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-7",
+              "name": "Example point 7",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1200,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-8",
+              "name": "Example point 8",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.72
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1400,
+              "service_duration_minutes": 20,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            }
+          ],
+          "travel_matrix": {
+            "snapshot_id": "EXAMPLE-MATRIX-1",
+            "node_ids": [
+              "DEPOT-1",
+              "SITE-1",
+              "SITE-2",
+              "SITE-3",
+              "SITE-4",
+              "SITE-5",
+              "SITE-6",
+              "SITE-7",
+              "SITE-8"
+            ],
+            "durations_seconds": [
+              [
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930,
+                1020
+              ],
+              [
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930
+              ],
+              [
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840
+              ],
+              [
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750
+              ],
+              [
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660
+              ],
+              [
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570
+              ],
+              [
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480
+              ],
+              [
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390
+              ],
+              [
+                1020,
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0
+              ]
+            ],
+            "distances_metres": [
+              [
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950,
+                5400
+              ],
+              [
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950
+              ],
+              [
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500
+              ],
+              [
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050
+              ],
+              [
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600
+              ],
+              [
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150
+              ],
+              [
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700
+              ],
+              [
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250
+              ],
+              [
+                5400,
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0
+              ]
+            ],
+            "provider": "Synthetic exercise fixture",
+            "provenance": "example",
+            "retrieved_at": null,
+            "represented_at": null,
+            "source_url": null,
+            "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+            "limitations": [
+              "Invented exercise travel matrix",
+              "Not road navigation, actual distance or live traffic",
+              "Locations do not establish permission to operate"
+            ]
+          }
+        },
+        "plan": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "data_mode": "example",
+          "created_at": "2026-10-09T18:51:11.305688+00:00",
+          "algorithm_version": "0.1.0",
+          "strategy": "jalsetu",
+          "status": "feasible",
+          "service_completeness": "partial",
+          "solver_status": "FEASIBLE_HEURISTIC",
+          "optimality_claim": false,
+          "approvable": true,
+          "approval_blockers": [],
+          "input_snapshot_sha256": "dcd2f96dae700aed7bc76ed08b2752d5d3cfc812e1f60e2e80631753b41a8409",
+          "source_snapshot_ids": [
+            "EXAMPLE-MATRIX-1"
+          ],
+          "vehicle_routes": [
+            {
+              "vehicle_id": "VEH-1",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:54:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 5000,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "VEH-1:SITE-6",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-6",
+                  "sequence": 1,
+                  "planned_litres": 700,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-4",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-4",
+                  "sequence": 2,
+                  "planned_litres": 1800,
+                  "estimated_arrival": "2026-10-10T02:58:00+00:00",
+                  "estimated_departure": "2026-10-10T03:18:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-1",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-1",
+                  "sequence": 3,
+                  "planned_litres": 2500,
+                  "estimated_arrival": "2026-10-10T03:27:30+00:00",
+                  "estimated_departure": "2026-10-10T03:47:30+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 390,
+                "distance_metres": 2250
+              },
+              "travel_duration_seconds": 2280,
+              "travel_distance_metres": 12600
+            },
+            {
+              "vehicle_id": "VEH-2",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T04:31:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 4000,
+              "capacity_litres": 4000,
+              "stops": [
+                {
+                  "stop_id": "VEH-2:SITE-2",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-2",
+                  "sequence": 1,
+                  "planned_litres": 2200,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-8",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-8",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:04:00+00:00",
+                  "estimated_departure": "2026-10-10T03:24:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-7",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-7",
+                  "sequence": 3,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:30:30+00:00",
+                  "estimated_departure": "2026-10-10T03:50:30+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-5",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-5",
+                  "sequence": 4,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:58:30+00:00",
+                  "estimated_departure": "2026-10-10T04:18:30+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 750,
+                "distance_metres": 4050
+              },
+              "travel_duration_seconds": 2940,
+              "travel_distance_metres": 16200
+            },
+            {
+              "vehicle_id": "VEH-3",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T02:59:30+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3000,
+              "capacity_litres": 3000,
+              "stops": [
+                {
+                  "stop_id": "VEH-3:SITE-3",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-3",
+                  "sequence": 1,
+                  "planned_litres": 3000,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:50:00+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 570,
+                "distance_metres": 3150
+              },
+              "travel_duration_seconds": 1140,
+              "travel_distance_metres": 6300
+            }
+          ],
+          "site_results": [
+            {
+              "site_id": "SITE-1",
+              "requested_litres": 2500,
+              "scheduled_litres": 2500,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-2",
+              "requested_litres": 2200,
+              "scheduled_litres": 2200,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-3",
+              "requested_litres": 3000,
+              "scheduled_litres": 3000,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-4",
+              "requested_litres": 1800,
+              "scheduled_litres": 1800,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-5",
+              "requested_litres": 1600,
+              "scheduled_litres": 600,
+              "unmet_litres": 1000,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-6",
+              "requested_litres": 2400,
+              "scheduled_litres": 700,
+              "unmet_litres": 1700,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-7",
+              "requested_litres": 1200,
+              "scheduled_litres": 600,
+              "unmet_litres": 600,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-8",
+              "requested_litres": 1400,
+              "scheduled_litres": 600,
+              "unmet_litres": 800,
+              "reason": null
+            }
+          ],
+          "metrics": {
+            "on_time_scheduled_litres": 12000,
+            "unmet_requested_litres": 4100,
+            "served_site_count": 8,
+            "sites_meeting_minimum": 8,
+            "minimum_fulfilment_ratio": 0.2916666666666667,
+            "median_fulfilment_ratio": 0.75,
+            "mean_fulfilment_ratio": 0.6994047619047619,
+            "critical_minimum_litres": 1200,
+            "high_minimum_litres": 1200,
+            "total_travel_distance_metres": 35100,
+            "total_travel_duration_seconds": 6360,
+            "latest_route_completion_time": "2026-10-10T04:31:00+00:00",
+            "unserved_site_count": 0
+          },
+          "validation": {
+            "valid": true,
+            "errors": [],
+            "warnings": []
+          },
+          "iterations": [
+            {
+              "iteration": 1,
+              "allocation_status": "OPTIMAL",
+              "routing_status": "FEASIBLE_HEURISTIC",
+              "dropped_site_ids": []
+            }
+          ],
+          "runtime_seconds": 0.11,
+          "explanation": "Schedules 12,000 modelled litres within the selected windows. 4,100 litres remain unmet. A feasible heuristic result; global optimality is not proved.",
+          "limitations": [
+            "Declared requests are not independently verified needs",
+            "Arrival times come from the stored matrix, not guaranteed traffic",
+            "Synthetic matrix is not real Delhi routing",
+            "One trip per vehicle; no reloads",
+            "Sequential loading reserves slots in vehicle-ID order when selected"
+          ]
+        },
+        "delta": {
+          "on_time_scheduled_litres": 0,
+          "unmet_requested_litres": 0,
+          "served_site_count": 0,
+          "total_travel_distance_metres": 0,
+          "total_travel_duration_seconds": 0
+        }
+      },
+      {
+        "child_job_id": "01ad462f-fff1-5d59-9a47-be75e9c6a008",
+        "kind": "shorter_service",
+        "status": "completed",
+        "reason": null,
+        "input_snapshot": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "name": "Automated API test — synthetic exercise",
+          "data_mode": "example",
+          "display_warning": "EXAMPLE DATA: synthetic resources, requests and travel matrix. Not NGO or government inventory, site permission or real traffic.",
+          "operating_date": "2026-10-10",
+          "timezone": "Asia/Kolkata",
+          "pilot_bounds": [
+            77.16,
+            28.66,
+            77.24,
+            28.73
+          ],
+          "increment_litres": 100,
+          "service_window_policy": "finish_by_close",
+          "loading_mode": "parallel",
+          "solver_time_limit_seconds": 8,
+          "random_seed": 42,
+          "travel_time_multiplier": 1,
+          "depot": {
+            "opens_at": "2026-10-10T07:00:00+05:30",
+            "closes_at": "2026-10-10T13:00:00+05:30",
+            "depot_id": "DEPOT-1",
+            "name": "Example relief depot",
+            "location": {
+              "longitude": 77.2,
+              "latitude": 28.69
+            },
+            "available_stock_litres": 12000,
+            "loading_duration_minutes": 15,
+            "potable_supply_confirmed": true,
+            "provenance": "example"
+          },
+          "vehicles": [
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-1",
+              "name": "Example vehicle 1",
+              "capacity_litres": 5000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-2",
+              "name": "Example vehicle 2",
+              "capacity_litres": 4000,
+              "status": "available",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T07:00:00+05:30",
+              "closes_at": "2026-10-10T13:00:00+05:30",
+              "vehicle_id": "VEH-3",
+              "name": "Example vehicle 3",
+              "capacity_litres": 3000,
+              "status": "available",
+              "provenance": "example"
+            }
+          ],
+          "sites": [
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-1",
+              "name": "Example point 1",
+              "location": {
+                "longitude": 77.19,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2500,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2500,
+              "service_duration_minutes": 15,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T10:00:00+05:30",
+              "site_id": "SITE-2",
+              "name": "Example point 2",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2200,
+              "service_duration_minutes": 15,
+              "priority_class": "critical",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-3",
+              "name": "Example point 3",
+              "location": {
+                "longitude": 77.22,
+                "latitude": 28.7
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 3000,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 3000,
+              "service_duration_minutes": 15,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-4",
+              "name": "Example point 4",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1800,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1800,
+              "service_duration_minutes": 15,
+              "priority_class": "high",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-5",
+              "name": "Example point 5",
+              "location": {
+                "longitude": 77.21,
+                "latitude": 28.67
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1600,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1600,
+              "service_duration_minutes": 15,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-6",
+              "name": "Example point 6",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.68
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 2400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 2400,
+              "service_duration_minutes": 15,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-7",
+              "name": "Example point 7",
+              "location": {
+                "longitude": 77.18,
+                "latitude": 28.71
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1200,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1200,
+              "service_duration_minutes": 15,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            },
+            {
+              "opens_at": "2026-10-10T08:00:00+05:30",
+              "closes_at": "2026-10-10T12:00:00+05:30",
+              "site_id": "SITE-8",
+              "name": "Example point 8",
+              "location": {
+                "longitude": 77.23,
+                "latitude": 28.72
+              },
+              "confirmation_status": "confirmed",
+              "requested_litres": 1400,
+              "minimum_useful_litres": 600,
+              "receiving_limit_litres": 1400,
+              "service_duration_minutes": 15,
+              "priority_class": "standard",
+              "priority_reason": "Synthetic operator-declared priority for an exercise, not a medical score",
+              "provenance": "example"
+            }
+          ],
+          "travel_matrix": {
+            "snapshot_id": "EXAMPLE-MATRIX-1",
+            "node_ids": [
+              "DEPOT-1",
+              "SITE-1",
+              "SITE-2",
+              "SITE-3",
+              "SITE-4",
+              "SITE-5",
+              "SITE-6",
+              "SITE-7",
+              "SITE-8"
+            ],
+            "durations_seconds": [
+              [
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930,
+                1020
+              ],
+              [
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840,
+                930
+              ],
+              [
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750,
+                840
+              ],
+              [
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660,
+                750
+              ],
+              [
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570,
+                660
+              ],
+              [
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480,
+                570
+              ],
+              [
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390,
+                480
+              ],
+              [
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0,
+                390
+              ],
+              [
+                1020,
+                930,
+                840,
+                750,
+                660,
+                570,
+                480,
+                390,
+                0
+              ]
+            ],
+            "distances_metres": [
+              [
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950,
+                5400
+              ],
+              [
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500,
+                4950
+              ],
+              [
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050,
+                4500
+              ],
+              [
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600,
+                4050
+              ],
+              [
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150,
+                3600
+              ],
+              [
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700,
+                3150
+              ],
+              [
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250,
+                2700
+              ],
+              [
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0,
+                2250
+              ],
+              [
+                5400,
+                4950,
+                4500,
+                4050,
+                3600,
+                3150,
+                2700,
+                2250,
+                0
+              ]
+            ],
+            "provider": "Synthetic exercise fixture",
+            "provenance": "example",
+            "retrieved_at": null,
+            "represented_at": null,
+            "source_url": null,
+            "attribution": "Synthetic scenario authored during this build; no external routing dataset",
+            "limitations": [
+              "Invented exercise travel matrix",
+              "Not road navigation, actual distance or live traffic",
+              "Locations do not establish permission to operate"
+            ]
+          }
+        },
+        "plan": {
+          "schema_version": "1.0",
+          "project_id": "EXAMPLE-NORTH-DELHI",
+          "data_mode": "example",
+          "created_at": "2026-10-09T18:51:11.429727+00:00",
+          "algorithm_version": "0.1.0",
+          "strategy": "jalsetu",
+          "status": "feasible",
+          "service_completeness": "partial",
+          "solver_status": "FEASIBLE_HEURISTIC",
+          "optimality_claim": false,
+          "approvable": true,
+          "approval_blockers": [],
+          "input_snapshot_sha256": "3ba16c66fa2e83b3188df87b805f06d0d92671c47761433ae9d44832b9d6185b",
+          "source_snapshot_ids": [
+            "EXAMPLE-MATRIX-1"
+          ],
+          "vehicle_routes": [
+            {
+              "vehicle_id": "VEH-1",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T03:39:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 5000,
+              "capacity_litres": 5000,
+              "stops": [
+                {
+                  "stop_id": "VEH-1:SITE-6",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-6",
+                  "sequence": 1,
+                  "planned_litres": 700,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:45:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-4",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-4",
+                  "sequence": 2,
+                  "planned_litres": 1800,
+                  "estimated_arrival": "2026-10-10T02:53:00+00:00",
+                  "estimated_departure": "2026-10-10T03:08:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-1:SITE-1",
+                  "vehicle_id": "VEH-1",
+                  "site_id": "SITE-1",
+                  "sequence": 3,
+                  "planned_litres": 2500,
+                  "estimated_arrival": "2026-10-10T03:17:30+00:00",
+                  "estimated_departure": "2026-10-10T03:32:30+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 390,
+                "distance_metres": 2250
+              },
+              "travel_duration_seconds": 2280,
+              "travel_distance_metres": 12600
+            },
+            {
+              "vehicle_id": "VEH-2",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T04:11:00+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 4000,
+              "capacity_litres": 4000,
+              "stops": [
+                {
+                  "stop_id": "VEH-2:SITE-2",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-2",
+                  "sequence": 1,
+                  "planned_litres": 2200,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:45:00+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-8",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-8",
+                  "sequence": 2,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T02:59:00+00:00",
+                  "estimated_departure": "2026-10-10T03:14:00+00:00",
+                  "travel_duration_seconds_from_previous": 840,
+                  "travel_distance_metres_from_previous": 4500,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-7",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-7",
+                  "sequence": 3,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:20:30+00:00",
+                  "estimated_departure": "2026-10-10T03:35:30+00:00",
+                  "travel_duration_seconds_from_previous": 390,
+                  "travel_distance_metres_from_previous": 2250,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                },
+                {
+                  "stop_id": "VEH-2:SITE-5",
+                  "vehicle_id": "VEH-2",
+                  "site_id": "SITE-5",
+                  "sequence": 4,
+                  "planned_litres": 600,
+                  "estimated_arrival": "2026-10-10T03:43:30+00:00",
+                  "estimated_departure": "2026-10-10T03:58:30+00:00",
+                  "travel_duration_seconds_from_previous": 480,
+                  "travel_distance_metres_from_previous": 2700,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 750,
+                "distance_metres": 4050
+              },
+              "travel_duration_seconds": 2940,
+              "travel_distance_metres": 16200
+            },
+            {
+              "vehicle_id": "VEH-3",
+              "depot_id": "DEPOT-1",
+              "estimated_departure": "2026-10-10T01:45:00+00:00",
+              "estimated_return": "2026-10-10T02:54:30+00:00",
+              "loading_started_at": "2026-10-10T01:30:00+00:00",
+              "planned_load_litres": 3000,
+              "capacity_litres": 3000,
+              "stops": [
+                {
+                  "stop_id": "VEH-3:SITE-3",
+                  "vehicle_id": "VEH-3",
+                  "site_id": "SITE-3",
+                  "sequence": 1,
+                  "planned_litres": 3000,
+                  "estimated_arrival": "2026-10-10T02:30:00+00:00",
+                  "estimated_departure": "2026-10-10T02:45:00+00:00",
+                  "travel_duration_seconds_from_previous": 570,
+                  "travel_distance_metres_from_previous": 3150,
+                  "state": "not_started",
+                  "reported_delivered_litres": 0
+                }
+              ],
+              "return_leg": {
+                "duration_seconds": 570,
+                "distance_metres": 3150
+              },
+              "travel_duration_seconds": 1140,
+              "travel_distance_metres": 6300
+            }
+          ],
+          "site_results": [
+            {
+              "site_id": "SITE-1",
+              "requested_litres": 2500,
+              "scheduled_litres": 2500,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-2",
+              "requested_litres": 2200,
+              "scheduled_litres": 2200,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-3",
+              "requested_litres": 3000,
+              "scheduled_litres": 3000,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-4",
+              "requested_litres": 1800,
+              "scheduled_litres": 1800,
+              "unmet_litres": 0,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-5",
+              "requested_litres": 1600,
+              "scheduled_litres": 600,
+              "unmet_litres": 1000,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-6",
+              "requested_litres": 2400,
+              "scheduled_litres": 700,
+              "unmet_litres": 1700,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-7",
+              "requested_litres": 1200,
+              "scheduled_litres": 600,
+              "unmet_litres": 600,
+              "reason": null
+            },
+            {
+              "site_id": "SITE-8",
+              "requested_litres": 1400,
+              "scheduled_litres": 600,
+              "unmet_litres": 800,
+              "reason": null
+            }
+          ],
+          "metrics": {
+            "on_time_scheduled_litres": 12000,
+            "unmet_requested_litres": 4100,
+            "served_site_count": 8,
+            "sites_meeting_minimum": 8,
+            "minimum_fulfilment_ratio": 0.2916666666666667,
+            "median_fulfilment_ratio": 0.75,
+            "mean_fulfilment_ratio": 0.6994047619047619,
+            "critical_minimum_litres": 1200,
+            "high_minimum_litres": 1200,
+            "total_travel_distance_metres": 35100,
+            "total_travel_duration_seconds": 6360,
+            "latest_route_completion_time": "2026-10-10T04:11:00+00:00",
+            "unserved_site_count": 0
+          },
+          "validation": {
+            "valid": true,
+            "errors": [],
+            "warnings": []
+          },
+          "iterations": [
+            {
+              "iteration": 1,
+              "allocation_status": "OPTIMAL",
+              "routing_status": "FEASIBLE_HEURISTIC",
+              "dropped_site_ids": []
+            }
+          ],
+          "runtime_seconds": 0.125,
+          "explanation": "Schedules 12,000 modelled litres within the selected windows. 4,100 litres remain unmet. A feasible heuristic result; global optimality is not proved.",
+          "limitations": [
+            "Declared requests are not independently verified needs",
+            "Arrival times come from the stored matrix, not guaranteed traffic",
+            "Synthetic matrix is not real Delhi routing",
+            "One trip per vehicle; no reloads",
+            "Sequential loading reserves slots in vehicle-ID order when selected"
+          ]
+        },
+        "delta": {
+          "on_time_scheduled_litres": 0,
+          "unmet_requested_litres": 0,
+          "served_site_count": 0,
+          "total_travel_distance_metres": 0,
+          "total_travel_duration_seconds": 0
+        }
+      }
+    ],
+    "warning": "EXAMPLE scenarios only. No stock, vehicle, request, approved plan or report is changed. Shorter service is a what-if, not an operational recommendation.",
+    "comparison_allowance_seconds": 8,
+    "explanation": "Each applicable alternative and its baseline was separately solved and checked. Ties, losses and unavailable scenarios remain visible. Bounded heuristic results do not prove which resource is globally best."
+  },
+  "completed_at": "2026-10-09T18:51:11.621Z",
+  "result_id": "0c2e5db9-9188-4aef-89a9-e8872396698a",
+  "input_snapshot_sha256": "61f55ebcab4fb1bc131ed1e2b4371473887d033a2ad715393d90c32e540cad37",
+  "end_to_end_runtime_seconds": 0.85
+}

@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { parseCsv, encodeCsv, mergeSiteCsv } from '../apps/web/src/csv.mjs';
+assert.deepEqual(parseCsv('site_id,priority_reason\r\nSITE-1,"quoted ""note"", with\nnewline"'), [{ site_id: 'SITE-1', priority_reason: 'quoted "note", with\nnewline' }]);
+assert.throws(() => parseCsv('id,name\na,"unclosed'), /unclosed/);
+assert.throws(() => mergeSiteCsv([{ site_id: 'S', requested_litres: 100 }], 'site_id,requested_litres\nNEW,200'), /Unknown site/);
+assert.throws(() => mergeSiteCsv([{ site_id: 'S' }], 'site_id,requested_litres\nS,20\nS,30'), /Duplicate site/);
+assert.throws(() => mergeSiteCsv([{ site_id: 'S' }], 'site_id,requested_litres\nS,2e3'), /integer/);
+const original = [{ site_id: 'S', requested_litres: 100 }];
+assert.equal(mergeSiteCsv(original, 'site_id,requested_litres\nS,200')[0].requested_litres, 200);
+assert.equal(original[0].requested_litres, 100, 'Preview must not mutate the draft');
+assert.equal(encodeCsv([['=1+1', 'पानी']]), '"\'=1+1","पानी"\r\n');
+console.log('CSV checks passed: quoted fields/newlines, duplicate/unknown IDs, strict integers, immutable preview and formula-safe export.');

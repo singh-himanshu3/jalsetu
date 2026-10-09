@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {formatMetric} from '../apps/web/src/metrics.ts';
+assert.equal(formatMetric('total_travel_duration_seconds',6360),'6360','Travel duration must remain seconds, never a percentage');
+assert.equal(formatMetric('minimum_fulfilment_ratio',.5),'50.0%');
+assert.equal(formatMetric('on_time_scheduled_litres',12000),'12000');
+assert.equal(formatMetric('mean_fulfilment_ratio',null),'Not applicable');
+const completion=formatMetric('latest_route_completion_time','2026-10-09T04:31:00+00:00');
+assert.match(completion,/10:01/);assert.match(completion,/IST$/);
+assert.equal(formatMetric('latest_route_completion_time',null),'No scheduled route');
+console.log('Metric display checks passed: seconds/litres stay quantities, fulfilment is a percentage, missing values stay explicit and completion displays in IST.');

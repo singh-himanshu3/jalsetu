@@ -1,0 +1,6 @@
+packages:
+  - apps/*
+  - packages/*
+  - infra
+minimumReleaseAgeExclude:
+  - aws-cdk-lib@2.273.0

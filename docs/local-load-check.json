@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-10-09T18:42:53.700Z",
+  "environment": "Windows local loopback adapter",
+  "read_burst": {
+    "simultaneous_requests": 100,
+    "successful": 100,
+    "median_ms": 97.89,
+    "max_ms": 109.3
+  },
+  "planning_burst": {
+    "requests": 10,
+    "accepted": 1,
+    "rejected_busy": 9,
+    "accepted_job_completed": true
+  },
+  "limitations": [
+    "Health reads do not simulate complete visitors",
+    "This is not an AWS or public-traffic benchmark",
+    "Local adapter deliberately permits only one calculation at a time"
+  ]
+}

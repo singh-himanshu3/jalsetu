@@ -1,0 +1,537 @@
+{
+  "$defs": {
+    "Depot": {
+      "additionalProperties": false,
+      "properties": {
+        "opens_at": {
+          "format": "date-time",
+          "title": "Opens At",
+          "type": "string"
+        },
+        "closes_at": {
+          "format": "date-time",
+          "title": "Closes At",
+          "type": "string"
+        },
+        "depot_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Depot Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "available_stock_litres": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Available Stock Litres",
+          "type": "integer"
+        },
+        "loading_duration_minutes": {
+          "maximum": 180,
+          "minimum": 0,
+          "title": "Loading Duration Minutes",
+          "type": "integer"
+        },
+        "potable_supply_confirmed": {
+          "title": "Potable Supply Confirmed",
+          "type": "boolean"
+        },
+        "provenance": {
+          "enum": [
+            "example",
+            "operator_entered"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "opens_at",
+        "closes_at",
+        "depot_id",
+        "name",
+        "location",
+        "available_stock_litres",
+        "loading_duration_minutes",
+        "potable_supply_confirmed",
+        "provenance"
+      ],
+      "title": "Depot",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        },
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        }
+      },
+      "required": [
+        "longitude",
+        "latitude"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "Site": {
+      "additionalProperties": false,
+      "properties": {
+        "opens_at": {
+          "format": "date-time",
+          "title": "Opens At",
+          "type": "string"
+        },
+        "closes_at": {
+          "format": "date-time",
+          "title": "Closes At",
+          "type": "string"
+        },
+        "site_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Site Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "confirmation_status": {
+          "enum": [
+            "draft",
+            "contacted",
+            "confirmed"
+          ],
+          "title": "Confirmation Status",
+          "type": "string"
+        },
+        "requested_litres": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Requested Litres",
+          "type": "integer"
+        },
+        "minimum_useful_litres": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Minimum Useful Litres",
+          "type": "integer"
+        },
+        "receiving_limit_litres": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Receiving Limit Litres",
+          "type": "integer"
+        },
+        "service_duration_minutes": {
+          "maximum": 180,
+          "minimum": 0,
+          "title": "Service Duration Minutes",
+          "type": "integer"
+        },
+        "priority_class": {
+          "enum": [
+            "critical",
+            "high",
+            "standard"
+          ],
+          "title": "Priority Class",
+          "type": "string"
+        },
+        "priority_reason": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Priority Reason",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "example",
+            "operator_entered"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "opens_at",
+        "closes_at",
+        "site_id",
+        "name",
+        "location",
+        "confirmation_status",
+        "requested_litres",
+        "minimum_useful_litres",
+        "receiving_limit_litres",
+        "service_duration_minutes",
+        "priority_class",
+        "priority_reason",
+        "provenance"
+      ],
+      "title": "Site",
+      "type": "object"
+    },
+    "TravelMatrix": {
+      "additionalProperties": false,
+      "properties": {
+        "snapshot_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "node_ids": {
+          "items": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 21,
+          "minItems": 1,
+          "title": "Node Ids",
+          "type": "array"
+        },
+        "durations_seconds": {
+          "items": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "title": "Durations Seconds",
+          "type": "array"
+        },
+        "distances_metres": {
+          "items": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "title": "Distances Metres",
+          "type": "array"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "example",
+            "public_snapshot"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "retrieved_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Retrieved At"
+        },
+        "represented_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Represented At"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Url"
+        },
+        "attribution": {
+          "title": "Attribution",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "snapshot_id",
+        "node_ids",
+        "durations_seconds",
+        "distances_metres",
+        "provider",
+        "provenance",
+        "retrieved_at",
+        "represented_at",
+        "source_url",
+        "attribution",
+        "limitations"
+      ],
+      "title": "TravelMatrix",
+      "type": "object"
+    },
+    "Vehicle": {
+      "additionalProperties": false,
+      "properties": {
+        "opens_at": {
+          "format": "date-time",
+          "title": "Opens At",
+          "type": "string"
+        },
+        "closes_at": {
+          "format": "date-time",
+          "title": "Closes At",
+          "type": "string"
+        },
+        "vehicle_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Vehicle Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "capacity_litres": {
+          "exclusiveMinimum": 0,
+          "maximum": 1000000,
+          "title": "Capacity Litres",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "available",
+            "delayed",
+            "unavailable",
+            "failed",
+            "completed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "example",
+            "operator_entered"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "opens_at",
+        "closes_at",
+        "vehicle_id",
+        "name",
+        "capacity_litres",
+        "status",
+        "provenance"
+      ],
+      "title": "Vehicle",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "data_mode": {
+      "enum": [
+        "example",
+        "operator_entered",
+        "mixed"
+      ],
+      "title": "Data Mode",
+      "type": "string"
+    },
+    "display_warning": {
+      "title": "Display Warning",
+      "type": "string"
+    },
+    "operating_date": {
+      "format": "date",
+      "title": "Operating Date",
+      "type": "string"
+    },
+    "timezone": {
+      "const": "Asia/Kolkata",
+      "title": "Timezone",
+      "type": "string"
+    },
+    "pilot_bounds": {
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Pilot Bounds",
+      "type": "array"
+    },
+    "increment_litres": {
+      "exclusiveMinimum": 0,
+      "maximum": 10000,
+      "title": "Increment Litres",
+      "type": "integer"
+    },
+    "service_window_policy": {
+      "enum": [
+        "start_by_close",
+        "finish_by_close"
+      ],
+      "title": "Service Window Policy",
+      "type": "string"
+    },
+    "loading_mode": {
+      "enum": [
+        "parallel",
+        "sequential"
+      ],
+      "title": "Loading Mode",
+      "type": "string"
+    },
+    "solver_time_limit_seconds": {
+      "exclusiveMinimum": 0,
+      "maximum": 60,
+      "title": "Solver Time Limit Seconds",
+      "type": "number"
+    },
+    "random_seed": {
+      "maximum": 2147483647,
+      "minimum": 0,
+      "title": "Random Seed",
+      "type": "integer"
+    },
+    "travel_time_multiplier": {
+      "exclusiveMinimum": 0,
+      "maximum": 5,
+      "title": "Travel Time Multiplier",
+      "type": "number"
+    },
+    "depot": {
+      "$ref": "#/$defs/Depot"
+    },
+    "vehicles": {
+      "items": {
+        "$ref": "#/$defs/Vehicle"
+      },
+      "maxItems": 5,
+      "title": "Vehicles",
+      "type": "array"
+    },
+    "sites": {
+      "items": {
+        "$ref": "#/$defs/Site"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Sites",
+      "type": "array"
+    },
+    "travel_matrix": {
+      "$ref": "#/$defs/TravelMatrix"
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "name",
+    "data_mode",
+    "display_warning",
+    "operating_date",
+    "timezone",
+    "pilot_bounds",
+    "increment_litres",
+    "service_window_policy",
+    "loading_mode",
+    "solver_time_limit_seconds",
+    "random_seed",
+    "travel_time_multiplier",
+    "depot",
+    "vehicles",
+    "sites",
+    "travel_matrix"
+  ],
+  "title": "PlanningInput",
+  "type": "object"
+}

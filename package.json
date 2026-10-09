@@ -1,0 +1,31 @@
+{
+  "name": "jalsetu",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.22.0",
+  "scripts": {
+    "typecheck": "tsc --noEmit && pnpm --filter @jalsetu/web typecheck",
+    "lint": "pnpm typecheck && node scripts/python.mjs -m ruff check services/planner services/cloud",
+    "test": "node scripts/python.mjs -m pytest services/planner/tests -q",
+    "dev": "node scripts/dev.mjs",
+    "build": "pnpm --filter @jalsetu/web build",
+    "evaluate": "node scripts/python.mjs -m jalsetu_planner evaluate --fixtures data/evaluation/finish_by_close_parallel --output docs/evaluation.json --markdown docs/evaluation.md",
+    "test:api": "node scripts/test-local-api.mjs",
+    "test:storage": "node scripts/test-storage.mjs",
+    "test:csv": "node scripts/test-csv.mjs",
+    "test:operations": "node scripts/test-local-operations.mjs",
+    "test:exports": "node scripts/test-exports.mjs",
+    "test:projects": "node scripts/test-projects.mjs",
+    "test:metrics": "node scripts/test-metrics.mjs",
+    "infra:test": "node infra/test-foundation.mjs",
+    "test:container": "node scripts/test-container.mjs",
+    "estimate:aws": "node scripts/estimate-aws-cost.mjs",
+    "test:revision-diff": "node scripts/test-revision-diff.mjs",
+    "evidence:manifest": "node scripts/evidence-manifest.mjs"
+  },
+  "devDependencies": {
+    "aws-cdk-lib": "2.273.0",
+    "constructs": "10.8.1",
+    "typescript": "7.0.2"
+  }
+}
