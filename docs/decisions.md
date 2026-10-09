@@ -64,6 +64,8 @@ Updated 9 October 2026, Asia/Kolkata. This is a planning record, not evidence of
 
 ## Next-phase continuation — 10 October 2026
 
+- After reviewing the team's visual reference, refresh the existing frontend without replacing its domain or workflow. Lead with the heat-relief purpose; use native SVG/CSS, system typography and the existing components. Keep synthetic data explicit and render vehicle status from the recorded ledger. See the dated design checkpoint for verification and screenshots.
+
 - Implement the requested remaining local work directly. Phase 6 differences distinguish previous commitments, preserved reports and new estimates. Phase 7 runs a fresh baseline and five bounded independent example solves using the existing job stages; no actual resource/operation changes. All applicable children are checked, including recomputed metrics; unavailable alternatives and withheld deltas remain explicit.
 - Keep current synthetic routing while the earlier live-provider choice is unanswered. Source metadata/ledger UI is implemented; no weather or population was invented to fill it. Optional model fact selection is prepared offline with deterministic failure fallback; live Bedrock remains pending.
 - Generate complete evaluation from stored fixtures and retain ties/losses. No external coordinator participated. Prepare honest submission/article/demo drafts and a freeze checklist without claiming a real video, submission or submitted tag.

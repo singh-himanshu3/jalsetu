@@ -4,6 +4,8 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **This is working local application code, not the completed AWS product.** Resources, locations and travel estimates in the demo are synthetic. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
+The [10 October design refresh](docs/design-refresh-2026-10-10.md) adds a story-led overview, consistent workflow navigation and an operations vehicle board to the existing application.
+
 ## Open it on this computer
 
 The development dependencies are already installed in this workspace. Open **Start JalSetu.cmd**, keep its terminal window open, and visit **http://127.0.0.1:5173**. If the preview is already running, simply use that URL. Do not start a second copy on the same ports. Press Ctrl+C in the terminal to stop it.
@@ -12,7 +14,7 @@ The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. Th
 
 ## Try the complete example workflow
 
-1. On Overview, create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement. Alternatively, acknowledge and load a quick unsaved example. **Open saved projects** reopens a durable draft.
+1. On Overview, acknowledge and load a quick unsaved example. To persist a draft, expand **Saved projects & new exercises**, then create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement. **Open saved projects** reopens a durable draft.
 2. On Inputs, explicitly choose the site-closing and depot-loading rules. Neither is preselected. Review stock, capacities, availability, confirmed requests, minimum quantities, receiving limits and windows.
 3. Generate and compare. Plan displays the checked routes, deficits and metrics. Compare lets you review any strategy before deciding which plan to accept.
 4. Enter an exercise coordinator label and approve the reviewed example. Approval saves the plan; all water remains at the depot.

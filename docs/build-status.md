@@ -4,6 +4,8 @@ Started 8 October 2026 (Asia/Kolkata).
 
 ## Current checkpoint: local operations, scenarios and reproducible evaluation
 
+10 October design continuation: [design refresh](design-refresh-2026-10-10.md) puts the relief-planning story before setup, unifies the existing workflow screens and adds a ledger-driven vehicle board. Desktop and narrow phone layouts were checked; example generation, comparison, approval and loading were exercised. TypeScript, Ruff, production build and 156 Python tests pass. AWS deployment remains pending.
+
 10 October: [next-phase implementation](next-phases-2026-10-10.md) adds revision differences, independently solved resource children, source visibility/ledger export, grounded explanation safeguards, reproducible evaluation and release drafts. The private GitHub owner/repository is selected; licensing/publication details are deferred. Local Phase 6 and modelled Phase 8 gates are exercised; live gates remain pending.
 
 Continuation checkpoint, 9 October: the signed-in AWS account now shows $100.00 USD credits remaining on a free plan, with 183 days remaining. The team replaced the previous reported $449 ceiling with $100 and selected the existing operations workflow for the hosted release. Preparation resumed; deployment remains pending. See `continuation-2026-10-09.md` for current work and verification; older checkpoint statements below describe the earlier pause.
