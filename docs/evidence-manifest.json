@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-09T19:40:00.440Z",
+  "generated_at": "2026-10-09T19:50:16.575Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "8d24597d1937661168499cf748721ce663540066",
+  "git_commit": "9662fac15fea2b0ef1fb6965b51be6e25c10723f",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -35,7 +35,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "f5d3b0f43dab4e172d9d21c0637f33eb660e41e7921d818419efb4cabb559142"
+      "sha256": "1c332f7c33b88392cd0597b09d25b99315c4ed25a47dce5655256a36c4897294"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -51,7 +51,7 @@
     },
     {
       "path": "apps/web/src/App.tsx",
-      "sha256": "1d82a32a066da5b3cc35a5579c9caa43488ab9ed5236b7331c4ee32f68eba3c9"
+      "sha256": "aec9299cc21b3c3d83b49461c895b0551015534c5e8dd1f7b19ba833482cf2ad"
     },
     {
       "path": "apps/web/src/ComparisonCharts.tsx",
@@ -59,19 +59,19 @@
     },
     {
       "path": "apps/web/src/Marginal.tsx",
-      "sha256": "879216c6806010d37b6780b36dea3636d4d92312b931c9ebb30cad29f675bd59"
+      "sha256": "4b16cf8c6ba8b25a27872a731ef2c95bc4a2d3074c8d5fb7b1e108fef93cdab3"
     },
     {
       "path": "apps/web/src/Operations.tsx",
-      "sha256": "f164a11a5b48e61675eb72716f188bcbb9361ffa14ed6f01e80a0d509db1612a"
+      "sha256": "dd8395cbc5e5b4ac7cb24df4047e573b35227d77a51aab936115564cde5f2867"
     },
     {
       "path": "apps/web/src/Overview.tsx",
-      "sha256": "7603128800ec7c6aa597cf9ed2bbeafefe0d123da986b47cb9ba9c396fcfd241"
+      "sha256": "6df928e741da62703f14ad46efc96455af0d8b1339a164f41e4caabe26bf6986"
     },
     {
       "path": "apps/web/src/Projects.tsx",
-      "sha256": "1e6ed1cda2a153420e0bb4670ec1b0de406f55881ae9feb0b9c74bce922e7f60"
+      "sha256": "7e667bf290ecdfb7ee03af87929ad9262b974ef9d4e98cb59cb69b0145bc7621"
     },
     {
       "path": "apps/web/src/ReportTime.tsx",
@@ -79,7 +79,7 @@
     },
     {
       "path": "apps/web/src/ResourceEditor.tsx",
-      "sha256": "66c69a136466f1492c198c08d94a513edddacce206329860011f79abf42397df"
+      "sha256": "353e614b530bebdf4f0b06928e51402cd3b9fa9b1774e11a5298a5b75d3ac261"
     },
     {
       "path": "apps/web/src/RevisionDifference.tsx",
@@ -87,7 +87,7 @@
     },
     {
       "path": "apps/web/src/Setup.tsx",
-      "sha256": "8517d4f03a60ebbd0b6dbdba7c787657bbf17517a318b79f964b116ffc3547d4"
+      "sha256": "02a9573a848cb8bc727b5571b4fba3af130b9c2c6d36a9f22decb79752edc556"
     },
     {
       "path": "apps/web/src/SiteImport.tsx",
@@ -95,15 +95,15 @@
     },
     {
       "path": "apps/web/src/Sources.tsx",
-      "sha256": "53b284cebca347c019e1d465adbdc02bdf2182e46047ef46c90a37d78eb73e36"
+      "sha256": "0e49f6b56446fca8395cf9e917912c6b3dc1f5134ef7b69388bb54cdcaa99e91"
     },
     {
       "path": "apps/web/src/Startup.tsx",
-      "sha256": "2425c2467b224e108b88e0da6edd24e3a6994d89114ac7b2e1958bbb488c5a80"
+      "sha256": "8e05f250f38959b81c32373e80c6df20cb6246081ea8f493158e0ce9bd7eaf00"
     },
     {
       "path": "apps/web/src/api.ts",
-      "sha256": "39880b4c7116067a1de9177e9cd6dc8d99faf221ebf8819f153f67482b6a38d0"
+      "sha256": "87c1c0bbdd7c424573cb774e1595363bb1f46ea79efeec0e6a884d3874497e5c"
     },
     {
       "path": "apps/web/src/auth.ts",
@@ -127,7 +127,7 @@
     },
     {
       "path": "apps/web/src/exports.ts",
-      "sha256": "7dbe950150973c1c26f8e0dc2065104aa3f90dd258e34f3f6bed41594d156858"
+      "sha256": "cc3a90bf423a7a8600f34ba21c7424d16a60b1bc1b59620ebfbe76c85c136029"
     },
     {
       "path": "apps/web/src/main.tsx",
@@ -194,8 +194,12 @@
       "sha256": "a888cb701b25cc6704ed622274eeaa066cac075e80775e8e06a64b5734152293"
     },
     {
+      "path": "docs/audit/exports/jalsetu-example-deliveries.csv",
+      "sha256": "68963d79cdecf25b7d86708b882b58c59ce22e95e0f23638bca4ef5afd0a4082"
+    },
+    {
       "path": "docs/audit/exports/jalsetu-example-plan-and-task-cards.html",
-      "sha256": "8a9cffc8e3d5cd8bd7b87539a3c8a649290b4386caa44d7f873a1505f74348c8"
+      "sha256": "4528410380147f4cb28d44a76a0265c08551559b3440a6c1769450fd5a4df036"
     },
     {
       "path": "docs/audit/exports/jalsetu-example-stop-assignments.csv",
@@ -227,7 +231,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "8425a50de18457fcfab8200e1f83b7292f8f9a0feff6d49d1026fc79e45413e7"
+      "sha256": "da2bec722b063df83cf92290c37eacd2fba8af8ad46266f4acdda9565cc202f5"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -238,12 +242,16 @@
       "sha256": "7bd8bf41032e526f2b7a1c486ff9d73a4631e7d770a80e246864146451ebe549"
     },
     {
+      "path": "docs/customer-interface-2026-10-10.md",
+      "sha256": "98caf2fad6c3d4a74eee4a062c4c887a6147a88f57b3a53898282574361affa6"
+    },
+    {
       "path": "docs/decisions.md",
-      "sha256": "4b38f71b02dfa72456879671d7f45df0a10f8d6746a0884c923e56ee1df6ea5e"
+      "sha256": "587c66342a9e61783f30b4223b38df908caf94c9f2391458c3a835d4c7c69b9f"
     },
     {
       "path": "docs/demo-script.md",
-      "sha256": "298a357e992d7f5ed0ea71e5f103f51e61a8f4fd9a8759c2b1817db3baa62361"
+      "sha256": "218b28dec901ff69a4b36ba40285fe17e88266df34271c25b7fa7ab8a225d272"
     },
     {
       "path": "docs/design-refresh-2026-10-10.md",
@@ -374,6 +382,10 @@
       "sha256": "976edc48eeccbf99007cc0755e5fd9baa841f751ae732d90b4d0c95581da7b5d"
     },
     {
+      "path": "docs/screenshots/plain-example-2026-10-10.jpg",
+      "sha256": "dae1b5215c34bdd1ee8294374f689ed2eb7a861104644625637b64097f5c36ec"
+    },
+    {
       "path": "docs/screenshots/usability-home-2026-10-10.jpg",
       "sha256": "338a731c64ae301c15aa695bf0253094ef3d087841567dc61a0c701abf0a51e0"
     },
@@ -479,7 +491,7 @@
     },
     {
       "path": "scripts/test-exports.mjs",
-      "sha256": "cc656c4edba069f8cd6e9f9e98fd7952ab86569b596c1a08d1c45b66a5ab3447"
+      "sha256": "eae0f5417dfe2e754bca5332cadc859faa65643746d1df3463fde66eb49b45f3"
     },
     {
       "path": "scripts/test-local-api.mjs",
