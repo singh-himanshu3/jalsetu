@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-09T18:52:30.624Z",
+  "generated_at": "2026-10-09T19:17:13.864Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "a8f2814f9b4506042ed930569e4193b7fdbee14a",
+  "git_commit": "8dce342fcfeec78e01237a762532e119f6a832af",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -35,7 +35,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "d27fdd0ab961acfdb41e59cc21d282dfa05976e651b4a1b3fa494466db889a88"
+      "sha256": "c9763fccbfde3798e7380de3a02260f187324b8a72223ce48bf6c85e25a20c21"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -43,7 +43,7 @@
     },
     {
       "path": "apps/web/index.html",
-      "sha256": "5348f573ba8e5beca05564efe55c2e5aafacdc28ce3e03df0265f8a7cce60909"
+      "sha256": "931d7182f915396de6c8f75de3e58385ef52ccfa0291f595618de457b7853726"
     },
     {
       "path": "apps/web/package.json",
@@ -51,11 +51,11 @@
     },
     {
       "path": "apps/web/src/App.tsx",
-      "sha256": "c89400fb602ffbe9c71f04794a1ff8cfc5b2101fbae8cbbb3c872bc0b508f445"
+      "sha256": "1da9fc1537990df4478d95d1ab6d45b4905fa19f9bcc698718e595824fd8d55e"
     },
     {
       "path": "apps/web/src/ComparisonCharts.tsx",
-      "sha256": "cd6b818a3f17332c918b88529f7cc7567bde45d8077e5468071125f9f6de5d84"
+      "sha256": "febd6c8b34869d5df9ff461d9ec98e3438ca09db6bb4bc5b1e0ce4b7eec0422d"
     },
     {
       "path": "apps/web/src/Marginal.tsx",
@@ -63,11 +63,15 @@
     },
     {
       "path": "apps/web/src/Operations.tsx",
-      "sha256": "ece92b06ab831a388f220356c5ef3d03ae2ad6c7579d8edd8430f98bdd944016"
+      "sha256": "0d3ba4162980f0c014afa219d506dd29e23c8f6953eaed636fbf8dbcc3706143"
+    },
+    {
+      "path": "apps/web/src/Overview.tsx",
+      "sha256": "29ca4f2520dceba0bb04c427c124f8d40ef91d12737047cc8699ab75f68e51bc"
     },
     {
       "path": "apps/web/src/Projects.tsx",
-      "sha256": "9347668cc83c61ce240100cead0736467764bd6f0c8da785fb942acc4c8b4faf"
+      "sha256": "1e6ed1cda2a153420e0bb4670ec1b0de406f55881ae9feb0b9c74bce922e7f60"
     },
     {
       "path": "apps/web/src/ResourceEditor.tsx",
@@ -127,7 +131,7 @@
     },
     {
       "path": "apps/web/src/styles.css",
-      "sha256": "8a420952cf94664f060bd046db6c1d96105dde7309fc63cbef1854d9c6a44a60"
+      "sha256": "88452531802864d79bc498fe8c6109f99040027bee0a5873007242aa56fa102a"
     },
     {
       "path": "apps/web/src/vite-env.d.ts",
@@ -211,7 +215,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "5dd4a541fdecbce82f7e22f4f5108bdc55adb0aa4e81827714a2f610590e9608"
+      "sha256": "752dbaf14ba0b5271a597b1d7d9388bcb0af7c9db887cfd8d33bc1359a21d525"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -223,11 +227,15 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "b2c0e07a9d6661c0338e60409f1f0f673cc480d5b694fb945634190205997d39"
+      "sha256": "6b2deea2b25db5c2484f6e69993a16b93eecfeeed0e449e3c2fa3e36b45ed277"
     },
     {
       "path": "docs/demo-script.md",
       "sha256": "144d6a6a520c11e262ab62a8f80bfbb117c6e99c9b4b32588a001eed91e932af"
+    },
+    {
+      "path": "docs/design-refresh-2026-10-10.md",
+      "sha256": "10f133782d9f2824607c4118c8173ef026fbea1074623ef6a323e7f45821c7e6"
     },
     {
       "path": "docs/evaluation.json",
@@ -316,6 +324,22 @@
     {
       "path": "docs/screenshots/aws-verification-pending-2026-10-09.jpg",
       "sha256": "ed9dfd60f68fd40391fa702644371bf10df2affd68f90d3bb13e3d63947979fa"
+    },
+    {
+      "path": "docs/screenshots/design-operations-2026-10-10.jpg",
+      "sha256": "827ecc1c74c747dd813f1382d15de57a21bcb5a76ea65d00c1aaa58ad502f92e"
+    },
+    {
+      "path": "docs/screenshots/design-overview-2026-10-10.jpg",
+      "sha256": "ea907bb91b35e6ecaddc8f0e19aefe787423ba9b47a62e7cbcc46129daa51605"
+    },
+    {
+      "path": "docs/screenshots/design-phone-2026-10-10.jpg",
+      "sha256": "9b773962e9b5f02099f2eaf8e65b8058528c89256c1c643b1ee1e0ffe69c56a4"
+    },
+    {
+      "path": "docs/screenshots/design-plan-2026-10-10.jpg",
+      "sha256": "2468c498ce856e20b13b14715f5ad294020a1a8374d681f06e11eb0a7899b5d4"
     },
     {
       "path": "docs/screenshots/phase-4-job-details-2026-10-09.jpg",
