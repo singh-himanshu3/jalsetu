@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Input, Row } from './App';
 import ResourceEditor from './ResourceEditor';
 import SiteImport from './SiteImport';
 import { api, postOptions } from './api';
 
-type Props = { input: Input; busy: boolean; onEdit: (input: Input) => void; onGenerate: () => void; onSave: () => void; isSaved: boolean; saveStatus: string; children: ReactNode };
+type Props = { input: Input; busy: boolean; onEdit: (input: Input) => void; onGenerate: () => void; onSave: () => void; isSaved: boolean; saveStatus: string };
 const steps = ['Water & timing', 'Vehicles', 'Water requests'];
 
 function NumberField({ label, value, onChange, step = 100 }: { label: string; value: unknown; onChange: (value: number | null) => void; step?: number }) {
@@ -16,7 +16,7 @@ function TimeField({ label, value, day, onChange }: { label: string; value: unkn
   return <label>{label}<input type="time" value={local} onInput={event => onChange(event.currentTarget.value ? `${day}T${event.currentTarget.value}:00+05:30` : '')}/></label>;
 }
 
-export default function Setup({ input, busy, onEdit, onGenerate, onSave, isSaved, saveStatus, children }: Props) {
+export default function Setup({ input, busy, onEdit, onGenerate, onSave, isSaved, saveStatus }: Props) {
   const [step, setStep] = useState(0);
   const [message, setMessage] = useState('');
   const heading = useRef<HTMLHeadingElement>(null);
@@ -53,7 +53,7 @@ export default function Setup({ input, busy, onEdit, onGenerate, onSave, isSaved
       <details className="panel"><summary>Receiving hours & unloading time</summary>{input.sites.map((site,i) => <div className="resource-row" key={String(site.site_id)}><h4>{String(site.name)}</h4><div className="form-grid"><TimeField label={`Opens for ${site.name} (IST)`} day={day} value={site.opens_at} onChange={value => row('sites',i,'opens_at',value)}/><TimeField label={`Closes for ${site.name} (IST)`} day={day} value={site.closes_at} onChange={value => row('sites',i,'closes_at',value)}/><NumberField label={`Unloading minutes for ${site.name}`} step={1} value={site.service_duration_minutes} onChange={value => row('sites',i,'service_duration_minutes',value)}/></div></div>)}</details>
     </>}
     <div className="wizard-actions"><button className="secondary" disabled={step === 0} onClick={() => { setMessage(''); setStep(step - 1); }}>Back</button><span>{step === 2 ? 'Your plan will show deliveries and any unmet requests.' : 'Your edits stay here as you move between steps.'}</span><button className="primary" onClick={next}>{busy ? 'Creating your plan…' : step === 2 ? 'Create delivery plan' : `Next: ${steps[step + 1]}`} <span aria-hidden="true">→</span></button></div>
-    <details className="panel setup-options"><summary>More setup options</summary><label>Run name<input maxLength={120} value={input.name} onChange={event => onEdit({...input,name:event.target.value})}/></label><div className="actions">{isSaved && <button className="secondary" onClick={onSave}>Save changes</button>}<span role="status" className="hint">{saveStatus}</span></div><ResourceEditor input={input} onEdit={onEdit}/><SiteImport key={JSON.stringify(input)} sites={input.sites} disabled={busy} onPreview={async sites => (await api<{input:Input}>('/v1/validate-input',postOptions({input:{...input,sites}}))).input.sites} onApply={sites => onEdit({...input,sites:sites as Row[]})}/>{children}</details>
+    <details className="panel setup-options"><summary>More setup options</summary><label>Run name<input maxLength={120} value={input.name} onChange={event => onEdit({...input,name:event.target.value})}/></label><div className="actions">{isSaved && <button className="secondary" onClick={onSave}>Save changes</button>}<span role="status" className="hint">{saveStatus}</span></div><ResourceEditor input={input} onEdit={onEdit}/><SiteImport key={JSON.stringify(input)} sites={input.sites} disabled={busy} onPreview={async sites => (await api<{input:Input}>('/v1/validate-input',postOptions({input:{...input,sites}}))).input.sites} onApply={sites => onEdit({...input,sites:sites as Row[]})}/></details>
     {!input.travel_matrix && <p className="attention">Travel estimates need updating. Open More setup options, then rebuild the example travel estimates before planning.</p>}
   </fieldset>;
 }

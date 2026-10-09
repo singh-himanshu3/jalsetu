@@ -4,6 +4,8 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **This is working local application code, not the completed AWS product.** Resources, locations and travel estimates in the demo are synthetic. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
+The [customer interface cleanup](docs/customer-interface-2026-10-10.md) removes JSON editors/downloads, hashes and developer diagnostics from the product, including delivery downloads.
+
 The [10 October usability update](docs/usability-update-2026-10-10.md) makes the example a one-click start, breaks setup into three steps, and adds clear approval/reporting actions. It builds on the [design refresh](docs/design-refresh-2026-10-10.md) within the existing application.
 
 ## Open it on this computer
@@ -15,14 +17,14 @@ The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. Th
 ## Try the complete example workflow
 
 1. On **Home**, click **Try the example** to open a labelled, unsaved sample. To persist a draft, expand **Saved projects & new exercises** and create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement.
-2. **Set up** has three steps: Water & timing, Vehicles, and Water requests. Choose the loading and closing rules explicitly; neither is preselected. Review stock, available vehicles and confirmed requests. Back/Next retains your edits. Hours, CSV import and resource/JSON editing are in expandable sections.
+2. **Set up** has three steps: Water & timing, Vehicles, and Water requests. Choose the loading and closing rules explicitly; neither is preselected. Review stock, available vehicles and confirmed requests. Back/Next retains your edits. Hours, CSV import and resource editing are in expandable sections.
 3. Click **Create delivery plan**. **Your plan** shows vehicle instructions, quantities and unmet requests. **Compare other options** lets you review each strategy before choosing.
 4. Use **Review & approve**, enter your name or team label, then **Approve example plan & track deliveries**. Approval saves the plan; all water remains at the depot.
 5. In **Deliveries**, choose **Water loaded**, select a vehicle, and enter the date/time in IST. The example helper can copy its planned loading time. Click **Save report**.
 6. Choose **Delivery made**, select a receiving point on that vehicle, and enter the total delivered to that point so far. The example helper copies sample quantities and time. Saving the same cumulative total twice adds no water.
 7. Record **Vehicle broke down** when applicable. Remaining onboard water becomes stranded. Expand **Need to update the remaining deliveries?**, choose an explicit time at or after the last event, and create an updated plan. Review the preserved reports and old/new assignments, enter a team label and approve it. Only unused vehicles at the depot can take new routes.
 8. **More → Compare options** retains the four-strategy comparison and five configurable example resource alternatives. Each alternative and a fresh baseline is solved separately. The batch leaves saved resources and operations unchanged.
-9. **More → Sources & checks** contains provenance, source dates, missing context and the source/assumption export.
+9. **More → About the example** explains the sample data, checks and practical limits in plain language.
 
 Recovery is separate: explicitly report litres recovered **at the depot** before they can be scheduled again. A vehicle return puts remaining onboard water back at the depot and ends that vehicle's only trip. Signed depot-stock adjustments are also supported.
 
@@ -38,8 +40,7 @@ Physical reports retain exact integer litres. A revision can schedule only compl
 - Saved approvals, immutable events and revisions survive API restarts in `local-state/operations.json`. **Open a saved run** restores them. Do not publish that file or store real confidential operational data in this unauthenticated local adapter.
 - Project drafts persist separately in `local-state/projects.json`, with conditional versions. Use **Save changes** in More setup options after edits. Unsaved changes, quick examples and background jobs remain in memory; planning results need regeneration after a restart. The local job cache retains up to 50 records.
 - **Archive project** hides a saved draft; **Open archived projects** lets you restore it. Approved operations and reports stay in their separate store. This does not extend the hosted demo's expiry or existing retention period.
-- Your plan and Deliveries export stop assignments as CSV and a standalone printable HTML summary with one task card per vehicle. Open the HTML file and use the browser's Print command to print or save as PDF.
-- Sources & checks exports the complete loaded input, compared plans, scenario analysis and currently open operation as JSON. It includes the original plan, approval records, revisions, events, validation and hashes.
+- Your plan and Deliveries export readable CSV delivery sheets and printable vehicle instructions. They use names, litres and IST times; internal hashes/job references are excluded. The CSV now has customer-facing column headings, so it does not preserve the earlier audit-export schema. Open the HTML file and use the browser's Print command to print or save as PDF.
 
 ## What is verified
 
@@ -74,7 +75,7 @@ Operational updates use a small file store with atomic replacement, conditional 
 The full supplied specification is preserved in `docs/build-specification.md`; it is not all implemented.
 
 - Live AWS deployment and verification. The foundation, Cognito frontend and cloud project/job/operations adapter are locally prepared. Reversible archive/restore, SDK-boundary checks and offline container execution now pass. Mumbai's Lambda quota of 10 blocks the current stack's three reserved slots; at least 103 available slots are needed. Step Functions Standard is now locally prepared with named stages, retry receipts, immutable results and terminal failure repair; live acceptance remains pending.
-- Live Amazon Location routing, public weather/source ingestion and cache/refresh wiring. Phase 5 now has offline source-manifest, v2 response and cache-integrity helpers with synthetic tests; they are not connected to live providers. Source dates/provenance/attribution and a source/assumption export are now visible. Current route lines are schematics, not road navigation.
+- Live Amazon Location routing, public weather/source ingestion and cache/refresh wiring. Phase 5 now has offline source-manifest, v2 response and cache-integrity helpers with synthetic tests; they are not connected to live providers. Developer source evidence remains in the repository; the customer interface explains example assumptions and limits without exposing raw records. Current route lines are schematics, not road navigation.
 - Real/operator onboarding and new-site CSV import with a provider route matrix. The team selected example-only hosting. Example projects and add/remove forms are implemented; resource/coordinate changes require the explicit labelled toy-matrix rebuild.
 - Active-vehicle position/fixed-stop replanning, site closures and additional disruption types. Current revisions support unused depot vehicles; any active vehicle blocks a depot-based revision until it returns or is reported failed. Any point with a positive delivery report stays fixed; a second visit is outside this prototype.
 - Separate en-route/arrived stop transitions, reviewed bilingual output, live optional Bedrock integration, cloud load testing/security acceptance and pilot feedback. Resource scenarios and the local revision difference are implemented.

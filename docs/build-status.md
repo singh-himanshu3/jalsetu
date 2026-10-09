@@ -4,6 +4,8 @@ Started 8 October 2026 (Asia/Kolkata).
 
 ## Current checkpoint: local operations, scenarios and reproducible evaluation
 
+10 October customer-interface correction: per the user’s explicit request, JSON editors/downloads, hashes, solver diagnostics and raw source records are removed from the product, rather than merely collapsed. Delivery CSV/printouts use readable names and IST times without internal references. About the example preserves practical limits. See [customer interface cleanup](customer-interface-2026-10-10.md); earlier UI evidence below is historical where superseded.
+
 10 October usability continuation: the user selected **Try the example first**. The [usability update](usability-update-2026-10-10.md) adds three-step setup, plain navigation, persistent next actions and IST report pickers. Browser checks passed generation, approval, loading and cumulative delivery reporting; time edits and narrow phone layouts were checked. 156 Python tests, lint, build, export-content checks and the new time-conversion checks pass. This is a local browser walkthrough, not customer validation; AWS remains pending.
 
 10 October design continuation: [design refresh](design-refresh-2026-10-10.md) puts the relief-planning story before setup, unifies the existing workflow screens and adds a ledger-driven vehicle board. Desktop and narrow phone layouts were checked; example generation, comparison, approval and loading were exercised. TypeScript, Ruff, production build and 156 Python tests pass. AWS deployment remains pending.

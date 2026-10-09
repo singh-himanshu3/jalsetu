@@ -77,3 +77,8 @@ Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence o
 - User asked for a customer to use the product with less learning and selected **Try the example first**. Implement this directly within the existing frontend.
 - Remove the read-only quick-example acknowledgement gate while keeping clear sample labels. Saved project creation, plan approval and report saving remain explicit actions. Do not silently choose the loading/closing policies or interpret planned times as physical observations.
 - Keep setup in three steps; put optional technical information behind native disclosures. Use IST pickers and readable resource names. See the dated usability checkpoint for actual verification and limits.
+
+## Customer interface correction — 10 October 2026
+
+- User explicitly said users should not see JSON or related technical material. Remove those controls and downloads entirely from the product. Do not add a developer toggle to expose them. Internal APIs, integrity checks and evidence files may retain their existing formats.
+- Remove displayed hashes, job IDs/stages, generic metric dumps, solver runtimes and raw source snapshots. Preserve plain quantities, names, timing, approval/report actions and honest example limits. Customer downloads use readable names and IST dates/times with no internal hashes or job references; the earlier audit CSV schema is superseded for these downloads.

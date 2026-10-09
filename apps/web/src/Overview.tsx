@@ -74,6 +74,6 @@ export default function Overview({ input, busy, onLoad, onNavigate, hasPlan }: P
         <article><span className="story-number">03 / TRACK</span><NavIcon name="Operations"/><h3>Keep every litre in view.</h3><p>Record loading and deliveries. If a vehicle breaks down, record it and review an updated plan.</p></article>
       </div>
     </section>
-    <details className="panel"><summary>About the example and its limits</summary><p className="hint">Requests, vehicles, water stock and travel times are made up for this example. The plan uses one depot and one trip per vehicle. Actual inventory, site permissions and traffic have not been verified.</p><button className="text-button" onClick={() => onNavigate('Evidence')}>View sources & checks →</button></details>
+    <details className="panel"><summary>About the example and its limits</summary><p className="hint">Requests, vehicles, water stock and travel times are made up for this example. The plan uses one depot and one trip per vehicle. Actual inventory, site permissions and traffic have not been verified.</p><button className="text-button" onClick={() => onNavigate('Evidence')}>About the example →</button></details>
   </>;
 }
