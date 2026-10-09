@@ -1,6 +1,6 @@
 # JalSetu build decisions
 
-Updated 9 October 2026, Asia/Kolkata. This is a planning record, not evidence of deployment or application behavior.
+Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence of deployment or application behavior.
 
 ## Confirmed instructions
 
@@ -71,3 +71,9 @@ Updated 9 October 2026, Asia/Kolkata. This is a planning record, not evidence of
 - Generate complete evaluation from stored fixtures and retain ties/losses. No external coordinator participated. Prepare honest submission/article/demo drafts and a freeze checklist without claiming a real video, submission or submitted tag.
 - User selected their own GitHub account, verified as `singh-himanshu3`, then said not to focus on license/publication choices for now. Create a private `jalsetu` repository; leave licensing undecided and public acceptance pending. Do not block local implementation on it.
 - The official schedule lists October 11 submission day but still withholds the exact cutoff hour; see the dated organizer-requirements check. Account verification and the rejected 103 quota request remain deployment blockers; no broader quota or upgrade is assumed.
+
+## Example-first usability — 10 October 2026
+
+- User asked for a customer to use the product with less learning and selected **Try the example first**. Implement this directly within the existing frontend.
+- Remove the read-only quick-example acknowledgement gate while keeping clear sample labels. Saved project creation, plan approval and report saving remain explicit actions. Do not silently choose the loading/closing policies or interpret planned times as physical observations.
+- Keep setup in three steps; put optional technical information behind native disclosures. Use IST pickers and readable resource names. See the dated usability checkpoint for actual verification and limits.

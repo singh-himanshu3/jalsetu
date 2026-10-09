@@ -3,8 +3,6 @@ import type { Input } from './App';
 type Props = {
   input: Input | null;
   busy: boolean;
-  acknowledged: boolean;
-  onAcknowledge: (value: boolean) => void;
   onLoad: () => void;
   onNavigate: (tab: string) => void;
   hasPlan: boolean;
@@ -22,7 +20,7 @@ export function NavIcon({ name }: { name: string }) {
   return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name] ?? paths.Plan}/></svg>;
 }
 
-export default function Overview({ input, busy, acknowledged, onAcknowledge, onLoad, onNavigate, hasPlan }: Props) {
+export default function Overview({ input, busy, onLoad, onNavigate, hasPlan }: Props) {
   const confirmed = input?.sites.filter(site => site.confirmation_status === 'confirmed') ?? [];
   const requests = confirmed.reduce((sum, site) => sum + Number(site.requested_litres ?? 0), 0);
   const stock = input?.depot.available_stock_litres;
@@ -33,10 +31,9 @@ export default function Overview({ input, busy, acknowledged, onAcknowledge, onL
       <div className="hero-copy">
         <span className="eyebrow"><span className="status-dot"/> A PLANNING DESK FOR HEAT RELIEF</span>
         <h2 id="relief-title">Limited water.<br/><em>Every stop matters.</em></h2>
-        <p>Bring water stock, vehicles and confirmed requests into one checked plan. See who can be served, what remains unmet, and where every litre goes.</p>
-        <label className="ack"><input type="checkbox" checked={acknowledged} onChange={event => onAcknowledge(event.target.checked)}/> I understand the demo uses synthetic resources and travel estimates.</label>
-        <div className="hero-actions"><button className="primary" disabled={!acknowledged || busy} onClick={onLoad}>Load example scenario <span aria-hidden="true">↗</span></button>{input && <button className="text-button" onClick={() => onNavigate(hasPlan ? 'Plan' : 'Inputs')}>{hasPlan ? 'Open checked plan' : 'Continue your draft'} <span aria-hidden="true">→</span></button>}</div>
-        <p className="hero-caption">Delhi pilot · one depot · one trip per vehicle</p>
+        <p>Plan where your available water should go. Review requests, approve a route, and track deliveries in one place.</p>
+        <div className="hero-actions"><button className="primary" disabled={busy} onClick={input ? () => onNavigate(hasPlan ? 'Plan' : 'Inputs') : onLoad}>{input ? hasPlan ? 'Open your plan' : 'Continue setup' : 'Try the example'} <span aria-hidden="true">→</span></button>{input && <button className="text-button" disabled={busy} onClick={onLoad}>Start a new example</button>}</div>
+        <p className="hero-caption">Sample requests, vehicles and travel times. No real dispatch.</p>
       </div>
       <div className="relief-visual">
         <div className="visual-top"><span className="eyebrow">THE RELIEF RUN</span><span className="visual-tag">Planning concept</span></div>
@@ -58,25 +55,25 @@ export default function Overview({ input, busy, acknowledged, onAcknowledge, onL
     </section>
 
     <section className="capability-strip" aria-label="Planning capabilities">
-      <div><strong>01</strong><span>One shared resource picture</span></div>
-      <div><strong>04</strong><span>Strategies, checked side by side</span></div>
-      <div><NavIcon name="Evidence"/><span>A traceable plan and water ledger</span></div>
+      <div><NavIcon name="Inputs"/><span>Review water, vehicles & requests</span></div>
+      <div><NavIcon name="Plan"/><span>Approve your delivery plan</span></div>
+      <div><NavIcon name="Operations"/><span>Track loading & deliveries</span></div>
     </section>
 
     {input && <section className="panel current-draft">
       <div><span className="eyebrow">YOUR CURRENT EXAMPLE</span><h3>{input.name}</h3><p>{String(input.operating_date)} · {String(input.depot.name)} · IST</p></div>
       <div className="draft-facts"><span><strong>{stockLabel}</strong>Depot stock</span><span><strong>{requestsLabel}</strong>Confirmed requests</span><span><strong>{input.vehicles.filter(vehicle => vehicle.status === 'available').length}</strong>Available vehicles</span></div>
-      <button className="secondary" onClick={() => onNavigate('Inputs')}>Continue reviewing this draft <span aria-hidden="true">→</span></button>
+      <button className="secondary" onClick={() => onNavigate('Inputs')}>Edit setup <span aria-hidden="true">→</span></button>
     </section>}
 
     <section className="overview-story" aria-labelledby="story-title">
       <div className="section-head"><div><span className="eyebrow">FROM A REQUEST TO A REPORTED DELIVERY</span><h2 id="story-title">A clear trail, at every step.</h2></div><p>Planning estimates and delivery reports<br/>stay distinct throughout the run.</p></div>
       <div className="story-cards">
-        <article><span className="story-number">01 / PREPARE</span><NavIcon name="Inputs"/><h3>Start with what you know.</h3><p>Review stock, vehicle capacity and confirmed receiving points. Choose the loading and closing rules explicitly.</p><button className="text-button" onClick={() => onNavigate('Inputs')}>Review inputs <span aria-hidden="true">→</span></button></article>
-        <article><span className="story-number">02 / DECIDE</span><NavIcon name="Compare"/><h3>Make the tradeoffs visible.</h3><p>Compare four strategies on the same resources. Inspect routes, unmet requests and independent checks before approval.</p><button className="text-button" onClick={() => onNavigate('Compare')}>Compare plans <span aria-hidden="true">→</span></button></article>
-        <article><span className="story-number">03 / FOLLOW THROUGH</span><NavIcon name="Operations"/><h3>Keep every litre in view.</h3><p>Record loading and delivery. If a vehicle fails, track stranded water and review a revision from the reported state.</p><button className="text-button" onClick={() => onNavigate('Operations')}>Open operations <span aria-hidden="true">→</span></button></article>
+        <article><span className="story-number">01 / SET UP</span><NavIcon name="Inputs"/><h3>Start with what you have.</h3><p>Review available water, vehicles and requests in three short steps. Sample details are already filled in.</p></article>
+        <article><span className="story-number">02 / APPROVE</span><NavIcon name="Plan"/><h3>See where the water goes.</h3><p>Review each vehicle’s stops and the requests that remain unmet. Approve only when you are ready.</p></article>
+        <article><span className="story-number">03 / TRACK</span><NavIcon name="Operations"/><h3>Keep every litre in view.</h3><p>Record loading and deliveries. If a vehicle breaks down, record it and review an updated plan.</p></article>
       </div>
     </section>
-    <div className="example-note"><NavIcon name="Evidence"/><div><strong>A transparent example, with inspectable evidence.</strong><p>Synthetic requests and travel estimates. No real inventory, permissions or traffic. Every generated plan retains its assumptions and checks.</p></div><button className="secondary" onClick={() => onNavigate('Evidence')}>Explore evidence</button></div>
+    <details className="panel"><summary>About the example and its limits</summary><p className="hint">Requests, vehicles, water stock and travel times are made up for this example. The plan uses one depot and one trip per vehicle. Actual inventory, site permissions and traffic have not been verified.</p><button className="text-button" onClick={() => onNavigate('Evidence')}>View sources & checks →</button></details>
   </>;
 }

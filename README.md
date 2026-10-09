@@ -4,7 +4,7 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **This is working local application code, not the completed AWS product.** Resources, locations and travel estimates in the demo are synthetic. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
-The [10 October design refresh](docs/design-refresh-2026-10-10.md) adds a story-led overview, consistent workflow navigation and an operations vehicle board to the existing application.
+The [10 October usability update](docs/usability-update-2026-10-10.md) makes the example a one-click start, breaks setup into three steps, and adds clear approval/reporting actions. It builds on the [design refresh](docs/design-refresh-2026-10-10.md) within the existing application.
 
 ## Open it on this computer
 
@@ -14,16 +14,15 @@ The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. Th
 
 ## Try the complete example workflow
 
-1. On Overview, acknowledge and load a quick unsaved example. To persist a draft, expand **Saved projects & new exercises**, then create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement. **Open saved projects** reopens a durable draft.
-2. On Inputs, explicitly choose the site-closing and depot-loading rules. Neither is preselected. Review stock, capacities, availability, confirmed requests, minimum quantities, receiving limits and windows.
-3. Generate and compare. Plan displays the checked routes, deficits and metrics. Compare lets you review any strategy before deciding which plan to accept.
-4. Enter an exercise coordinator label and approve the reviewed example. Approval saves the plan; all water remains at the depot.
-5. On Operations, choose **Confirm water loaded**, select a planned vehicle, and enter a timestamp. The clearly named exercise helper can copy its scheduled loading time. Record the event.
-6. Choose **Report cumulative delivered litres**, select a point on that vehicle, and enter the total delivered to that point so far. For a synthetic exercise, the helper copies the planned amount and completion time. Record it. A repeated total adds no water.
-7. Record a vehicle failure. Remaining onboard water becomes stranded. Generate a revision using an explicit timestamp at or after the last event. The revision preserves reported deliveries and excludes stranded water and the failed vehicle. Review quantities, preserved reports and old/new assignments in the difference table, enter a coordinator label and approve it.
-
-8. On Compare, choose a confirmed point for the closing scenario and solve five configurable **EXAMPLE** resource alternatives. Each child and a fresh baseline is solved separately; ties, losses and unsupported changes remain visible. The batch leaves saved resources and operations unchanged.
-9. On Evidence, inspect original source dates, provenance and missing context; download the source/assumption ledger.
+1. On **Home**, click **Try the example** to open a labelled, unsaved sample. To persist a draft, expand **Saved projects & new exercises** and create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement.
+2. **Set up** has three steps: Water & timing, Vehicles, and Water requests. Choose the loading and closing rules explicitly; neither is preselected. Review stock, available vehicles and confirmed requests. Back/Next retains your edits. Hours, CSV import and resource/JSON editing are in expandable sections.
+3. Click **Create delivery plan**. **Your plan** shows vehicle instructions, quantities and unmet requests. **Compare other options** lets you review each strategy before choosing.
+4. Use **Review & approve**, enter your name or team label, then **Approve example plan & track deliveries**. Approval saves the plan; all water remains at the depot.
+5. In **Deliveries**, choose **Water loaded**, select a vehicle, and enter the date/time in IST. The example helper can copy its planned loading time. Click **Save report**.
+6. Choose **Delivery made**, select a receiving point on that vehicle, and enter the total delivered to that point so far. The example helper copies sample quantities and time. Saving the same cumulative total twice adds no water.
+7. Record **Vehicle broke down** when applicable. Remaining onboard water becomes stranded. Expand **Need to update the remaining deliveries?**, choose an explicit time at or after the last event, and create an updated plan. Review the preserved reports and old/new assignments, enter a team label and approve it. Only unused vehicles at the depot can take new routes.
+8. **More → Compare options** retains the four-strategy comparison and five configurable example resource alternatives. Each alternative and a fresh baseline is solved separately. The batch leaves saved resources and operations unchanged.
+9. **More → Sources & checks** contains provenance, source dates, missing context and the source/assumption export.
 
 Recovery is separate: explicitly report litres recovered **at the depot** before they can be scheduled again. A vehicle return puts remaining onboard water back at the depot and ends that vehicle's only trip. Signed depot-stock adjustments are also supported.
 
@@ -36,11 +35,11 @@ Physical reports retain exact integer litres. A revision can schedule only compl
 ## Import, save and export
 
 - CSV import previews **updates to existing example point IDs**. Unknown IDs, duplicate IDs, malformed fields and invalid planning inputs are rejected. Applying the validated preview changes the draft and clears its old planning results.
-- Saved approvals, immutable events and revisions survive API restarts in `local-state/operations.json`. **Open saved exercises** restores them. Do not publish that file or store real confidential operational data in this unauthenticated local adapter.
-- Project drafts persist separately in `local-state/projects.json`, with conditional versions. Use **Save project draft** after edits. Unsaved changes, quick examples and background jobs remain in memory; planning results need regeneration after a restart. The local job cache retains up to 50 records.
+- Saved approvals, immutable events and revisions survive API restarts in `local-state/operations.json`. **Open a saved run** restores them. Do not publish that file or store real confidential operational data in this unauthenticated local adapter.
+- Project drafts persist separately in `local-state/projects.json`, with conditional versions. Use **Save changes** in More setup options after edits. Unsaved changes, quick examples and background jobs remain in memory; planning results need regeneration after a restart. The local job cache retains up to 50 records.
 - **Archive project** hides a saved draft; **Open archived projects** lets you restore it. Approved operations and reports stay in their separate store. This does not extend the hosted demo's expiry or existing retention period.
-- Plan and Operations export stop assignments as CSV and a standalone printable HTML summary with one task card per vehicle. Open the HTML file and use the browser's Print command to print or save as PDF.
-- Evidence exports the complete loaded input, compared plans, scenario analysis and currently open operation as JSON. It includes the original plan, approval records, revisions, events, validation and hashes.
+- Your plan and Deliveries export stop assignments as CSV and a standalone printable HTML summary with one task card per vehicle. Open the HTML file and use the browser's Print command to print or save as PDF.
+- Sources & checks exports the complete loaded input, compared plans, scenario analysis and currently open operation as JSON. It includes the original plan, approval records, revisions, events, validation and hashes.
 
 ## What is verified
 
@@ -111,6 +110,7 @@ pnpm test:operations
 pnpm test:exports
 pnpm test:projects
 pnpm test:metrics
+pnpm test:report-time
 pnpm infra:test
 pnpm estimate:aws
 # Historical Phase 3 estimate:
