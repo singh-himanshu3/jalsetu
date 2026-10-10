@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T06:23:30.958Z",
-  "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "2ea2a283b9a7f5428738edd180b3687e589b4837",
+  "generated_at": "2026-10-10T09:35:13.138Z",
+  "scope": "local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed",
+  "git_commit": "675b613cc6899ac462920eb966f1ad5b30ef0f07",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -39,7 +39,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "9d508e9d69b0deb1ef19f735056162d6e33001ae38aa8b75a3a1ad957f4af304"
+      "sha256": "84b122ed3090dabbe180ae120482e89c6bd4247c06ebdad19b276618236c38a3"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -55,7 +55,7 @@
     },
     {
       "path": "apps/web/src/App.tsx",
-      "sha256": "157f38d1e57e361cced1f08e510aa9064ff5e9220304587bb8daa705f16b32fe"
+      "sha256": "4aaef8d99a5bbf9906a9f41b6c230333357b402f47455b38496cbd21af8e472e"
     },
     {
       "path": "apps/web/src/ComparisonCharts.tsx",
@@ -71,19 +71,27 @@
     },
     {
       "path": "apps/web/src/Operations.tsx",
-      "sha256": "e821cd48790f2614f6fe6e722a83e786ea3ddfce11c5aab962c481888211bade"
+      "sha256": "33cb87b5037a51ad3c86eb604c4eade05328562eeb3041e912d096e20986633a"
     },
     {
       "path": "apps/web/src/Overview.tsx",
-      "sha256": "6df928e741da62703f14ad46efc96455af0d8b1339a164f41e4caabe26bf6986"
+      "sha256": "bb21496f0a04b22fea245b1cd97f61391bd3e4f8e293b1c9da86a3e6fa984536"
     },
     {
       "path": "apps/web/src/Projects.tsx",
-      "sha256": "7e667bf290ecdfb7ee03af87929ad9262b974ef9d4e98cb59cb69b0145bc7621"
+      "sha256": "32e306d3c873736be337e1a83d4eaac4c0005a4e3667f14f99d3b31710213aa2"
     },
     {
       "path": "apps/web/src/PublicRoadEvidence.tsx",
       "sha256": "c19e1b8a3d040efe60b95f73b276851b7c38846bc2c0c0a06288f9b6099a5238"
+    },
+    {
+      "path": "apps/web/src/RecordImport.tsx",
+      "sha256": "fc8cad74ff0b06ad28e941e96a6b7f45dac31cafc732568fa5ca272e55b78920"
+    },
+    {
+      "path": "apps/web/src/RecordSource.tsx",
+      "sha256": "bb7bce2c7234b2ce67c86ef34f3d22589a1e710522200ea8c30bcdf230a6eec1"
     },
     {
       "path": "apps/web/src/ReportTime.tsx",
@@ -91,7 +99,7 @@
     },
     {
       "path": "apps/web/src/ResourceEditor.tsx",
-      "sha256": "353e614b530bebdf4f0b06928e51402cd3b9fa9b1774e11a5298a5b75d3ac261"
+      "sha256": "5eb818db143e35ddd442e46f4f863fa461555b4a9baf2b92b31fa27ebb06d6c8"
     },
     {
       "path": "apps/web/src/RevisionDifference.tsx",
@@ -99,7 +107,7 @@
     },
     {
       "path": "apps/web/src/Setup.tsx",
-      "sha256": "02a9573a848cb8bc727b5571b4fba3af130b9c2c6d36a9f22decb79752edc556"
+      "sha256": "2cfc8c3bdde687d8440140e103e9bde309e87a8765aac87cf3d5106b98c2d4d9"
     },
     {
       "path": "apps/web/src/SiteImport.tsx",
@@ -107,7 +115,7 @@
     },
     {
       "path": "apps/web/src/Sources.tsx",
-      "sha256": "0e49f6b56446fca8395cf9e917912c6b3dc1f5134ef7b69388bb54cdcaa99e91"
+      "sha256": "3e925fabfe76bce9f0aeae93cbc579ca4e0c05fc4e841446d31b1324e7765cd0"
     },
     {
       "path": "apps/web/src/Startup.tsx",
@@ -143,7 +151,7 @@
     },
     {
       "path": "apps/web/src/exports.ts",
-      "sha256": "e6e7b0cb416d86bceb1723dc03605452f6161441dc3f151f1a161a69e35b31f2"
+      "sha256": "67cc2303d5cb4266e729d495654d897580fa2ee2fb2370ec61f4efc8672097a8"
     },
     {
       "path": "apps/web/src/main.tsx",
@@ -156,6 +164,14 @@
     {
       "path": "apps/web/src/public-road-summary.ts",
       "sha256": "cbed59fc6a81d76cc8e0cbef98b90faed41ca098d869ac1c8ff527987f942c71"
+    },
+    {
+      "path": "apps/web/src/record-csv.d.mts",
+      "sha256": "da28593a38449f5301e79703dd125da40118766f03d6d13aa82edfef5c58e9bb"
+    },
+    {
+      "path": "apps/web/src/record-csv.mjs",
+      "sha256": "2e518a30fa5bd4f41db40bcd686fc89203b61b41a4f48d65a8149b4aa0033930"
     },
     {
       "path": "apps/web/src/revision-diff.ts",
@@ -243,7 +259,7 @@
     },
     {
       "path": "docs/audit/local-release-check-2026-10-10.json",
-      "sha256": "666dad29f27e6501282033f32c004563f7c78a39f9576fa82449f5d63c0a8e88"
+      "sha256": "ca2f3c100395870f5eadd197af226e7f0fee172cb4c4f64e0e069a5d48c7feac"
     },
     {
       "path": "docs/audit/restart-reference.json",
@@ -271,7 +287,7 @@
     },
     {
       "path": "docs/browser-verification.md",
-      "sha256": "2f18faa9de46d21d8e190101d1f8095c9fdaa4f92144c718a1aff5b3c03bacb9"
+      "sha256": "4b001104eac78651f6b4fb32d1b792adf3c11a794c163861543e092e85ef75f1"
     },
     {
       "path": "docs/build-specification.md",
@@ -279,7 +295,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "2913f06c633505fc195d1324cbc5d0c27f9fefcc4b35a3c4d192245475ac30fd"
+      "sha256": "bac0903ef2d0abd112fd43a3c00a6c498e555dd2a19247e7f9ac88df29a5b444"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -295,7 +311,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "540bc50325b669730165a77aead50bb343b9ff2035ba6fcfcb800f931d24a3d0"
+      "sha256": "0863cbd0d5f96551291e91ca4d55b705a0fd71192e412c173798a39da5f3c90b"
     },
     {
       "path": "docs/demo-script.md",
@@ -327,11 +343,15 @@
     },
     {
       "path": "docs/limitations.md",
-      "sha256": "1b9864829de5a628d386a82e56d87d7de8a0b0290b5239744604962beec0876f"
+      "sha256": "e41e47c68ac0b6fb6fe02ad88c95ab344e7b08fb46f5e035bfdbca2532c4329c"
     },
     {
       "path": "docs/local-load-check.json",
       "sha256": "5d421462d3bb116912605522fe6acf9bcb58d244b66ed67af473ee2df35e5d8b"
+    },
+    {
+      "path": "docs/local-records-completion-2026-10-10.md",
+      "sha256": "97caa272cc569f58f4a6624f0ec416615d0f9338eb81ea67361aecedd0ee7061"
     },
     {
       "path": "docs/local-recovery-completion-2026-10-10.md",
@@ -378,8 +398,12 @@
       "sha256": "60aef22ac6e901c4cde313acbf414cd76a598b4c299f2bb0c746812ecaacd679"
     },
     {
+      "path": "docs/real-road-data-readable.md",
+      "sha256": "4b58869c0f717e171249bba36a3d7c51ddb56b48486095255b03829eff0e3039"
+    },
+    {
       "path": "docs/remaining-phases-2026-10-10.md",
-      "sha256": "6c354c5b9efc1b19a7ba540a9a272ac47c74e1da6a93744e329fb637bca2f98c"
+      "sha256": "7ac385df8762b0977ef199ed1147443f3beebfa661681277fb7bd5c3d7f77e60"
     },
     {
       "path": "docs/screens/audit-2026-10-09.jpg",
@@ -474,6 +498,10 @@
       "sha256": "c0ec77ccd5c2e3a5d1c168331cf54bfd83ec17c302427e5e7dcc81fe02ac6122"
     },
     {
+      "path": "docs/screenshots/local-record-project-2026-10-10.png",
+      "sha256": "8bb03672571b9a0fdfa8027f3838e7738198698baaa9f552998a59ece6db4ab0"
+    },
+    {
       "path": "docs/screenshots/phase-4-job-details-2026-10-09.jpg",
       "sha256": "277fb0447a8148e8fb56b84c3623a241933e979167053799cb5061b313c0cb9e"
     },
@@ -546,6 +574,10 @@
       "sha256": "1dee209cced2fb574e1f948a348e01c4859babfd3bcdf1867ff8f405988bd8f7"
     },
     {
+      "path": "docs/using-operational-records.md",
+      "sha256": "a654979e4e836ca208023bcb7dbb179b0c6d7c652dedab3b86d546627671bbaf"
+    },
+    {
       "path": "infra/app.mjs",
       "sha256": "e231ea60f18e5014b3c88f2b005a6a916990a34f4c04e444632af3e361dd5da4"
     },
@@ -559,7 +591,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "8289b10659fb2791c9cf68209fd2cd4a8862d2a262a38d919590e5cdd396b517"
+      "sha256": "ed86098fdd075feafdad9a451a74743614a901102dc160956872bab1fc2a115f"
     },
     {
       "path": "packages/contracts/planning-input.schema.json",
@@ -591,11 +623,11 @@
     },
     {
       "path": "scripts/evidence-manifest.mjs",
-      "sha256": "cd7564036e0bcba12dee0cc9396531b5d1c3843e03456f315f847af8c26b16d5"
+      "sha256": "8e9cd6423040eeca0445a5084c3cc451100434e39cb24bb6d6e208e26696757d"
     },
     {
       "path": "scripts/local-api.mjs",
-      "sha256": "5c886abce5ee398b01f827ee509943afac4a1051a6cff09f5f13c507875ac177"
+      "sha256": "36c48acb9ca7768cae33c80f0cabd1f70b8aeecdc4641db87ea5d518f35a974f"
     },
     {
       "path": "scripts/local-operations.mjs",
@@ -603,7 +635,11 @@
     },
     {
       "path": "scripts/local-projects.mjs",
-      "sha256": "59138f562c39351860a201db276027033f27d28f74dc47fe08adbcc9dbaaaaba"
+      "sha256": "23b50b0b13f420aa95741de1970b205850491ef410e59e86bd4cd65c26a52b02"
+    },
+    {
+      "path": "scripts/local-records.mjs",
+      "sha256": "59e557657f1baa17d198a1ca18e894b41f39a90deb730477c2615ad88ed20b87"
     },
     {
       "path": "scripts/local-storage.mjs",
@@ -635,7 +671,7 @@
     },
     {
       "path": "scripts/test-exports.mjs",
-      "sha256": "3bdb88c201916e3be623b2f351656a0fad1cc3fde4a8af7249de3b3184ee5457"
+      "sha256": "7c58350657f4824a8be819e3687481bc1a6cad9c3e8a847ebd0eba0215e8ed44"
     },
     {
       "path": "scripts/test-hosted-web.mjs",
@@ -668,6 +704,10 @@
     {
       "path": "scripts/test-projects.mjs",
       "sha256": "19d576fad30a930334704885a46d6f2fcebaa61f0805501cbf60cd9f4941738d"
+    },
+    {
+      "path": "scripts/test-records.mjs",
+      "sha256": "2fe9b00e9ac121d20954202881d50a8c13010177f662d868936bd75c861fce75"
     },
     {
       "path": "scripts/test-report-time.mjs",
@@ -719,7 +759,7 @@
     },
     {
       "path": "services/planner/jalsetu_planner/bridge.py",
-      "sha256": "39b36ff5ce69eaadf2be6d2223184441e9e115874afd9fbdb9184cf9c251a645"
+      "sha256": "2e449073a6234faa88098bed9d74b69c7654283c13af353a59a31bda240246fe"
     },
     {
       "path": "services/planner/jalsetu_planner/evaluation.py",
@@ -758,6 +798,10 @@
       "sha256": "d6956b7c38f3717c59eb2041cea58815760a54322208e6ff9c27504493163bdd"
     },
     {
+      "path": "services/planner/jalsetu_planner/record_roads.py",
+      "sha256": "01b2119af284e8439b8d88c8b7e9eef5343c81814c0f5040a90648d1da3e0cc6"
+    },
+    {
       "path": "services/planner/jalsetu_planner/replanning.py",
       "sha256": "d10b935c268a4ef7137612b551441a54dc956572e65987ec90b8319117bb50d4"
     },
@@ -767,7 +811,7 @@
     },
     {
       "path": "services/planner/jalsetu_planner/schemas.py",
-      "sha256": "98bac9cd60cb65d65ec77e579b6f9a1fdfd0f4c356ad4ff6e0e6db2416d770ac"
+      "sha256": "fdb51a1ab44b50f0bdfec92408dc628cd564284b67bd4668b9e4144d41a9f2d0"
     },
     {
       "path": "services/planner/jalsetu_planner/sources.py",
@@ -840,6 +884,10 @@
     {
       "path": "services/planner/tests/test_public_roads.py",
       "sha256": "8d2d2a8c1bf125242f6a4d77fede0bedc7cdd25d05247b21320f4ece30a309f0"
+    },
+    {
+      "path": "services/planner/tests/test_record_roads.py",
+      "sha256": "496e718938b0e2c28261077e321a14300b97848582f75430b94230df559dca07"
     },
     {
       "path": "services/planner/tests/test_replanning.py",
