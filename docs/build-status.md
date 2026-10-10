@@ -2,6 +2,19 @@
 
 Started 8 October 2026 (Asia/Kolkata).
 
+## Current checkpoint: visual motion redesign and public source
+
+[Frontend motion completion](frontend-motion-completion-2026-10-10.md) replaces the introductory layout with an original editorial water-relief identity, animated schematic route preview, selectable workflow stages, scroll reveals and shared navigation transitions. The existing forms, maps, comparison and reporting flow remain functional. Motion, Lucide and bundled fonts are version-pinned, with upstream notices retained. Local validation passes 237 Python tests, customer checks, five release/restart groups and hosted-bundle checks. Browser checks cover desktop, compact desktop, phone and a complete labelled synthetic example. The owner explicitly authorized public GitHub source publication, verified at [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu). Authentication/authorization are deferred by the owner. AWS remains prepared and undeployed; no video, submission or field outcome is claimed. Older publication-deferred statements below describe earlier checkpoints.
+
+
+## Current checkpoint: frontend workspace redesign
+
+[Frontend completion and handoff](frontend-workspace-completion-2026-10-10.md) records the new shell/home, phone input cards, synchronized map/list/details, keyboard selection, preserved zoom, calculated comparison trade-offs and native report review. Full local checks pass 237 Python tests plus the customer/restart gates; desktop, compact and phone layouts and a deliberately blocked-tile fallback were checked in the browser. A synthetic approval/loading/delivery/breakdown/revision exercise preserves reported and stranded quantities. No framework rebuild, AWS deployment, field trial, publication or video is claimed.
+
+## Current checkpoint: driver map and external directions
+
+[Driver map completion](driver-map-completion-2026-10-10.md) adds per-vehicle numbered maps, phone-safe ordered Google Maps links, depot return, per-stop previews/current-location navigation and printable directions. Draft/example/status/closure and invalid-coordinate gates remain explicit. Full local checks pass 237 Python tests plus customer/directions/restart checks; final map rendering and phone layout are checked. The local server now permits only OpenStreetMap external tile images while retaining self-only script/API boundaries. No AWS deployment or live driver trial occurred.
+
 ## Current checkpoint: AWS access and deployment review
 
 Final instruction: **keep prepared; do not deploy**. No AWS resources, image publication, hosted frontend or test users were created. Temporary local credentials were logged out/cleared. Fresh sign-in/checks and explicit deployment authorization are required to resume.

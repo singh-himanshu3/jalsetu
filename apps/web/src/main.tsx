@@ -1,5 +1,13 @@
 import React from 'react';
+import { LazyMotion, domAnimation, MotionConfig } from 'motion/react';
+import '@fontsource/dm-sans/latin-400.css';
+import '@fontsource/dm-sans/latin-500.css';
+import '@fontsource/dm-sans/latin-600.css';
+import '@fontsource/dm-sans/latin-700.css';
+import '@fontsource/dm-serif-display/latin-400-italic.css';
 import { createRoot } from 'react-dom/client';
 import Startup from './Startup';
 import './styles.css';
-createRoot(document.getElementById('root')!).render(<React.StrictMode><Startup /></React.StrictMode>);
+import './workspace.css';
+import './experience.css';
+createRoot(document.getElementById('root')!).render(<React.StrictMode><LazyMotion features={domAnimation} strict><MotionConfig reducedMotion="user"><Startup /></MotionConfig></LazyMotion></React.StrictMode>);

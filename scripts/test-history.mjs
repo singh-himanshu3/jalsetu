@@ -19,7 +19,9 @@ const html=historyHtml(report);
 assert.ok(html.includes('-100 L'));assert.ok(html.includes('Actual outcomes are unknown'));assert.ok(html.includes('map date unknown'));assert.ok(html.includes('Modelled travel distance'));assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('<script>'));assert.ok(!html.includes('<img'));assert.ok(!html.includes('sha256'));assert.ok(!html.includes('JSON'));
 const invalid=historyHtml({...report,comparison_ready:false,scheduled_difference_litres:null,original:{...report.original,valid:false,metrics:null,issues:['Capacity failed']}});
 assert.ok(invalid.includes('comparison withheld'));assert.ok(invalid.includes('Capacity failed'));assert.ok(invalid.includes('Not available'));
-const source=await readFile(new URL('../apps/web/src/App.tsx',import.meta.url),'utf8');assert.ok(source.includes("real&&!cloud?[['History'"));assert.ok(source.includes('HistoricalComparison key={JSON.stringify(input)}'));
+const source=await readFile(new URL('../apps/web/src/App.tsx',import.meta.url),'utf8');
+const navigation=await readFile(new URL('../apps/web/src/WorkspaceNav.tsx',import.meta.url),'utf8');
+assert.ok(navigation.includes("real&&!cloud?[['History'"));assert.ok(source.includes('HistoricalComparison key={JSON.stringify(input)}'));
 
 let busy=false,release;
 const adapter=recordsApi({directory:'unused',hasPlanningJob:()=>busy,send:(res,status,body)=>{res.writeHead(status);res.end(JSON.stringify(body));},error:(res,status,code,message)=>{res.writeHead(status);res.end(JSON.stringify({error:{code,message}}));},run:async()=>{await new Promise(r=>{release=r;});return {report};}});

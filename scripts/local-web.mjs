@@ -24,7 +24,7 @@ export async function localWeb(directory) {
   return (req, res) => {
     const headers = {'Cache-Control':'no-store', 'X-Content-Type-Options':'nosniff',
       'Referrer-Policy':'no-referrer', 'X-Frame-Options':'DENY',
-      'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"};
+      'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"};
     function plain(status, message) {
       res.writeHead(status, {...headers, 'Content-Type':'text/plain; charset=utf-8'});
       res.end(req.method === 'HEAD' ? undefined : message);

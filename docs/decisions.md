@@ -2,6 +2,13 @@
 
 Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence of deployment or application behavior.
 
+## Driver map choice - 10 October 2026
+
+- User selected a map and stop list with Google Maps directions, rather than in-app live GPS navigation. Use keyless external links, no new paid service or AWS routing calls.
+- Show the complete ordered itinerary and depot return. Split long links at the mobile waypoint limit without dropping stops. Maps computes road directions separately from the checked planning estimates.
+- Keep example/draft labels; only loaded approved operator-entered routes expose current-location navigation. Failed/returned vehicles and affected closed-point routes withhold directions. Do not mark delivery or infer driver position/next stop from opening a link.
+- Load public OpenStreetMap tiles explicitly with visible attribution and browser caching. Preserve existing script/API security restrictions and allow only the selected image host.
+
 ## Latest AWS continuation — 10 October 2026
 
 - After reviewing the concrete stacks, roles, frontend exposure and estimate, the user chose **Keep prepared; do not deploy**. No AWS resources were created. CLI cached credentials were logged out/cleared. Do not deploy or create test identities until the user explicitly resumes that scope.
@@ -150,3 +157,18 @@ Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence o
 - Use readable-name CSV matching, preserved quantities/stop order/loading starts, and reconstructed travel/waiting on the exact saved road matrix. No repair, favourable filtering, inferred outcomes or live dispatch. Reject ambiguous/unsupported imports; retain readable invalid originals with check failures and withhold feasible metrics/differences.
 - Reuse the independent validator and fresh bounded JalSetu solve under identical inputs. Retain ties/losses and all tradeoffs. Reported cumulative point totals stay exact, use recorded start/finish timing for the chosen rule, and remain separate from operation events. Missing records stay unknown.
 - Keep the comparison read-only and temporary; provide a self-contained printable HTML report with resource constraints, record/source references and limitations. No raw JSON or hashes appear in customer screens/downloads. Original records must also be retained locally; no per-user vault is added.
+
+## Frontend workspace redesign — 10 October 2026
+
+- Treat the supplied frontend brief as recommendations and preserve the user's scope: continue the existing app, KISS, guided example first, no customer JSON, no AWS deployment/routing/AI calls and no video.
+- Keep React/TypeScript/Vite, Leaflet, native forms/dialogs, local SVG icons and shared-scale bars. Add a workspace stylesheet and navigation component instead of a new UI framework. Record compatible alternatives and official references in the frontend checkpoint.
+- Map/list selections share one selected-stop state. Vehicle/revision changes reset it; marker selection and container resizing preserve manual zoom. Only new route geometry and the explicit Fit route action fit the bounds. Phone users can switch between map and stop sequence.
+- Report review captures the payload and conditional version before confirmation; cancelling before confirmation writes nothing. Retain backend accounting, approval, closure/reopening and recovery rules. Planned quantities and reported totals remain distinct.
+- Comparison summaries use actual returned JalSetu and demand-proportional metrics. Show gains, ties, losses and travel costs; missing metrics remain unknown. Never infer field impact from a modelled plan.
+- Browser testing uses an isolated synthetic store. A separate read-only test server tightens CSP to verify tile failure; the normal application security policy is not weakened. See docs/frontend-workspace-completion-2026-10-10.md for checks, screenshots and release limits.
+
+## 10 October 2026 — motion identity and public repository
+
+The owner explicitly requested a stronger visual frontend, permitted libraries and authorized making the existing GitHub repository public. Authentication/authorization are reserved for later work. The supplied reference was inspected for visual hierarchy and product storytelling; no branding or assets were copied. The new original home uses cream, evergreen and lime, DM Sans/DM Serif typography and an interactive schematic planning illustration. Motion handles finite route drawing, reveals, stage/navigation selection and screen entry. Reduced-motion preferences remove the new transitions/path drawing, and explicit operational scrolling now checks the same preference. Motion 14.0.0, Lucide React 1.54.0 and Fontsource font packages 5.3.0 are pinned. No framework replacement, backend-rule change, paid UI service or AWS deployment is needed.
+
+Public visibility is authorized for `singh-himanshu3/jalsetu`; no application license is invented. A credential-pattern scan reviewed 601 Git objects and the publishable working files, with no findings for the checked credential patterns or sensitive paths. Local operational stores, environment credentials, dependency caches and built files remain excluded. Publication does not represent independently verified security, a field trial, deployed hosting or submitted hackathon entry. The manifest's optional `--verify-public-repository` flag performs an explicit read-only GitHub visibility check; its default operation stays offline.

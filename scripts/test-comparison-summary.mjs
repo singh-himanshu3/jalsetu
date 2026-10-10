@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {comparisonDelta} from '../apps/web/src/comparison-summary.ts';
+const plan=(strategy,litres,distance)=>({strategy,metrics:{on_time_scheduled_litres:litres,total_travel_distance_metres:distance},site_results:[]});
+assert.deepEqual(comparisonDelta([plan('jalsetu',12000,35100),plan('demand_proportional',11100,34200)]),{litres:900,distance:900});
+assert.deepEqual(comparisonDelta([plan('demand_proportional',7000,30000),plan('jalsetu',7000,30000)]),{litres:0,distance:0},'Ties remain ties, regardless of array order');
+assert.deepEqual(comparisonDelta([plan('jalsetu',713,9000),plan('demand_proportional',1000,10000)]),{litres:-287,distance:-1000},'Losses and exact litres are preserved');
+assert.equal(comparisonDelta([plan('jalsetu',12000,35100)]),null,'A missing baseline is not fabricated');
+for(const invalid of [null,undefined,'12000',NaN,Infinity])assert.equal(comparisonDelta([plan('jalsetu',invalid,35100),plan('demand_proportional',11100,34200)]),null);
+assert.deepEqual(comparisonDelta([plan('jalsetu',12000,null),plan('demand_proportional',11100,34200)]),{litres:900,distance:null},'Unknown travel is not reported as zero');
+console.log('Comparison summary: gains, ties, losses, exact litres and missing metrics passed.');

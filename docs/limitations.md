@@ -21,3 +21,5 @@ Current scope: the first-use guide and its local validation are complete for the
 - Local delivery CSV and printable HTML saving are verified; hosted private-download expiry and other download types remain unverified. A signed-out public review, real AWS recording and submitted commit do not exist yet.
 - Mumbai account verification and Lambda quota block deployment. Credits are shared across the account. The seven-day estimate is not a spending cap. No free-plan upgrade or out-of-pocket spending is authorized.
 - Three OR-Tools SWIG deprecation warnings remain. An earlier local operations-cache check flaked and then passed repeated diagnostics; its root cause remains unverified.
+
+10 October visual/publication update: the owner authorized and completed public source publication at https://github.com/singh-himanshu3/jalsetu. The license is still unselected, authentication/authorization are deferred, and no hosted deployment, submission or field result is claimed. See `frontend-motion-completion-2026-10-10.md` for the current interface and validation scope.

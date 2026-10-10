@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
+import { m, useReducedMotion } from 'motion/react';
 
 import { exampleSteps } from './example-progress';
 
 export function ExampleWelcome({ busy, onStart, onClose }: {busy:boolean;onStart:(guided:boolean)=>void;onClose:()=>void}) {
   const dialog = useRef<HTMLDialogElement>(null);
-  useEffect(() => { dialog.current?.showModal(); }, []);
+  useEffect(() => { const previous=document.activeElement as HTMLElement|null;const modal=dialog.current;modal?.showModal();return()=>{modal?.close();previous?.focus();}; }, []);
   return <dialog ref={dialog} className="example-welcome" aria-labelledby="example-welcome-title" onCancel={onClose}>
     <button className="text-button welcome-close" aria-label="Close example introduction" onClick={onClose}>Close ×</button>
     <span className="eyebrow">YOUR FIRST RELIEF RUN</span><h2 id="example-welcome-title">Let’s plan it together.</h2>
@@ -16,6 +17,7 @@ export function ExampleWelcome({ busy, onStart, onClose }: {busy:boolean;onStart
 }
 
 export default function ExampleGuide({step,loaded,busy,onNavigate,onHide}:{step:number;loaded:boolean;busy:boolean;onNavigate:(tab:string)=>void;onHide:()=>void}) {
+  const reduced=useReducedMotion();
   const copy = [
     ['Start with two simple choices.', 'Review the sample water. Choose when unloading must finish and whether vehicles load together or one at a time.', 'Inputs', 'Review the sample'],
     ['Your sample is ready to review.', 'Continue through Vehicles and Water requests, then choose Create delivery plan. You can change the sample details.', 'Inputs', 'Continue setup'],
@@ -24,6 +26,7 @@ export default function ExampleGuide({step,loaded,busy,onNavigate,onHide}:{step:
     ['You’ve completed your first example.', 'You’ve created a plan, approved it and recorded a delivery. Explore resource comparisons, download instructions or keep practising with a breakdown and an updated plan.', 'Compare', 'Compare your options'],
   ][Math.min(step,4)];
   return <section className="example-guide" aria-label="Your example guide">
+    <div className="guide-progress-track" aria-hidden="true"><m.div initial={false} animate={{scaleX:Math.min(step,4)/4}} transition={{duration:reduced?0:.4}}/></div>
     <div className="guide-top"><span className="eyebrow">{step===4 ? 'EXAMPLE COMPLETE' : `YOUR GUIDE · STEP ${step+1} OF 4`}</span><button className="text-button" onClick={onHide}>Hide guide</button></div>
     <ol aria-label="Example progress">{exampleSteps.map((label,index) => <li key={label} aria-current={index===step ? 'step' : undefined} className={index<step ? 'done' : index===step ? 'current' : ''}><span aria-hidden="true">{index<step?'✓':index+1}</span>{label}</li>)}</ol>
     <div className="guide-next"><div><h2>{copy[0]}</h2><p>{copy[1]}</p></div><button className="secondary" disabled={busy} onClick={() => onNavigate(copy[2])}>{copy[3]} →</button></div>

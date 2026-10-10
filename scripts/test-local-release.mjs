@@ -68,6 +68,11 @@ try {
   const indexResponse = await fetch(base + '/');
   assert.equal(indexResponse.status, 200);
   assert.ok(indexResponse.headers.get('content-security-policy').includes("connect-src 'self'"));
+  const browserPolicy = indexResponse.headers.get('content-security-policy');
+  const imagePolicy = browserPolicy.split(';').map(s=>s.trim()).find(s=>s.startsWith('img-src '));
+  assert.deepEqual(imagePolicy.split(/\s+/).slice(1).sort(),["'self'",'data:','https://tile.openstreetmap.org'].sort(),'Only the selected street-tile host may supply external images');
+  assert.ok(browserPolicy.includes("script-src 'self'"),'The map must not enable external scripts');
+  assert.equal(indexResponse.headers.get('referrer-policy'),'no-referrer','Page-level referrer protection stays in place; map images set their own origin-only policy');
   const index = await indexResponse.text();
   assert.ok(!index.includes('@vite/client'));
   for (const url of [index.match(/<script[^>]+src="([^"]+)"/)[1], index.match(/<link[^>]+href="([^"]+\.css)"/)[1]]) {

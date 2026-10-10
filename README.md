@@ -1,5 +1,15 @@
 # JalSetu · local prototype
 
+**Public source:** [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu). The owner authorized public visibility on 10 October 2026; the project license remains unselected. This is source publication, not a hosted deployment or hackathon submission.
+
+**Latest frontend:** [Visual and motion redesign](docs/frontend-motion-completion-2026-10-10.md). The home page now introduces the workflow with original animated route artwork, selectable preview stages, readable next steps, locally bundled fonts and Lucide icons. Motion respects reduced-motion preferences. The existing planning, approval, map and reporting workflows are retained.
+
+![JalSetu desktop introduction](docs/screenshots/frontend-motion-desktop-2026-10-10.png)
+
+**New frontend workspace:** a clearer guided start, desktop/phone navigation, linked map and stop details, mobile request cards, explicit comparison trade-offs and review-before-save reports. See [the frontend handoff and actual browser checks](docs/frontend-workspace-completion-2026-10-10.md). The existing deterministic workflow is preserved; no AWS deployment was added.
+
+**New driver view:** choose a vehicle, load its numbered street map, and open ordered Google Maps directions, including the depot return. Printable instructions include the links. Dashed map lines show stop order, not road geometry; examples remain previews. See [driver-map workflow and checks](docs/driver-map-completion-2026-10-10.md). No AWS deployment or GPS tracking was added.
+
 **Current instruction: keep AWS prepared; do not deploy.** No AWS resources were created. Temporary CLI credentials were logged out/cleared after the read-only review; a future deployment needs fresh checks and explicit authorization.
 
 **AWS access update:** Mumbai now has **400 unreserved Lambda slots**. Temporary local CLI works; the active free plan has **$100 remaining credits**. [The deployment review](docs/aws-deployment-review-2026-10-10.md) contains validated templates, reviewed permissions and refreshed pricing. Resource creation and hosted acceptance are pending; earlier quota-10/CloudShell-only blockers below are historical. No AWS deployment is claimed.
@@ -153,8 +163,8 @@ The latest checkpoint has **167 passing Python tests**. With Docker's Linux engi
 
 The `.env.example` flags describe reserved future cloud configuration; changing them does not enable an AWS deployment. No passwords or access keys belong in this repository.
 
-The private repository is [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu). The user deferred the project license/publication choice; a private backup does not meet the public-submission gate. Dependency notices and the AI tool disclosure are in `NOTICE.md`.
+The repository is public at [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu), as authorized on 10 October 2026. The project license remains unselected. Public source publication alone does not complete submission requirements. Dependency notices and the AI tool disclosure are in `NOTICE.md`.
 
 ## Next-phase evidence
 
-[Current checkpoint](docs/local-release-readiness-2026-10-10.md), [architecture](docs/architecture.md), [source ledger](docs/source-ledger.md), [limitations](docs/limitations.md), [demo script](docs/demo-script.md) and [freeze/contingency checklist](docs/freeze-and-contingency.md) document what is working and which gates remain. `pnpm evaluate` regenerates both raw results and the complete Markdown table. `pnpm evidence:manifest` hashes source/fixtures/evidence and keeps absent deployment/video/submission URLs explicit. Submission and Builder Center files are drafts. No external coordinator, live cloud execution, submitted release tag or public publication is claimed.
+[Current checkpoint](docs/local-release-readiness-2026-10-10.md), [architecture](docs/architecture.md), [source ledger](docs/source-ledger.md), [limitations](docs/limitations.md), [demo script](docs/demo-script.md) and [freeze/contingency checklist](docs/freeze-and-contingency.md) document what is working and which gates remain. `pnpm evaluate` regenerates both raw results and the complete Markdown table. `pnpm evidence:manifest` hashes source/fixtures/evidence and keeps absent deployment/video/submission URLs explicit. Submission and Builder Center files are drafts. Public source publication is verified; no external coordinator, live cloud execution or submitted release tag is claimed.
