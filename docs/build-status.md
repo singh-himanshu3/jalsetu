@@ -2,6 +2,12 @@
 
 Started 8 October 2026 (Asia/Kolkata).
 
+## Current checkpoint: AWS access and deployment review
+
+Final instruction: **keep prepared; do not deploy**. No AWS resources, image publication, hosted frontend or test users were created. Temporary local credentials were logged out/cleared. Fresh sign-in/checks and explicit deployment authorization are required to resume.
+
+[Deployment review](aws-deployment-review-2026-10-10.md) records working temporary local CLI access, Mumbai's **400 unreserved slots**, an active free plan with **$100 credits**, and successful service reads/template/policy validation. All 18 rates were rechecked and unchanged. Today's container checks and direct CDK synthesis pass. A constrained bootstrap template is ready; root access is approved only for read-only checks. Creation and hosted acceptance remain pending. CloudShell fails verification but is no longer required. Video/publication/submission remain deferred.
+
 ## Current checkpoint: local original-plan comparison
 
 The user selected the original dispatch plan with optional separate delivery records. [The comparison checkpoint](historical-comparison-completion-2026-10-10.md) implements CSV preview, preserved original stops/quantities/loading starts, identical-input road replay/checks, a fresh JalSetu proposal, separate exact reported outcomes and a printable evidence report. Full local checks pass **237 Python tests** plus release/restart and customer checks. Actual browser upload/report saving and desktop/phone layouts were checked with labelled synthetic records; no coordinator dataset or field benefit is claimed. Follow [the beginner guide](comparing-original-delivery-plans.md). AWS/video/publication remain deferred.

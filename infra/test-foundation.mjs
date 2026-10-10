@@ -4,6 +4,36 @@ import { Template } from 'aws-cdk-lib/assertions';
 import { createFoundation } from './app.mjs';
 import { resolve } from 'node:path';
 import { deploymentScope } from './deployment-scope.mjs';
+import { readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+
+// The deployment review uses this exact bootstrap template. Prevent an
+// accidental return to CDK's administrator or cross-account defaults.
+const bootstrap = JSON.parse(readFileSync(new URL('./bootstrap-template.json', import.meta.url)));
+assert.equal(bootstrap.Parameters.FileAssetsBucketKmsKeyId.Default, 'AWS_MANAGED_KEY');
+const bootstrapText = JSON.stringify(bootstrap);
+assert.ok(!bootstrapText.includes('policy/AdministratorAccess'));
+for (const name of ['FilePublishingRole', 'ImagePublishingRole', 'LookupRole', 'DeploymentActionRole', 'LocalDeploymentSessionRole']) {
+  const trust = bootstrap.Resources[name].Properties.AssumeRolePolicyDocument.Statement;
+  assert.ok(trust.every(s => s.Principal.AWS.Ref === 'AWS::AccountId'));
+}
+const executionStatements = bootstrap.Resources.CloudFormationExecutionRole.Properties.Policies[0].PolicyDocument.Statement;
+for (const statement of executionStatements) {
+  const actions = Array.isArray(statement.Action) ? statement.Action : [statement.Action];
+  assert.ok(actions.every(a => !/^(organizations|account|billing|bedrock|geo):/.test(a)));
+  if (actions.some(a => a.startsWith('iam:'))) {
+    assert.equal(statement.Resource['Fn::Sub'], 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-*');
+    assert.ok(!actions.some(a => /User|AccessKey|LoginProfile|CreatePolicy|PolicyVersion/.test(a)));
+  }
+  if (actions.includes('iam:PassRole')) {
+    assert.deepEqual(statement.Condition.StringEquals['iam:PassedToService'], ['lambda.amazonaws.com', 'states.amazonaws.com', 'apigateway.amazonaws.com']);
+  }
+}
+assert.equal(bootstrap.Resources.ContainerAssetsRepository.Properties.RepositoryPolicyText.Statement.length, 1);
+assert.ok(bootstrap.Resources.ContainerAssetsRepository.Properties.RepositoryPolicyText.Statement[0].Condition.StringLike['aws:sourceArn']['Fn::Sub'].endsWith('function:JalSetuDemo-*'));
+const sessionStatements = bootstrap.Resources.LocalDeploymentSessionRole.Properties.Policies[0].PolicyDocument.Statement;
+assert.ok(sessionStatements.every(s => s.Action.every(a => /^(sts:AssumeRole|sts:GetCallerIdentity|ssm:GetParameter|cloudformation:(Describe|Get|List))/.test(a))));
+assert.deepEqual(sessionStatements[0].Resource.map(r => r['Fn::GetAtt'][0]), ['FilePublishingRole', 'ImagePublishingRole', 'LookupRole', 'DeploymentActionRole']);
 
 const scopeNow = Date.parse('2026-10-10T00:00:00Z');
 const liveEnv = { JALSETU_EXPIRES_AT: '2026-10-17T00:00:00Z' };
@@ -12,6 +42,15 @@ for (const expiry of [undefined, '2099-01-01T00:00:00Z', '2026-10-10T00:00:00Z',
   assert.throws(() => deploymentScope({ JALSETU_EXPIRES_AT: expiry }, scopeNow));
 }
 assert.throws(() => deploymentScope({ ...liveEnv, JALSETU_REGION: 'us-east-1' }, scopeNow));
+
+// Exercise the command entry that previously exited silently through a
+// Windows junction instead of applying the deployment guard.
+const invalidCommand = spawnSync(process.execPath, [resolve(process.cwd(), 'infra/app.mjs')], {
+  env: { ...process.env, JALSETU_EXPIRES_AT: '' }, encoding: 'utf8', timeout: 30_000,
+});
+assert.ok(!invalidCommand.error, invalidCommand.error?.message);
+assert.notEqual(invalidCommand.status, 0);
+assert.match(invalidCommand.stderr, /Set JALSETU_EXPIRES_AT/);
 
 const app = new App({ outdir: resolve(import.meta.dirname, '../../../work/infra-synth') });
 // This far-future value is test data, never a live hosting authorization.

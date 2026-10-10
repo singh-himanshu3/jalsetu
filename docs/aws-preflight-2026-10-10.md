@@ -1,6 +1,10 @@
 # AWS preflight — 10 October 2026
 
-**Latest recheck:** the remaining-phase continuation again read Mumbai's applied quota **10** and the existing 1,000 request **Case Opened**. CloudShell still reports verification in progress and cannot create its environment. Billing was not refreshed. No duplicate request, environment deletion or deployment was attempted. [Current gates and local package readiness](remaining-phases-2026-10-10.md) records this continuation.
+**Final user choice:** keep prepared; do not deploy. All AWS actions in this continuation were read-only/authentication. Temporary CLI cached credentials were logged out and cleared. Deployment is now deferred by the user's choice rather than insufficient Mumbai quota or unavailable local access. See the [completed review](aws-deployment-review-2026-10-10.md).
+
+**Latest recheck:** authenticated local CLI works. Mumbai reports **400 total/unreserved slots**, zero functions, and the existing 1,000 request **CASE_OPENED**. The account-plan API confirms **FREE / ACTIVE / $100 remaining credits**. CloudShell still fails verification but is no longer required. Service reads, both template validations and reviewed execution/deploy/lookup policy validation succeed. No resources were created. See [deployment review](aws-deployment-review-2026-10-10.md); resource-creation approval and live acceptance remain pending.
+
+Earlier observations below are historical where superseded by this latest recheck.
 
 The user signed in and authorized continuing AWS preparation within the existing Mumbai, seven-day, example-only scope, preserving the free account plan, $100 credits-only ceiling and zero out-of-pocket spending.
 

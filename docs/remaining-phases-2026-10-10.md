@@ -1,5 +1,9 @@
 # Remaining-phase continuation — 10 October 2026
 
+**Final AWS decision:** the user selected “Keep prepared; do not deploy.” Deployment remains deferred; no resource creation, hosted acceptance or phase completion is claimed. Temporary CLI login cache was cleared.
+
+**Later recheck:** local CLI works; Mumbai has **400 unreserved slots** and the account is **FREE / ACTIVE / $100 credits**. See [deployment review](aws-deployment-review-2026-10-10.md). Creation approval and hosted acceptance remain pending. Earlier quota-10 and CloudShell-only blockers below are historical; approval of the 1,000 request is not claimed.
+
 The user requested completion of the remaining phases. Existing choices remain in effect: use the prepared AWS hosting/backend stack, Mumbai, a maximum seven-day example demo, $100 credits only, no out-of-pocket spending or account upgrade, and no Amazon Location or Bedrock calls. Video, public publication and submission remain deferred. The existing application was continued rather than rebuilt.
 
 ## Account gates checked again

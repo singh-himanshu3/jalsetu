@@ -1,0 +1,18 @@
+[
+  {
+    "role": "CloudFormationExecutionRole",
+    "findings": []
+  },
+  {
+    "role": "DeploymentActionRole",
+    "findings": []
+  },
+  {
+    "role": "LookupRole",
+    "findings": []
+  },
+  {
+    "role": "LocalDeploymentSessionRole",
+    "findings": []
+  }
+]

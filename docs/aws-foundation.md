@@ -1,5 +1,9 @@
 # AWS foundation: local preparation only
 
+**Final user choice:** keep prepared; do not deploy. Temporary CLI credentials were logged out/cleared after successful read-only preparation. No AWS resources were created. Future resource creation needs a new explicit go-ahead and fresh checks.
+
+**Latest 10 October check:** local CLI authentication works, Mumbai reports **400 unreserved slots**, and the account-plan API confirms **FREE / ACTIVE / $100 credits**. This clears quota/access preparation despite CloudShell still failing verification. Both templates and reviewed IAM policies validate. See [concrete deployment review](aws-deployment-review-2026-10-10.md). Root-session authorization currently covers read-only checks only; resource creation and actual hosted acceptance remain pending. Earlier quota-10 and CloudShell prerequisites below are historical where superseded.
+
 AWS preparation resumed on 9 October after the team supplied a new $100 ceiling. A read-only check of signed-in Billing home showed $100.00 USD credits remaining, 183 days remaining and a free plan that does not get charged. Preserve that free plan; do not upgrade it or enable features that automatically upgrade it. Do not deploy until service eligibility, a concrete cost estimate and remaining release prerequisites are verified. Confirmed scope: Mumbai (`ap-south-1`), example-only, seven days, credits only, maximum $100 and no out-of-pocket spending.
 
 ## What exists

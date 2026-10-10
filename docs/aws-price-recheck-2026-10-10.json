@@ -1,0 +1,206 @@
+{
+  "checked_at": "2026-10-10T10:22:58.180Z",
+  "region": "ap-south-1",
+  "method": "Fresh official regional current price files, identical SKU/unit/tier comparison; before free allowances and credits.",
+  "all_unchanged": true,
+  "rates": [
+    {
+      "name": "lambda_compute",
+      "usd_per_unit": 0.0000166667,
+      "unchanged": true,
+      "unit": "Lambda-GB-Second",
+      "sku": "PHDF9YNAFR3HDSR8",
+      "rate_code": "PHDF9YNAFR3HDSR8.JRTCKXETXF.CUKFZ388N3",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/20261009223122/ap-south-1/index.json",
+      "publication_date": "2026-10-09T22:31:22Z",
+      "source_sha256": "5394f9bebc44c0e3a8122bff95d58dda0b995961fefb48e476c851d59d7a72b1"
+    },
+    {
+      "name": "lambda_requests",
+      "usd_per_unit": 2e-7,
+      "unchanged": true,
+      "unit": "Request",
+      "sku": "VPGUBFQ4KNZKMKGJ",
+      "rate_code": "VPGUBFQ4KNZKMKGJ.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/20261009223122/ap-south-1/index.json",
+      "publication_date": "2026-10-09T22:31:22Z",
+      "source_sha256": "5394f9bebc44c0e3a8122bff95d58dda0b995961fefb48e476c851d59d7a72b1"
+    },
+    {
+      "name": "rest_requests",
+      "usd_per_unit": 0.0000035,
+      "unchanged": true,
+      "unit": "Requests",
+      "sku": "AEUDCPQMKMJHSZGF",
+      "rate_code": "AEUDCPQMKMJHSZGF.JRTCKXETXF.QS4VQ8N7FD",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonApiGateway/20261002231501/ap-south-1/index.json",
+      "publication_date": "2026-10-02T23:15:01Z",
+      "source_sha256": "0e00932879312270409fd0f48c19cf730cce19c663bff5195fe7b33c570ed42c"
+    },
+    {
+      "name": "dynamo_read",
+      "usd_per_unit": 1.425e-7,
+      "unchanged": true,
+      "unit": "ReadRequestUnits",
+      "sku": "HQZY4ZFUTRDPV7ZE",
+      "rate_code": "HQZY4ZFUTRDPV7ZE.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonDynamoDB/20260911124422/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:44:22Z",
+      "source_sha256": "e4679ffb3f7a43c6d164b610abda19a6b01ee4f7670b1fcf311001a395560914"
+    },
+    {
+      "name": "dynamo_write",
+      "usd_per_unit": 7.1e-7,
+      "unchanged": true,
+      "unit": "WriteRequestUnits",
+      "sku": "A5DP2X4YSZ84WEJA",
+      "rate_code": "A5DP2X4YSZ84WEJA.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonDynamoDB/20260911124422/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:44:22Z",
+      "source_sha256": "e4679ffb3f7a43c6d164b610abda19a6b01ee4f7670b1fcf311001a395560914"
+    },
+    {
+      "name": "dynamo_storage",
+      "usd_per_unit": 0.285,
+      "unchanged": true,
+      "unit": "GB-Mo",
+      "sku": "8Q6HK3ASV67MN388",
+      "rate_code": "8Q6HK3ASV67MN388.JRTCKXETXF.VYAP54KATQ",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonDynamoDB/20260911124422/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:44:22Z",
+      "source_sha256": "e4679ffb3f7a43c6d164b610abda19a6b01ee4f7670b1fcf311001a395560914"
+    },
+    {
+      "name": "s3_storage",
+      "usd_per_unit": 0.025,
+      "unchanged": true,
+      "unit": "GB-Mo",
+      "sku": "USGUTP2JY23N9GH2",
+      "rate_code": "USGUTP2JY23N9GH2.JRTCKXETXF.PGHJ3S3EYE",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/20260928230416/ap-south-1/index.json",
+      "publication_date": "2026-09-28T23:04:16Z",
+      "source_sha256": "4bcf28c9d28209af4c11886c0926fe63778455f984dae046d4bb94e73c83f72b"
+    },
+    {
+      "name": "s3_put",
+      "usd_per_unit": 0.000005,
+      "unchanged": true,
+      "unit": "Requests",
+      "sku": "UJ844B8DVMQUFJQP",
+      "rate_code": "UJ844B8DVMQUFJQP.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/20260928230416/ap-south-1/index.json",
+      "publication_date": "2026-09-28T23:04:16Z",
+      "source_sha256": "4bcf28c9d28209af4c11886c0926fe63778455f984dae046d4bb94e73c83f72b"
+    },
+    {
+      "name": "s3_get",
+      "usd_per_unit": 4e-7,
+      "unchanged": true,
+      "unit": "Requests",
+      "sku": "SF3QQQMZGA3PPF33",
+      "rate_code": "SF3QQQMZGA3PPF33.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/20260928230416/ap-south-1/index.json",
+      "publication_date": "2026-09-28T23:04:16Z",
+      "source_sha256": "4bcf28c9d28209af4c11886c0926fe63778455f984dae046d4bb94e73c83f72b"
+    },
+    {
+      "name": "logs_ingest",
+      "usd_per_unit": 0.67,
+      "unchanged": true,
+      "unit": "GB",
+      "sku": "JBQP6QEETS2BK5DQ",
+      "rate_code": "JBQP6QEETS2BK5DQ.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonCloudWatch/20261007115540/ap-south-1/index.json",
+      "publication_date": "2026-10-07T11:55:40Z",
+      "source_sha256": "0605cd5cd1f4fc59124546937e4985c82a8d0cff463a4381e9731ee49dcb9e5e"
+    },
+    {
+      "name": "logs_storage",
+      "usd_per_unit": 0.03,
+      "unchanged": true,
+      "unit": "GB-Mo",
+      "sku": "M9PG5USRE2QBB6FU",
+      "rate_code": "M9PG5USRE2QBB6FU.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonCloudWatch/20261007115540/ap-south-1/index.json",
+      "publication_date": "2026-10-07T11:55:40Z",
+      "source_sha256": "0605cd5cd1f4fc59124546937e4985c82a8d0cff463a4381e9731ee49dcb9e5e"
+    },
+    {
+      "name": "cognito_essentials",
+      "usd_per_unit": 0.015,
+      "unchanged": true,
+      "unit": "CognitoUserPoolsMAU",
+      "sku": "SS63SQ6T3Y6ASC3Q",
+      "rate_code": "SS63SQ6T3Y6ASC3Q.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonCognito/20260925193108/ap-south-1/index.json",
+      "publication_date": "2026-09-25T19:31:08Z",
+      "source_sha256": "f4fa12309e0c26410f68f15cec7afcc744b541d950d03cf30cbf49287b4818c4"
+    },
+    {
+      "name": "ecr_storage",
+      "usd_per_unit": 0.1,
+      "unchanged": true,
+      "unit": "GB-Mo",
+      "sku": "WRGBK4S2T45GRPMB",
+      "rate_code": "WRGBK4S2T45GRPMB.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECR/20260911124425/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:44:25Z",
+      "source_sha256": "78fc4d7a1086de738294d01890d9955c184e570dfc0665f5921f5fb150ddd550"
+    },
+    {
+      "name": "amplify_build",
+      "usd_per_unit": 0.01,
+      "unchanged": true,
+      "unit": "minutes",
+      "sku": "7EUDA8H6PUVBCZYN",
+      "rate_code": "7EUDA8H6PUVBCZYN.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSAmplify/20260911124522/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:45:22Z",
+      "source_sha256": "7c114a358ef6105d2def37ef04f2fc17977c625b02f5104bacd2be8160696ff8"
+    },
+    {
+      "name": "amplify_storage",
+      "usd_per_unit": 0.023,
+      "unchanged": true,
+      "unit": "GigaBytes",
+      "sku": "HJDQXC3VHQPK5RFS",
+      "rate_code": "HJDQXC3VHQPK5RFS.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSAmplify/20260911124522/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:45:22Z",
+      "source_sha256": "7c114a358ef6105d2def37ef04f2fc17977c625b02f5104bacd2be8160696ff8"
+    },
+    {
+      "name": "amplify_transfer",
+      "usd_per_unit": 0.15,
+      "unchanged": true,
+      "unit": "GigaBytes",
+      "sku": "MPAB7MJJJR444DXH",
+      "rate_code": "MPAB7MJJJR444DXH.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSAmplify/20260911124522/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:45:22Z",
+      "source_sha256": "7c114a358ef6105d2def37ef04f2fc17977c625b02f5104bacd2be8160696ff8"
+    },
+    {
+      "name": "api_transfer",
+      "usd_per_unit": 0.1093,
+      "unchanged": true,
+      "unit": "GB",
+      "sku": "UKQ34C8EAAJUUK8Q",
+      "rate_code": "UKQ34C8EAAJUUK8Q.JRTCKXETXF.Q3Z75P77EN",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSDataTransfer/20260916132208/ap-south-1/index.json",
+      "publication_date": "2026-09-16T13:22:08Z",
+      "source_sha256": "90fa51b6592565f895328c28ca6c22a925619f8772a02ff46a61e6c9e1be8001"
+    },
+    {
+      "name": "state_transitions",
+      "usd_per_unit": 0.0000285,
+      "unchanged": true,
+      "unit": "StateTransitions",
+      "sku": "Q52QCQF6YBG4687U",
+      "rate_code": "Q52QCQF6YBG4687U.JRTCKXETXF.6YS6EN2CT7",
+      "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonStates/20260911124511/ap-south-1/index.json",
+      "publication_date": "2026-09-11T12:45:11Z",
+      "source_sha256": "1692f1e1c430258f13d6abb8186a47870353fb8d5b0cdca9d150debeff88dc59"
+    }
+  ]
+}

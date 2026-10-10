@@ -1,5 +1,9 @@
 # JalSetu · local prototype
 
+**Current instruction: keep AWS prepared; do not deploy.** No AWS resources were created. Temporary CLI credentials were logged out/cleared after the read-only review; a future deployment needs fresh checks and explicit authorization.
+
+**AWS access update:** Mumbai now has **400 unreserved Lambda slots**. Temporary local CLI works; the active free plan has **$100 remaining credits**. [The deployment review](docs/aws-deployment-review-2026-10-10.md) contains validated templates, reviewed permissions and refreshed pricing. Resource creation and hosted acceptance are pending; earlier quota-10/CloudShell-only blockers below are historical. No AWS deployment is claimed.
+
 JalSetu turns confirmed water requests, limited stock and vehicle constraints into a checked delivery plan. It also records loading, cumulative delivery reports, failures and recovery, then replans using water that is actually available. The local prototype supports a labelled North Delhi practice exercise and blank record-based projects for small Delhi-area comparisons.
 
 **New local workflow:** create an empty operational-record project, enter anonymized records, preview a full receiving-point CSV, and explicitly fetch matching public-road estimates. See the [beginner guide](docs/using-operational-records.md) and [implementation checkpoint](docs/local-records-completion-2026-10-10.md). The prepared hosted release remains example-only.

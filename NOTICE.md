@@ -6,6 +6,8 @@ AI coding tool used: OpenAI Codex. Earlier files in the parent workspace are pla
 
 Dependencies include Google OR-Tools (Apache-2.0), Pydantic (MIT), pytest (MIT), Ruff (MIT), TypeScript (Apache-2.0). Dependency versions are recorded in lockfiles. Verify notices for added dependencies before publication.
 
+`infra/bootstrap-template.json` derives from AWS CDK CLI 2.1145.0's official bootstrap template (Amazon Web Services, Apache-2.0), modified on 10 October 2026 to narrow deployment permissions, remove external trust and select AWS-managed encryption. Source: https://github.com/aws/aws-cdk-cli ; the upstream license is included as `infra/bootstrap-LICENSE.txt`. This does not select the application's project license.
+
 The team's own project license has not been selected. No public repository or cloud deployment exists yet.
 
 The normal example's resources and route matrices are synthetic test scenarios, not NGO/government inventory or observed traffic. The separate public-road experiment contains one actual OSRM/OpenStreetMap matrix response; © OpenStreetMap contributors, road data under ODbL, routing by OSRM hosted by FOSSGIS. See `data/public-roads/README.md` for attribution, licence and source-policy links. Operational inputs in that experiment remain synthetic. No public weather or population data were collected. This data notice does not choose the application project's licence.

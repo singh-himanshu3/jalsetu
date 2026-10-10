@@ -1,6 +1,7 @@
 import { App, Stack, Duration, RemovalPolicy, CfnOutput, Tags } from 'aws-cdk-lib';
 import { aws_amplify as amplify, aws_cognito as cognito, aws_apigateway as apigateway, aws_lambda as lambda, aws_dynamodb as dynamodb, aws_s3 as s3, aws_logs as logs, aws_stepfunctions as sfn, aws_stepfunctions_tasks as tasks, aws_events as events, aws_events_targets as targets } from 'aws-cdk-lib';
 import { resolve } from 'node:path';
+import { realpathSync } from 'node:fs';
 import { deploymentScope } from './deployment-scope.mjs';
 
 export function createFoundation(app, { region = 'ap-south-1', expiry, account } = {}) {
@@ -64,7 +65,9 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
   return stack;
 }
 
-if (process.argv[1] === import.meta.filename) {
+// The project may be opened through a Windows junction. Resolve the command
+// path just as Node resolves the imported module before detecting direct use.
+if (process.argv[1] && realpathSync(process.argv[1]) === import.meta.filename) {
   const app = new App();
   createFoundation(app, deploymentScope(process.env));
   app.synth();

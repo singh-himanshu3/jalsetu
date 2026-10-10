@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 
 const root = resolve(import.meta.dirname, '..');
-const image = process.argv[2] ?? 'jalsetu-local-check:2026-10-09';
+const image = process.argv[2] ?? 'jalsetu-local-check:2026-10-10';
 const name = 'jalsetu-offline-check-' + randomUUID();
 const mount = ['-e', 'PYTHONPATH=/var/task', '--mount', `type=bind,source=${resolve(root, 'scripts')},target=/checks,readonly`];
 const credentials = ['AWS_ACCESS_KEY_ID=offline-test', 'AWS_SECRET_ACCESS_KEY=offline-test',

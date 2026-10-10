@@ -2,6 +2,15 @@
 
 Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence of deployment or application behavior.
 
+## Latest AWS continuation — 10 October 2026
+
+- After reviewing the concrete stacks, roles, frontend exposure and estimate, the user chose **Keep prepared; do not deploy**. No AWS resources were created. CLI cached credentials were logged out/cleared. Do not deploy or create test identities until the user explicitly resumes that scope.
+
+- User permits a different region if Mumbai's quota is insufficient. Fresh API results show 400 unreserved slots, so keep Mumbai and worker/API reservations 1/2.
+- User approved temporary root CLI access **for read-only checks**. It is working; no permanent key was created. Creating resources through this session needs a separate concrete approval.
+- Preserve FREE / ACTIVE plan and observed $100 remaining credits. Use the existing example-only backend/hosting stack without AWS routing or AI. All 18 rates were rechecked unchanged; estimates are not hard caps.
+- Prepare the reviewed bootstrap template instead of default AdministratorAccess or cross-account trust. IAM/resource creation and frontend exposure remain pending approval. Template/policy validation and fresh offline container checks pass; live acceptance is not claimed. See `aws-deployment-review-2026-10-10.md`.
+
 ## Confirmed instructions
 
 - Build the supplied `build-specification.md`, using KISS and asking the team about uncertain product choices.

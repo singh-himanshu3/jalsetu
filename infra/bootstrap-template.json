@@ -1,0 +1,1423 @@
+{
+  "Description": "JalSetu bootstrap, based on AWS CDK CLI 2.1145.0; reviewed project deployment permissions.",
+  "Parameters": {
+    "TrustedAccounts": {
+      "Description": "List of AWS accounts that are trusted to publish assets and deploy stacks to this environment",
+      "Default": "",
+      "Type": "CommaDelimitedList"
+    },
+    "TrustedAccountsForLookup": {
+      "Description": "List of AWS accounts that are trusted to look up values in this environment",
+      "Default": "",
+      "Type": "CommaDelimitedList"
+    },
+    "CloudFormationExecutionPolicies": {
+      "Description": "List of the ManagedPolicy ARN(s) to attach to the CloudFormation deployment role",
+      "Default": "",
+      "Type": "CommaDelimitedList"
+    },
+    "FileAssetsBucketName": {
+      "Description": "The name of the S3 bucket used for file assets",
+      "Default": "",
+      "Type": "String"
+    },
+    "FileAssetsBucketKmsKeyId": {
+      "Description": "Empty to create a new key (default), 'AWS_MANAGED_KEY' to use a managed S3 key, or the ID/ARN of an existing key.",
+      "Default": "AWS_MANAGED_KEY",
+      "Type": "String"
+    },
+    "ContainerAssetsRepositoryName": {
+      "Description": "A user-provided custom name to use for the container assets ECR repository",
+      "Default": "",
+      "Type": "String"
+    },
+    "Qualifier": {
+      "Description": "An identifier to distinguish multiple bootstrap stacks in the same environment",
+      "Default": "hnb659fds",
+      "Type": "String",
+      "AllowedPattern": "[A-Za-z0-9_-]{1,10}",
+      "ConstraintDescription": "Qualifier must be an alphanumeric identifier of at most 10 characters"
+    },
+    "PublicAccessBlockConfiguration": {
+      "Description": "Whether or not to enable S3 Staging Bucket Public Access Block Configuration",
+      "Default": "true",
+      "Type": "String",
+      "AllowedValues": [
+        "true",
+        "false"
+      ]
+    },
+    "InputPermissionsBoundary": {
+      "Description": "Whether or not to use either the CDK supplied or custom permissions boundary",
+      "Default": "",
+      "Type": "String"
+    },
+    "UseExamplePermissionsBoundary": {
+      "Default": "false",
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Type": "String"
+    },
+    "BootstrapVariant": {
+      "Type": "String",
+      "Default": "JalSetu reviewed bootstrap v1",
+      "Description": "Describe the provenance of the resources in this bootstrap stack. Change this when you customize the template. To prevent accidents, the CDK CLI will not overwrite bootstrap stacks with a different variant."
+    },
+    "DenyExternalId": {
+      "Type": "String",
+      "Default": "true",
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "Whether to deny AssumeRole calls with an ExternalId. This prevents calls that are intended to be deputized from accidentally assuming CDK Roles."
+    }
+  },
+  "Conditions": {
+    "HasTrustedAccounts": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            "",
+            {
+              "Fn::Join": [
+                "",
+                {
+                  "Ref": "TrustedAccounts"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "HasTrustedAccountsForLookup": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            "",
+            {
+              "Fn::Join": [
+                "",
+                {
+                  "Ref": "TrustedAccountsForLookup"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "HasCloudFormationExecutionPolicies": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            "",
+            {
+              "Fn::Join": [
+                "",
+                {
+                  "Ref": "CloudFormationExecutionPolicies"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "HasCustomFileAssetsBucketName": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            "",
+            {
+              "Ref": "FileAssetsBucketName"
+            }
+          ]
+        }
+      ]
+    },
+    "CreateNewKey": {
+      "Fn::Equals": [
+        "",
+        {
+          "Ref": "FileAssetsBucketKmsKeyId"
+        }
+      ]
+    },
+    "UseAwsManagedKey": {
+      "Fn::Equals": [
+        "AWS_MANAGED_KEY",
+        {
+          "Ref": "FileAssetsBucketKmsKeyId"
+        }
+      ]
+    },
+    "ShouldCreatePermissionsBoundary": {
+      "Fn::Equals": [
+        "true",
+        {
+          "Ref": "UseExamplePermissionsBoundary"
+        }
+      ]
+    },
+    "PermissionsBoundarySet": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            "",
+            {
+              "Ref": "InputPermissionsBoundary"
+            }
+          ]
+        }
+      ]
+    },
+    "HasCustomContainerAssetsRepositoryName": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            "",
+            {
+              "Ref": "ContainerAssetsRepositoryName"
+            }
+          ]
+        }
+      ]
+    },
+    "UsePublicAccessBlockConfiguration": {
+      "Fn::Equals": [
+        "true",
+        {
+          "Ref": "PublicAccessBlockConfiguration"
+        }
+      ]
+    },
+    "ShouldDenyExternalId": {
+      "Fn::Equals": [
+        "true",
+        {
+          "Ref": "DenyExternalId"
+        }
+      ]
+    }
+  },
+  "Resources": {
+    "FileAssetsBucketEncryptionKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "KeyPolicy": {
+          "Statement": [
+            {
+              "Action": [
+                "kms:Create*",
+                "kms:Describe*",
+                "kms:Enable*",
+                "kms:List*",
+                "kms:Put*",
+                "kms:Update*",
+                "kms:Revoke*",
+                "kms:Disable*",
+                "kms:Get*",
+                "kms:Delete*",
+                "kms:ScheduleKeyDeletion",
+                "kms:CancelKeyDeletion",
+                "kms:GenerateDataKey",
+                "kms:TagResource",
+                "kms:UntagResource"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              },
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Resource": "*",
+              "Condition": {
+                "StringEquals": {
+                  "kms:CallerAccount": {
+                    "Ref": "AWS::AccountId"
+                  },
+                  "kms:ViaService": [
+                    {
+                      "Fn::Sub": "s3.${AWS::Region}.amazonaws.com"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Sub": "${FilePublishingRole.Arn}"
+                }
+              },
+              "Resource": "*"
+            }
+          ]
+        }
+      },
+      "Condition": "CreateNewKey",
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete"
+    },
+    "FileAssetsBucketEncryptionKeyAlias": {
+      "Condition": "CreateNewKey",
+      "Type": "AWS::KMS::Alias",
+      "Properties": {
+        "AliasName": {
+          "Fn::Sub": "alias/cdk-${Qualifier}-assets-key"
+        },
+        "TargetKeyId": {
+          "Ref": "FileAssetsBucketEncryptionKey"
+        }
+      }
+    },
+    "StagingBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::If": [
+            "HasCustomFileAssetsBucketName",
+            {
+              "Fn::Sub": "${FileAssetsBucketName}"
+            },
+            {
+              "Fn::Sub": "cdk-${Qualifier}-assets-${AWS::AccountId}-${AWS::Region}"
+            }
+          ]
+        },
+        "AccessControl": "Private",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "aws:kms",
+                "KMSMasterKeyID": {
+                  "Fn::If": [
+                    "CreateNewKey",
+                    {
+                      "Fn::Sub": "${FileAssetsBucketEncryptionKey.Arn}"
+                    },
+                    {
+                      "Fn::If": [
+                        "UseAwsManagedKey",
+                        {
+                          "Ref": "AWS::NoValue"
+                        },
+                        {
+                          "Fn::Sub": "${FileAssetsBucketKmsKeyId}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "PublicAccessBlockConfiguration": {
+          "Fn::If": [
+            "UsePublicAccessBlockConfiguration",
+            {
+              "BlockPublicAcls": true,
+              "BlockPublicPolicy": true,
+              "IgnorePublicAcls": true,
+              "RestrictPublicBuckets": true
+            },
+            {
+              "Ref": "AWS::NoValue"
+            }
+          ]
+        },
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "Id": "CleanupOldVersions",
+              "Status": "Enabled",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 30
+              }
+            },
+            {
+              "Id": "AbortIncompleteMultipartUploads",
+              "Status": "Enabled",
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 1
+              }
+            }
+          ]
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain"
+    },
+    "StagingBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "StagingBucket"
+        },
+        "PolicyDocument": {
+          "Id": "AccessControl",
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "AllowSSLRequestsOnly",
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Resource": [
+                {
+                  "Fn::Sub": "${StagingBucket.Arn}"
+                },
+                {
+                  "Fn::Sub": "${StagingBucket.Arn}/*"
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false"
+                }
+              },
+              "Principal": "*"
+            }
+          ]
+        }
+      }
+    },
+    "ContainerAssetsRepository": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "ImageTagMutability": "IMMUTABLE",
+        "LifecyclePolicy": {
+          "LifecyclePolicyText": "{\n  \"rules\": [\n    {\n      \"rulePriority\": 1,\n      \"description\": \"Untagged images should not exist, but expire any older than one year\",\n      \"selection\": {\n        \"tagStatus\": \"untagged\",\n        \"countType\": \"sinceImagePushed\",\n        \"countUnit\": \"days\",\n        \"countNumber\": 365\n      },\n      \"action\": { \"type\": \"expire\" }\n    }\n  ]\n}\n"
+        },
+        "RepositoryName": {
+          "Fn::If": [
+            "HasCustomContainerAssetsRepositoryName",
+            {
+              "Fn::Sub": "${ContainerAssetsRepositoryName}"
+            },
+            {
+              "Fn::Sub": "cdk-${Qualifier}-container-assets-${AWS::AccountId}-${AWS::Region}"
+            }
+          ]
+        },
+        "RepositoryPolicyText": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "LambdaECRImageRetrievalPolicy",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": [
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
+              ],
+              "Condition": {
+                "StringLike": {
+                  "aws:sourceArn": {
+                    "Fn::Sub": "arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:JalSetuDemo-*"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "FilePublishingRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              },
+              "Condition": {
+                "Fn::If": [
+                  "ShouldDenyExternalId",
+                  {
+                    "Null": {
+                      "sts:ExternalId": "true"
+                    }
+                  },
+                  {
+                    "Ref": "AWS::NoValue"
+                  }
+                ]
+              }
+            },
+            {
+              "Action": "sts:TagSession",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              }
+            }
+          ]
+        },
+        "RoleName": {
+          "Fn::Sub": "cdk-${Qualifier}-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:bootstrap-role",
+            "Value": "file-publishing"
+          }
+        ]
+      }
+    },
+    "ImagePublishingRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              },
+              "Condition": {
+                "Fn::If": [
+                  "ShouldDenyExternalId",
+                  {
+                    "Null": {
+                      "sts:ExternalId": "true"
+                    }
+                  },
+                  {
+                    "Ref": "AWS::NoValue"
+                  }
+                ]
+              }
+            },
+            {
+              "Action": "sts:TagSession",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              }
+            }
+          ]
+        },
+        "RoleName": {
+          "Fn::Sub": "cdk-${Qualifier}-image-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:bootstrap-role",
+            "Value": "image-publishing"
+          }
+        ]
+      }
+    },
+    "LookupRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              },
+              "Condition": {
+                "Fn::If": [
+                  "ShouldDenyExternalId",
+                  {
+                    "Null": {
+                      "sts:ExternalId": "true"
+                    }
+                  },
+                  {
+                    "Ref": "AWS::NoValue"
+                  }
+                ]
+              }
+            },
+            {
+              "Action": "sts:TagSession",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              }
+            }
+          ]
+        },
+        "RoleName": {
+          "Fn::Sub": "cdk-${Qualifier}-lookup-role-${AWS::AccountId}-${AWS::Region}"
+        },
+        "Policies": [
+          {
+            "PolicyName": "JalSetuReadMetadata",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "cloudformation:DescribeStacks",
+                    "cloudformation:DescribeStackEvents",
+                    "cloudformation:DescribeStackResources",
+                    "cloudformation:GetTemplate",
+                    "cloudformation:GetTemplateSummary"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/JalSetuDemo/*"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "aws-cdk:bootstrap-role",
+            "Value": "lookup"
+          }
+        ]
+      }
+    },
+    "FilePublishingRoleDefaultPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:GetEncryptionConfiguration",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*"
+              ],
+              "Resource": [
+                {
+                  "Fn::Sub": "${StagingBucket.Arn}"
+                },
+                {
+                  "Fn::Sub": "${StagingBucket.Arn}/*"
+                }
+              ],
+              "Condition": {
+                "StringEquals": {
+                  "aws:ResourceAccount": [
+                    {
+                      "Fn::Sub": "${AWS::AccountId}"
+                    }
+                  ]
+                }
+              },
+              "Effect": "Allow"
+            },
+            {
+              "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::If": [
+                  "CreateNewKey",
+                  {
+                    "Fn::Sub": "${FileAssetsBucketEncryptionKey.Arn}"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:kms:${AWS::Region}:${AWS::AccountId}:key/${FileAssetsBucketKmsKeyId}"
+                  }
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Roles": [
+          {
+            "Ref": "FilePublishingRole"
+          }
+        ],
+        "PolicyName": {
+          "Fn::Sub": "cdk-${Qualifier}-file-publishing-role-default-policy-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "ImagePublishingRoleDefaultPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:PutImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:DescribeRepositories",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
+              ],
+              "Resource": {
+                "Fn::Sub": "${ContainerAssetsRepository.Arn}"
+              },
+              "Effect": "Allow"
+            },
+            {
+              "Action": [
+                "ecr:GetAuthorizationToken"
+              ],
+              "Resource": "*",
+              "Effect": "Allow"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Roles": [
+          {
+            "Ref": "ImagePublishingRole"
+          }
+        ],
+        "PolicyName": {
+          "Fn::Sub": "cdk-${Qualifier}-image-publishing-role-default-policy-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "DeploymentActionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              },
+              "Condition": {
+                "Fn::If": [
+                  "ShouldDenyExternalId",
+                  {
+                    "Null": {
+                      "sts:ExternalId": "true"
+                    }
+                  },
+                  {
+                    "Ref": "AWS::NoValue"
+                  }
+                ]
+              }
+            },
+            {
+              "Action": "sts:TagSession",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              }
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Sid": "DeployPermissions",
+                  "Effect": "Allow",
+                  "Action": [
+                    "cloudformation:CreateChangeSet",
+                    "cloudformation:DeleteChangeSet",
+                    "cloudformation:ExecuteChangeSet",
+                    "cloudformation:CreateStack",
+                    "cloudformation:UpdateStack",
+                    "cloudformation:RollbackStack",
+                    "cloudformation:ContinueUpdateRollback"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/JalSetuDemo/*"
+                  }
+                },
+                {
+                  "Action": "iam:PassRole",
+                  "Resource": {
+                    "Fn::Sub": "${CloudFormationExecutionRole.Arn}"
+                  },
+                  "Effect": "Allow",
+                  "Condition": {
+                    "StringEquals": {
+                      "iam:PassedToService": "cloudformation.amazonaws.com"
+                    }
+                  }
+                },
+                {
+                  "Sid": "CliPermissions",
+                  "Action": [
+                    "cloudformation:DeleteStack",
+                    "cloudformation:UpdateTerminationProtection"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/JalSetuDemo/*"
+                  },
+                  "Effect": "Allow"
+                },
+                {
+                  "Sid": "CliStagingBucket",
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject*",
+                    "s3:GetBucket*",
+                    "s3:List*"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "${StagingBucket.Arn}"
+                    },
+                    {
+                      "Fn::Sub": "${StagingBucket.Arn}/*"
+                    }
+                  ]
+                },
+                {
+                  "Sid": "ReadVersion",
+                  "Effect": "Allow",
+                  "Action": [
+                    "ssm:GetParameter",
+                    "ssm:GetParameters"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter${CdkBootstrapVersion}"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sts:GetCallerIdentity"
+                  ],
+                  "Resource": "*"
+                }
+              ],
+              "Version": "2012-10-17"
+            },
+            "PolicyName": "default"
+          }
+        ],
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess"
+          }
+        ],
+        "RoleName": {
+          "Fn::Sub": "cdk-${Qualifier}-deploy-role-${AWS::AccountId}-${AWS::Region}"
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:bootstrap-role",
+            "Value": "deploy"
+          }
+        ]
+      }
+    },
+    "CloudFormationExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudformation.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "RoleName": {
+          "Fn::Sub": "cdk-${Qualifier}-cfn-exec-role-${AWS::AccountId}-${AWS::Region}"
+        },
+        "PermissionsBoundary": {
+          "Fn::If": [
+            "PermissionsBoundarySet",
+            {
+              "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${InputPermissionsBoundary}"
+            },
+            {
+              "Ref": "AWS::NoValue"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "JalSetuFoundationDeployment",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:CreateFunction",
+                    "lambda:GetFunction",
+                    "lambda:GetFunctionConfiguration",
+                    "lambda:UpdateFunctionCode",
+                    "lambda:UpdateFunctionConfiguration",
+                    "lambda:DeleteFunction",
+                    "lambda:TagResource",
+                    "lambda:UntagResource",
+                    "lambda:ListTags",
+                    "lambda:AddPermission",
+                    "lambda:RemovePermission",
+                    "lambda:GetPolicy",
+                    "lambda:PutFunctionConcurrency",
+                    "lambda:GetFunctionConcurrency",
+                    "lambda:DeleteFunctionConcurrency",
+                    "lambda:PutFunctionEventInvokeConfig",
+                    "lambda:GetFunctionEventInvokeConfig",
+                    "lambda:DeleteFunctionEventInvokeConfig"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:JalSetuDemo-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:CreateTable",
+                    "dynamodb:DescribeTable",
+                    "dynamodb:UpdateTable",
+                    "dynamodb:DeleteTable",
+                    "dynamodb:TagResource",
+                    "dynamodb:UntagResource",
+                    "dynamodb:ListTagsOfResource",
+                    "dynamodb:DescribeTimeToLive",
+                    "dynamodb:UpdateTimeToLive",
+                    "dynamodb:DescribeContinuousBackups"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/JalSetuDemo-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:CreateBucket",
+                    "s3:DeleteBucket",
+                    "s3:GetBucket*",
+                    "s3:PutBucket*",
+                    "s3:DeleteBucketPolicy",
+                    "s3:GetEncryptionConfiguration",
+                    "s3:PutEncryptionConfiguration",
+                    "s3:GetLifecycleConfiguration",
+                    "s3:PutLifecycleConfiguration",
+                    "s3:ListBucket"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::jalsetudemo-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:DeleteLogGroup",
+                    "logs:PutRetentionPolicy",
+                    "logs:DeleteRetentionPolicy",
+                    "logs:DescribeLogGroups",
+                    "logs:TagResource",
+                    "logs:UntagResource",
+                    "logs:TagLogGroup",
+                    "logs:UntagLogGroup",
+                    "logs:ListTagsForResource",
+                    "logs:ListTagsLogGroup"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:JalSetuDemo-*"
+                  },
+                  "Condition": {
+                    "StringEquals": {
+                      "aws:RequestedRegion": {
+                        "Ref": "AWS::Region"
+                      }
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:DescribeLogGroups"
+                  ],
+                  "Resource": "*",
+                  "Condition": {
+                    "StringEquals": {
+                      "aws:RequestedRegion": {
+                        "Ref": "AWS::Region"
+                      }
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "states:CreateStateMachine",
+                    "states:UpdateStateMachine",
+                    "states:DeleteStateMachine",
+                    "states:DescribeStateMachine",
+                    "states:TagResource",
+                    "states:UntagResource",
+                    "states:ListTagsForResource"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:states:${AWS::Region}:${AWS::AccountId}:stateMachine:JalSetuDemo-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "events:PutRule",
+                    "events:DeleteRule",
+                    "events:DescribeRule",
+                    "events:PutTargets",
+                    "events:RemoveTargets",
+                    "events:ListTargetsByRule",
+                    "events:TagResource",
+                    "events:UntagResource",
+                    "events:ListTagsForResource"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:events:${AWS::Region}:${AWS::AccountId}:rule/JalSetuDemo-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "cognito-idp:CreateUserPool",
+                    "cognito-idp:DescribeUserPool",
+                    "cognito-idp:UpdateUserPool",
+                    "cognito-idp:DeleteUserPool",
+                    "cognito-idp:TagResource",
+                    "cognito-idp:UntagResource",
+                    "cognito-idp:ListTagsForResource",
+                    "cognito-idp:CreateUserPoolClient",
+                    "cognito-idp:DescribeUserPoolClient",
+                    "cognito-idp:UpdateUserPoolClient",
+                    "cognito-idp:DeleteUserPoolClient",
+                    "cognito-idp:CreateUserPoolDomain",
+                    "cognito-idp:DescribeUserPoolDomain",
+                    "cognito-idp:UpdateUserPoolDomain",
+                    "cognito-idp:DeleteUserPoolDomain"
+                  ],
+                  "Resource": "*",
+                  "Condition": {
+                    "StringEquals": {
+                      "aws:RequestedRegion": {
+                        "Ref": "AWS::Region"
+                      }
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "amplify:CreateApp",
+                    "amplify:GetApp",
+                    "amplify:UpdateApp",
+                    "amplify:DeleteApp",
+                    "amplify:CreateBranch",
+                    "amplify:GetBranch",
+                    "amplify:UpdateBranch",
+                    "amplify:DeleteBranch",
+                    "amplify:TagResource",
+                    "amplify:UntagResource",
+                    "amplify:ListTagsForResource"
+                  ],
+                  "Resource": "*",
+                  "Condition": {
+                    "StringEquals": {
+                      "aws:RequestedRegion": {
+                        "Ref": "AWS::Region"
+                      }
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "apigateway:GET",
+                    "apigateway:POST",
+                    "apigateway:PUT",
+                    "apigateway:PATCH",
+                    "apigateway:DELETE"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}::/restapis"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}::/restapis/*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}::/account"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:apigateway:${AWS::Region}::/tags/*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "iam:CreateRole",
+                    "iam:DeleteRole",
+                    "iam:GetRole",
+                    "iam:UpdateRole",
+                    "iam:UpdateAssumeRolePolicy",
+                    "iam:PutRolePolicy",
+                    "iam:GetRolePolicy",
+                    "iam:DeleteRolePolicy",
+                    "iam:ListRolePolicies",
+                    "iam:ListAttachedRolePolicies",
+                    "iam:TagRole",
+                    "iam:UntagRole"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "iam:AttachRolePolicy",
+                    "iam:DetachRolePolicy"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-*"
+                  },
+                  "Condition": {
+                    "ArnEquals": {
+                      "iam:PolicyARN": {
+                        "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+                      }
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ecr:BatchGetImage",
+                    "ecr:GetDownloadUrlForLayer"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "ContainerAssetsRepository",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "iam:PassRole"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-*"
+                  },
+                  "Condition": {
+                    "StringEquals": {
+                      "iam:PassedToService": [
+                        "lambda.amazonaws.com",
+                        "states.amazonaws.com",
+                        "apigateway.amazonaws.com"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "CdkBoostrapPermissionsBoundaryPolicy": {
+      "Condition": "ShouldCreatePermissionsBoundary",
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Sid": "ExplicitAllowAll",
+              "Action": [
+                "*"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Sid": "DenyAccessIfRequiredPermBoundaryIsNotBeingApplied",
+              "Action": [
+                "iam:CreateUser",
+                "iam:CreateRole",
+                "iam:PutRolePermissionsBoundary",
+                "iam:PutUserPermissionsBoundary"
+              ],
+              "Condition": {
+                "StringNotEquals": {
+                  "iam:PermissionsBoundary": {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/cdk-${Qualifier}-permissions-boundary-${AWS::AccountId}-${AWS::Region}"
+                  }
+                }
+              },
+              "Effect": "Deny",
+              "Resource": "*"
+            },
+            {
+              "Sid": "DenyPermBoundaryIAMPolicyAlteration",
+              "Action": [
+                "iam:CreatePolicyVersion",
+                "iam:DeletePolicy",
+                "iam:DeletePolicyVersion",
+                "iam:SetDefaultPolicyVersion"
+              ],
+              "Effect": "Deny",
+              "Resource": {
+                "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/cdk-${Qualifier}-permissions-boundary-${AWS::AccountId}-${AWS::Region}"
+              }
+            },
+            {
+              "Sid": "DenyRemovalOfPermBoundaryFromAnyUserOrRole",
+              "Action": [
+                "iam:DeleteUserPermissionsBoundary",
+                "iam:DeleteRolePermissionsBoundary"
+              ],
+              "Effect": "Deny",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Description": "Bootstrap Permission Boundary",
+        "ManagedPolicyName": {
+          "Fn::Sub": "cdk-${Qualifier}-permissions-boundary-${AWS::AccountId}-${AWS::Region}"
+        },
+        "Path": "/"
+      }
+    },
+    "CdkBootstrapVersion": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Type": "String",
+        "Name": {
+          "Fn::Sub": "/cdk-bootstrap/${Qualifier}/version"
+        },
+        "Value": "32"
+      }
+    },
+    "LocalDeploymentSessionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::Sub": "jalsetu-local-deploy-${AWS::AccountId}-${AWS::Region}"
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "sts:AssumeRole",
+              "Principal": {
+                "AWS": {
+                  "Ref": "AWS::AccountId"
+                }
+              }
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "AssumeReviewedDeploymentRoles",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sts:AssumeRole"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "FilePublishingRole",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "ImagePublishingRole",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "LookupRole",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "DeploymentActionRole",
+                        "Arn"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "cloudformation:DescribeStacks",
+                    "cloudformation:DescribeStackEvents",
+                    "cloudformation:DescribeStackResources",
+                    "cloudformation:ListStackResources",
+                    "cloudformation:GetTemplate",
+                    "cloudformation:GetTemplateSummary"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/JalSetuDemo/*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ssm:GetParameter"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/cdk-bootstrap/${Qualifier}/version"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sts:GetCallerIdentity"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "JalSetu"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "BucketName": {
+      "Description": "The name of the S3 bucket owned by the CDK toolkit stack",
+      "Value": {
+        "Fn::Sub": "${StagingBucket}"
+      }
+    },
+    "BucketDomainName": {
+      "Description": "The domain name of the S3 bucket owned by the CDK toolkit stack",
+      "Value": {
+        "Fn::Sub": "${StagingBucket.RegionalDomainName}"
+      }
+    },
+    "FileAssetKeyArn": {
+      "Description": "The ARN of the KMS key used to encrypt the asset bucket (deprecated)",
+      "Value": {
+        "Fn::If": [
+          "CreateNewKey",
+          {
+            "Fn::Sub": "${FileAssetsBucketEncryptionKey.Arn}"
+          },
+          {
+            "Fn::Sub": "${FileAssetsBucketKmsKeyId}"
+          }
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "CdkBootstrap-${Qualifier}-FileAssetKeyArn"
+        }
+      }
+    },
+    "ImageRepositoryName": {
+      "Description": "The name of the ECR repository which hosts docker image assets",
+      "Value": {
+        "Fn::Sub": "${ContainerAssetsRepository}"
+      }
+    },
+    "BootstrapVersion": {
+      "Description": "The version of the bootstrap resources that are currently mastered in this stack",
+      "Value": "32"
+    },
+    "LocalDeploymentSessionRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LocalDeploymentSessionRole",
+          "Arn"
+        ]
+      }
+    }
+  }
+}
