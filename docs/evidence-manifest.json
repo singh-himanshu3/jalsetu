@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T05:26:27.258Z",
+  "generated_at": "2026-10-10T05:49:09.249Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "e1e4ff4752b7794a7b5ecee59b99daa15d7c3acc",
+  "git_commit": "062966a450705f0252f720618cd49e6da42547c8",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -39,11 +39,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "96104ce1ca6ecb9143818fb59e3f9424ddbcc26bd23ecb2f8d3e7cf8e87aaf60"
+      "sha256": "10d7cf426f6720bb3d2c167de2b6acafa02bdf1b1790a59e5c8e3422eceb12d2"
     },
     {
       "path": "Start JalSetu.cmd",
-      "sha256": "7010f20512d85a4d1816a686e9538813cfe76a208b654b4301298f332d72088a"
+      "sha256": "1fc58267cca9d42137bed6c659a5897652560f168c6cd38288b406be04c2e81e"
     },
     {
       "path": "apps/web/index.html",
@@ -195,7 +195,7 @@
     },
     {
       "path": "docs/architecture.md",
-      "sha256": "885e5105383e98e1517fcf7cabc3d14c685a43484dcdc758b5bdbb69f8f625b3"
+      "sha256": "a79db22c0b9e9201501ac75b3f50041a189dddac8dfab11693178bf6a92f6325"
     },
     {
       "path": "docs/audit-2026-10-09.md",
@@ -226,6 +226,10 @@
       "sha256": "032a33566aaa20727a96091ccf970c9b13783212791aba8b853905e4e8c83aae"
     },
     {
+      "path": "docs/audit/local-release-check-2026-10-10.json",
+      "sha256": "ab74c9e67e1ae61d707c71f179f9e9649256857f7ea4ac03d72f2b4fc506e357"
+    },
+    {
       "path": "docs/audit/restart-reference.json",
       "sha256": "bba805a22c23eee4123ba291ec6a3e59d831f620c4edf482e1706f84db333122"
     },
@@ -251,7 +255,7 @@
     },
     {
       "path": "docs/browser-verification.md",
-      "sha256": "4b7297b5521b01fd2827c4d995a84a4c0876af629e75400fbe4e93eb866c4c1e"
+      "sha256": "b97fc242c2836fafe5a31656bdeebdc109e915b905fb98832a594d91f935163f"
     },
     {
       "path": "docs/build-specification.md",
@@ -259,7 +263,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "3e9725db8b7b75234e372cfd14452ed5c91ee17709903bce611b7ff935dcfb3c"
+      "sha256": "31af80740f0d02279342b8d7401ad89b027041d85132cc978753697a040c2afe"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -275,7 +279,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "f43655f125b5481601ed859a4d0df109a5fa524523499902819037c09d4d5248"
+      "sha256": "5f567d480bbf394e0af5b46f5ff9a37a1f7e534f1e1529ed7ccac999eb3dee2a"
     },
     {
       "path": "docs/demo-script.md",
@@ -299,7 +303,7 @@
     },
     {
       "path": "docs/freeze-and-contingency.md",
-      "sha256": "cdce94dc530b38e2cfeae1482bb0c03554af10f306f498ff7fff13daf037e1a6"
+      "sha256": "40e4031941cdfeec857026643bbb54b370d7c4c8379e771657925ec9642dcf06"
     },
     {
       "path": "docs/guided-example-validation-2026-10-10.md",
@@ -307,7 +311,7 @@
     },
     {
       "path": "docs/limitations.md",
-      "sha256": "8c0b5eaa2c7968c8cbffd7714c341821ab798ba3ea7779de6cfb7a751d491c8e"
+      "sha256": "94b6f74fdafabffa2a4697af082cb3bbcd92ac936e22c45bbc59872164a560d3"
     },
     {
       "path": "docs/local-load-check.json",
@@ -318,12 +322,16 @@
       "sha256": "fc5cda5d251bead1d1ad48c42d366688d16f08ed455fb7f9722365cbb1e5117a"
     },
     {
+      "path": "docs/local-release-readiness-2026-10-10.md",
+      "sha256": "195563aaabd2bba292b0a608853f573e78453b1aaa565837a696c15c7dd55c86"
+    },
+    {
       "path": "docs/marginal-example.json",
       "sha256": "ceb85380382e203a5a47f3006dfa9747725420bd1ac887ebda5c4567c226767b"
     },
     {
       "path": "docs/next-phases-2026-10-10.md",
-      "sha256": "cbe71ae8ba4ad26763c66f8934054066586facc4b7b7ed7cb6dc0adfa1da30b3"
+      "sha256": "574a262e7fb17a6c1f653b5312e3842e8bd21d1b1c790d60d5addaebfc1570cb"
     },
     {
       "path": "docs/phase-2-completion-2026-10-09.md",
@@ -458,6 +466,10 @@
       "sha256": "dae1b5215c34bdd1ee8294374f689ed2eb7a861104644625637b64097f5c36ec"
     },
     {
+      "path": "docs/screenshots/production-journey-2026-10-10.jpg",
+      "sha256": "9ca8364dee972d443487e7258a56b7ced0a095305d18b8bf4217c961191f72c2"
+    },
+    {
       "path": "docs/screenshots/reopened-point-2026-10-10.jpg",
       "sha256": "82aebda93394a8d9a8be1e27efc350d01590d0c025f8f5f493d82b7fc9bd62f9"
     },
@@ -507,7 +519,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "0c1d9dbef84b309190eecb2abf816be8f99cefc45d4734de03d1f953a1ccfcae"
+      "sha256": "3e54c337277f0b8f228c2277ba7e169020cd91e741a73de6e810002d5d6eb1ce"
     },
     {
       "path": "packages/contracts/planning-input.schema.json",
@@ -543,7 +555,7 @@
     },
     {
       "path": "scripts/local-api.mjs",
-      "sha256": "be467c5904d66446181239d620eea2f466d8cf26b2032e5953649b7f5ab8c5de"
+      "sha256": "5c886abce5ee398b01f827ee509943afac4a1051a6cff09f5f13c507875ac177"
     },
     {
       "path": "scripts/local-operations.mjs",
@@ -556,6 +568,10 @@
     {
       "path": "scripts/local-storage.mjs",
       "sha256": "1110f0baf07f5e5126250d224bfbabfebba81fba581aca35c682114ae7b55a03"
+    },
+    {
+      "path": "scripts/local-web.mjs",
+      "sha256": "4917fff2ee64e28987f0bb9d1c306ccf97141ed89e428c719b0878ec065f87ad"
     },
     {
       "path": "scripts/python.mjs",
@@ -588,6 +604,10 @@
     {
       "path": "scripts/test-local-operations.mjs",
       "sha256": "cb64cb54b662bdc047a5ea8f82260f007ff0d7f657ea0705021b339c9a4c8af3"
+    },
+    {
+      "path": "scripts/test-local-release.mjs",
+      "sha256": "8a80c46a385e5bb0151c5d5443fe661c87e6f68a5df05d740b4b665e9857dd9b"
     },
     {
       "path": "scripts/test-local-site-closure.mjs",
