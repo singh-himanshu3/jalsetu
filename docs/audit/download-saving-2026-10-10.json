@@ -1,0 +1,17 @@
+{
+  "scope": "Two actual localhost browser downloads from the saved Guided example check, revision 1",
+  "saving": "Browser download events returned Downloads paths; saved file bytes were read and checked",
+  "checks": "Readable names, IST times, example labels, CSV eight rows summing to 12000 L, HTML requests/shortfall/report labels, no raw job/hash fields",
+  "files": [
+    {
+      "filename": "jalsetu-example-deliveries.csv",
+      "bytes": 2105,
+      "sha256": "faa016ce41747e41fd2f73d1613bcd67c29562cfdff26e2e61c3faf54663273a"
+    },
+    {
+      "filename": "jalsetu-example-plan-and-task-cards.html",
+      "bytes": 5307,
+      "sha256": "e8b888c0ea768bd71b1ec9334ae6db6e565ed9082be9b0237c0919ece8145560"
+    }
+  ]
+}

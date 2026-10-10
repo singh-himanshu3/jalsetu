@@ -10,6 +10,8 @@ def derive_ledger(data, approved_routes, events):
     depot = data.depot.available_stock_litres
     stock_adjustments = 0
     delivered = {s.site_id: 0 for s in data.sites}
+    closed_sites = set()
+    site_status_recorded = False
     reported = {}
     seen = {}
     history = []
@@ -35,6 +37,8 @@ def derive_ledger(data, approved_routes, events):
         if kind == "vehicle_loaded":
             if vehicle is None or vehicle["failed"] or vehicle["loaded"]:
                 raise ValueError("Vehicle cannot be loaded in its current state")
+            if any(v == payload["vehicle_id"] and site in closed_sites for v, site in planned):
+                raise ValueError("Update the approved plan before loading a route with a closed receiving point")
             route_load = sum(q for (v, _), q in planned.items() if v == payload["vehicle_id"])
             if amount <= 0 or amount > depot or amount > vehicle["capacity_litres"] or amount != route_load:
                 raise ValueError("Loading must match approved route and available stock")
@@ -43,6 +47,8 @@ def derive_ledger(data, approved_routes, events):
             vehicle["at_depot"] = False
             depot -= amount
         elif kind == "delivery_reported":
+            if payload["site_id"] in closed_sites:
+                raise ValueError("The receiving point is closed; record its reopening before another delivery")
             if vehicle is None or vehicle["failed"] or not vehicle["loaded"] or vehicle["at_depot"]:
                 raise ValueError("Delivery requires an active loaded vehicle")
             assignment = (payload["vehicle_id"], payload["site_id"])
@@ -84,6 +90,19 @@ def derive_ledger(data, approved_routes, events):
                 raise ValueError("Stock adjustment would make depot water negative")
             depot += delta
             stock_adjustments += delta
+        elif kind in ("site_closed", "site_reopened"):
+            site_id = payload.get("site_id")
+            if site_id not in delivered:
+                raise ValueError("Unknown receiving point")
+            if kind == "site_closed":
+                if site_id in closed_sites:
+                    raise ValueError("The receiving point is already closed")
+                closed_sites.add(site_id)
+            else:
+                if site_id not in closed_sites:
+                    raise ValueError("The receiving point is not closed")
+                closed_sites.remove(site_id)
+            site_status_recorded = True
         else:
             raise ValueError("Unknown stock-ledger event type")
         physical_total = depot + sum(v["onboard_litres"] + v["stranded_litres"] for v in vehicles.values()) + sum(delivered.values())
@@ -92,4 +111,8 @@ def derive_ledger(data, approved_routes, events):
         seen[key] = fingerprint
         history.append({"idempotency_key": key, "occurred_at": when.isoformat(), "depot_litres": depot, "physical_total_litres": physical_total})
         previous_time = when
-    return {"initial_stock_litres": data.depot.available_stock_litres, "stock_adjustments_litres": stock_adjustments, "depot_litres": depot, "vehicles": vehicles, "reported_delivered_litres": delivered, "conservation_valid": True, "history": history}
+    result = {"initial_stock_litres": data.depot.available_stock_litres, "stock_adjustments_litres": stock_adjustments, "depot_litres": depot, "vehicles": vehicles, "reported_delivered_litres": delivered, "conservation_valid": True, "history": history}
+    # Preserve the shape of historical ledgers until a site-status event exists.
+    if site_status_recorded:
+        result["closed_site_ids"] = sorted(closed_sites)
+    return result

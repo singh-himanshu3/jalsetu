@@ -36,3 +36,7 @@ Screenshots: [scenario results](screenshots/phase-7-scenarios-2026-10-10.jpg), [
 | 10 | Submitted commit/tag, final signed-out links, actual freeze and eventual demo monitoring/cleanup |
 
 Later AWS continuation: the user authorized 1,000 and the request was submitted; approval remains pending. See [AWS preflight](aws-preflight-2026-10-10.md). Keep existing one-worker/two-API reservations and the free plan; no out-of-pocket spending or upgrade is authorized. No live integration is enabled simply by setting a future configuration flag.
+
+## Later local recovery checkpoint — 10 October 2026
+
+See [local recovery completion](local-recovery-completion-2026-10-10.md) for 167 passing Python tests, actual delivery CSV/printable HTML saving, and receiving-point closure with explicit reopening. Earlier test counts and local-download limitations above are historical. Original cloud/publication gates and the user's exclusion of video/submission work remain unchanged.

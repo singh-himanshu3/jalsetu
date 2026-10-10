@@ -169,7 +169,7 @@ class EventPayload(Contract):
 
 
 class OperationalEvent(Contract):
-    event_type: Literal["vehicle_loaded", "delivery_reported", "vehicle_failed", "water_recovered", "vehicle_returned", "depot_stock_adjusted"]
+    event_type: Literal["vehicle_loaded", "delivery_reported", "vehicle_failed", "water_recovered", "vehicle_returned", "depot_stock_adjusted", "site_closed", "site_reopened"]
     idempotency_key: str = Field(min_length=1, max_length=128)
     occurred_at: datetime
     payload: EventPayload
@@ -183,6 +183,8 @@ class OperationalEvent(Contract):
             "water_recovered": {"vehicle_id", "litres"},
             "vehicle_returned": {"vehicle_id"},
             "depot_stock_adjusted": {"delta_litres"},
+            "site_closed": {"site_id"},
+            "site_reopened": {"site_id"},
         }
         if self.occurred_at.tzinfo is None or self.occurred_at.utcoffset() is None:
             raise ValueError("Event timestamp requires an explicit timezone offset")

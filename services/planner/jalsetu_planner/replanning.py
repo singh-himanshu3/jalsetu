@@ -34,7 +34,7 @@ def pending_input_after_events(original, approved_plan, events, replan_at):
         if state["failed"] or state["trip_completed"]:
             vehicle["status"] = "unavailable"
     for site in payload["sites"]:
-        if fixed[site["site_id"]] > 0:
+        if fixed[site["site_id"]] > 0 or site["site_id"] in ledger.get("closed_site_ids", []):
             # Completed stops stay fixed and are not silently given a second visit.
             site["confirmation_status"] = "draft"
     pending_input = PlanningInput.model_validate(payload)
@@ -57,7 +57,11 @@ def replan_after_events(original, approved_plan, events, replan_at):
         result["reported_delivered_litres"] = completed
         result["remaining_unmet_litres"] = result["requested_litres"] - result["scheduled_litres"] - completed
         result["unmet_litres"] = result["remaining_unmet_litres"]
-        if completed:
+        if result["site_id"] in ledger.get("closed_site_ids", []):
+            result["reason"] = "Receiving point reported closed; its request remains unmet until reopening is recorded"
+            if completed:
+                result["reason"] += "; earlier reported delivery is preserved and a second visit is outside this revision"
+        elif completed:
             result["reason"] = "Reported completed visit is preserved; a second visit is outside this depot-based revision"
     revision["metrics_scope"] = "pending_routes_only; preserved reports are accounted for separately"
     confirmed = [s for s in original.sites if s.confirmation_status == "confirmed"]
@@ -99,6 +103,8 @@ def validate_revision(original, approved_plan, events, revision):
         if state["failed"] or state["trip_completed"] or not state["at_depot"]:
             errors.append("UNAVAILABLE_REVISION_VEHICLE")
         for stop in route["stops"]:
+            if stop["site_id"] in ledger.get("closed_site_ids", []):
+                errors.append("CLOSED_SITE_RESCHEDULED")
             if stop["site_id"] in expected:
                 errors.append("COMPLETED_SITE_RESCHEDULED")
             scheduled += stop["planned_litres"]

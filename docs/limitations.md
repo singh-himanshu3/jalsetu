@@ -4,6 +4,7 @@ This prototype is an example-only planning exercise. Resources, requests, coordi
 
 Current scope: the first-use guide and its local validation are complete for the documented practice journey. Guide progress is temporary and does not survive reload. AWS is retained for deployment infrastructure; Amazon Location and Bedrock calls are excluded. The user excluded video/submission work. Historical references below to those integrations/publication are outstanding original-specification work, not current release commitments.
 
+- Receiving-point closure persists until an explicit reopening report. It does not recover water, move a vehicle or reschedule a previously reported visit. All-points-closed drafts schedule no water and cannot be approved under the existing rules.
 - One depot, at most five vehicles and twenty points, one trip per vehicle. No reload or active-position replanning. A positive delivery report fixes that point; a second visit is outside this implementation.
 - Planning is a bounded heuristic. Valid routes satisfy the declared constraints; failure within a calculation limit does not prove infeasibility. A resource scenario can tie or worsen the baseline; no universal best resource is claimed.
 - Marginal analysis recalculates its baseline and five configurable alternatives, at most eight seconds each. It does not update physical stock, resource drafts, approvals or reports. An out-of-bounds alternative remains explicitly unavailable. Deltas are withheld unless both its baseline and child have feasible results.
@@ -11,6 +12,6 @@ Current scope: the first-use guide and its local validation are complete for the
 - Optional explanation fact selection has an offline schema and failure fallback. Bedrock access, model choice, account eligibility and live SDK adapter remain unverified. Current output uses locally rendered deterministic facts.
 - Local authentication is loopback isolation only. Cloud ownership/expiry and conditional storage are tested with fakes/SDK stubs; live sign-in, export expiry, orchestration and cloud concurrency require deployed acceptance.
 - No external coordinator participated. Developer walkthroughs and synthetic evaluation are software evidence, not field validation. Hindi review is pending; no bilingual review is claimed.
-- Browser download contents are tested, but the in-app browser did not confirm saving an actual file. A signed-out public review, real AWS recording and submitted commit do not exist yet.
+- Local delivery CSV and printable HTML saving are verified; hosted private-download expiry and other download types remain unverified. A signed-out public review, real AWS recording and submitted commit do not exist yet.
 - Mumbai account verification and Lambda quota block deployment. Credits are shared across the account. The seven-day estimate is not a spending cap. No free-plan upgrade or out-of-pocket spending is authorized.
 - Three OR-Tools SWIG deprecation warnings remain. An earlier local operations-cache check flaked and then passed repeated diagnostics; its root cause remains unverified.

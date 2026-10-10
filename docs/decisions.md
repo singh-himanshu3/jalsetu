@@ -98,3 +98,10 @@ Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence o
 - Show a brief accessible welcome, then a progress guide based on actual setup/plan/approval/report state. Allow skipping, hiding and resuming within the exercise. Keep operating-rule choices, approvals and reports explicit; no automatic dispatch or outcome reporting.
 - A fresh sample clears the selected operation in memory while retaining saved approvals/events in their existing store. Opening a saved project/run exits the fresh-example guide so historical reports cannot complete a new walkthrough.
 - No external participant was available in this implementation session; record browser walkthroughs as software checks. Keep all synthetic evaluation rows, including ties and losing results.
+
+## Receiving-point recovery — 10 October 2026
+
+- User authorized local work without AWS and selected **Require an explicit reopening report**. Keep a point closed for that run until a coordinator explicitly reports reopening. Preserve earlier deliveries and unmet requests.
+- Reuse append-only events, the existing stock ledger and conservative depot-based revisions. A closure changes availability only; block affected old-route loading and deliveries while closed. New drafts exclude closed points; approval independently rejects a closed stop. A reopening invalidates stale drafts and does not approve new routes.
+- Keep active-vehicle and one-trip/positive-report restrictions. No automatic water recovery, vehicle return, additional visit or real-world delivery claim. Preserve historical ledger shape before the first availability report.
+- Verify both actual customer downloads through browser saving and saved-byte checks. The prior local saving limitation is superseded for delivery CSV and printable HTML, while hosted private-export acceptance remains pending.

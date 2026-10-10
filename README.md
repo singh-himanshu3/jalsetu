@@ -4,6 +4,8 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **This is working local application code, not the completed AWS product.** Resources, locations and travel estimates in the demo are synthetic. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
+The [local recovery checkpoint](docs/local-recovery-completion-2026-10-10.md) adds receiving-point closure and explicit reopening, preserves stock and reports, and verifies both actual customer downloads.
+
 The [customer interface cleanup](docs/customer-interface-2026-10-10.md) removes JSON editors/downloads, hashes and developer diagnostics from the product, including delivery downloads.
 
 The [deployment-only release checkpoint](docs/deployment-only-release-2026-10-10.md) keeps the prepared AWS backend/hosting stack while excluding Amazon Location and Bedrock calls. Printable instructions now include a coordinator overview, per-point unmet quantities and preserved reports for revisions.
@@ -28,6 +30,8 @@ The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. Th
 8. **More → Compare options** retains the four-strategy comparison and five configurable example resource alternatives. Each alternative and a fresh baseline is solved separately. The batch leaves saved resources and operations unchanged.
 9. **More → About the example** explains the sample data, checks and practical limits in plain language.
 
+For a receiving-point closure, choose **Point closed**, select the point, enter its IST report time and save. The summary keeps earlier deliveries and the unmet request visible. Affected routes cannot be loaded until updated or the point is explicitly reopened. **Record a reopening** saves availability only; review and approve a new revision to reschedule an unvisited point. Positive delivery reports remain fixed, even after reopening.
+
 Recovery is separate: explicitly report litres recovered **at the depot** before they can be scheduled again. A vehicle return puts remaining onboard water back at the depot and ends that vehicle's only trip. Signed depot-stock adjustments are also supported.
 
 The conservation equation is checked after every accepted event:
@@ -46,14 +50,14 @@ Physical reports retain exact integer litres. A revision can schedule only compl
 
 ## What is verified
 
-As of 10 October 2026 (latest checkpoint: `docs/next-phases-2026-10-10.md`; earlier local UI gate: `docs/phase-2-completion-2026-10-09.md`):
+As of 10 October 2026 (latest checkpoint: `docs/local-recovery-completion-2026-10-10.md`; earlier local UI gate: `docs/phase-2-completion-2026-10-09.md`):
 
-- **156 Python tests pass**, covering both operating policies, all four strategies, validator corruption checks, deterministic routes, failure accounting, retries, revision approval, exact stock remainders, cloud ownership and SDK boundaries. Current staged-workflow evidence is in `docs/phase-4-readiness-2026-10-09.md`; the earlier checkpoint is preserved in `docs/continuation-2026-10-09.md`.
+- **167 Python tests pass**, covering both operating policies, all four strategies, validator corruption checks, deterministic routes, failure accounting, retries, revision approval, exact stock remainders, cloud ownership and SDK boundaries. Current staged-workflow evidence is in `docs/phase-4-readiness-2026-10-09.md`; the earlier checkpoint is preserved in `docs/continuation-2026-10-09.md`.
 - TypeScript checks, Ruff and the production frontend build pass.
 - Local API integration checks pass for request idempotency, stale-version rejection, approval, failure, completed-report preservation and revision approval.
 - CSV parsing/export, durable-storage, conditional project save/reopen and metric-formatting checks pass, including Unicode handling. Local CDK synthesis and security/concurrency assertions pass without deployment.
 - Added regressions verify delayed stale writes, the bounded revision cache, malformed persisted files and strategy-specific approval labels. Export contents and deferred Blob cleanup pass; an actual API restart preserved the complete saved operation.
-- Browser checks passed project creation, save/reopen, separate CSV preview/application, invalid drafts, unconfirmed-site exclusion and comparison. Earlier checks passed approval, loading, delivery reporting, failure and revision approval; see `docs/browser-verification.md`. Desktop and phone layouts were inspected. Actual browser file saving remains unverified: the in-app CSV/template downloads did not return a saved file.
+- Browser checks passed project creation, save/reopen, separate CSV preview/application, invalid drafts, unconfirmed-site exclusion and comparison. Earlier checks passed approval, loading, delivery reporting, failure and revision approval; see `docs/browser-verification.md`. Desktop and phone layouts were inspected. The delivery CSV and printable HTML now return completed download events and saved files; their contents were checked. See the local recovery checkpoint for evidence. CSV-template and hosted private-export acceptance remain separate.
 - A local burst of 100 health reads succeeded. A burst of ten planning submissions accepted one and returned a busy response for nine; the accepted job completed. This is **not a public visitor or AWS load benchmark**.
 
 See `docs/evaluation.md` for all 20 measured synthetic comparison results, `docs/evaluation.json` for raw metrics, and `docs/local-load-check.json` for the bounded local-load check. Evaluation settings are explicitly **finish-by-close, parallel loading, 100-litre increments and seed 42**. These test settings do not settle the team's unanswered operating-policy choices.
@@ -79,7 +83,7 @@ The full supplied specification is preserved in `docs/build-specification.md`; i
 - Live AWS deployment and verification. The foundation, Cognito frontend and cloud project/job/operations adapter are locally prepared. Reversible archive/restore, SDK-boundary checks and offline container execution now pass. Mumbai's Lambda quota of 10 blocks the current stack's three reserved slots; at least 103 available slots are needed. Step Functions Standard is now locally prepared with named stages, retry receipts, immutable results and terminal failure repair; live acceptance remains pending.
 - Live Amazon Location routing, public weather/source ingestion and cache/refresh wiring. Phase 5 now has offline source-manifest, v2 response and cache-integrity helpers with synthetic tests; they are not connected to live providers. Developer source evidence remains in the repository; the customer interface explains example assumptions and limits without exposing raw records. Current route lines are schematics, not road navigation.
 - Real/operator onboarding and new-site CSV import with a provider route matrix. The team selected example-only hosting. Example projects and add/remove forms are implemented; resource/coordinate changes require the explicit labelled toy-matrix rebuild.
-- Active-vehicle position/fixed-stop replanning, site closures and additional disruption types. Current revisions support unused depot vehicles; any active vehicle blocks a depot-based revision until it returns or is reported failed. Any point with a positive delivery report stays fixed; a second visit is outside this prototype.
+- Active-vehicle position/fixed-stop replanning and additional disruption types. Receiving-point closure and explicit reopening are implemented. Current revisions support unused depot vehicles; any active vehicle blocks a depot-based revision until it returns or is reported failed. Any point with a positive delivery report stays fixed; a second visit is outside this prototype.
 - Separate en-route/arrived stop transitions, reviewed bilingual output, live optional Bedrock integration, cloud load testing/security acceptance and pilot feedback. Resource scenarios and the local revision difference are implemented.
 
 Revision route metrics describe **pending routes only**. `revision_accounting` separately preserves reported deliveries and computes remaining unmet demand against all originally confirmed requests, including deficits at points already visited. Reports are never presented as independently verified deliveries.
@@ -110,6 +114,8 @@ pnpm build
 pnpm test:csv
 pnpm test:storage
 pnpm test:operations
+# With the local API running:
+pnpm test:site-closure
 pnpm test:exports
 pnpm test:projects
 pnpm test:metrics
@@ -123,7 +129,7 @@ pnpm evaluate
 
 With the local servers running, `pnpm test:api` creates clearly named synthetic test exercises. `node scripts/test-local-load.mjs` performs only the bounded localhost check. The tests never require AWS credentials.
 
-The latest checkpoint has **156 passing Python tests**. With Docker's Linux engine running, build the Lambda image with `docker build --platform linux/amd64 --provenance=false -t jalsetu-local-check:2026-10-10 -f services/cloud/Dockerfile .`, then run `pnpm test:container`. Its checks disable networking and use inert credentials. See [Phase 4 readiness](docs/phase-4-readiness-2026-10-09.md) and [Phase 5 preparation](docs/phase-5-preparation-2026-10-09.md) and the [seven-day estimate](docs/aws-cost-estimate-2026-10-09.md); estimates are not monetary caps.
+The latest checkpoint has **167 passing Python tests**. With Docker's Linux engine running, build the Lambda image with `docker build --platform linux/amd64 --provenance=false -t jalsetu-local-check:2026-10-10 -f services/cloud/Dockerfile .`, then run `pnpm test:container`. Its checks disable networking and use inert credentials. See [Phase 4 readiness](docs/phase-4-readiness-2026-10-09.md) and [Phase 5 preparation](docs/phase-5-preparation-2026-10-09.md) and the [seven-day estimate](docs/aws-cost-estimate-2026-10-09.md); estimates are not monetary caps.
 
 The `.env.example` flags describe reserved future cloud configuration; changing them does not enable an AWS deployment. No passwords or access keys belong in this repository.
 

@@ -23,7 +23,8 @@
     "test:revision-diff": "node scripts/test-revision-diff.mjs",
     "test:report-time": "node scripts/test-report-time.mjs",
     "evidence:manifest": "node scripts/evidence-manifest.mjs",
-    "test:example-guide": "node scripts/test-example-guide.mjs"
+    "test:example-guide": "node scripts/test-example-guide.mjs",
+    "test:site-closure": "node scripts/test-local-site-closure.mjs"
   },
   "devDependencies": {
     "aws-cdk-lib": "2.273.0",
