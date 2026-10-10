@@ -105,3 +105,10 @@ Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence o
 - Reuse append-only events, the existing stock ledger and conservative depot-based revisions. A closure changes availability only; block affected old-route loading and deliveries while closed. New drafts exclude closed points; approval independently rejects a closed stop. A reopening invalidates stale drafts and does not approve new routes.
 - Keep active-vehicle and one-trip/positive-report restrictions. No automatic water recovery, vehicle return, additional visit or real-world delivery claim. Preserve historical ledger shape before the first availability report.
 - Verify both actual customer downloads through browser saving and saved-byte checks. The prior local saving limitation is superseded for delivery CSV and printable HTML, while hosted private-export acceptance remains pending.
+
+## Production launcher and release gate — 10 October 2026
+
+- User selected **Production launcher and release checks** as the next two local milestones. Keep the existing app/domain; serve the built frontend and API from one loopback server, retain the normal saved-data paths and keep Vite available for development.
+- Add `pnpm check:local` and an isolated real-server gate covering restart, receipts, archive/restore, failed-job recovery, corrupt-file preservation and web boundaries. Do not point tests or the separate browser preview at user saved runs.
+- A launcher rebuilds before startup; an occupied port rejects a second server. Built assets are loaded into memory and cloud configuration is excluded from this local web path. Pending jobs remain transient rather than adding a new durable queue.
+- This is local Phase 8 validation/Phase 10 fallback readiness. Do not create a submitted tag, start monitoring, deploy, record video or publish/submit on the basis of these milestones.

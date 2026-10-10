@@ -2,6 +2,8 @@
 
 This prototype is an example-only planning exercise. Resources, requests, coordinates and travel are synthetic. Neither approved plans nor self-entered reports independently establish a dispatch, water quality, actual need or delivery.
 
+The built local app and isolated release/restart gate are verified. Installed Node/pnpm/Python dependencies are required; this is not a standalone installer. Pending jobs and guide progress do not survive restart, while saved projects/approvals/reports/revisions and write receipts do. Cloud deployment acceptance remains pending.
+
 Current scope: the first-use guide and its local validation are complete for the documented practice journey. Guide progress is temporary and does not survive reload. AWS is retained for deployment infrastructure; Amazon Location and Bedrock calls are excluded. The user excluded video/submission work. Historical references below to those integrations/publication are outstanding original-specification work, not current release commitments.
 
 - Receiving-point closure persists until an explicit reopening report. It does not recover water, move a vehicle or reschedule a previously reported visit. All-points-closed drafts schedule no water and cannot be approved under the existing rules.

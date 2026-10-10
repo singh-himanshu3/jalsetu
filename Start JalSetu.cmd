@@ -1,8 +1,8 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-echo JalSetu local example prototype
-echo Open http://127.0.0.1:5173 after the servers start.
+echo JalSetu local example app
+echo Building the app. Open http://127.0.0.1:8787 when it is ready.
 echo Keep this window open. Press Ctrl+C to stop.
-call pnpm.cmd dev
+call pnpm.cmd start
 if errorlevel 1 pause

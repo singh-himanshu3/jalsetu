@@ -40,3 +40,7 @@ Later AWS continuation: the user authorized 1,000 and the request was submitted;
 ## Later local recovery checkpoint — 10 October 2026
 
 See [local recovery completion](local-recovery-completion-2026-10-10.md) for 167 passing Python tests, actual delivery CSV/printable HTML saving, and receiving-point closure with explicit reopening. Earlier test counts and local-download limitations above are historical. Original cloud/publication gates and the user's exclusion of video/submission work remain unchanged.
+
+## Later production/release checkpoint — 10 October 2026
+
+The user selected a production launcher and release checks. [Local release readiness](local-release-readiness-2026-10-10.md) completes both: one-server built-app startup, a complete local gate with 167 Python tests and an isolated production restart/failure/persistence check. This strengthens Phase 8 software evidence and Phase 10 local contingency readiness; original AWS/submission gates remain pending or excluded by the current user scope.

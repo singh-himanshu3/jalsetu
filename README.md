@@ -4,6 +4,8 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **This is working local application code, not the completed AWS product.** Resources, locations and travel estimates in the demo are synthetic. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
+The [production launcher and local release checkpoint](docs/local-release-readiness-2026-10-10.md) adds one-server startup and a complete isolated restart/failure gate. Open **Start JalSetu.cmd** for the built app, or run `pnpm check:local` for release validation.
+
 The [local recovery checkpoint](docs/local-recovery-completion-2026-10-10.md) adds receiving-point closure and explicit reopening, preserves stock and reports, and verifies both actual customer downloads.
 
 The [customer interface cleanup](docs/customer-interface-2026-10-10.md) removes JSON editors/downloads, hashes and developer diagnostics from the product, including delivery downloads.
@@ -14,7 +16,9 @@ The [10 October usability update](docs/usability-update-2026-10-10.md) makes the
 
 ## Open it on this computer
 
-The development dependencies are already installed in this workspace. Open **Start JalSetu.cmd**, keep its terminal window open, and visit **http://127.0.0.1:5173**. If the preview is already running, simply use that URL. Do not start a second copy on the same ports. Press Ctrl+C in the terminal to stop it.
+Dependencies are already installed in this workspace. Open **Start JalSetu.cmd**: it builds the app and starts one local server. Keep its terminal window open and visit **http://127.0.0.1:8787** once it is ready. Press Ctrl+C to stop it. If a development copy is running, stop it first; a second copy on the same API port will be rejected.
+
+For development, `pnpm dev` still opens the Vite interface at **http://127.0.0.1:5173** with the API at 8787. The built launcher and developer path use the same normal saved-data files. Dependencies must be installed before using this local fallback; it is not a standalone installer.
 
 The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. There are no AWS calls or cloud charges in this path.
 
@@ -50,11 +54,11 @@ Physical reports retain exact integer litres. A revision can schedule only compl
 
 ## What is verified
 
-As of 10 October 2026 (latest checkpoint: `docs/local-recovery-completion-2026-10-10.md`; earlier local UI gate: `docs/phase-2-completion-2026-10-09.md`):
+As of 10 October 2026 (latest checkpoint: `docs/local-release-readiness-2026-10-10.md`; earlier local UI gate: `docs/phase-2-completion-2026-10-09.md`):
 
 - **167 Python tests pass**, covering both operating policies, all four strategies, validator corruption checks, deterministic routes, failure accounting, retries, revision approval, exact stock remainders, cloud ownership and SDK boundaries. Current staged-workflow evidence is in `docs/phase-4-readiness-2026-10-09.md`; the earlier checkpoint is preserved in `docs/continuation-2026-10-09.md`.
-- TypeScript checks, Ruff and the production frontend build pass.
-- Local API integration checks pass for request idempotency, stale-version rejection, approval, failure, completed-report preservation and revision approval.
+- TypeScript checks, Ruff and the production frontend build pass. `pnpm check:local` runs all local release gates in one command, including an isolated real-process restart/failure check.
+- Local API integration checks pass for request idempotency, stale-version rejection, approval, failure, completed-report preservation and revision approval. The production release check also preserves project archive state, operations and retry receipts through actual restart, rejects corrupt saved data without resetting it, and verifies web serving cannot expose source/state/cloud configuration.
 - CSV parsing/export, durable-storage, conditional project save/reopen and metric-formatting checks pass, including Unicode handling. Local CDK synthesis and security/concurrency assertions pass without deployment.
 - Added regressions verify delayed stale writes, the bounded revision cache, malformed persisted files and strategy-specific approval labels. Export contents and deferred Blob cleanup pass; an actual API restart preserved the complete saved operation.
 - Browser checks passed project creation, save/reopen, separate CSV preview/application, invalid drafts, unconfirmed-site exclusion and comparison. Earlier checks passed approval, loading, delivery reporting, failure and revision approval; see `docs/browser-verification.md`. Desktop and phone layouts were inspected. The delivery CSV and printable HTML now return completed download events and saved files; their contents were checked. See the local recovery checkpoint for evidence. CSV-template and hosted private-export acceptance remain separate.
@@ -100,14 +104,18 @@ Use Node 24, pnpm 11.22.0 and Python 3.12. On Windows, from this folder:
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r services/planner/requirements.txt
 pnpm install --frozen-lockfile
+pnpm start
+# For development instead:
 pnpm dev
 ```
 
 On Linux/macOS, create `.venv` with `python3 -m venv .venv`, install the same requirements using `.venv/bin/python`, then run the same pnpm commands. Alternatively set `JALSETU_PYTHON` to an existing compatible interpreter.
 
-Useful checks:
+Useful checks (the complete gate is `pnpm check:local`):
 
 ```powershell
+pnpm check:local
+pnpm test:release
 pnpm test
 pnpm lint
 pnpm build
@@ -137,4 +145,4 @@ The private repository is [singh-himanshu3/jalsetu](https://github.com/singh-him
 
 ## Next-phase evidence
 
-[Current checkpoint](docs/next-phases-2026-10-10.md), [architecture](docs/architecture.md), [source ledger](docs/source-ledger.md), [limitations](docs/limitations.md), [demo script](docs/demo-script.md) and [freeze/contingency checklist](docs/freeze-and-contingency.md) document what is working and which gates remain. `pnpm evaluate` regenerates both raw results and the complete Markdown table. `pnpm evidence:manifest` hashes source/fixtures/evidence and keeps absent deployment/video/submission URLs explicit. Submission and Builder Center files are drafts. No external coordinator, live cloud execution, submitted release tag or public publication is claimed.
+[Current checkpoint](docs/local-release-readiness-2026-10-10.md), [architecture](docs/architecture.md), [source ledger](docs/source-ledger.md), [limitations](docs/limitations.md), [demo script](docs/demo-script.md) and [freeze/contingency checklist](docs/freeze-and-contingency.md) document what is working and which gates remain. `pnpm evaluate` regenerates both raw results and the complete Markdown table. `pnpm evidence:manifest` hashes source/fixtures/evidence and keeps absent deployment/video/submission URLs explicit. Submission and Builder Center files are drafts. No external coordinator, live cloud execution, submitted release tag or public publication is claimed.

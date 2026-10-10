@@ -5,17 +5,29 @@ import { resolve, delimiter } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 import { operationApi } from './local-operations.mjs';
 import { projectApi } from './local-projects.mjs';
+import { localWeb } from './local-web.mjs';
 
 const root = resolve(import.meta.dirname, '..');
+const serveWeb = process.argv.includes('--serve-web');
+const port = Number(process.env.JALSETU_PORT ?? 8787);
+if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('JALSETU_PORT must be a valid port number');
+const stateDirectory = resolve(root, process.env.JALSETU_STATE_DIR ?? 'local-state');
+let web;
+if (serveWeb) {
+  try { web = await localWeb(resolve(root, 'apps/web/dist')); }
+  catch (error) { console.error(error.message); process.exit(1); }
+}
 const python = [process.env.JALSETU_PYTHON, resolve(root, '.venv', process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python'), resolve(root, '../../work/jalsetu-venv', process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python')].filter(Boolean).find(existsSync);
 if (!python) throw new Error('Create .venv or set JALSETU_PYTHON');
 const jobs = new Map();
 const requests = new Map();
 const inputs = new Map();
 let activeJob = null;
+const workers = new Set();
 function run(message, onStage) {
   return new Promise((resolvePromise, reject) => {
     const child = spawn(python, ['-m', onStage ? 'cloud.offline' : 'jalsetu_planner.bridge'], { cwd: root, env: { ...process.env, OPENBLAS_NUM_THREADS: '1', OMP_NUM_THREADS: '1', MKL_NUM_THREADS: '1', NUMEXPR_NUM_THREADS: '1', PYTHONUTF8: '1', PYTHONIOENCODING: 'utf-8', PYTHONPATH: [resolve(root, 'services/planner'), resolve(root, 'services'), process.env.PYTHONPATH].filter(Boolean).join(delimiter) }, stdio: ['pipe', 'pipe', 'pipe'] });
+    workers.add(child);
     let output = '';
     child.stdout.setEncoding('utf8');
     const timer = setTimeout(() => { child.kill(); reject(new Error('WORKER_TIMEOUT')); }, 90_000);
@@ -34,6 +46,7 @@ function run(message, onStage) {
     child.stdin.on('error', () => {});
     child.on('error', error => { clearTimeout(timer); reject(error); });
     child.on('close', code => {
+      workers.delete(child);
       clearTimeout(timer);
       if (code !== 0) return reject(new Error('WORKER_FAILED'));
       try { resolvePromise(JSON.parse(output)); } catch { reject(new Error('INVALID_WORKER_RESPONSE')); }
@@ -47,13 +60,14 @@ function send(res, status, body) {
 }
 function error(res, status, code, message) { send(res, status, { error: { code, message, correlation_id: randomUUID() } }); }
 const example = await run({ command: 'example' });
-const projects = await projectApi({ path: resolve(root, 'local-state/projects.json'), example, send, error });
-const operations = await operationApi({ path: resolve(root, process.env.JALSETU_LOCAL_STATE ?? 'local-state/operations.json'), run, jobs, inputs, send, error, hasPlanningJob: () => Boolean(activeJob) });
+const projects = await projectApi({ path: resolve(stateDirectory, 'projects.json'), example, send, error });
+const operations = await operationApi({ path: process.env.JALSETU_LOCAL_STATE ? resolve(root, process.env.JALSETU_LOCAL_STATE) : resolve(stateDirectory, 'operations.json'), run, jobs, inputs, send, error, hasPlanningJob: () => Boolean(activeJob) });
 const server = http.createServer(async (req, res) => {
   try {
+    if (web && !req.url?.startsWith('/v1/')) return web(req, res);
     if (await projects.handle(req, res)) return;
     if (await operations.handle(req, res)) return;
-    if (req.method === 'GET' && req.url === '/v1/health') return send(res, 200, { mode: 'offline_fixture', authentication: 'loopback-only development', cloud_deployed: false });
+    if (req.method === 'GET' && req.url === '/v1/health') return send(res, 200, { mode: 'offline_fixture', authentication: 'loopback-only local application', cloud_deployed: false, frontend: serveWeb ? 'built' : 'development' });
     if (req.method === 'GET' && req.url === '/v1/example') return send(res, 200, example);
     if (req.method === 'GET' && req.url?.startsWith('/v1/planning-jobs/')) {
       const job = jobs.get(req.url.slice('/v1/planning-jobs/'.length));
@@ -111,5 +125,8 @@ const server = http.createServer(async (req, res) => {
     });
   } catch { error(res, 500, 'LOCAL_API_FAILED', 'The local API could not complete this request'); }
 });
-server.listen(8787, '127.0.0.1', () => console.log('JalSetu local API: http://127.0.0.1:8787 (no AWS calls)'));
-server.on('error', error => { console.error(error.code === 'EADDRINUSE' ? 'Port 8787 is already in use; stop the existing local server or choose another port.' : 'Could not start local API'); process.exit(1); });
+server.listen(port, '127.0.0.1', () => console.log(`JalSetu ${serveWeb ? 'app' : 'local API'}: http://127.0.0.1:${server.address().port} (no AWS calls)`));
+server.on('error', error => { console.error(error.code === 'EADDRINUSE' ? `Port ${port} is already in use. Stop the existing JalSetu server before starting another copy.` : 'Could not start local API'); process.exit(1); });
+function stop() { for (const child of workers) child.kill(); server.close(); process.exit(0); }
+process.on('SIGINT', stop);
+process.on('SIGTERM', stop);

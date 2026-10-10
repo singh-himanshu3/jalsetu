@@ -38,3 +38,7 @@ The example comparison and five resource children completed in the updated brows
 ## Superseding local recovery check — 10 October 2026
 
 The [local recovery checkpoint](local-recovery-completion-2026-10-10.md) records completed browser saving of the delivery CSV and printable HTML, and saved-byte checks. Those two customer exports no longer have the saving limitation reported above. A dedicated saved browser run also passed closure → excluded revision approval → explicit reopening → restored revision approval, with 12,000 L remaining at the depot and both reports preserved. Desktop/phone evidence and API snapshots are linked in that checkpoint. This is software validation, not external user feedback or cloud acceptance.
+
+## Built local app — 10 October 2026
+
+The actual `pnpm start` path served the compiled interface and API at port 8788 with a separate preview state directory. The guided journey passed welcome, explicit rules, planning, approval, loading and a 700-L delivery report, with 7,000 L depot/4,300 L onboard/700 L reported. Printable instructions saved as a real 5,295-byte HTML file with readable names and IST times. Console errors were not returned in the final check. See [production/release checkpoint](local-release-readiness-2026-10-10.md) and [proof](screenshots/production-journey-2026-10-10.jpg). The original developer server and normal saved data were not modified.

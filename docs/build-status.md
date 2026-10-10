@@ -2,7 +2,9 @@
 
 Started 8 October 2026 (Asia/Kolkata).
 
-## Current checkpoint: local operations, scenarios and reproducible evaluation
+## Current checkpoint: local production startup and release validation
+
+10 October local release: [production launcher and release gate](local-release-readiness-2026-10-10.md) completes the two selected milestones. Start JalSetu.cmd now builds and serves the existing app/API from one loopback server. `pnpm check:local` passes 167 Python tests, customer checks, lint/build and the real isolated production-server restart/failure gate. Saved operations/projects/receipts, archive/restore, corrupt-file preservation, web boundaries and busy/terminal recovery are exercised. Browser guided setup → plan → approval → loading → delivery and printable saving pass in the production build. This advances local Phase 8 validation and Phase 10 fallback readiness without claiming submitted freeze or AWS acceptance.
 
 10 October local recovery: [downloads and closure/reopening checkpoint](local-recovery-completion-2026-10-10.md) completes the authorized local follow-ups. Both customer exports now save actual files. Closure/reopening preserves water and prior reports, keeps unmet requests visible, blocks affected loading, and excludes closed points from revisions until explicitly reopened. 167 Python tests, the real localhost closure/reopening API journey, lint/build and customer checks pass. Desktop/phone browser checks passed. AWS and external validation remain pending; earlier checkpoints below retain their historical counts and download limitations.
 
@@ -46,7 +48,7 @@ The browser exercise also completed approval → loading → delivery report →
 
 ## Phases and gaps
 
-See `next-phases-2026-10-10.md` for the latest checkpoint and `audit-2026-10-09.md` for the historical eleven-phase audit. No weighted completion percentage is claimed.
+See `local-release-readiness-2026-10-10.md` for the latest checkpoint and `audit-2026-10-09.md` for the historical eleven-phase audit. No weighted completion percentage is claimed.
 
 - Phase 0 remains partial: Mumbai, seven days and example-only hosting are confirmed. The observed free-plan credit balance is $100 and the current authorized ceiling is $100, with no out-of-pocket spending. Remaining service permissions/applicability, public repository/license and final operating rules remain open. Earlier $449/pause statements are historical and superseded.
 - Phase 1 domain-core acceptance is exercised by the tests and recorded evaluation. Runtime/creation audit fields vary; the deterministic comparisons cover quantities, routes, site results, metrics and input hashes.
