@@ -18,7 +18,7 @@ The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. Th
 
 ## Try the complete example workflow
 
-1. On **Home**, click **Try the example** to open a labelled, unsaved sample. To persist a draft, expand **Saved projects & new exercises** and create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement.
+1. On **Home**, click **Try the example**, then **Start guided example**. A four-step guide follows your progress from setup to your first delivery report. **Explore without the guide** skips the guidance; **Hide guide** and **Show my example guide** keep your current exercise intact. The sample is labelled and unsaved. To persist a draft, expand **Saved projects & new exercises** and create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement.
 2. **Set up** has three steps: Water & timing, Vehicles, and Water requests. Choose the loading and closing rules explicitly; neither is preselected. Review stock, available vehicles and confirmed requests. Back/Next retains your edits. Hours, CSV import and resource editing are in expandable sections.
 3. Click **Create delivery plan**. **Your plan** shows vehicle instructions, quantities and unmet requests. **Compare other options** lets you review each strategy before choosing.
 4. Use **Review & approve**, enter your name or team label, then **Approve example plan & track deliveries**. Approval saves the plan; all water remains at the depot.

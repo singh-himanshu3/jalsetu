@@ -90,3 +90,11 @@ Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence o
 - External road routing remains a separate pending product choice. Retain the labelled synthetic matrix until the user chooses a provider path. Do not infer requests or priority from public weather/population.
 - Finish customer-facing coordinator exports locally while AWS quota/account access remains unresolved. Preserve reports separately from new planned routes and expose unmet quantities in the printout.
 - The user subsequently authorized the console's minimum 1,000 Lambda quota request; AWS acknowledged submission, not approval. Preserve application reservations at worker 1/API 2 and the free plan.
+
+## Guided first-use and validation — 10 October 2026
+
+- User requested a familiar first-use guide for Try the example, then explicitly rejected video/submission work. Implement the customer journey and local validation directly; do not record or publish a video, submit the project or treat Phase 9 publication as authorized by this request.
+- The requested two product milestones are guided example onboarding and local journey/evaluation validation. These are not replacements for the original phase numbering or evidence that cloud/publication gates are complete.
+- Show a brief accessible welcome, then a progress guide based on actual setup/plan/approval/report state. Allow skipping, hiding and resuming within the exercise. Keep operating-rule choices, approvals and reports explicit; no automatic dispatch or outcome reporting.
+- A fresh sample clears the selected operation in memory while retaining saved approvals/events in their existing store. Opening a saved project/run exits the fresh-example guide so historical reports cannot complete a new walkthrough.
+- No external participant was available in this implementation session; record browser walkthroughs as software checks. Keep all synthetic evaluation rows, including ties and losing results.

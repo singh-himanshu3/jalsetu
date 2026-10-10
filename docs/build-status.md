@@ -4,6 +4,8 @@ Started 8 October 2026 (Asia/Kolkata).
 
 ## Current checkpoint: local operations, scenarios and reproducible evaluation
 
+10 October guided first-use: [onboarding and validation checkpoint](guided-example-validation-2026-10-10.md) completes the requested local guide and software-validation milestones. The user excluded video/submission work. Welcome/skip/hide/resume, explicit rules, approval → loading → delivery and phone layouts were exercised. Evaluation regenerated 20 results; 156 Python tests, guide assertions, lint/build and bounded local workload checks pass. No external user or cloud acceptance is claimed.
+
 10 October deployment-only scope: keep the prepared AWS stack but exclude AWS routing and AI calls for this release. Phase 7 now includes a printable coordinator overview with per-point shortfall and separate preserved delivery reports. Export checks, lint and production build pass; the rendered revision report was inspected locally. See [release checkpoint](deployment-only-release-2026-10-10.md). Live road-provider selection and external user validation remain separate choices; local completion does not establish AWS acceptance.
 
 10 October AWS continuation: the user authorized and submitted the console's minimum **1,000 Lambda concurrency** request; approval is pending and the applied Mumbai quota remains 10. Worker/API limits remain 1/2. The user reports an activation email, while CloudShell still reports verification pending. See [AWS preflight](aws-preflight-2026-10-10.md). The CDK command entry now rejects regions outside Mumbai and expiries outside the next seven days; scope regression checks and local foundation assertions pass. No live phase is marked complete.

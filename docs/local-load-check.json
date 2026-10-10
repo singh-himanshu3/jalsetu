@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-10-09T18:42:53.700Z",
+  "recorded_at": "2026-10-10T05:00:56.145Z",
   "environment": "Windows local loopback adapter",
   "read_burst": {
     "simultaneous_requests": 100,
     "successful": 100,
-    "median_ms": 97.89,
-    "max_ms": 109.3
+    "median_ms": 152.27,
+    "max_ms": 157.55
   },
   "planning_burst": {
     "requests": 10,

@@ -8,6 +8,8 @@ import Sources from './Sources';
 import Marginal, {type Analysis} from './Marginal';
 import Overview, { NavIcon } from './Overview';
 import Setup from './Setup';
+import ExampleGuide, { ExampleWelcome } from './ExampleGuide';
+import { exampleStep } from './example-progress';
 
 export type Row = { [key: string]: unknown; location?: { longitude: number | null; latitude: number | null } };
 export type Input = { name: string; display_warning: string; data_mode: string; service_window_policy: string | null; loading_mode: string | null; depot: Row; vehicles: Row[]; sites: Row[]; travel_matrix: { provider: string; limitations: string[]; [key:string]:unknown } | null; [key: string]: unknown };
@@ -35,6 +37,9 @@ export default function App({cloud=false}:{cloud?:boolean}) {
   const [savedMessage,setSavedMessage]=useState('');
   const [statusReadError,setStatusReadError]=useState('');
   const [analysis,setAnalysis]=useState<Analysis|null>(null);
+  const [welcome,setWelcome]=useState(false);
+  const [guideStarted,setGuideStarted]=useState(false);
+  const [guideVisible,setGuideVisible]=useState(false);
   const shownInput = tab === 'Operations' && operation ? operation.input : input;
   const busy = loading || Boolean(job && !['completed', 'failed'].includes(job.status));
   const chosen = plans.find(p => p.strategy === selectedStrategy);
@@ -71,12 +76,12 @@ export default function App({cloud=false}:{cloud?:boolean}) {
     return () => { clearInterval(timer); controller.abort(); };
   }, [job]);
   const edit = (next: Input) => { setInput(next); setAnalysis(null); setPlans([]); setPlansJob(null); setJob(null); setError(''); };
-  async function loadExample() {
+  async function loadExample(guided = true) {
     setLoading(true); setError('');
-    try { const next = await api<Input>('/v1/example'); setProject(null); edit(next);  setTab('Inputs'); }
+    try { const next = await api<Input>('/v1/example'); setProject(null); setOperation(null); edit(next); setGuideStarted(guided); setGuideVisible(guided); setWelcome(false); setTab('Inputs'); }
     catch (err) { setError((err as Error).message); } finally { setLoading(false); }
   }
-  function openProject(next:Project<Input>) {setProject(next);edit(next.input);setSavedMessage('');setTab('Inputs');}
+  function openProject(next:Project<Input>) {setGuideStarted(false);setGuideVisible(false);setProject(next);edit(next.input);setSavedMessage('');setTab('Inputs');}
   async function saveProject() {if(!project||!input)return;setLoading(true);setError('');try{const result=await api<{project:Project<Input>}>(`/v1/projects/${project.project_id}`,{...postOptions({input},project.version),method:'PUT'});setProject(result.project);setSavedMessage('Changes saved. Create a new plan to use the updated setup.');}catch(e){setError((e as Error).message);}finally{setLoading(false);}}
   async function generate() {
     if (!input?.service_window_policy || !input.loading_mode) { setError('Choose the two operating rules in Set up → Water & timing.'); return; }
@@ -99,6 +104,13 @@ export default function App({cloud=false}:{cloud?:boolean}) {
       else if (result.job_id) setJob(result as Job);
     } catch (err) { setError((err as Error).message); } finally { setLoading(false); }
   }
+  function guideNavigate(next:string) {
+    setTab(next);
+    requestAnimationFrame(() => {
+      const target = next==='Operations' ? 'report-form' : next==='Plan' ? 'approve-plan' : 'workspace';
+      document.getElementById(target)?.scrollIntoView({block:'start'});
+    });
+  }
   return <div className="app">
     <a className="skip-link" href="#workspace">Skip to workspace</a>
     <aside className="sidebar"><a className="brand" href="#" onClick={e => { e.preventDefault(); setTab('Overview'); }}><span className="mark"><svg aria-hidden="true" viewBox="0 0 28 32"><path d="M14 2C11 9 4 15 4 21a10 10 0 0 0 20 0C24 15 17 9 14 2Z" fill="currentColor"/><path d="M8 22c0 4 3 6 6 6" fill="none" stroke="#c6e1b5" strokeWidth="2" strokeLinecap="round"/></svg></span> JalSetu</a><nav aria-label="Project navigation">{[['Overview','Home'],['Inputs','Set up'],['Plan','Your plan'],['Operations','Deliveries']].map(([name,label]) => <button key={name} aria-current={tab === name ? 'page' : undefined} className={tab === name ? 'nav active' : 'nav'} onClick={() => setTab(name)}><NavIcon name={name}/>{label}</button>)}<details className={['Compare','Evidence'].includes(tab) ? 'more-nav active' : 'more-nav'}><summary>More <span aria-hidden="true">⌄</span></summary><div>{[['Compare','Compare options'],['Evidence','About the example']].map(([name,label]) => <button key={name} className="nav" onClick={e => {setTab(name);const menu=e.currentTarget.closest('details');if(menu)menu.open=false;}}>{label}</button>)}</div></details></nav><span className="shell-status"><span className="status-dot"/>{cloud?'AWS example':'Local example'}</span></aside>
@@ -107,7 +119,9 @@ export default function App({cloud=false}:{cloud?:boolean}) {
       {error && <div className="error" role="alert">{error}</div>}
       {busy && <div className="job" role="status"><span className="spinner"/> {job && !['completed', 'failed'].includes(job.status) ? `Creating your plan: ${statusLabels[job.status]??job.status.replaceAll('_', ' ')}` : 'Processing request…'}<span>{job && !['completed', 'failed'].includes(job.status) ? 'You can review the result when it is ready.' : 'Please wait.'}</span></div>}
       {statusReadError && <p className="attention" role="status">{statusReadError}</p>}
-      {tab === 'Overview' && <><Overview input={input} busy={busy} onLoad={loadExample} onNavigate={setTab} hasPlan={Boolean(chosen)}/><details className="project-drawer"><summary><div><span className="eyebrow">YOUR WORKSPACE</span><h3>Saved projects & new exercises</h3></div><span className="drawer-chevron" aria-hidden="true">+</span></summary><Projects<Input> busy={busy} onOpen={openProject} onArchive={id=>{if(project?.project_id===id){setProject(null);setInput(null);setPlans([]);setPlansJob(null);setJob(null);setSavedMessage('');}}}/></details></>}
+      {welcome && <ExampleWelcome busy={busy} onStart={loadExample} onClose={() => setWelcome(false)}/>}
+      {guideStarted && input && (guideVisible ? <ExampleGuide step={exampleStep(Boolean(input.service_window_policy&&input.loading_mode),Boolean(chosen),Boolean(operation),Boolean(operation&&Object.values(operation.ledger.reported_delivered_litres).some(n=>n>0)))} loaded={Boolean(operation&&Object.values(operation.ledger.vehicles).some(vehicle=>vehicle.loaded))} busy={busy} onNavigate={guideNavigate} onHide={()=>setGuideVisible(false)}/> : <button className="text-button guide-resume" onClick={()=>setGuideVisible(true)}>Show my example guide →</button>)}
+      {tab === 'Overview' && <><Overview input={input} busy={busy} onLoad={()=>setWelcome(true)} onNavigate={setTab} hasPlan={Boolean(chosen)}/><details className="project-drawer"><summary><div><span className="eyebrow">YOUR WORKSPACE</span><h3>Saved projects & new exercises</h3></div><span className="drawer-chevron" aria-hidden="true">+</span></summary><Projects<Input> busy={busy} onOpen={openProject} onArchive={id=>{if(project?.project_id===id){setProject(null);setInput(null);setPlans([]);setPlansJob(null);setJob(null);setSavedMessage('');}}}/></details></>}
       {tab === 'Inputs' && (!input ? <Empty action={() => setTab('Overview')} hasInput={false}/> : <Setup input={input} busy={busy} onEdit={edit} onGenerate={generate} onSave={saveProject} isSaved={Boolean(project)} saveStatus={project ? savedMessage || 'Saved run. Save changes before leaving.' : 'This example is not saved. You can create a saved example from Home.'}/>)}
       {tab === 'Plan' && (!chosen ? <Empty action={() => setTab(input ? 'Inputs' : 'Overview')} hasInput={Boolean(input)}/> : <>
         <div className="section-head"><div><h2>{chosen.approvable ? 'Your delivery plan' : 'This plan needs attention'}</h2><p>{labels[chosen.strategy]} option · Review the stops and quantities before approving. Times are estimates.</p></div><span className={chosen.approvable ? 'validated' : 'attention'}>{chosen.approvable ? '✓ Stock, capacity & timing checked' : (chosen.approval_blockers?.[0] ?? chosen.status.replaceAll('_', ' '))}</span></div>
@@ -119,7 +133,7 @@ export default function App({cloud=false}:{cloud?:boolean}) {
         <section className="panel"><h3>Download your plan</h3><div className="actions"><button className="secondary" onClick={() => exportStops(chosen, exportMeta)}>Download delivery list (CSV)</button><button className="secondary" onClick={() => exportCards(chosen, exportMeta)}>Download printable vehicle instructions</button></div><p className="hint">The download includes the example label and approval status. Open the printable file to print or save as PDF.</p></section>
       </>)}
       {tab === 'Plan' && chosen && <div className="plan-next"><span>{approved ? 'This example plan has been approved.' : 'Review the stops and unmet requests before approving.'}</span>{approved ? <button className="primary" onClick={() => setTab('Operations')}>Track deliveries →</button> : <a className="primary" href="#approve-plan">Review & approve →</a>}</div>}
-      {tab === 'Operations' && <Operations cloud={cloud} operation={operation} busy={busy} onRestore={next => { setOperation(next); setTab('Operations'); }} onAction={operationAction} onNeedPlan={() => setTab(chosen ? 'Plan' : input ? 'Inputs' : 'Overview')}/>}
+      {tab === 'Operations' && <Operations cloud={cloud} operation={operation} busy={busy} onRestore={next => { setGuideStarted(false); setGuideVisible(false); setOperation(next); setTab('Operations'); }} onAction={operationAction} onNeedPlan={() => setTab(chosen ? 'Plan' : input ? 'Inputs' : 'Overview')}/>}
       {tab === 'Compare' && (!plans.length ? <Empty action={() => setTab(input ? 'Inputs' : 'Overview')} hasInput={Boolean(input)}/> : <><div className="section-head"><div><h2>Compare the same resources</h2><p>No strategy is assumed to win every metric. All results are independently checked.</p></div></div><section className="panel"><div className="table-wrap"><table><thead><tr><th>Strategy</th><th>Scheduled</th><th>Unmet</th><th>Critical minimum</th><th>Lowest fulfilment</th><th>Travel</th><th>Review</th></tr></thead><tbody>{plans.map(plan => <tr key={plan.strategy} className={plan.strategy === selectedStrategy ? 'selected-row' : ''}><td><strong>{labels[plan.strategy]}</strong></td><td>{litres(plan.metrics.on_time_scheduled_litres)}</td><td>{litres(plan.metrics.unmet_requested_litres)}</td><td>{litres(plan.metrics.critical_minimum_litres)}</td><td>{(Number(plan.metrics.minimum_fulfilment_ratio) * 100).toFixed(1)}%</td><td>{(Number(plan.metrics.total_travel_distance_metres) / 1000).toFixed(1)} km</td><td><button className="secondary" aria-label={`Review ${labels[plan.strategy]} plan`} onClick={() => { setSelectedStrategy(plan.strategy); setTab('Plan'); }}>Review plan</button></td></tr>)}</tbody></table></div></section><ComparisonCharts plans={plans}/>{input&&<Marginal key={plansJob?.job_id} input={input} busy={busy} parentReady={Boolean(plansJob?.plans)} analysis={analysis} onRun={marginal}/>}<p className="hint">Priority commitments take precedence over total volume in the JalSetu policy. Arrival estimates come from the same sample travel estimates. Review and approve the strategy whose tradeoffs you accept. Aggregate metrics include confirmed requests only.</p></>)}
       {tab === 'Evidence' && <><div className="section-head"><div><h2>About the example</h2><p>Understand what the sample can show and what still needs checking.</p></div></div><Sources input={input}/></>}
       <footer><span className="footer-brand">JalSetu</span><span>Heat relief dispatch · Delhi pilot</span><span>{cloud?'Authenticated AWS example workspace':'Local example'}</span></footer>

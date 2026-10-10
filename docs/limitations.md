@@ -2,6 +2,8 @@
 
 This prototype is an example-only planning exercise. Resources, requests, coordinates and travel are synthetic. Neither approved plans nor self-entered reports independently establish a dispatch, water quality, actual need or delivery.
 
+Current scope: the first-use guide and its local validation are complete for the documented practice journey. Guide progress is temporary and does not survive reload. AWS is retained for deployment infrastructure; Amazon Location and Bedrock calls are excluded. The user excluded video/submission work. Historical references below to those integrations/publication are outstanding original-specification work, not current release commitments.
+
 - One depot, at most five vehicles and twenty points, one trip per vehicle. No reload or active-position replanning. A positive delivery report fixes that point; a second visit is outside this implementation.
 - Planning is a bounded heuristic. Valid routes satisfy the declared constraints; failure within a calculation limit does not prove infeasibility. A resource scenario can tie or worsen the baseline; no universal best resource is claimed.
 - Marginal analysis recalculates its baseline and five configurable alternatives, at most eight seconds each. It does not update physical stock, resource drafts, approvals or reports. An out-of-bounds alternative remains explicitly unavailable. Deltas are withheld unless both its baseline and child have feasible results.

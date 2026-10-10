@@ -24,7 +24,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.032
+    "runtime_seconds": 0.094
   },
   {
     "fixture": "balanced_supply.json",
@@ -51,7 +51,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.0
+    "runtime_seconds": 0.016
   },
   {
     "fixture": "balanced_supply.json",
@@ -159,7 +159,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.016
+    "runtime_seconds": 0.0
   },
   {
     "fixture": "narrow_time_windows.json",
@@ -186,7 +186,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.0
+    "runtime_seconds": 0.015
   },
   {
     "fixture": "narrow_time_windows.json",
@@ -213,7 +213,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.265
+    "runtime_seconds": 0.141
   },
   {
     "fixture": "north_delhi_example.json",
@@ -240,7 +240,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.016
+    "runtime_seconds": 0.015
   },
   {
     "fixture": "north_delhi_example.json",
@@ -294,7 +294,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.015
+    "runtime_seconds": 0.0
   },
   {
     "fixture": "north_delhi_example.json",
@@ -321,7 +321,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.188
+    "runtime_seconds": 0.094
   },
   {
     "fixture": "stock_shortage.json",
@@ -348,7 +348,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.0
+    "runtime_seconds": 0.015
   },
   {
     "fixture": "stock_shortage.json",
@@ -402,7 +402,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.016
+    "runtime_seconds": 0.0
   },
   {
     "fixture": "stock_shortage.json",
@@ -429,7 +429,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.125
+    "runtime_seconds": 0.079
   },
   {
     "fixture": "vehicle_unavailable.json",
@@ -456,7 +456,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.015
+    "runtime_seconds": 0.0
   },
   {
     "fixture": "vehicle_unavailable.json",
@@ -483,7 +483,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.016
+    "runtime_seconds": 0.015
   },
   {
     "fixture": "vehicle_unavailable.json",
@@ -510,7 +510,7 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.016
+    "runtime_seconds": 0.0
   },
   {
     "fixture": "vehicle_unavailable.json",
@@ -537,6 +537,6 @@
       "warnings": []
     },
     "status": "feasible",
-    "runtime_seconds": 0.125
+    "runtime_seconds": 0.047
   }
 ]
