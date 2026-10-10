@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-09T19:50:16.575Z",
+  "generated_at": "2026-10-10T04:37:21.423Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "9662fac15fea2b0ef1fb6965b51be6e25c10723f",
+  "git_commit": "50cfa5521937dc453884a6c12dc6706d0d555aad",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -215,7 +215,11 @@
     },
     {
       "path": "docs/aws-foundation.md",
-      "sha256": "25233f31c34cd19b69034fb4a4f250ec2eda001e134c83a192b9de308407e858"
+      "sha256": "8f36e3eede17e9d48ab8c5d1dd40921d730dafe920da7e3b7126e486a74f7eca"
+    },
+    {
+      "path": "docs/aws-preflight-2026-10-10.md",
+      "sha256": "c6429f7863a55c6273cdd6847c1d67d6eec36ebd659c2a7b1bb0c29ec033e9dc"
     },
     {
       "path": "docs/aws-price-snapshot-2026-10-09.json",
@@ -231,7 +235,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "da2bec722b063df83cf92290c37eacd2fba8af8ad46266f4acdda9565cc202f5"
+      "sha256": "4ce5ff2efb10a8af07ef1844a070999990e686bf4db9f34193ce5f2fe29bec47"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -283,7 +287,7 @@
     },
     {
       "path": "docs/next-phases-2026-10-10.md",
-      "sha256": "713ec2412093674aa0ae88875f04e7d252a5619b3b9763079d9d53200eb56cb4"
+      "sha256": "128eb83fe4e43c9348d3aca4c1f1d416cba190308892691480b368dfe39834e9"
     },
     {
       "path": "docs/phase-2-completion-2026-10-09.md",
@@ -342,8 +346,16 @@
       "sha256": "9873d5402ff0a18d8872c703e404ee8b4842c5a315ec374b9279c4f3ae4a33e7"
     },
     {
+      "path": "docs/screenshots/aws-quota-requested-2026-10-10.jpg",
+      "sha256": "d870d5e97ea79e313cd5c7778203563d696a3810aaef490357d17a81bd556e20"
+    },
+    {
       "path": "docs/screenshots/aws-verification-pending-2026-10-09.jpg",
       "sha256": "ed9dfd60f68fd40391fa702644371bf10df2affd68f90d3bb13e3d63947979fa"
+    },
+    {
+      "path": "docs/screenshots/aws-verification-pending-2026-10-10.jpg",
+      "sha256": "17aeb404fd55877efe13cd081dfa1a7cb91f62e1f8b1cba3b119c5a51d2d449b"
     },
     {
       "path": "docs/screenshots/design-operations-2026-10-10.jpg",
@@ -419,11 +431,15 @@
     },
     {
       "path": "infra/app.mjs",
-      "sha256": "c94fac50293b46e69801dc94fe1b0251d6978186e343d9aba6f5909cf4572239"
+      "sha256": "e231ea60f18e5014b3c88f2b005a6a916990a34f4c04e444632af3e361dd5da4"
+    },
+    {
+      "path": "infra/deployment-scope.mjs",
+      "sha256": "7d837d0a78d05474112f128a1fcf7f6c0c13b4ab3c6ca09f507c5246da78908b"
     },
     {
       "path": "infra/test-foundation.mjs",
-      "sha256": "4eaa34d2a8a266e77cf4445c558c33a143321952a5841798f797a05c833270a5"
+      "sha256": "0fadbaec5fcc6c29c95f7a7e624115b16a888d2cf9be53dcae9387c4f8504a10"
     },
     {
       "path": "package.json",
