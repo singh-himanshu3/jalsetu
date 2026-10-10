@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T17:21:56.371Z",
+  "generated_at": "2026-10-10T17:22:32.500Z",
   "scope": "local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed",
-  "git_commit": "134cb3ee1e2872df162311827480c8646a01a6c4",
+  "git_commit": "321828e4c3a474fad2aef6cb0ebf8c6715801957",
   "working_tree_dirty": false,
   "submitted_commit": null,
   "urls": {
@@ -12,7 +12,7 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-10T17:21:56.191Z",
+  "public_repository_verified_at": "2026-10-10T17:22:32.336Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -29,7 +29,7 @@
     },
     {
       "path": ".gitattributes",
-      "sha256": "539ff55470e54025c45f4dfda5a5a1e8e445aa125b4ce9fd1cd074496af39f17"
+      "sha256": "b9795d53e02c51614e79845acb16987cd6998ce67d77277051872def4cdff9b0"
     },
     {
       "path": ".gitignore",
