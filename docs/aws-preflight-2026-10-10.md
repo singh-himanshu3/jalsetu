@@ -1,5 +1,7 @@
 # AWS preflight — 10 October 2026
 
+**Latest recheck:** the remaining-phase continuation again read Mumbai's applied quota **10** and the existing 1,000 request **Case Opened**. CloudShell still reports verification in progress and cannot create its environment. Billing was not refreshed. No duplicate request, environment deletion or deployment was attempted. [Current gates and local package readiness](remaining-phases-2026-10-10.md) records this continuation.
+
 The user signed in and authorized continuing AWS preparation within the existing Mumbai, seven-day, example-only scope, preserving the free account plan, $100 credits-only ceiling and zero out-of-pocket spending.
 
 ## Observed account state

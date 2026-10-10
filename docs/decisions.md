@@ -112,3 +112,9 @@ Updated 10 October 2026, Asia/Kolkata. This is a planning record, not evidence o
 - Add `pnpm check:local` and an isolated real-server gate covering restart, receipts, archive/restore, failed-job recovery, corrupt-file preservation and web boundaries. Do not point tests or the separate browser preview at user saved runs.
 - A launcher rebuilds before startup; an occupied port rejects a second server. Built assets are loaded into memory and cloud configuration is excluded from this local web path. Pending jobs remain transient rather than adding a new durable queue.
 - This is local Phase 8 validation/Phase 10 fallback readiness. Do not create a submitted tag, start monitoring, deploy, record video or publish/submit on the basis of these milestones.
+
+## Remaining-phase continuation — 10 October 2026
+
+- User requested completion of the remaining phases. Preserve the previously selected hosting-only AWS stack and credit/free-plan safeguards, with video/publication/submission deferred. Do not interpret this general continuation as a reversal of those specific choices.
+- Read the current Mumbai quota/request and CloudShell state before attempting deployment. Applied concurrency is still 10, the existing 1,000 request remains Case Opened, and CloudShell verification is pending. Preserve the reserved application slots; do not duplicate the request, delete an environment or upgrade the account.
+- Finish the missing manual-hosting package preparation locally. Extract only the existing stack's seven public browser fields, validate matched regional endpoints/callback and a future expiry within seven days, copy supported built assets only, and reject an existing destination. Do not fabricate real stack outputs, upload a synthetic configuration or treat package validation as live AWS acceptance.

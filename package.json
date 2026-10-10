@@ -27,7 +27,10 @@
     "test:report-time": "node scripts/test-report-time.mjs",
     "evidence:manifest": "node scripts/evidence-manifest.mjs",
     "test:example-guide": "node scripts/test-example-guide.mjs",
-    "test:site-closure": "node scripts/test-local-site-closure.mjs"
+    "test:site-closure": "node scripts/test-local-site-closure.mjs",
+    "prepare:hosting": "node scripts/prepare-hosted-web.mjs",
+    "test:hosting": "node scripts/test-hosted-web.mjs",
+    "check:hosting": "pnpm build && pnpm infra:test && pnpm test:hosting"
   },
   "devDependencies": {
     "aws-cdk-lib": "2.273.0",

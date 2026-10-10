@@ -4,6 +4,8 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **This is working local application code, not the completed AWS product.** Resources, locations and travel estimates in the demo are synthetic. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
+The [remaining-phase checkpoint](docs/remaining-phases-2026-10-10.md) adds validated frontend hosting-package preparation. `pnpm check:hosting` checks the built files and prepared infrastructure locally. Fresh console checks still show Mumbai Lambda quota 10, the increase request Case Opened and CloudShell verification pending; no AWS deployment is claimed.
+
 The [production launcher and local release checkpoint](docs/local-release-readiness-2026-10-10.md) adds one-server startup and a complete isolated restart/failure gate. Open **Start JalSetu.cmd** for the built app, or run `pnpm check:local` for release validation.
 
 The [local recovery checkpoint](docs/local-recovery-completion-2026-10-10.md) adds receiving-point closure and explicit reopening, preserves stock and reports, and verifies both actual customer downloads.
