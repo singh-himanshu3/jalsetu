@@ -6,7 +6,7 @@ const root=resolve(import.meta.dirname,'..'),files=[];
 const ignored=new Set(['node_modules','__pycache__','.pytest_cache','.ruff_cache','cdk.out','dist','.venv','local-state']);
 async function walk(path){for(const item of await readdir(path,{withFileTypes:true})){if(ignored.has(item.name))continue;const full=resolve(path,item.name);if(item.isDirectory())await walk(full);else if(item.isFile()&&!item.name.startsWith('.env')&&item.name!=='evidence-manifest.json'&&!item.name.endsWith('.pyc'))files.push(full);}}
 for(const dir of ['apps','packages','services','infra','scripts','data','docs'])await walk(resolve(root,dir));
-for(const file of ['README.md','NOTICE.md','package.json','pnpm-lock.yaml','pnpm-workspace.yaml','tsconfig.json','.gitignore','.dockerignore','.editorconfig','.env.example','Start JalSetu.cmd'])files.push(resolve(root,file));
+for(const file of ['README.md','NOTICE.md','package.json','pnpm-lock.yaml','pnpm-workspace.yaml','tsconfig.json','.gitignore','.gitattributes','.dockerignore','.editorconfig','.env.example','Start JalSetu.cmd'])files.push(resolve(root,file));
 const revision=spawnSync('git',['rev-parse','--verify','HEAD'],{cwd:root,encoding:'utf8'});
 const remote=spawnSync('git',['remote','get-url','origin'],{cwd:root,encoding:'utf8'});
 const remoteUrl=remote.status===0?remote.stdout.trim():'';

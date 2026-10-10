@@ -1,0 +1,2 @@
+# Preserve generated CSV export bytes for reproducible evidence hashes.
+docs/audit/exports/*.csv -text
