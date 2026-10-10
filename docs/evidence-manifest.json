@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T05:56:53.094Z",
+  "generated_at": "2026-10-10T06:23:30.958Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "ee882ee281980f4c26fc7bba29d1afc1d05c3d5d",
+  "git_commit": "2ea2a283b9a7f5428738edd180b3687e589b4837",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -35,11 +35,11 @@
     },
     {
       "path": "NOTICE.md",
-      "sha256": "1eb4585a39e344ec32fb959b6fc36c18a55fdb555f2d9612ca5dd157d2249b19"
+      "sha256": "956505e5b236818365bf22825cf3999026b572a77aa7e3aa235557df911dab0d"
     },
     {
       "path": "README.md",
-      "sha256": "07d82ae4225841b6a4d5ebf26e89d3b0128f3b6d94a0a0b59388750eed9ce422"
+      "sha256": "9d508e9d69b0deb1ef19f735056162d6e33001ae38aa8b75a3a1ad957f4af304"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -55,7 +55,7 @@
     },
     {
       "path": "apps/web/src/App.tsx",
-      "sha256": "360bae3c47963d4b3e04f743160517d7f0bb903ffca437617f445d2bac026323"
+      "sha256": "157f38d1e57e361cced1f08e510aa9064ff5e9220304587bb8daa705f16b32fe"
     },
     {
       "path": "apps/web/src/ComparisonCharts.tsx",
@@ -80,6 +80,10 @@
     {
       "path": "apps/web/src/Projects.tsx",
       "sha256": "7e667bf290ecdfb7ee03af87929ad9262b974ef9d4e98cb59cb69b0145bc7621"
+    },
+    {
+      "path": "apps/web/src/PublicRoadEvidence.tsx",
+      "sha256": "c19e1b8a3d040efe60b95f73b276851b7c38846bc2c0c0a06288f9b6099a5238"
     },
     {
       "path": "apps/web/src/ReportTime.tsx",
@@ -150,6 +154,10 @@
       "sha256": "39d9390f4e73a8558dd4f0f7338880d0793ecae27b24c4192dbda281a2ae6308"
     },
     {
+      "path": "apps/web/src/public-road-summary.ts",
+      "sha256": "cbed59fc6a81d76cc8e0cbef98b90faed41ca098d869ac1c8ff527987f942c71"
+    },
+    {
       "path": "apps/web/src/revision-diff.ts",
       "sha256": "b1b3df0bf38050645d2fc5392d519fae7b72e19e86b85493a6d382d888a534fe"
     },
@@ -194,6 +202,14 @@
       "sha256": "cfd92b1b2cbcff68e88e3de1b78df755a6cd22990afc8aea412244bda80de0fe"
     },
     {
+      "path": "data/public-roads/README.md",
+      "sha256": "9a92902fbef5a05349d28a4f59d6cd7092b0e2ca5184d3787f4e1cf6132486f2"
+    },
+    {
+      "path": "data/public-roads/north-delhi-osrm.json",
+      "sha256": "2e099636697197c5e1a8b9b7e807d0696d1a343c1007e92b5374869e31a44af4"
+    },
+    {
       "path": "docs/architecture.md",
       "sha256": "a79db22c0b9e9201501ac75b3f50041a189dddac8dfab11693178bf6a92f6325"
     },
@@ -227,7 +243,7 @@
     },
     {
       "path": "docs/audit/local-release-check-2026-10-10.json",
-      "sha256": "ab74c9e67e1ae61d707c71f179f9e9649256857f7ea4ac03d72f2b4fc506e357"
+      "sha256": "666dad29f27e6501282033f32c004563f7c78a39f9576fa82449f5d63c0a8e88"
     },
     {
       "path": "docs/audit/restart-reference.json",
@@ -255,7 +271,7 @@
     },
     {
       "path": "docs/browser-verification.md",
-      "sha256": "b97fc242c2836fafe5a31656bdeebdc109e915b905fb98832a594d91f935163f"
+      "sha256": "2f18faa9de46d21d8e190101d1f8095c9fdaa4f92144c718a1aff5b3c03bacb9"
     },
     {
       "path": "docs/build-specification.md",
@@ -263,7 +279,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "214f3c0ad0174d3e837c1bef535b0c72ed7a2fc4a25d5d7dfe14ffb5f6604e73"
+      "sha256": "2913f06c633505fc195d1324cbc5d0c27f9fefcc4b35a3c4d192245475ac30fd"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -279,7 +295,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "71f4a31f971a603bd0f99b68021aa3bced99ae7fa247cf400551379e10b57ae8"
+      "sha256": "540bc50325b669730165a77aead50bb343b9ff2035ba6fcfcb800f931d24a3d0"
     },
     {
       "path": "docs/demo-script.md",
@@ -311,7 +327,7 @@
     },
     {
       "path": "docs/limitations.md",
-      "sha256": "94b6f74fdafabffa2a4697af082cb3bbcd92ac936e22c45bbc59872164a560d3"
+      "sha256": "1b9864829de5a628d386a82e56d87d7de8a0b0290b5239744604962beec0876f"
     },
     {
       "path": "docs/local-load-check.json",
@@ -350,8 +366,20 @@
       "sha256": "c61fa0d0edd5b0b0610d953559afa9bea8db24451b1ea00c1eeacaa06284bf13"
     },
     {
+      "path": "docs/public-road-checkpoint-2026-10-10.md",
+      "sha256": "1d40c3111a933e800bf6a8f82313e5356e98007de5ebe49ffe3832a0dc93cf8e"
+    },
+    {
+      "path": "docs/public-road-evaluation.md",
+      "sha256": "976e4b83ae5cbeec0c235b0fe44185ab570134eb5eb28265bc6a456049d52e0d"
+    },
+    {
+      "path": "docs/public-road-results.json",
+      "sha256": "60aef22ac6e901c4cde313acbf414cd76a598b4c299f2bb0c746812ecaacd679"
+    },
+    {
       "path": "docs/remaining-phases-2026-10-10.md",
-      "sha256": "23e742f3ea877e102b129943f7a73dc71f1e0f9086272d0abc819f8dd0dc8fb9"
+      "sha256": "6c354c5b9efc1b19a7ba540a9a272ac47c74e1da6a93744e329fb637bca2f98c"
     },
     {
       "path": "docs/screens/audit-2026-10-09.jpg",
@@ -474,6 +502,14 @@
       "sha256": "9ca8364dee972d443487e7258a56b7ced0a095305d18b8bf4217c961191f72c2"
     },
     {
+      "path": "docs/screenshots/public-road-evidence-desktop-2026-10-10.png",
+      "sha256": "1c4b5cb613e2368ed56503f6790de8f4b38952a96f2f936e25ca000eac9c99e6"
+    },
+    {
+      "path": "docs/screenshots/public-road-evidence-phone-2026-10-10.png",
+      "sha256": "36462e278be6d6c4a0b88f1aefa1b11d13b08ffee95baef98bd065409b00469f"
+    },
+    {
       "path": "docs/screenshots/reopened-point-2026-10-10.jpg",
       "sha256": "82aebda93394a8d9a8be1e27efc350d01590d0c025f8f5f493d82b7fc9bd62f9"
     },
@@ -495,7 +531,7 @@
     },
     {
       "path": "docs/source-ledger.md",
-      "sha256": "d7acc3251e562e51b563c52dc32e2e3f311c84d05ec9cdc8074549b37dc6296a"
+      "sha256": "e14e23b9babb87da9d5c0466f6d5c7d8af23913802cca237c51b2d970377bf7f"
     },
     {
       "path": "docs/submission-draft.md",
@@ -523,7 +559,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "41b34de91c473f83b9b48bdabc59dbe5b8095927b5ea5bf48bf13ab302397515"
+      "sha256": "8289b10659fb2791c9cf68209fd2cd4a8862d2a262a38d919590e5cdd396b517"
     },
     {
       "path": "packages/contracts/planning-input.schema.json",
@@ -718,6 +754,10 @@
       "sha256": "06628e30af6e55b2fcde449d74216c465bd57f19a5f2425d43fdab1d5c568f90"
     },
     {
+      "path": "services/planner/jalsetu_planner/public_roads.py",
+      "sha256": "d6956b7c38f3717c59eb2041cea58815760a54322208e6ff9c27504493163bdd"
+    },
+    {
       "path": "services/planner/jalsetu_planner/replanning.py",
       "sha256": "d10b935c268a4ef7137612b551441a54dc956572e65987ec90b8319117bb50d4"
     },
@@ -796,6 +836,10 @@
     {
       "path": "services/planner/tests/test_planner.py",
       "sha256": "32737f8fb9eec41a88b74952a921979f9f6d5c0164e94b7ebf9c055cb3ca5832"
+    },
+    {
+      "path": "services/planner/tests/test_public_roads.py",
+      "sha256": "8d2d2a8c1bf125242f6a4d77fede0bedc7cdd25d05247b21320f4ece30a309f0"
     },
     {
       "path": "services/planner/tests/test_replanning.py",
