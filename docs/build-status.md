@@ -4,6 +4,8 @@ Started 8 October 2026 (Asia/Kolkata).
 
 ## Current checkpoint: local operations, scenarios and reproducible evaluation
 
+10 October AWS continuation: the user authorized and submitted the console's minimum **1,000 Lambda concurrency** request; approval is pending and the applied Mumbai quota remains 10. Worker/API limits remain 1/2. The user reports an activation email, while CloudShell still reports verification pending. See [AWS preflight](aws-preflight-2026-10-10.md). The CDK command entry now rejects regions outside Mumbai and expiries outside the next seven days; scope regression checks and local foundation assertions pass. No live phase is marked complete.
+
 10 October customer-interface correction: per the user’s explicit request, JSON editors/downloads, hashes, solver diagnostics and raw source records are removed from the product, rather than merely collapsed. Delivery CSV/printouts use readable names and IST times without internal references. About the example preserves practical limits. See [customer interface cleanup](customer-interface-2026-10-10.md); earlier UI evidence below is historical where superseded.
 
 10 October usability continuation: the user selected **Try the example first**. The [usability update](usability-update-2026-10-10.md) adds three-step setup, plain navigation, persistent next actions and IST report pickers. Browser checks passed generation, approval, loading and cumulative delivery reporting; time edits and narrow phone layouts were checked. 156 Python tests, lint, build, export-content checks and the new time-conversion checks pass. This is a local browser walkthrough, not customer validation; AWS remains pending.
@@ -18,7 +20,7 @@ Cloud operations endpoints reuse the tested domain logic. Reversible project arc
 
 No live AWS workflow is claimed. Mumbai's Lambda quota is 10; the current reservations need at least 103 available slots. The team selected requesting that increase, retaining the safeguards. Account-specific eligibility, deployment access and live acceptance remain unresolved.
 
-The quota form rejected 103 because its minimum is 1,000; no request was submitted. CloudShell is blocked by pending account verification. One repeated local operations-cache check failed intermittently, then passed on rerun and ten diagnostic repetitions; its cause remains unverified.
+The earlier quota form rejected 103 because its minimum is 1,000. The subsequent authorized 1,000 request is recorded above. CloudShell still reports pending account verification. One repeated local operations-cache check failed intermittently, then passed on rerun and ten diagnostic repetitions; its cause remains unverified.
 
 The supplied specification is preserved unchanged in `docs/build-specification.md`. User instructions take precedence over the document. Decisions are tracked in `docs/decisions.md`.
 

@@ -20,7 +20,9 @@ SDK-boundary and offline image checks now pass; real AWS conditions/state integr
 
 The signed-in Mumbai Lambda dashboard shows full/unreserved concurrency **10**. Current worker/API reservations total three, requiring at least **103 available unreserved slots before deployment** under AWS's 100-slot minimum. Keep the existing reservations until the quota is resolved. Do not attempt a deployment that is known to fail.
 
-The authorized 103 request was rejected by the console form's 1,000 minimum; it was not submitted. CloudShell cannot start while account verification is pending. A broader request requires the team's choice; no upgrade or resource deletion was attempted.
+The authorized 103 request was rejected by the console form's 1,000 minimum. On 10 October the user authorized the 1,000 request, which AWS acknowledged with a support case; approval remains pending. Keep application reservations at 1/2. The user reports receiving an activation email, but CloudShell still reports verification pending. No upgrade or resource deletion was attempted. See [current preflight](aws-preflight-2026-10-10.md).
+
+The `infra/app.mjs` command entry validates the live scope before synthesis: Mumbai only and a valid explicit UTC expiry in the future, at most seven days away. Unit synthesis can still use fixed test data through `createFoundation`. This guard is not account eligibility, a budget cap, or automatic cleanup.
 
 Then choose the actual seven-day expiry, deploy through a least-privilege account flow, populate public `config.json` from stack outputs and run the specification's two-identity/live-fixture/logging acceptance checks plus the selected operations and archive workflows. The Phase 4 Standard workflow and shared stages are now locally prepared; their real execution/IAM/failure acceptance still requires AWS access. See [Phase 4 evidence](phase-4-readiness-2026-10-09.md).
 

@@ -3,6 +3,15 @@ import { App } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { createFoundation } from './app.mjs';
 import { resolve } from 'node:path';
+import { deploymentScope } from './deployment-scope.mjs';
+
+const scopeNow = Date.parse('2026-10-10T00:00:00Z');
+const liveEnv = { JALSETU_EXPIRES_AT: '2026-10-17T00:00:00Z' };
+assert.equal(deploymentScope(liveEnv, scopeNow).region, 'ap-south-1');
+for (const expiry of [undefined, '2099-01-01T00:00:00Z', '2026-10-10T00:00:00Z', '2026-10-17T00:00:01Z', '2026-02-30T00:00:00Z', '2026-10-16']) {
+  assert.throws(() => deploymentScope({ JALSETU_EXPIRES_AT: expiry }, scopeNow));
+}
+assert.throws(() => deploymentScope({ ...liveEnv, JALSETU_REGION: 'us-east-1' }, scopeNow));
 
 const app = new App({ outdir: resolve(import.meta.dirname, '../../../work/infra-synth') });
 // This far-future value is test data, never a live hosting authorization.

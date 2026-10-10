@@ -35,4 +35,4 @@ Screenshots: [scenario results](screenshots/phase-7-scenarios-2026-10-10.jpg), [
 | 9 | Public repository, real video/AWS demonstration, published article/URLs and actual submission |
 | 10 | Submitted commit/tag, final signed-out links, actual freeze and eventual demo monitoring/cleanup |
 
-The Mumbai quota form rejected the authorized 103 request because its minimum is 1,000. That broader choice remains unanswered. Keep existing one-worker/two-API reservations and the free plan; no out-of-pocket spending or upgrade is authorized. No live integration is enabled simply by setting a future configuration flag.
+Later AWS continuation: the user authorized 1,000 and the request was submitted; approval remains pending. See [AWS preflight](aws-preflight-2026-10-10.md). Keep existing one-worker/two-API reservations and the free plan; no out-of-pocket spending or upgrade is authorized. No live integration is enabled simply by setting a future configuration flag.

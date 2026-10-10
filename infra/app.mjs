@@ -1,6 +1,7 @@
 import { App, Stack, Duration, RemovalPolicy, CfnOutput, Tags } from 'aws-cdk-lib';
 import { aws_amplify as amplify, aws_cognito as cognito, aws_apigateway as apigateway, aws_lambda as lambda, aws_dynamodb as dynamodb, aws_s3 as s3, aws_logs as logs, aws_stepfunctions as sfn, aws_stepfunctions_tasks as tasks, aws_events as events, aws_events_targets as targets } from 'aws-cdk-lib';
 import { resolve } from 'node:path';
+import { deploymentScope } from './deployment-scope.mjs';
 
 export function createFoundation(app, { region = 'ap-south-1', expiry, account } = {}) {
   if (!expiry || Number.isNaN(Date.parse(expiry))) throw new Error('Set an explicit ISO deployment expiry; hosting is authorized for seven days.');
@@ -65,6 +66,6 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
 
 if (process.argv[1] === import.meta.filename) {
   const app = new App();
-  createFoundation(app, { region: process.env.JALSETU_REGION ?? 'ap-south-1', account: process.env.CDK_DEFAULT_ACCOUNT, expiry: process.env.JALSETU_EXPIRES_AT });
+  createFoundation(app, deploymentScope(process.env));
   app.synth();
 }
