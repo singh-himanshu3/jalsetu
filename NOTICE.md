@@ -8,4 +8,4 @@ Dependencies include Google OR-Tools (Apache-2.0), Pydantic (MIT), pytest (MIT),
 
 The team's own project license has not been selected. No public repository or cloud deployment exists yet.
 
-Example resources and route matrices are synthetic test scenarios, not NGO/government inventory or observed traffic. Public environmental data must retain its own attribution and terms.
+The normal example's resources and route matrices are synthetic test scenarios, not NGO/government inventory or observed traffic. The separate public-road experiment contains one actual OSRM/OpenStreetMap matrix response; © OpenStreetMap contributors, road data under ODbL, routing by OSRM hosted by FOSSGIS. See `data/public-roads/README.md` for attribution, licence and source-policy links. Operational inputs in that experiment remain synthetic. No public weather or population data were collected. This data notice does not choose the application project's licence.

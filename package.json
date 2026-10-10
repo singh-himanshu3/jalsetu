@@ -30,7 +30,10 @@
     "test:site-closure": "node scripts/test-local-site-closure.mjs",
     "prepare:hosting": "node scripts/prepare-hosted-web.mjs",
     "test:hosting": "node scripts/test-hosted-web.mjs",
-    "check:hosting": "pnpm build && pnpm infra:test && pnpm test:hosting"
+    "check:hosting": "pnpm build && pnpm infra:test && pnpm test:hosting",
+    "collect:roads": "node scripts/python.mjs -m jalsetu_planner.public_roads collect",
+    "evaluate:roads": "node scripts/python.mjs -m jalsetu_planner.public_roads evaluate",
+    "render:roads": "node scripts/python.mjs -m jalsetu_planner.public_roads render"
   },
   "devDependencies": {
     "aws-cdk-lib": "2.273.0",

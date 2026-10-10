@@ -1,0 +1,443 @@
+{
+  "schema_version": "1.0",
+  "request": {
+    "url": "https://router.project-osrm.org/table/v1/driving/77.2,28.69;77.19,28.7;77.21,28.71;77.22,28.7;77.23,28.68;77.21,28.67;77.18,28.68;77.18,28.71;77.23,28.72?annotations=duration,distance&generate_hints=false",
+    "nodes": [
+      {
+        "id": "DEPOT-1",
+        "position": [
+          77.2,
+          28.69
+        ]
+      },
+      {
+        "id": "SITE-1",
+        "position": [
+          77.19,
+          28.7
+        ]
+      },
+      {
+        "id": "SITE-2",
+        "position": [
+          77.21,
+          28.71
+        ]
+      },
+      {
+        "id": "SITE-3",
+        "position": [
+          77.22,
+          28.7
+        ]
+      },
+      {
+        "id": "SITE-4",
+        "position": [
+          77.23,
+          28.68
+        ]
+      },
+      {
+        "id": "SITE-5",
+        "position": [
+          77.21,
+          28.67
+        ]
+      },
+      {
+        "id": "SITE-6",
+        "position": [
+          77.18,
+          28.68
+        ]
+      },
+      {
+        "id": "SITE-7",
+        "position": [
+          77.18,
+          28.71
+        ]
+      },
+      {
+        "id": "SITE-8",
+        "position": [
+          77.23,
+          28.72
+        ]
+      }
+    ],
+    "profile": "public car",
+    "max_snap_metres": 250,
+    "traffic": "not supplied",
+    "departure": "not supplied"
+  },
+  "payload": {
+    "code": "Ok",
+    "distances": [
+      [
+        0,
+        2063.5,
+        3810.1,
+        3800,
+        7336.1,
+        3350,
+        3406.6,
+        4109.9,
+        6879.5
+      ],
+      [
+        1836,
+        0,
+        4146,
+        4341.2,
+        8042.7,
+        4697.3,
+        4168.3,
+        2370.9,
+        7420.8
+      ],
+      [
+        3334.6,
+        3509.5,
+        0,
+        3375,
+        5845.3,
+        6124.8,
+        6493.5,
+        4610.5,
+        3864.1
+      ],
+      [
+        3741.2,
+        4347.4,
+        3572.1,
+        0,
+        4593.4,
+        4183.4,
+        6113.4,
+        5559.3,
+        3089.4
+      ],
+      [
+        7597.8,
+        9115.8,
+        8910.3,
+        6282.5,
+        0,
+        4744.3,
+        8555.9,
+        10838.4,
+        8427.5
+      ],
+      [
+        3735.3,
+        5253.3,
+        7971.4,
+        4164.9,
+        5675.4,
+        0,
+        4693.4,
+        6976,
+        7319.7
+      ],
+      [
+        3329.2,
+        4081.2,
+        7565.3,
+        6027,
+        9476.1,
+        4287.6,
+        0,
+        5646.5,
+        9106.5
+      ],
+      [
+        4297.9,
+        2242.8,
+        5140.2,
+        5335.4,
+        9036.9,
+        6230.4,
+        5308.9,
+        0,
+        8155.4
+      ],
+      [
+        6595.8,
+        7202.1,
+        4149.8,
+        2952.1,
+        4886.3,
+        7038,
+        8968,
+        7293,
+        0
+      ]
+    ],
+    "destinations": [
+      {
+        "distance": 3.446429024,
+        "name": "",
+        "location": [
+          77.199973,
+          28.68998
+        ]
+      },
+      {
+        "distance": 10.55726528,
+        "name": "Lala Achintaram marg",
+        "location": [
+          77.189938,
+          28.699922
+        ]
+      },
+      {
+        "distance": 6.158818779,
+        "name": "",
+        "location": [
+          77.210063,
+          28.710002
+        ]
+      },
+      {
+        "distance": 53.31759823,
+        "name": "",
+        "location": [
+          77.220509,
+          28.699827
+        ]
+      },
+      {
+        "distance": 48.28534338,
+        "name": "",
+        "location": [
+          77.229509,
+          28.679952
+        ]
+      },
+      {
+        "distance": 7.913839286,
+        "name": "Doctor Karnawal Marg",
+        "location": [
+          77.21008,
+          28.669989
+        ]
+      },
+      {
+        "distance": 58.74794262,
+        "name": "",
+        "location": [
+          77.180193,
+          28.679498
+        ]
+      },
+      {
+        "distance": 13.99125647,
+        "name": "Genuine Attestation Services",
+        "location": [
+          77.179907,
+          28.710096
+        ]
+      },
+      {
+        "distance": 6.206549505,
+        "name": "",
+        "location": [
+          77.23,
+          28.720056
+        ]
+      }
+    ],
+    "durations": [
+      [
+        0,
+        219.6,
+        422.1,
+        419,
+        675.4,
+        317.7,
+        370.8,
+        462,
+        702.3
+      ],
+      [
+        215.5,
+        0,
+        427.9,
+        441.2,
+        720.6,
+        363.4,
+        363.7,
+        284.8,
+        724.5
+      ],
+      [
+        432.1,
+        454,
+        0,
+        376.8,
+        620.8,
+        605.4,
+        692,
+        545.3,
+        520.2
+      ],
+      [
+        392.8,
+        450.6,
+        472.8,
+        0,
+        379.2,
+        410.6,
+        593.9,
+        588.6,
+        311.4
+      ],
+      [
+        590,
+        649.3,
+        844.6,
+        529.2,
+        0,
+        322.8,
+        640.9,
+        812,
+        683.2
+      ],
+      [
+        343,
+        402.3,
+        696.1,
+        397.4,
+        412.3,
+        0,
+        393.9,
+        565,
+        654.6
+      ],
+      [
+        359.4,
+        342.8,
+        712.5,
+        607.5,
+        720.4,
+        359.4,
+        0,
+        495,
+        890.8
+      ],
+      [
+        418.8,
+        222.8,
+        544.5,
+        557.8,
+        837.2,
+        478.2,
+        438.6,
+        0,
+        702.4
+      ],
+      [
+        675.2,
+        733,
+        502.6,
+        315,
+        423.6,
+        693,
+        876.3,
+        597.1,
+        0
+      ]
+    ],
+    "sources": [
+      {
+        "distance": 3.446429024,
+        "name": "",
+        "location": [
+          77.199973,
+          28.68998
+        ]
+      },
+      {
+        "distance": 10.55726528,
+        "name": "Lala Achintaram marg",
+        "location": [
+          77.189938,
+          28.699922
+        ]
+      },
+      {
+        "distance": 6.158818779,
+        "name": "",
+        "location": [
+          77.210063,
+          28.710002
+        ]
+      },
+      {
+        "distance": 53.31759823,
+        "name": "",
+        "location": [
+          77.220509,
+          28.699827
+        ]
+      },
+      {
+        "distance": 48.28534338,
+        "name": "",
+        "location": [
+          77.229509,
+          28.679952
+        ]
+      },
+      {
+        "distance": 7.913839286,
+        "name": "Doctor Karnawal Marg",
+        "location": [
+          77.21008,
+          28.669989
+        ]
+      },
+      {
+        "distance": 58.74794262,
+        "name": "",
+        "location": [
+          77.180193,
+          28.679498
+        ]
+      },
+      {
+        "distance": 13.99125647,
+        "name": "Genuine Attestation Services",
+        "location": [
+          77.179907,
+          28.710096
+        ]
+      },
+      {
+        "distance": 6.206549505,
+        "name": "",
+        "location": [
+          77.23,
+          28.720056
+        ]
+      }
+    ]
+  },
+  "retrieved_at": "2026-10-10T06:05:23.340839+00:00",
+  "provider": "OSRM / OpenStreetMap, FOSSGIS public car service",
+  "attribution": "© OpenStreetMap contributors; routing by OSRM, hosted by FOSSGIS",
+  "licence": "https://www.openstreetmap.org/copyright",
+  "usage_policy": "https://routing.openstreetmap.de/about.html",
+  "limitations": [
+    "Public car-routing estimates, not tanker height/weight/access clearance or live traffic",
+    "Requested coordinates are example locations, not verified relief facilities or permissions",
+    "Water, vehicles, requests, priorities and receiving windows remain synthetic",
+    "Provider map date is unknown unless data_version is returned; retrieval time is not map age",
+    "Missing routes remain unavailable; no straight-line fallback or invented durations",
+    "Research uses a frozen snapshot, not an automatically refreshed operational service"
+  ],
+  "content_sha256": "c91b4be60604dba0a3124f71c4fa86e1905cf54c1172576ea8172cc4fb388f54",
+  "snapshot_sha256": "34d88e5f3380e95369c155b0fe479bf98542edf06aacae82de2d8ed0381d3a8a"
+}

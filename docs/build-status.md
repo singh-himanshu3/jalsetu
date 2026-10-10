@@ -2,7 +2,9 @@
 
 Started 8 October 2026 (Asia/Kolkata).
 
-## Current checkpoint: local production startup and release validation
+## Current checkpoint: public-road evidence and local release readiness
+
+Public-data continuation: [first public-road evidence](public-road-checkpoint-2026-10-10.md) records one actual OSRM/OpenStreetMap request (nine example nodes/81 pairs), 80 retained and independently rechecked comparisons, and a readable customer research panel. The full suite now passes **185 tests**. Operational inputs remain examples; the guided exercise is not switched to public routing. AWS/live field acceptance is still pending. Earlier checkpoint counts below remain historical.
 
 Remaining-phase continuation: [hosting-package readiness and current phase gates](remaining-phases-2026-10-10.md) records fresh read-only AWS checks (Mumbai quota 10; existing 1,000 request Case Opened; CloudShell verification pending). Built frontend/public configuration packaging and `pnpm check:hosting` are now locally checked. No AWS deployment or live phase acceptance occurred; the original user exclusions remain in effect.
 

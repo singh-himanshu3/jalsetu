@@ -1,6 +1,8 @@
 # Current limits
 
-This prototype is an example-only planning exercise. Resources, requests, coordinates and travel are synthetic. Neither approved plans nor self-entered reports independently establish a dispatch, water quality, actual need or delivery.
+The normal prototype workflow is an example-only planning exercise. Its resources, requests, coordinates and travel are synthetic. The separate public-road research panel uses a frozen OSRM/OpenStreetMap road matrix with example operational inputs; it does not change saved runs or establish current traffic. Neither approved plans nor self-entered reports independently establish a dispatch, water quality, actual need or delivery.
+
+The public-road experiment has 80 checked calculations and a saved real provider response. It uses a car profile, has no provider map date, and cannot confirm tanker access or relief-site permission. Travel multipliers are invented sensitivity settings. No coordinator/NGO operational records or observed delivery benefit are available; source/evidence integrity tests do not turn modelled schedules into field outcomes.
 
 The built local app and isolated release/restart gate are verified. Installed Node/pnpm/Python dependencies are required; this is not a standalone installer. Pending jobs and guide progress do not survive restart, while saved projects/approvals/reports/revisions and write receipts do. Cloud deployment acceptance remains pending.
 

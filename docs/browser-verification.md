@@ -1,5 +1,11 @@
 # Local browser verification
 
+## Public-road evidence — 10 October 2026
+
+The built app at localhost:8788 showed More → About the example → What we checked on public roads. Checked the North Delhi public-road rows against saved results, the synthetic reference, shorter receiving hours with 2× travel (all four options 7,800 L), and stock shortage with 1.5× travel (all four 7,000 L, with different travel/fulfilment). Source disclosure showed the actual 11:35 IST retrieval, unknown map date, OSM/OSRM/FOSSGIS attribution and example/field limits. Final warning/error log query returned no entries. No saved operation or delivery was modified.
+
+Desktop and phone viewport overrides were inspected and reset. At the phone override the actual CSS viewport was 355 px due to existing browser scaling; page width was 341 px and the 723-px comparison table scrolled within a 260-px wrapper. Scenario controls remained usable. Saved proof: `screenshots/public-road-evidence-desktop-2026-10-10.png` and `screenshots/public-road-evidence-phone-2026-10-10.png`. These are developer software checks, not external customer feedback.
+
 Observed 8 October 2026 in the Codex in-app browser against localhost. All resources and reports were synthetic; no AWS service was called.
 
 ## Workflow verified

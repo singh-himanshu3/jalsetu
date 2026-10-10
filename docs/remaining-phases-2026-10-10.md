@@ -29,7 +29,7 @@ The configuration must identify the prepared Mumbai API Gateway/Cognito endpoint
 | 2 | Local example creation, editing, planning and customer workflow complete. Real-operator onboarding is outside the chosen example-only release. |
 | 3 | Foundation, adapter, public bundle preparation and offline checks ready. Actual deployment, sign-in, two-user isolation, private export and expiry acceptance remain blocked by AWS. |
 | 4 | Shared staged workflow and retry/failure handling checked locally. Real Standard execution, IAM, persisted results and terminal repair require deployment. |
-| 5 | Synthetic matrix and offline provider helpers retained. A live road/context provider is an undecided extension, not silently enabled by the deployment-only choice. |
+| 5 | Later user-authorized [public-road research](public-road-checkpoint-2026-10-10.md) adds a real frozen OSRM matrix and 80 checked comparisons. The guided exercise remains synthetic; operational provider/context refresh and field acceptance remain pending. |
 | 6 | Selected depot-based reporting/recovery/revision workflow complete locally. Its hosted acceptance depends on Phase 3. Active-position planning remains outside this release. |
 | 7 | Deterministic explanations and independently solved resource alternatives complete locally. Hosted acceptance remains; Bedrock is excluded by user choice. |
 | 8 | Documented synthetic evaluation, browser journey, local load and release/restart validation complete. Hosted performance needs AWS; field feedback is not claimed. |
