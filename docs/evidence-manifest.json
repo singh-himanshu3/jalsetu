@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T04:45:35.632Z",
+  "generated_at": "2026-10-10T04:46:54.834Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "102a7aefe729af57b7ef18df8d4726aac1429744",
+  "git_commit": "642c55b77e85c6c616a651f14aa61f384fe017ac",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -24,6 +24,10 @@
     {
       "path": ".env.example",
       "sha256": "7ba76719f29b11a35d5d07791dd07656bae2cc2dad179d396414d90609273546"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "539ff55470e54025c45f4dfda5a5a1e8e445aa125b4ce9fd1cd074496af39f17"
     },
     {
       "path": ".gitignore",
@@ -487,7 +491,7 @@
     },
     {
       "path": "scripts/evidence-manifest.mjs",
-      "sha256": "530a4da84e23539bb86d442e58b137961c6466a3444a11b04030458b0963f9d7"
+      "sha256": "cd7564036e0bcba12dee0cc9396531b5d1c3843e03456f315f847af8c26b16d5"
     },
     {
       "path": "scripts/local-api.mjs",
