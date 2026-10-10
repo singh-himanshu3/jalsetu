@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T05:03:01.263Z",
+  "generated_at": "2026-10-10T05:26:27.258Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "699ec3635285c3f48ff47e1ac0daed45064a8a99",
+  "git_commit": "e1e4ff4752b7794a7b5ecee59b99daa15d7c3acc",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -39,7 +39,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "cce5a3eb84ff3aef5e38784a8128af8fa494c3c7c019bd0f782e811c3037fa93"
+      "sha256": "96104ce1ca6ecb9143818fb59e3f9424ddbcc26bd23ecb2f8d3e7cf8e87aaf60"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -71,7 +71,7 @@
     },
     {
       "path": "apps/web/src/Operations.tsx",
-      "sha256": "71345cc067d39f522434847f4b4c39d325dbc64f11c9d233f92d071145ad74e6"
+      "sha256": "e821cd48790f2614f6fe6e722a83e786ea3ddfce11c5aab962c481888211bade"
     },
     {
       "path": "apps/web/src/Overview.tsx",
@@ -91,7 +91,7 @@
     },
     {
       "path": "apps/web/src/RevisionDifference.tsx",
-      "sha256": "35b6194573b8b2572191e62bafc01791e3de6aa678d04f4d41bce10185af67ac"
+      "sha256": "3271e0987ca884445fd706ac074d027c7101a6515f22e4672dfe5a0aa8f99159"
     },
     {
       "path": "apps/web/src/Setup.tsx",
@@ -195,11 +195,15 @@
     },
     {
       "path": "docs/architecture.md",
-      "sha256": "c11b81c030e2a359080a3b2107353a8e6270249837ffd7dc1b5bdf3572c4a983"
+      "sha256": "885e5105383e98e1517fcf7cabc3d14c685a43484dcdc758b5bdbb69f8f625b3"
     },
     {
       "path": "docs/audit-2026-10-09.md",
       "sha256": "afd537dd2e4b4f5f0f656d67f0e7b44b74362d8e823b2fc06614ac118ea4d6d6"
+    },
+    {
+      "path": "docs/audit/download-saving-2026-10-10.json",
+      "sha256": "68e7c57ae770896b4bb46c4431212ce7ea7572d1ff7b64e8d1f146c431f36bbb"
     },
     {
       "path": "docs/audit/evaluation-2026-10-09.json",
@@ -226,6 +230,10 @@
       "sha256": "bba805a22c23eee4123ba291ec6a3e59d831f620c4edf482e1706f84db333122"
     },
     {
+      "path": "docs/audit/site-closure-example-2026-10-10.json",
+      "sha256": "d99abafaf69448bd3cca2a772237bb0cae52ba71791dffa03f64c4abfc266d9f"
+    },
+    {
       "path": "docs/aws-cost-estimate-2026-10-09.md",
       "sha256": "2311f0030c4ea0bec17e3ffeb08f35c512b14b060ddbb8afb4168274022a2719"
     },
@@ -243,7 +251,7 @@
     },
     {
       "path": "docs/browser-verification.md",
-      "sha256": "d12c2b6c0a29d65d399b9ec28a3b188fdebbb7407a5fb2b4326725a95c646555"
+      "sha256": "4b7297b5521b01fd2827c4d995a84a4c0876af629e75400fbe4e93eb866c4c1e"
     },
     {
       "path": "docs/build-specification.md",
@@ -251,7 +259,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "58f84266439e843042d88d2ec76f77f319f76f37a2ae1016d77465f6c48dbe70"
+      "sha256": "3e9725db8b7b75234e372cfd14452ed5c91ee17709903bce611b7ff935dcfb3c"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -267,7 +275,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "005b6a0a18cc17b4d746f16436e0827ecd6f4a26c735161abbe454891d3563c9"
+      "sha256": "f43655f125b5481601ed859a4d0df109a5fa524523499902819037c09d4d5248"
     },
     {
       "path": "docs/demo-script.md",
@@ -299,11 +307,15 @@
     },
     {
       "path": "docs/limitations.md",
-      "sha256": "d9b3c1609151a10d6f694c48dae59e1b2fabab8e565cf23cf5fa374ca8c455c1"
+      "sha256": "8c0b5eaa2c7968c8cbffd7714c341821ab798ba3ea7779de6cfb7a751d491c8e"
     },
     {
       "path": "docs/local-load-check.json",
       "sha256": "5d421462d3bb116912605522fe6acf9bcb58d244b66ed67af473ee2df35e5d8b"
+    },
+    {
+      "path": "docs/local-recovery-completion-2026-10-10.md",
+      "sha256": "fc5cda5d251bead1d1ad48c42d366688d16f08ed455fb7f9722365cbb1e5117a"
     },
     {
       "path": "docs/marginal-example.json",
@@ -311,7 +323,7 @@
     },
     {
       "path": "docs/next-phases-2026-10-10.md",
-      "sha256": "128eb83fe4e43c9348d3aca4c1f1d416cba190308892691480b368dfe39834e9"
+      "sha256": "cbe71ae8ba4ad26763c66f8934054066586facc4b7b7ed7cb6dc0adfa1da30b3"
     },
     {
       "path": "docs/phase-2-completion-2026-10-09.md",
@@ -382,6 +394,14 @@
       "sha256": "17aeb404fd55877efe13cd081dfa1a7cb91f62e1f8b1cba3b119c5a51d2d449b"
     },
     {
+      "path": "docs/screenshots/closed-point-2026-10-10.jpg",
+      "sha256": "0feff29918722d1826536c9d15501afbbdbff1567097e0f1add830a44e3b2e9f"
+    },
+    {
+      "path": "docs/screenshots/closed-point-phone-2026-10-10.jpg",
+      "sha256": "44f116c0a4ddf1cfb3cac0d3a0d8e860c76c69449bab3e4c6601f967c79b4c91"
+    },
+    {
       "path": "docs/screenshots/coordinator-summary-2026-10-10.jpg",
       "sha256": "5056774a2abd7cf844945c746b82bb7a9cd167fa0fa2dbce45954c2fe23b6271"
     },
@@ -438,6 +458,10 @@
       "sha256": "dae1b5215c34bdd1ee8294374f689ed2eb7a861104644625637b64097f5c36ec"
     },
     {
+      "path": "docs/screenshots/reopened-point-2026-10-10.jpg",
+      "sha256": "82aebda93394a8d9a8be1e27efc350d01590d0c025f8f5f493d82b7fc9bd62f9"
+    },
+    {
       "path": "docs/screenshots/usability-home-2026-10-10.jpg",
       "sha256": "338a731c64ae301c15aa695bf0253094ef3d087841567dc61a0c701abf0a51e0"
     },
@@ -483,7 +507,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "805c4a86c151a40eee0de9e1a44b8bfde03b35e0185224fc9e12a79c35c7ce5c"
+      "sha256": "0c1d9dbef84b309190eecb2abf816be8f99cefc45d4734de03d1f953a1ccfcae"
     },
     {
       "path": "packages/contracts/planning-input.schema.json",
@@ -566,6 +590,10 @@
       "sha256": "cb64cb54b662bdc047a5ea8f82260f007ff0d7f657ea0705021b339c9a4c8af3"
     },
     {
+      "path": "scripts/test-local-site-closure.mjs",
+      "sha256": "4b5497aa59ed10e46ed3441aee9b82d21bab4d4fc6b90da7c365bf704d23a770"
+    },
+    {
       "path": "scripts/test-metrics.mjs",
       "sha256": "ea7c7e29b375ddbd48ce035681349233d6bea056139174aa32da8abc00b39e6d"
     },
@@ -643,7 +671,7 @@
     },
     {
       "path": "services/planner/jalsetu_planner/ledger.py",
-      "sha256": "6080aed2b24286bf56c25ca5625b818bbfb0b0b152f5dfb933bc08f1952077bd"
+      "sha256": "66f567ad0895c6ee734319353121cc6945f1b460f7358b3f32eee79ebffe9e1a"
     },
     {
       "path": "services/planner/jalsetu_planner/marginal.py",
@@ -659,7 +687,7 @@
     },
     {
       "path": "services/planner/jalsetu_planner/replanning.py",
-      "sha256": "647939d80c71308ac4580b59cf1cd192e88b88cfddb3495a2b7699bd8b410e80"
+      "sha256": "d10b935c268a4ef7137612b551441a54dc956572e65987ec90b8319117bb50d4"
     },
     {
       "path": "services/planner/jalsetu_planner/routing.py",
@@ -667,7 +695,7 @@
     },
     {
       "path": "services/planner/jalsetu_planner/schemas.py",
-      "sha256": "c898380ed4366a2af0b02ea59ec01b6bba6e1e9c85442decb2aa4ce98b38db51"
+      "sha256": "98bac9cd60cb65d65ec77e579b6f9a1fdfd0f4c356ad4ff6e0e6db2416d770ac"
     },
     {
       "path": "services/planner/jalsetu_planner/sources.py",
@@ -740,6 +768,10 @@
     {
       "path": "services/planner/tests/test_replanning.py",
       "sha256": "fa108c565214751140f547c307bebb9ba0edc3cfb03160c9feb8d6443f9233db"
+    },
+    {
+      "path": "services/planner/tests/test_site_closure.py",
+      "sha256": "e0fd86799d82f9ac85b80e48e8922c81983bf3054e21f051d87e6c16548ddca1"
     },
     {
       "path": "services/planner/tests/test_sources.py",
