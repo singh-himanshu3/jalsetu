@@ -41,11 +41,11 @@ The completed frontend and the preceding uncommitted driver/workspace changes ar
 
 ## Screenshots and handoff
 
-![Desktop introduction](screenshots/frontend-motion-desktop-2026-10-10.png)
+![Desktop introduction](screenshots/frontend-motion-desktop-2026-10-10.jpg)
 
-![Phone introduction](screenshots/frontend-motion-mobile-2026-10-10.png)
+![Phone introduction](screenshots/frontend-motion-mobile-2026-10-10.jpg)
 
-![Workflow introduction](screenshots/frontend-motion-workflow-2026-10-10.png)
+![Workflow introduction](screenshots/frontend-motion-workflow-2026-10-10.jpg)
 
 Run **Start JalSetu.cmd** or `pnpm start` for the normal local app. The current isolated review preview runs at `http://127.0.0.1:49996/`. Try the example, choose the two operating rules, review the calculated plan, approve it, and review each report before confirming.
 

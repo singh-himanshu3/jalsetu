@@ -4,7 +4,7 @@
 
 **Latest frontend:** [Visual and motion redesign](docs/frontend-motion-completion-2026-10-10.md). The home page now introduces the workflow with original animated route artwork, selectable preview stages, readable next steps, locally bundled fonts and Lucide icons. Motion respects reduced-motion preferences. The existing planning, approval, map and reporting workflows are retained.
 
-![JalSetu desktop introduction](docs/screenshots/frontend-motion-desktop-2026-10-10.png)
+![JalSetu desktop introduction](docs/screenshots/frontend-motion-desktop-2026-10-10.jpg)
 
 **New frontend workspace:** a clearer guided start, desktop/phone navigation, linked map and stop details, mobile request cards, explicit comparison trade-offs and review-before-save reports. See [the frontend handoff and actual browser checks](docs/frontend-workspace-completion-2026-10-10.md). The existing deterministic workflow is preserved; no AWS deployment was added.
 
