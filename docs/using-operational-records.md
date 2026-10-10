@@ -63,6 +63,6 @@ You may review/approve a plan and enter loading/delivery reports through the exi
 
 ## 10. Build stronger evidence
 
-Show the original anonymized records, declared sources, road retrieval date, checked plan and all comparison results to the coordinator. Compare with their original dispatch plan separately; automated import/evaluation of historical dispatch records is not implemented in this milestone. Ask whether the route is practical. Observed deliveries and independent feedback are required before claiming operational benefit. We have not obtained genuine coordinator records yet; software tests use explicitly synthetic declarations.
+Show the original anonymized records, declared sources, road retrieval date, checked plan and all comparison results to the coordinator. Open **More → Compare original plan** to preview the original stop-order/quantity CSV, optionally add reported delivery records, and download a readable same-input comparison. Follow [the historical comparison guide](comparing-original-delivery-plans.md). Ask whether the route is practical. Observed deliveries and independent feedback are required before claiming operational benefit. We have not obtained genuine coordinator records yet; software tests use explicitly synthetic declarations.
 
 Local drafts, reports and source responses are stored on this computer. Keep them anonymized and out of public repositories; this loopback app has no individual-user sign-in or encrypted record vault.

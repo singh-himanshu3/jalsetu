@@ -1,0 +1,10 @@
+type Metrics = Record<string,number|string|null>;
+type Route = {vehicle_name:string;planned_load_litres:number;loading_started_at:string;estimated_return:string;stops:{point_name:string;planned_litres:number;estimated_arrival:string;estimated_departure:string}[]};
+export type HistoryReport = {project_name:string;operating_date:string;created_at:string;data_mode:string;source_reference:string;record_source:{description:string;recorded_date:string}|null;road_source:{provider:string;retrieved_at:string|null;represented_at:string|null;attribution:string;source_url:string|null;limitations:string[]};settings:{closing_rule:string;loading_rule:string;increment_litres:number;travel_time_multiplier:number};resources:{depot_name:string;stock_litres:number;opens_at:string;closes_at:string;loading_minutes:number;vehicles:{name:string;capacity_litres:number;status:string;opens_at:string;closes_at:string}[]};original:{valid:boolean;issues:string[];imported_planned_litres:number;metrics:Metrics|null;routes:Route[]};jalsetu:{approvable:boolean;issues:string[];metrics:Metrics;routes:Route[]};comparison_ready:boolean;scheduled_difference_litres:number|null;points:{point_name:string;confirmed:boolean;requested_litres:number;minimum_useful_litres:number;receiving_limit_litres:number;opens_at:string;closes_at:string;unloading_minutes:number;priority:string;priority_reason:string;original_planned_litres:number;jalsetu_planned_litres:number}[];outcomes:{points:{point_name:string;delivered_litres:number;arrived_at:string|null;finished_at:string|null;within_receiving_window:boolean}[];reported_litres:number;on_time_reported_litres:number;missing_point_names:string[];issues:string[]};limitations:string[]};
+export const dispatchHeaders:string[];
+export const deliveryHeaders:string[];
+export const metricRows:string[][];
+export function historyTemplate(kind:'dispatch'|'deliveries'):string;
+export function readHistoryCsv(text:string,day:string,kind:'dispatch'|'deliveries'):Record<string,unknown>[];
+export function formatHistory(value:unknown,kind?:string):string;
+export function historyHtml(report:HistoryReport):string;

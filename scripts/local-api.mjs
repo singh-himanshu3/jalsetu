@@ -66,9 +66,9 @@ function send(res, status, body) {
 }
 function error(res, status, code, message) { send(res, status, { error: { code, message, correlation_id: randomUUID() } }); }
 const example = await run({ command: 'example' });
-const records = recordsApi({ directory: resolve(stateDirectory, 'roads'), run, send, error });
+const records = recordsApi({ directory: resolve(stateDirectory, 'roads'), run, send, error, hasPlanningJob: () => Boolean(activeJob) || operations.isBusy() });
 const projects = await projectApi({ path: resolve(stateDirectory, 'projects.json'), example, send, error });
-const operations = await operationApi({ path: process.env.JALSETU_LOCAL_STATE ? resolve(root, process.env.JALSETU_LOCAL_STATE) : resolve(stateDirectory, 'operations.json'), run, jobs, inputs, send, error, hasPlanningJob: () => Boolean(activeJob) });
+const operations = await operationApi({ path: process.env.JALSETU_LOCAL_STATE ? resolve(root, process.env.JALSETU_LOCAL_STATE) : resolve(stateDirectory, 'operations.json'), run, jobs, inputs, send, error, hasPlanningJob: () => Boolean(activeJob) || records.isBusy() });
 const server = http.createServer(async (req, res) => {
   try {
     if (web && !req.url?.startsWith('/v1/')) return web(req, res);
@@ -100,7 +100,7 @@ const server = http.createServer(async (req, res) => {
     const existing = requests.get(key);
     if (existing && jobs.has(existing.id)) return existing.hash === hash ? send(res, 202, jobs.get(existing.id)) : error(res, 409, 'IDEMPOTENCY_CONFLICT', 'This key was already used with different inputs');
     if (existing) requests.delete(key); // Its bounded-cache job has expired.
-    if (activeJob || operations.isBusy()) return error(res, 429, 'PLANNER_BUSY', 'The local planner is busy. Wait for the current job, then retry.');
+    if (activeJob || operations.isBusy() || records.isBusy()) return error(res, 429, 'PLANNER_BUSY', 'The local planner is busy. Wait for the current job, then retry.');
     if (!['comparison', 'marginal'].includes(parsed.kind ?? 'comparison')) return error(res, 400, 'INVALID_JOB_KIND', 'Choose comparison or marginal analysis');
     let parentInput;
     if (parsed.kind === 'marginal') {

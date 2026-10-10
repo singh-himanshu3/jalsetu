@@ -1,6 +1,6 @@
 # Current limits
 
-The local app now also supports operator-entered record projects and explicit matching-road acquisition. Those records and reports are declarations, not independently verified facts. No genuine coordinator dataset has been obtained. Local CSV import replaces draft receiving points after review; the prepared cloud release still accepts examples only.
+The local app now also supports operator-entered record projects and explicit matching-road acquisition. Those records and reports are declarations, not independently verified facts. No genuine coordinator dataset has been obtained. Local original-plan CSV replay and printable evidence are implemented; timing is reconstructed from the saved roads. Optional delivery rows remain separate operator declarations, missing reports stay unknown, and invalid originals withhold feasible metrics/improvement differences. Reports are temporary until downloaded; neither field benefit nor stock/vehicle accounting of imported outcomes is verified. Local CSV import replaces draft receiving points after review; the prepared cloud release still accepts examples only.
 
 The normal practice workflow is an example-only planning exercise. Its resources, requests, coordinates and travel are synthetic. The separate public-road research panel uses a frozen OSRM/OpenStreetMap road matrix with example operational inputs; it does not change saved runs or establish current traffic. Neither approved plans nor self-entered reports independently establish a dispatch, water quality, actual need or delivery.
 

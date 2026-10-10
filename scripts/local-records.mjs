@@ -11,10 +11,10 @@ export async function storedRoads(directory, input) {
   catch { return null; }
 }
 
-export function recordsApi({ directory, run, send, error }) {
+export function recordsApi({ directory, run, send, error, hasPlanningJob = () => false }) {
   let busy = false, lastAttempt = 0;
   return { async handle(req, res) {
-    if (!['/v1/records/review', '/v1/records/roads'].includes(req.url)) return false;
+    if (!['/v1/records/review', '/v1/records/roads', '/v1/records/history'].includes(req.url)) return false;
     if (req.method !== 'POST') { error(res, 405, 'METHOD_NOT_ALLOWED', 'Use the record review form'); return true; }
     const chunks = []; let size = 0;
     for await (const chunk of req) {
@@ -26,12 +26,13 @@ export function recordsApi({ directory, run, send, error }) {
     try { body = JSON.parse(Buffer.concat(chunks).toString('utf8')); if (!body || typeof body !== 'object' || Array.isArray(body)) throw new Error(); }
     catch { error(res, 400, 'INVALID_RECORDS', 'Use the record review form'); return true; }
     const fetchRoads = req.url.endsWith('/roads');
+    const history = req.url.endsWith('/history');
     if (fetchRoads && body.allow_coordinate_sharing !== true) { error(res, 400, 'SHARING_REQUIRED', 'Confirm that these locations may be sent to the public road provider'); return true; }
-    if (busy || (fetchRoads && Date.now() - lastAttempt < 2000)) { error(res, 429, 'ROAD_BUSY', 'Wait for the current review, then retry'); return true; }
+    if (busy || (history && hasPlanningJob()) || (fetchRoads && Date.now() - lastAttempt < 2000)) { error(res, 429, 'ROAD_BUSY', 'Wait for the current calculation or review, then retry'); return true; }
     busy = true;
     if (fetchRoads) lastAttempt = Date.now();
     try {
-      const result = await run({ command: fetchRoads ? 'fetch_roads' : 'review_records', input: body.input });
+      const result = await run({ command: history ? 'compare_history' : fetchRoads ? 'fetch_roads' : 'review_records', input: body.input, ...(history ? { history: body.history } : {}) });
       if (result.error) { send(res, 400, result); return true; }
       if (fetchRoads) {
         await mkdir(directory, { recursive: true });
@@ -39,9 +40,9 @@ export function recordsApi({ directory, run, send, error }) {
         try { await writeFile(path, JSON.stringify(result.road_snapshot), { encoding: 'utf8', flag: 'wx' }); }
         catch (err) { if (err.code !== 'EEXIST' || await readFile(path, 'utf8') !== JSON.stringify(result.road_snapshot)) throw err; }
       }
-      send(res, 200, { input: result.input });
-    } catch { error(res, 503, 'ROADS_UNAVAILABLE', 'Could not save checked roads. Your draft is unchanged; no sample estimates were substituted.'); }
+      send(res, 200, history ? { report: result.report } : { input: result.input });
+    } catch { error(res, 503, 'RECORD_ACTION_UNAVAILABLE', 'Could not complete the record check. Your draft and saved operations are unchanged; no sample estimates were substituted.'); }
     finally { busy = false; }
     return true;
-  } };
+  }, isBusy: () => busy };
 }

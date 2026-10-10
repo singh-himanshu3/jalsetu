@@ -6,6 +6,7 @@ import { join, resolve, sep } from 'node:path';
 import { recordsApi, roadKey, storedRoads } from './local-records.mjs';
 import { readRecordSites, recordHeaders, recordTemplate } from '../apps/web/src/record-csv.mjs';
 import { encodeCsv } from '../apps/web/src/csv.mjs';
+import { historyHtml } from '../apps/web/src/history-report.mjs';
 
 // Everything below declares synthetic resources. Frozen public roads test wiring,
 // never actual operator or field evidence. No provider request is made.
@@ -87,12 +88,26 @@ try {
   assert.deepEqual((await(await fetch(base+url)).json()).project,saved.project);
   assert.deepEqual(await storedRoads(roads,input),source);
   assert.deepEqual((await(await fetch(base+`/v1/operations/${approval.operation.operation_id}`)).json()).operation,delivered.operation);
+  const history={source_reference:'SYNTHETIC comparison test — not coordinator records',reviewed:true,dispatch:job.plans.find(p=>p.strategy==='jalsetu').vehicle_routes.flatMap(route=>route.stops.map((point,i)=>({vehicle_name:input.vehicles.find(v=>v.vehicle_id===route.vehicle_id).name,sequence:i+1,point_name:input.sites.find(s=>s.site_id===point.site_id).name,planned_litres:point.planned_litres,loading_started_at:route.loading_started_at}))),deliveries:[]};
+  const historical=await post(base,'/v1/records/history',{input,history});
+  assert.equal(historical.httpStatus,200,JSON.stringify(historical.error));assert.equal(historical.report.comparison_ready,true);
+  assert.equal(historical.report.original.metrics.on_time_scheduled_litres,job.plans.find(p=>p.strategy==='jalsetu').metrics.on_time_scheduled_litres);
+  assert.equal(historical.report.scheduled_difference_litres,0);
+  assert.equal(historical.report.outcomes.points.length,0);assert.equal(historical.report.outcomes.missing_point_names.length,8);
+  const html=historyHtml(historical.report);
+  assert.ok(html.includes('Actual outcomes are unknown'));assert.ok(html.includes('Original stop order'));assert.ok(!html.includes('sha256'));
+  assert.deepEqual((await(await fetch(base+url)).json()).project,saved.project);
+  assert.deepEqual((await(await fetch(base+`/v1/operations/${approval.operation.operation_id}`)).json()).operation,delivered.operation);
+  const invalidHistory=structuredClone(history);invalidHistory.dispatch[0].planned_litres=1000000;
+  const invalidReport=await post(base,'/v1/records/history',{input,history:invalidHistory});
+  assert.equal(invalidReport.httpStatus,200);assert.equal(invalidReport.report.comparison_ready,false);assert.equal(invalidReport.report.scheduled_difference_litres,null);
   assert.equal((await post(base,'/v1/validate-input',{input})).httpStatus,200);
   const changed=structuredClone(input);changed.sites[0].location.longitude+=.00001;
   assert.equal((await post(base,'/v1/validate-input',{input:changed})).httpStatus,400);
   const tampered=structuredClone(input);tampered.travel_matrix.durations_seconds[0][1]+=1;
   assert.equal((await post(base,'/v1/validate-input',{input:tampered})).httpStatus,400);
   await writeFile(join(roads,`${roadKey(input.travel_matrix)}.json`),'corrupt');
+  assert.equal((await post(base,'/v1/records/history',{input,history})).httpStatus,400);
   assert.equal((await post(base,'/v1/validate-input',{input})).httpStatus,400);
   console.log('Record checks passed: blank projects, readable CSV, sharing guard, cooldown, saved roads, real-process planning/approval/loading/delivery/restart, stale locations and corrupt/tampered road rejection. Synthetic operational test data only; no provider calls.');
 } finally {await stop();if(fake.listening)await new Promise(r=>fake.close(r));if(!resolve(directory).startsWith(join(root,'tmp')+sep))throw new Error('Test cleanup path escaped its workspace');await rm(directory,{recursive:true,force:true});}

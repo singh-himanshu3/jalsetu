@@ -1,5 +1,9 @@
 # Local browser verification
 
+## Latest: original-plan comparison — 10 October 2026
+
+[The comparison checkpoint](historical-comparison-completion-2026-10-10.md) records actual original-plan and optional delivery CSV uploads, separate preview/review, same-input calculation, unknown missing outcomes, exact 713-L synthetic report, and a successful 10,704-byte printable download. The final desktop/phone form/report layout stays within the viewport with internal table scrolling; console warning/error query returned no entries. All operator declarations are explicitly synthetic and the frozen public roads were reused without another provider request. No normal user state, AWS resources or genuine field evidence changed.
+
 ## Public-road evidence — 10 October 2026
 
 The built app at localhost:8788 showed More → About the example → What we checked on public roads. Checked the North Delhi public-road rows against saved results, the synthetic reference, shorter receiving hours with 2× travel (all four options 7,800 L), and stock shortage with 1.5× travel (all four 7,000 L, with different travel/fulfilment). Source disclosure showed the actual 11:35 IST retrieval, unknown map date, OSM/OSRM/FOSSGIS attribution and example/field limits. Final warning/error log query returned no entries. No saved operation or delivery was modified.

@@ -10,7 +10,7 @@
     "dev": "node scripts/dev.mjs",
     "start": "pnpm build && node scripts/local-api.mjs --serve-web",
     "test:release": "pnpm build && node scripts/test-local-release.mjs",
-    "check:local": "pnpm lint && pnpm test && pnpm test:csv && pnpm test:storage && pnpm test:operations && pnpm test:exports && pnpm test:projects && pnpm test:metrics && pnpm test:revision-diff && pnpm test:report-time && pnpm test:example-guide && pnpm test:records && pnpm test:release",
+    "check:local": "pnpm lint && pnpm test && pnpm test:csv && pnpm test:storage && pnpm test:operations && pnpm test:exports && pnpm test:projects && pnpm test:metrics && pnpm test:revision-diff && pnpm test:report-time && pnpm test:example-guide && pnpm test:history && pnpm test:records && pnpm test:release",
     "build": "pnpm --filter @jalsetu/web build",
     "evaluate": "node scripts/python.mjs -m jalsetu_planner evaluate --fixtures data/evaluation/finish_by_close_parallel --output docs/evaluation.json --markdown docs/evaluation.md",
     "test:api": "node scripts/test-local-api.mjs",
@@ -34,7 +34,8 @@
     "collect:roads": "node scripts/python.mjs -m jalsetu_planner.public_roads collect",
     "evaluate:roads": "node scripts/python.mjs -m jalsetu_planner.public_roads evaluate",
     "render:roads": "node scripts/python.mjs -m jalsetu_planner.public_roads render",
-    "test:records": "node scripts/test-records.mjs"
+    "test:records": "node scripts/test-records.mjs",
+    "test:history": "node scripts/test-history.mjs"
   },
   "devDependencies": {
     "aws-cdk-lib": "2.273.0",

@@ -42,7 +42,10 @@ def execute(message, *, local_operator=False):
                 raise ValueError("Offline exercises require an example matrix; verified public routing integration is pending")
             if data.solver_time_limit_seconds > 20:
                 raise ValueError("Local comparison supports a maximum 20-second allowance per strategy")
-            if command in ("marginal", "validate_marginal"):
+            if command == "compare_history" and local_operator:
+                from .historical import compare_history
+                result = {"report": compare_history(data, message.get("history"))}
+            elif command in ("marginal", "validate_marginal"):
                 options = checked_options(data, message.get("options"), message.get("parent_input"))
                 result = {"options": options.model_dump(mode="json")} if command == "validate_marginal" else analyze(data, options, message["job_id"], message["parent_job_id"])
             elif command == "approve":

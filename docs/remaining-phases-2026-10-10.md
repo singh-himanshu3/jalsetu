@@ -32,7 +32,7 @@ The configuration must identify the prepared Mumbai API Gateway/Cognito endpoint
 | 5 | Later user-authorized [public-road research](public-road-checkpoint-2026-10-10.md) adds a real frozen OSRM matrix and 80 checked comparisons. The guided exercise remains synthetic; explicit local matching-road acquisition was later added for declared operational records; automatic context refresh and field acceptance remain pending. |
 | 6 | Selected depot-based reporting/recovery/revision workflow complete locally. Its hosted acceptance depends on Phase 3. Active-position planning remains outside this release. |
 | 7 | Deterministic explanations and independently solved resource alternatives complete locally. Hosted acceptance remains; Bedrock is excluded by user choice. |
-| 8 | Documented synthetic evaluation, browser journey, local load and release/restart validation complete. Hosted performance needs AWS; field feedback is not claimed. |
+| 8 | Documented synthetic evaluation, browser journey, local load and release/restart validation complete. Local original-plan replay/printable comparison is implemented with synthetic regression records; genuine historical records and external feedback remain unavailable. Hosted performance needs AWS; field feedback is not claimed. |
 | 9 | Drafts remain available; video, public publication and submission deferred by user choice. |
 | 10 | Local launcher, restart/failure gate, evidence hashes and contingency ready. A deployed release, submitted freeze, monitoring and eventual cloud cleanup have not occurred. |
 

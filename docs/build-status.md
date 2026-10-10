@@ -2,6 +2,10 @@
 
 Started 8 October 2026 (Asia/Kolkata).
 
+## Current checkpoint: local original-plan comparison
+
+The user selected the original dispatch plan with optional separate delivery records. [The comparison checkpoint](historical-comparison-completion-2026-10-10.md) implements CSV preview, preserved original stops/quantities/loading starts, identical-input road replay/checks, a fresh JalSetu proposal, separate exact reported outcomes and a printable evidence report. Full local checks pass **237 Python tests** plus release/restart and customer checks. Actual browser upload/report saving and desktop/phone layouts were checked with labelled synthetic records; no coordinator dataset or field benefit is claimed. Follow [the beginner guide](comparing-original-delivery-plans.md). AWS/video/publication remain deferred.
+
 ## Current checkpoint: local operational-record entry and matching roads
 
 The user authorized the next priority: real-data entry/import and matching road estimates without AWS. [The local checkpoint](local-records-completion-2026-10-10.md) adds blank operator-entered projects, declared record source/date/review, receiving-point CSV preview/application, and explicit OSRM acquisition with saved source responses. Planning/approvals/reports verify the saved road matrix against its exact locations. The Python suite passes **205 tests**. The [beginner guide](using-operational-records.md) describes the workflow. No genuine coordinator records, historical outcome comparison or field benefit are claimed; synthetic test declarations are labelled. Prepared cloud hosting remains example-only.
