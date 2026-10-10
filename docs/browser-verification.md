@@ -48,3 +48,8 @@ The [local recovery checkpoint](local-recovery-completion-2026-10-10.md) records
 ## Built local app — 10 October 2026
 
 The actual `pnpm start` path served the compiled interface and API at port 8788 with a separate preview state directory. The guided journey passed welcome, explicit rules, planning, approval, loading and a 700-L delivery report, with 7,000 L depot/4,300 L onboard/700 L reported. Printable instructions saved as a real 5,295-byte HTML file with readable names and IST times. Console errors were not returned in the final check. See [production/release checkpoint](local-release-readiness-2026-10-10.md) and [proof](screenshots/production-journey-2026-10-10.jpg). The original developer server and normal saved data were not modified.
+
+
+## Local operational-record workflow — 10 October 2026
+
+See [the record checkpoint](local-records-completion-2026-10-10.md). In a separate local preview store, empty project creation, explicit manual depot/vehicle/point setup, source/date review, one bounded real OSRM request for two public example coordinates, saving and checked plan generation passed. Operational values were labelled SYNTHETIC UI TEST; no actual coordinator dataset was supplied. The actual blank CSV template downloaded, its bytes/headings were checked, and a labelled test CSV produced a separate preview. Applying it replaced the draft points and cleared roads. Final record-project entry was [captured](screenshots/local-record-project-2026-10-10.png); the final tab returned no warnings/errors. External users, phone acceptance for these new forms and hosted acceptance remain unclaimed. A guide for actual records is in [using operational records](using-operational-records.md).

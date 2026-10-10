@@ -2,6 +2,12 @@
 
 Started 8 October 2026 (Asia/Kolkata).
 
+## Current checkpoint: local operational-record entry and matching roads
+
+The user authorized the next priority: real-data entry/import and matching road estimates without AWS. [The local checkpoint](local-records-completion-2026-10-10.md) adds blank operator-entered projects, declared record source/date/review, receiving-point CSV preview/application, and explicit OSRM acquisition with saved source responses. Planning/approvals/reports verify the saved road matrix against its exact locations. The Python suite passes **205 tests**. The [beginner guide](using-operational-records.md) describes the workflow. No genuine coordinator records, historical outcome comparison or field benefit are claimed; synthetic test declarations are labelled. Prepared cloud hosting remains example-only.
+
+Earlier checkpoints below are historical where superseded.
+
 ## Current checkpoint: public-road evidence and local release readiness
 
 Public-data continuation: [first public-road evidence](public-road-checkpoint-2026-10-10.md) records one actual OSRM/OpenStreetMap request (nine example nodes/81 pairs), 80 retained and independently rechecked comparisons, and a readable customer research panel. The full suite now passes **185 tests**. Operational inputs remain examples; the guided exercise is not switched to public routing. AWS/live field acceptance is still pending. Earlier checkpoint counts below remain historical.

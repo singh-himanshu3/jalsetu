@@ -61,7 +61,7 @@ export default function Overview({ input, busy, onLoad, onNavigate, hasPlan }: P
     </section>
 
     {input && <section className="panel current-draft">
-      <div><span className="eyebrow">YOUR CURRENT EXAMPLE</span><h3>{input.name}</h3><p>{String(input.operating_date)} · {String(input.depot.name)} · IST</p></div>
+      <div><span className="eyebrow">{input.data_mode==='operator_entered'?'YOUR RECORD-BASED PROJECT':'YOUR CURRENT EXAMPLE'}</span><h3>{input.name}</h3><p>{String(input.operating_date)} · {String(input.depot.name)} · IST</p></div>
       <div className="draft-facts"><span><strong>{stockLabel}</strong>Depot stock</span><span><strong>{requestsLabel}</strong>Confirmed requests</span><span><strong>{input.vehicles.filter(vehicle => vehicle.status === 'available').length}</strong>Available vehicles</span></div>
       <button className="secondary" onClick={() => onNavigate('Inputs')}>Edit setup <span aria-hidden="true">→</span></button>
     </section>}
@@ -74,6 +74,6 @@ export default function Overview({ input, busy, onLoad, onNavigate, hasPlan }: P
         <article><span className="story-number">03 / TRACK</span><NavIcon name="Operations"/><h3>Keep every litre in view.</h3><p>Record loading and deliveries. If a vehicle breaks down, record it and review an updated plan.</p></article>
       </div>
     </section>
-    <details className="panel"><summary>About the example and its limits</summary><p className="hint">Requests, vehicles, water stock and travel times are made up for this example. The plan uses one depot and one trip per vehicle. Actual inventory, site permissions and traffic have not been verified.</p><button className="text-button" onClick={() => onNavigate('Evidence')}>About the example →</button></details>
+    <details className="panel"><summary>About the example and its limits</summary><p className="hint">{input?.data_mode==='operator_entered'?'Records are operator-entered and roads are estimates. Plans and reports are not independently verified deliveries.':'Requests, vehicles, water stock and travel times are made up for this example. The plan uses one depot and one trip per vehicle. Actual inventory, site permissions and traffic have not been verified.'}</p><button className="text-button" onClick={() => onNavigate('Evidence')}>About the example →</button></details>
   </>;
 }

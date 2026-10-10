@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { api, postOptions } from './api';
 
 export type Project<T> = { project_id: string; version: number; input: T; updated_at: string; archived_at?: string | null };
-export default function Projects<T>({ busy, onOpen, onArchive }: { busy: boolean; onOpen: (project: Project<T>) => void; onArchive: (id: string) => void }) {
+export default function Projects<T>({ busy, onOpen, onArchive, cloud = false }: { busy: boolean; onOpen: (project: Project<T>) => void; onArchive: (id: string) => void; cloud?: boolean }) {
   const [name, setName] = useState(''); const [day, setDay] = useState(''); const [mode, setMode] = useState('');
   const [ack, setAck] = useState(false); const [working, setWorking] = useState(false); const [error, setError] = useState('');
   const [showArchived, setShowArchived] = useState(false);
@@ -19,10 +19,10 @@ export default function Projects<T>({ busy, onOpen, onArchive }: { busy: boolean
     try { await api(`/v1/projects/${project.project_id}/${action}`, postOptions({}, project.version)); if (action === 'archive') onArchive(project.project_id); await list(); }
     catch(e) { setError((e as Error).message); } finally { setWorking(false); }
   }
-  return <section className="panel"><h3>Create or reopen a project</h3><p className="hint">Keep an example draft for another planning session. Requests, resources and travel estimates start as synthetic examples.</p>
-    <fieldset className="input-scope" disabled={busy || working}><div className="form-grid"><label>Project name<input maxLength={120} value={name} onChange={e=>setName(e.target.value)}/></label><label>Operating date · IST<input type="date" value={day} onChange={e=>setDay(e.target.value)}/></label><label>Project type<select value={mode} onChange={e=>setMode(e.target.value)}><option value="">Choose project type</option><option value="example">Practice example</option></select></label></div>
-    <label className="ack"><input type="checkbox" checked={ack} onChange={e=>setAck(e.target.checked)}/> I understand this project starts with published synthetic resources, sites and travel estimates.</label>
-    <div className="actions"><button className="primary" disabled={!name.trim() || !day || mode !== 'example' || !ack} onClick={create}>Create example project</button><button className="secondary" onClick={()=>list(false)}>Open saved projects</button><button className="secondary" onClick={()=>list(true)}>Open archived projects</button></div></fieldset>
+  return <section className="panel"><h3>Create or reopen a project</h3><p className="hint">Practice with the example, or enter anonymized operational records for a local Delhi-area comparison. Record-based projects start empty and do not certify the records.</p>
+    <fieldset className="input-scope" disabled={busy || working}><div className="form-grid"><label>Project name<input maxLength={120} value={name} onChange={e=>setName(e.target.value)}/></label><label>Operating date · IST<input type="date" value={day} onInput={e=>setDay(e.currentTarget.value)}/></label><label>Project type<select value={mode} onChange={e=>{setMode(e.target.value);setAck(false);}}><option value="">Choose project type</option><option value="example">Practice example</option>{!cloud && <option value="operator_entered">Use operational records · local only</option>}</select></label></div>
+    <label className="ack"><input type="checkbox" checked={ack} onChange={e=>setAck(e.target.checked)}/> {mode === 'operator_entered' ? 'I will enter permitted, anonymized records and identify their source. This local app does not independently verify them.' : 'I understand this project starts with published synthetic resources, sites and travel estimates.'}</label>
+    <div className="actions"><button className="primary" disabled={!name.trim() || !day || !mode || !ack} onClick={create}>{mode === 'operator_entered' ? 'Create empty record-based project' : 'Create example project'}</button><button className="secondary" onClick={()=>list(false)}>Open saved projects</button><button className="secondary" onClick={()=>list(true)}>Open archived projects</button></div></fieldset>
     <p className="hint">Archiving hides a saved draft and can be undone here. Approved operations and delivery reports remain available in Deliveries.</p>
     {working&&<p role="status">Processing project request…</p>}
     {error && <p role="status" className="explanation">{error}</p>}

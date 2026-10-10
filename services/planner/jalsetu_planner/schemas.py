@@ -105,6 +105,12 @@ class TravelMatrix(Contract):
         return self
 
 
+class OperationalSource(Contract):
+    description: str = Field(min_length=1, max_length=500)
+    recorded_date: date
+    reviewed: Literal[True]
+
+
 class PlanningInput(Contract):
     schema_version: Literal["1.0"]
     project_id: Identifier
@@ -124,6 +130,7 @@ class PlanningInput(Contract):
     vehicles: list[Vehicle] = Field(max_length=5)
     sites: list[Site] = Field(min_length=1, max_length=20)
     travel_matrix: TravelMatrix
+    operational_source: OperationalSource | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
     def validate_project(self):
@@ -158,6 +165,11 @@ class PlanningInput(Contract):
             raise ValueError("Example inputs require a visible synthetic-data warning")
         if self.data_mode == "operator_entered" and self.travel_matrix.provenance == "example":
             raise ValueError("Synthetic routing cannot be presented as an operator-only plan")
+        if self.data_mode == "operator_entered":
+            if any(e.provenance != "operator_entered" for e in [self.depot, *self.vehicles, *self.sites]):
+                raise ValueError("Record-based projects require operator-entered resources and requests")
+            if not self.operational_source or not self.operational_source.description.strip() or not self.display_warning:
+                raise ValueError("Record-based projects require reviewed source notes and a visible verification limit")
         return self
 
 

@@ -37,7 +37,7 @@ try {
     assert.equal(rows[i].Project, meta.project_name);
   }
   assert.ok(!html.includes('<script>')); assert.ok(html.includes('&lt;script&gt;'));
-  assert.ok(html.includes('EXAMPLE DATA')); assert.ok(!html.includes(plan.input_snapshot_sha256));
+  assert.ok(html.includes('EXAMPLE DATA')); assert.ok(! /meta\s*\)\s*=>/.test(html), 'Downloads must render notes, not implementation code'); assert.ok(!html.includes(plan.input_snapshot_sha256));
   assert.ok(!csv.includes(plan.input_snapshot_sha256));
   assert.ok(!/SHA-256|input_sha256|schema_version|source_age/.test(html+csv));
   assert.ok(html.includes('Approved example'));
@@ -66,6 +66,16 @@ try {
   captures[2].name = 'jalsetu-example-revision-summary.html';
   const output = new URL('../docs/audit/exports/', import.meta.url); await mkdir(output, { recursive: true });
   for (const capture of captures) await writeFile(new URL(capture.name, output), await capture.blob.text());
+  const recordMeta = {...meta,data_mode:'operator_entered',source_reference:'SYNTHETIC test record <script>',records_date:'2026-10-10',source_age:'2026-10-10T06:05:23Z'};
+  const recordPlan={...plan,limitations:["SYNTHETIC export test declaration, not actual records"]};
+  exportStops(recordPlan,recordMeta);exportCards(recordPlan,recordMeta);
+  const recordCsv=await captures.at(-2).blob.text(),recordHtml=await captures.at(-1).blob.text();
+  assert.ok(recordCsv.includes('Approved record-based plan') && recordCsv.includes('not independently verified'));
+  assert.ok(recordHtml.includes('OPERATOR-ENTERED RECORDS') && recordHtml.includes('Declared record source'));
+  assert.ok(recordHtml.includes('Road estimates retrieved') && recordHtml.includes('OpenStreetMap contributors'));
+  assert.ok(!recordHtml.includes('EXAMPLE DATA') && !recordHtml.includes('<script>'));
+  assert.ok(! /meta\s*\)\s*=>/.test(recordHtml));
+  assert.equal((html.match(/<p>Example only\./g)??[]).length,plan.vehicle_routes.length+1);
   deferred.forEach(callback => callback()); assert.equal(blobs.size, 0);
   console.log('Export checks passed: strategy-specific approval, readable names, exact quantities, IST times, approval labels and no internal hashes, escaped HTML, example labels and deferred Blob cleanup. Browser saving is a separate check.');
 } finally {

@@ -13,8 +13,8 @@ from .replanning import replan_after_events
 from .schemas import PlanningInput
 
 
-def execute(message):
-    """Shared example-only adapter for local and authenticated cloud entrypoints."""
+def execute(message, *, local_operator=False):
+    """Default example-only adapter; the trusted local CLI can enable record projects."""
     if message["command"] == "example":
         result = example_input("finish_by_close", "parallel")
         # No policy is chosen for the user. Both are required in the interface.
@@ -25,10 +25,20 @@ def execute(message):
         try:
             command = message["command"]
             payload = message.get("input") or message.get("operation", {}).get("input")
+            if local_operator and command in ("review_records", "fetch_roads"):
+                from .record_roads import fetch_record_roads, review_records
+                if command == "fetch_roads":
+                    return fetch_record_roads(payload)
+                reviewed = review_records(payload).model_dump(mode="json")
+                reviewed["travel_matrix"] = None
+                return {"input": reviewed}
             data = PlanningInput.model_validate(payload)
-            if data.data_mode != "example":
+            if local_operator and data.data_mode == "operator_entered":
+                from .record_roads import verify_record_roads
+                verify_record_roads(data, message.get("road_snapshot"))
+            elif data.data_mode != "example":
                 raise ValueError("This local interface supports labelled example exercises only")
-            if data.travel_matrix.provenance != "example":
+            elif data.travel_matrix.provenance != "example":
                 raise ValueError("Offline exercises require an example matrix; verified public routing integration is pending")
             if data.solver_time_limit_seconds > 20:
                 raise ValueError("Local comparison supports a maximum 20-second allowance per strategy")
@@ -56,13 +66,15 @@ def execute(message):
             result = {"error": {"code": "INVALID_INPUT", "message": "Correct the input fields listed below", "details": [{"field": ".".join(map(str, e["loc"])), "message": e["msg"]} for e in error.errors(include_url=False)]}}
         except ValueError as error:
             result = {"error": {"code": "ACTION_REJECTED", "message": str(error)}}
+        except (OSError, KeyError, TypeError):
+            result = {"error": {"code": "RECORDS_OR_ROADS_UNAVAILABLE", "message": "Check all records and locations. The road provider may be unavailable; no sample roads were substituted."}}
         except (RuntimeError, OverflowError):
             result = {"error": {"code": "PLANNING_FAILED", "message": "The planner could not publish a checked result. Review inputs and retry."}}
     return result
 
 
 def main():
-    sys.stdout.write(json.dumps(execute(json.loads(sys.stdin.read()))))
+    sys.stdout.write(json.dumps(execute(json.loads(sys.stdin.read()), local_operator="--local-records" in sys.argv)))
 
 
 if __name__ == "__main__":

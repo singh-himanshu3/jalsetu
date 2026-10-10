@@ -6,6 +6,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { operationApi } from './local-operations.mjs';
 import { projectApi } from './local-projects.mjs';
 import { localWeb } from './local-web.mjs';
+import { recordsApi, storedRoads } from './local-records.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const serveWeb = process.argv.includes('--serve-web');
@@ -24,9 +25,14 @@ const requests = new Map();
 const inputs = new Map();
 let activeJob = null;
 const workers = new Set();
-function run(message, onStage) {
+async function run(message, onStage) {
+  const input = message.input ?? message.operation?.input;
+  if (input?.data_mode === 'operator_entered') {
+    onStage = null;
+    message = { ...message, command: message.command ?? (message.kind === 'marginal' ? 'marginal' : 'compare'), road_snapshot: await storedRoads(resolve(stateDirectory, 'roads'), input) };
+  }
   return new Promise((resolvePromise, reject) => {
-    const child = spawn(python, ['-m', onStage ? 'cloud.offline' : 'jalsetu_planner.bridge'], { cwd: root, env: { ...process.env, OPENBLAS_NUM_THREADS: '1', OMP_NUM_THREADS: '1', MKL_NUM_THREADS: '1', NUMEXPR_NUM_THREADS: '1', PYTHONUTF8: '1', PYTHONIOENCODING: 'utf-8', PYTHONPATH: [resolve(root, 'services/planner'), resolve(root, 'services'), process.env.PYTHONPATH].filter(Boolean).join(delimiter) }, stdio: ['pipe', 'pipe', 'pipe'] });
+    const child = spawn(python, ['-m', onStage ? 'cloud.offline' : 'jalsetu_planner.bridge', ...(!onStage ? ['--local-records'] : [])], { cwd: root, env: { ...process.env, OPENBLAS_NUM_THREADS: '1', OMP_NUM_THREADS: '1', MKL_NUM_THREADS: '1', NUMEXPR_NUM_THREADS: '1', PYTHONUTF8: '1', PYTHONIOENCODING: 'utf-8', PYTHONPATH: [resolve(root, 'services/planner'), resolve(root, 'services'), process.env.PYTHONPATH].filter(Boolean).join(delimiter) }, stdio: ['pipe', 'pipe', 'pipe'] });
     workers.add(child);
     let output = '';
     child.stdout.setEncoding('utf8');
@@ -60,11 +66,13 @@ function send(res, status, body) {
 }
 function error(res, status, code, message) { send(res, status, { error: { code, message, correlation_id: randomUUID() } }); }
 const example = await run({ command: 'example' });
+const records = recordsApi({ directory: resolve(stateDirectory, 'roads'), run, send, error });
 const projects = await projectApi({ path: resolve(stateDirectory, 'projects.json'), example, send, error });
 const operations = await operationApi({ path: process.env.JALSETU_LOCAL_STATE ? resolve(root, process.env.JALSETU_LOCAL_STATE) : resolve(stateDirectory, 'operations.json'), run, jobs, inputs, send, error, hasPlanningJob: () => Boolean(activeJob) });
 const server = http.createServer(async (req, res) => {
   try {
     if (web && !req.url?.startsWith('/v1/')) return web(req, res);
+    if (await records.handle(req, res)) return;
     if (await projects.handle(req, res)) return;
     if (await operations.handle(req, res)) return;
     if (req.method === 'GET' && req.url === '/v1/health') return send(res, 200, { mode: 'offline_fixture', authentication: 'loopback-only local application', cloud_deployed: false, frontend: serveWeb ? 'built' : 'development' });
