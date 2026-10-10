@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T05:49:09.249Z",
+  "generated_at": "2026-10-10T05:56:53.094Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "062966a450705f0252f720618cd49e6da42547c8",
+  "git_commit": "ee882ee281980f4c26fc7bba29d1afc1d05c3d5d",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -39,7 +39,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "10d7cf426f6720bb3d2c167de2b6acafa02bdf1b1790a59e5c8e3422eceb12d2"
+      "sha256": "07d82ae4225841b6a4d5ebf26e89d3b0128f3b6d94a0a0b59388750eed9ce422"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -247,7 +247,7 @@
     },
     {
       "path": "docs/aws-preflight-2026-10-10.md",
-      "sha256": "c6429f7863a55c6273cdd6847c1d67d6eec36ebd659c2a7b1bb0c29ec033e9dc"
+      "sha256": "38f95edf66f8a44306cea0736511714c1f6682ffa85ddf1f9f6d3dd83b146078"
     },
     {
       "path": "docs/aws-price-snapshot-2026-10-09.json",
@@ -263,7 +263,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "31af80740f0d02279342b8d7401ad89b027041d85132cc978753697a040c2afe"
+      "sha256": "214f3c0ad0174d3e837c1bef535b0c72ed7a2fc4a25d5d7dfe14ffb5f6604e73"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -279,7 +279,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "5f567d480bbf394e0af5b46f5ff9a37a1f7e534f1e1529ed7ccac999eb3dee2a"
+      "sha256": "71f4a31f971a603bd0f99b68021aa3bced99ae7fa247cf400551379e10b57ae8"
     },
     {
       "path": "docs/demo-script.md",
@@ -348,6 +348,10 @@
     {
       "path": "docs/phase-5-preparation-2026-10-09.md",
       "sha256": "c61fa0d0edd5b0b0610d953559afa9bea8db24451b1ea00c1eeacaa06284bf13"
+    },
+    {
+      "path": "docs/remaining-phases-2026-10-10.md",
+      "sha256": "23e742f3ea877e102b129943f7a73dc71f1e0f9086272d0abc819f8dd0dc8fb9"
     },
     {
       "path": "docs/screens/audit-2026-10-09.jpg",
@@ -519,7 +523,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "3e54c337277f0b8f228c2277ba7e169020cd91e741a73de6e810002d5d6eb1ce"
+      "sha256": "41b34de91c473f83b9b48bdabc59dbe5b8095927b5ea5bf48bf13ab302397515"
     },
     {
       "path": "packages/contracts/planning-input.schema.json",
@@ -574,6 +578,10 @@
       "sha256": "4917fff2ee64e28987f0bb9d1c306ccf97141ed89e428c719b0878ec065f87ad"
     },
     {
+      "path": "scripts/prepare-hosted-web.mjs",
+      "sha256": "8b6ebc125c25b4cda705174a195a6fd310487f5e959929ac1092b2fcd37ed5a2"
+    },
+    {
       "path": "scripts/python.mjs",
       "sha256": "b9722d26d5a49f003a8dd6ceedf59395d7d5d633d326d102b96a5615480bccf5"
     },
@@ -592,6 +600,10 @@
     {
       "path": "scripts/test-exports.mjs",
       "sha256": "3bdb88c201916e3be623b2f351656a0fad1cc3fde4a8af7249de3b3184ee5457"
+    },
+    {
+      "path": "scripts/test-hosted-web.mjs",
+      "sha256": "3efc1fdc8e995497f6949a9e1efe85ff2145c2aa4754a4b26a5997602c86055c"
     },
     {
       "path": "scripts/test-local-api.mjs",
