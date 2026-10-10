@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T10:01:50.352Z",
+  "generated_at": "2026-10-10T10:38:12.577Z",
   "scope": "local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed",
-  "git_commit": "a48f7cdc778a07d5ac0ea7580f85dc87dc60f3bd",
+  "git_commit": "ca80b049293aab20d9e3ce741e26b28e31e245b9",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -15,7 +15,7 @@
   "files": [
     {
       "path": ".dockerignore",
-      "sha256": "c2e30a7bcd8505c0b9d7a9191eb551c7192829c1d93fab4decad1a15c93cf855"
+      "sha256": "6b15aefe41510fe7dc8e72c066804cb860d322098077f5a411e0e25080a3832e"
     },
     {
       "path": ".editorconfig",
@@ -35,11 +35,11 @@
     },
     {
       "path": "NOTICE.md",
-      "sha256": "956505e5b236818365bf22825cf3999026b572a77aa7e3aa235557df911dab0d"
+      "sha256": "d87f6218012cf7dba60eedb9e30d6ae1001deaac5e663202ee72f3d30f962199"
     },
     {
       "path": "README.md",
-      "sha256": "52aa01c6b40d44cd6c2d62d5fcd447110092ef9c044b05acc6ecd25fa7394cc8"
+      "sha256": "236b76f4b4d21f547b2f2aaf7956aca41dfe7961ac092de80ed009a6661d6497"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -286,12 +286,24 @@
       "sha256": "2311f0030c4ea0bec17e3ffeb08f35c512b14b060ddbb8afb4168274022a2719"
     },
     {
+      "path": "docs/aws-deployment-review-2026-10-10.md",
+      "sha256": "e751c268c24c08460c2464c6c43ae94ad84a1c009e42234aad6589b261774831"
+    },
+    {
       "path": "docs/aws-foundation.md",
-      "sha256": "8f36e3eede17e9d48ab8c5d1dd40921d730dafe920da7e3b7126e486a74f7eca"
+      "sha256": "2ae06d7c8cfb9772cc904c43ed5ab51da46500f93b84c75744868c51056956ec"
+    },
+    {
+      "path": "docs/aws-policy-validation-2026-10-10.json",
+      "sha256": "517ffe8f67f54cfb46a93b6c457cae18561c79bf6dc5e7f718b178ab9182abe0"
     },
     {
       "path": "docs/aws-preflight-2026-10-10.md",
-      "sha256": "38f95edf66f8a44306cea0736511714c1f6682ffa85ddf1f9f6d3dd83b146078"
+      "sha256": "908caf5550eff370166e070bf3291d553ee0f687e010af6c2e0b8cf1465ecc25"
+    },
+    {
+      "path": "docs/aws-price-recheck-2026-10-10.json",
+      "sha256": "0efc6b8c8d284e455890c3549060724e9286ea4197b646169c927626c56b9661"
     },
     {
       "path": "docs/aws-price-snapshot-2026-10-09.json",
@@ -307,7 +319,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "4ca7073237b7d894e0cedf1381ca20509311b9f98f5ed0eec2ef497d0e74dfba"
+      "sha256": "afbfcc2d0955e751b1560c1c74dfa7685549e61c8817900207ffac07e551f031"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -327,7 +339,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "f17e5f2835c2797ccba06a3387c40c2f4534c5dde5f8a3b43333e8bb16abcbe8"
+      "sha256": "224a0d30f6a4b20627483da35edebee89bb9d84c1ac0430a48abf1148539f0d8"
     },
     {
       "path": "docs/demo-script.md",
@@ -423,7 +435,7 @@
     },
     {
       "path": "docs/remaining-phases-2026-10-10.md",
-      "sha256": "a5d609f5006b5f533bb8349b2cdf2fe7dbdc85dd1c4fffb6d76536422fc89d03"
+      "sha256": "8bb52c901938c33e130799efeab261c2887f602fc0956838669dabe740b6e645"
     },
     {
       "path": "docs/screens/audit-2026-10-09.jpg",
@@ -464,6 +476,14 @@
     {
       "path": "docs/screenshots/archive-restore-2026-10-09.jpg",
       "sha256": "9873d5402ff0a18d8872c703e404ee8b4842c5a315ec374b9279c4f3ae4a33e7"
+    },
+    {
+      "path": "docs/screenshots/aws-local-signin-confirmation-2026-10-10.png",
+      "sha256": "896c688d59cc0ca30907857bb75b9ea093893c03d3dd06ec1efb7cc1dd2324b9"
+    },
+    {
+      "path": "docs/screenshots/aws-local-signin-prompt-2026-10-10.png",
+      "sha256": "a9ca63249c7ee26f8940c7d39202467eb83ae55b35d454929166ae593c7564dc"
     },
     {
       "path": "docs/screenshots/aws-quota-requested-2026-10-10.jpg",
@@ -607,7 +627,15 @@
     },
     {
       "path": "infra/app.mjs",
-      "sha256": "e231ea60f18e5014b3c88f2b005a6a916990a34f4c04e444632af3e361dd5da4"
+      "sha256": "e2d89683c378e4204b397a2e2644d983f3c62b36961e65f8f5fb79b7fa7dd9a7"
+    },
+    {
+      "path": "infra/bootstrap-LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "infra/bootstrap-template.json",
+      "sha256": "54f4b64c240f45432700d273d60afebe2a307ab27845d89364684daca3381307"
     },
     {
       "path": "infra/deployment-scope.mjs",
@@ -615,7 +643,7 @@
     },
     {
       "path": "infra/test-foundation.mjs",
-      "sha256": "0fadbaec5fcc6c29c95f7a7e624115b16a888d2cf9be53dcae9387c4f8504a10"
+      "sha256": "b6c7c7e75dbf85eb7b99a7673e3af81cc8073aaad29e72dc81f8a4bb72341d1c"
     },
     {
       "path": "package.json",
@@ -687,7 +715,7 @@
     },
     {
       "path": "scripts/test-container.mjs",
-      "sha256": "5014a9553915cabfc2fa2131e0c98647fc10c8414180391f8a459d77b1298d04"
+      "sha256": "c790d9104a5da67ebca3e3afd105196413ba2644e3b1bb106451b0dc85050585"
     },
     {
       "path": "scripts/test-csv.mjs",
