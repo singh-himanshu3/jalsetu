@@ -6,6 +6,8 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 The [customer interface cleanup](docs/customer-interface-2026-10-10.md) removes JSON editors/downloads, hashes and developer diagnostics from the product, including delivery downloads.
 
+The [deployment-only release checkpoint](docs/deployment-only-release-2026-10-10.md) keeps the prepared AWS backend/hosting stack while excluding Amazon Location and Bedrock calls. Printable instructions now include a coordinator overview, per-point unmet quantities and preserved reports for revisions.
+
 The [10 October usability update](docs/usability-update-2026-10-10.md) makes the example a one-click start, breaks setup into three steps, and adds clear approval/reporting actions. It builds on the [design refresh](docs/design-refresh-2026-10-10.md) within the existing application.
 
 ## Open it on this computer

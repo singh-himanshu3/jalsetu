@@ -41,6 +41,9 @@ try {
   assert.ok(!csv.includes(plan.input_snapshot_sha256));
   assert.ok(!/SHA-256|input_sha256|schema_version|source_age/.test(html+csv));
   assert.ok(html.includes('Approved example'));
+  assert.ok(html.includes('Coordinator overview'));
+  assert.ok(html.includes('Requests and remaining shortfall'));
+  for (const site of plan.site_results) assert.ok(html.includes(`<td>${site.unmet_litres}</td>`));
   for (const name of Object.values(meta.vehicle_names)) assert.ok(html.includes(name));
   for (const name of Object.values(meta.site_names)) assert.ok(html.includes(name));
   assert.equal((html.match(/class="card"/g) ?? []).length, plan.vehicle_routes.length);
@@ -49,6 +52,18 @@ try {
     const expectedTime = new Date(stop.estimated_arrival).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
     assert.ok(html.includes(expectedTime));
   }
+  exportCards(fixture.revision_draft, {...meta, approval_state: 'draft', project_name: fixture.operation.input.name,
+    vehicle_names: Object.fromEntries(fixture.operation.input.vehicles.map(v => [v.vehicle_id, v.name])),
+    site_names: Object.fromEntries(fixture.operation.input.sites.map(s => [s.site_id, s.name]))});
+  const revisedHtml = await captures[2].blob.text();
+  const accounting = fixture.revision_draft.revision_accounting;
+  assert.ok(revisedHtml.includes('Draft example'));
+  assert.ok(revisedHtml.includes(`<b>Preserved delivery reports:</b> ${accounting.reported_delivered_litres} litres`));
+  assert.ok(revisedHtml.includes(`<b>Additional water planned:</b> ${accounting.additional_scheduled_litres} litres`));
+  assert.ok(revisedHtml.includes(`<b>Still unmet after reports and this plan:</b> ${accounting.remaining_unmet_requested_litres} litres`));
+  assert.ok(revisedHtml.includes('new routes only'));
+  assert.ok(!revisedHtml.includes(fixture.revision_draft.input_snapshot_sha256));
+  captures[2].name = 'jalsetu-example-revision-summary.html';
   const output = new URL('../docs/audit/exports/', import.meta.url); await mkdir(output, { recursive: true });
   for (const capture of captures) await writeFile(new URL(capture.name, output), await capture.blob.text());
   deferred.forEach(callback => callback()); assert.equal(blobs.size, 0);
