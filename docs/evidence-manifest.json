@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T04:37:21.423Z",
+  "generated_at": "2026-10-10T04:45:35.632Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "50cfa5521937dc453884a6c12dc6706d0d555aad",
+  "git_commit": "102a7aefe729af57b7ef18df8d4726aac1429744",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -35,7 +35,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "1c332f7c33b88392cd0597b09d25b99315c4ed25a47dce5655256a36c4897294"
+      "sha256": "25c0d1e66264f6ce8f4ea38b497ac1b2cee11297bb578021fd6a240efd7b3adc"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -127,7 +127,7 @@
     },
     {
       "path": "apps/web/src/exports.ts",
-      "sha256": "cc3a90bf423a7a8600f34ba21c7424d16a60b1bc1b59620ebfbe76c85c136029"
+      "sha256": "e6e7b0cb416d86bceb1723dc03605452f6161441dc3f151f1a161a69e35b31f2"
     },
     {
       "path": "apps/web/src/main.tsx",
@@ -195,11 +195,15 @@
     },
     {
       "path": "docs/audit/exports/jalsetu-example-deliveries.csv",
-      "sha256": "68963d79cdecf25b7d86708b882b58c59ce22e95e0f23638bca4ef5afd0a4082"
+      "sha256": "c6448b65f4dd07ac0d7a6e907a1d55e589142920e4253a5782284eaa96876ecd"
     },
     {
       "path": "docs/audit/exports/jalsetu-example-plan-and-task-cards.html",
-      "sha256": "4528410380147f4cb28d44a76a0265c08551559b3440a6c1769450fd5a4df036"
+      "sha256": "377e4b3957ec956d61d0c515ac52d479f2e8fa3386eadd18ac1dcff1ea74749b"
+    },
+    {
+      "path": "docs/audit/exports/jalsetu-example-revision-summary.html",
+      "sha256": "f8eeb065972c068c2df23a16f56dc0f1b33a96afec3c4b7b522cef12848b1482"
     },
     {
       "path": "docs/audit/exports/jalsetu-example-stop-assignments.csv",
@@ -235,7 +239,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "4ce5ff2efb10a8af07ef1844a070999990e686bf4db9f34193ce5f2fe29bec47"
+      "sha256": "8afe1cac1af4771a1bc21dbf695734aa23cd7debc4244bdb108b7457f71797ab"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -251,11 +255,15 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "587c66342a9e61783f30b4223b38df908caf94c9f2391458c3a835d4c7c69b9f"
+      "sha256": "da648d5d6e15bf570792d2489ab1a980af93eec0f64e035af19694ff18e24f70"
     },
     {
       "path": "docs/demo-script.md",
       "sha256": "218b28dec901ff69a4b36ba40285fe17e88266df34271c25b7fa7ab8a225d272"
+    },
+    {
+      "path": "docs/deployment-only-release-2026-10-10.md",
+      "sha256": "a26e12ca165970b700d98d767281f375db17e0906569c6352f014fd2eee702d8"
     },
     {
       "path": "docs/design-refresh-2026-10-10.md",
@@ -356,6 +364,10 @@
     {
       "path": "docs/screenshots/aws-verification-pending-2026-10-10.jpg",
       "sha256": "17aeb404fd55877efe13cd081dfa1a7cb91f62e1f8b1cba3b119c5a51d2d449b"
+    },
+    {
+      "path": "docs/screenshots/coordinator-summary-2026-10-10.jpg",
+      "sha256": "5056774a2abd7cf844945c746b82bb7a9cd167fa0fa2dbce45954c2fe23b6271"
     },
     {
       "path": "docs/screenshots/design-operations-2026-10-10.jpg",
@@ -507,7 +519,7 @@
     },
     {
       "path": "scripts/test-exports.mjs",
-      "sha256": "eae0f5417dfe2e754bca5332cadc859faa65643746d1df3463fde66eb49b45f3"
+      "sha256": "3bdb88c201916e3be623b2f351656a0fad1cc3fde4a8af7249de3b3184ee5457"
     },
     {
       "path": "scripts/test-local-api.mjs",
