@@ -1,2 +1,5 @@
 # Preserve generated CSV export bytes for reproducible evidence hashes.
 docs/audit/exports/*.csv -text
+
+# Preserve generated PDF bytes and suppress text/whitespace diffs.
+*.pdf binary
