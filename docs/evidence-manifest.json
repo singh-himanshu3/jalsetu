@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T04:46:54.834Z",
+  "generated_at": "2026-10-10T05:03:01.263Z",
   "scope": "local example evidence; no cloud deployment or submission claimed",
-  "git_commit": "642c55b77e85c6c616a651f14aa61f384fe017ac",
+  "git_commit": "699ec3635285c3f48ff47e1ac0daed45064a8a99",
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
@@ -39,7 +39,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "25c0d1e66264f6ce8f4ea38b497ac1b2cee11297bb578021fd6a240efd7b3adc"
+      "sha256": "cce5a3eb84ff3aef5e38784a8128af8fa494c3c7c019bd0f782e811c3037fa93"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -55,11 +55,15 @@
     },
     {
       "path": "apps/web/src/App.tsx",
-      "sha256": "aec9299cc21b3c3d83b49461c895b0551015534c5e8dd1f7b19ba833482cf2ad"
+      "sha256": "360bae3c47963d4b3e04f743160517d7f0bb903ffca437617f445d2bac026323"
     },
     {
       "path": "apps/web/src/ComparisonCharts.tsx",
       "sha256": "febd6c8b34869d5df9ff461d9ec98e3438ca09db6bb4bc5b1e0ce4b7eec0422d"
+    },
+    {
+      "path": "apps/web/src/ExampleGuide.tsx",
+      "sha256": "759ad669f60046a13dd1c87347a366952db279683309b3efa2a1214994d95fee"
     },
     {
       "path": "apps/web/src/Marginal.tsx",
@@ -67,7 +71,7 @@
     },
     {
       "path": "apps/web/src/Operations.tsx",
-      "sha256": "dd8395cbc5e5b4ac7cb24df4047e573b35227d77a51aab936115564cde5f2867"
+      "sha256": "71345cc067d39f522434847f4b4c39d325dbc64f11c9d233f92d071145ad74e6"
     },
     {
       "path": "apps/web/src/Overview.tsx",
@@ -130,6 +134,10 @@
       "sha256": "448a6bc0b2c5f0337cdb6cbd4bdbd49e1c9dc551c9b5a05f032cfcefadc689bd"
     },
     {
+      "path": "apps/web/src/example-progress.ts",
+      "sha256": "31b723233a16670b28879802015907505445b5be6d7ed486557a1c12561cd505"
+    },
+    {
       "path": "apps/web/src/exports.ts",
       "sha256": "e6e7b0cb416d86bceb1723dc03605452f6161441dc3f151f1a161a69e35b31f2"
     },
@@ -147,7 +155,7 @@
     },
     {
       "path": "apps/web/src/styles.css",
-      "sha256": "0419bd74c31f67620b230a839920b40f4d4b2082cc30b43b1e29051ee23488cc"
+      "sha256": "db6b0e5df2f0a735a8b9bb621075eb4b12385b4a667aac999b2b9302948cf29a"
     },
     {
       "path": "apps/web/src/vite-env.d.ts",
@@ -243,7 +251,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "8afe1cac1af4771a1bc21dbf695734aa23cd7debc4244bdb108b7457f71797ab"
+      "sha256": "58f84266439e843042d88d2ec76f77f319f76f37a2ae1016d77465f6c48dbe70"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -259,7 +267,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "da648d5d6e15bf570792d2489ab1a980af93eec0f64e035af19694ff18e24f70"
+      "sha256": "005b6a0a18cc17b4d746f16436e0827ecd6f4a26c735161abbe454891d3563c9"
     },
     {
       "path": "docs/demo-script.md",
@@ -275,23 +283,27 @@
     },
     {
       "path": "docs/evaluation.json",
-      "sha256": "4491c7c37debb35ad54e3a0857e87af6b5cfb1d3e8625d76ae0db281c9965b5a"
+      "sha256": "fd09c94da9f8034b5732d1cd0e9ca4e5548c986b90b15fd1fd39b435b0c20ca1"
     },
     {
       "path": "docs/evaluation.md",
-      "sha256": "6a3f2a9992e709937cdc24e25ed475bd7113ee7db2c8275bafb2a5f69ee908d8"
+      "sha256": "7e8ad0fc5401211d893ed50ca898579f3f211351c72d57280317582928276c39"
     },
     {
       "path": "docs/freeze-and-contingency.md",
       "sha256": "cdce94dc530b38e2cfeae1482bb0c03554af10f306f498ff7fff13daf037e1a6"
     },
     {
+      "path": "docs/guided-example-validation-2026-10-10.md",
+      "sha256": "923bdadea77414e43d270da8d415b565eb9b569fc6754db145741449a109a0d9"
+    },
+    {
       "path": "docs/limitations.md",
-      "sha256": "50ed843fb2dbf78e482e527eb6666a2a0b9d980fdee7176a556f607f1fabc5c5"
+      "sha256": "d9b3c1609151a10d6f694c48dae59e1b2fabab8e565cf23cf5fa374ca8c455c1"
     },
     {
       "path": "docs/local-load-check.json",
-      "sha256": "fadc3435405ef4b7dbe72471dd24846d14c98c02089a758a2adc36fcb01aae4a"
+      "sha256": "5d421462d3bb116912605522fe6acf9bcb58d244b66ed67af473ee2df35e5d8b"
     },
     {
       "path": "docs/marginal-example.json",
@@ -390,6 +402,18 @@
       "sha256": "2468c498ce856e20b13b14715f5ad294020a1a8374d681f06e11eb0a7899b5d4"
     },
     {
+      "path": "docs/screenshots/guided-complete-phone-2026-10-10.jpg",
+      "sha256": "bf48fde305934c126d2d64e381d969101e346bcc056245796dc55f18ec25651d"
+    },
+    {
+      "path": "docs/screenshots/guided-welcome-2026-10-10.jpg",
+      "sha256": "d415c2d0bc7edb45121c48dc2211b40447dcd642e2476ae80ca2005ca66549b1"
+    },
+    {
+      "path": "docs/screenshots/guided-welcome-phone-2026-10-10.jpg",
+      "sha256": "c0ec77ccd5c2e3a5d1c168331cf54bfd83ec17c302427e5e7dcc81fe02ac6122"
+    },
+    {
       "path": "docs/screenshots/phase-4-job-details-2026-10-09.jpg",
       "sha256": "277fb0447a8148e8fb56b84c3623a241933e979167053799cb5061b313c0cb9e"
     },
@@ -459,7 +483,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "b8cb0ce00068b7db8ae90c248d5140868bc87753bff14dcfa6478a2ab256dafd"
+      "sha256": "805c4a86c151a40eee0de9e1a44b8bfde03b35e0185224fc9e12a79c35c7ce5c"
     },
     {
       "path": "packages/contracts/planning-input.schema.json",
@@ -520,6 +544,10 @@
     {
       "path": "scripts/test-csv.mjs",
       "sha256": "450fba6d191850cfecedab385afa90d1b4c0e15ee7eb2669e39faac9a1a80d31"
+    },
+    {
+      "path": "scripts/test-example-guide.mjs",
+      "sha256": "a176d52b2993f4cc407613e5b1ddd9d3ac96bd91e43443d9ea99d5d30eb2b9d8"
     },
     {
       "path": "scripts/test-exports.mjs",
