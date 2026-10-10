@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T17:22:32.500Z",
+  "generated_at": "2026-10-10T17:24:03.701Z",
   "scope": "local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed",
-  "git_commit": "321828e4c3a474fad2aef6cb0ebf8c6715801957",
+  "git_commit": "80acf09fbed594a04761cfc49a80d4cc6fcb670a",
   "working_tree_dirty": false,
   "submitted_commit": null,
   "urls": {
@@ -12,7 +12,7 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-10T17:22:32.336Z",
+  "public_repository_verified_at": "2026-10-10T17:24:03.486Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -41,7 +41,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "fe19ad33a3a5d2a110388022fcf12849bc2fbe0987d4a0a2e9dc86fd2f554fb1"
+      "sha256": "cb887f0021abb9a000a63a556896f7cfb08dfbb83e1ae531f56540c6a3aae59a"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -409,7 +409,7 @@
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",
-      "sha256": "7ab3967450ab8dbceb9c4357ce87c4781153d71b715c3814099b64eef08a7d51"
+      "sha256": "05252cc1f676189133aad4f1294e07b03679c09e0049d410c93741f21389e2e2"
     },
     {
       "path": "docs/frontend-workspace-completion-2026-10-10.md",
@@ -620,15 +620,15 @@
       "sha256": "20a523acb279aa816081f6773363aabd79421847cf255ea2ce2a72e42e5e8488"
     },
     {
-      "path": "docs/screenshots/frontend-motion-desktop-2026-10-10.png",
+      "path": "docs/screenshots/frontend-motion-desktop-2026-10-10.jpg",
       "sha256": "b9edd47d96c381fb6bfefbcd6b15c03f47fa8f75e25ff3351e14f4b066a8a1a3"
     },
     {
-      "path": "docs/screenshots/frontend-motion-mobile-2026-10-10.png",
+      "path": "docs/screenshots/frontend-motion-mobile-2026-10-10.jpg",
       "sha256": "5ea71c55869ee5c12164c84a261b5ee8fc1a0e6a5d806fc363f9f212e042d471"
     },
     {
-      "path": "docs/screenshots/frontend-motion-workflow-2026-10-10.png",
+      "path": "docs/screenshots/frontend-motion-workflow-2026-10-10.jpg",
       "sha256": "a2c570c44de42e8599f2256111ab5f844b58a1bfc1f51191ba4cdece7d78ec21"
     },
     {
