@@ -1,3 +1,7 @@
+# Visual identity review checkpoint — 11 October 2026
+
+The refined navy/cyan interface and professional functional copy are implemented and checked locally. No dedicated AWS navigation or section; only a small hosting note. Typecheck/build, guided-example and hosted-package checks pass, with desktop and 390-pixel phone inspection. Owner review is pending before Google/email authentication work. This version is not published to Amplify. See [review checkpoint](frontend-identity-review-2026-10-11.md). Earlier checkpoints below are historical.
+
 # Water-blue frontend checkpoint — 11 October 2026
 
 The new blue public landing page, service showcase and smooth accessible FAQ are implemented locally. Typecheck/build, guided-example, hosted-package and five release/restart groups pass. Desktop and 390-pixel phone landing/FAQ checks pass locally. Amplify publication is pending; the existing live URL still serves the prior release. See [frontend checkpoint](frontend-blue-completion-2026-10-11.md). Authentication changes remain deferred.

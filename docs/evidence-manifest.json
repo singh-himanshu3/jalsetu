@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T07:25:35.280Z",
+  "generated_at": "2026-10-11T07:47:26.003Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "a5ecb573e30e5438e220408a8b027c448b6b0484",
+  "git_commit": "e4f8ab913ab1b4a03f83f8813ea261e29f1d27bf",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T07:25:34.903Z",
-  "deployed_demo_verified_at": "2026-10-11T07:25:35.280Z",
+  "public_repository_verified_at": "2026-10-11T07:47:25.662Z",
+  "deployed_demo_verified_at": "2026-10-11T07:47:26.003Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -50,7 +50,7 @@
     },
     {
       "path": "apps/web/index.html",
-      "sha256": "931d7182f915396de6c8f75de3e58385ef52ccfa0291f595618de457b7853726"
+      "sha256": "88571a756f2275e435af665ea6d719810ec541966bcbc29aa560e3483fdb59d7"
     },
     {
       "path": "apps/web/package.json",
@@ -78,7 +78,7 @@
     },
     {
       "path": "apps/web/src/LandingServices.tsx",
-      "sha256": "e6c7cf6557420efea6b675c632952c5622bcb5d88f2a0a7afdea937f033e63cd"
+      "sha256": "9c780c761028199585bec0ae55deb933530d9b9729c2e8cc93defd77fa7f128e"
     },
     {
       "path": "apps/web/src/Marginal.tsx",
@@ -94,7 +94,7 @@
     },
     {
       "path": "apps/web/src/Overview.tsx",
-      "sha256": "6ae346cb0a631679b2684f16a8024521c46f313e0735c30f128e4effb4021ccc"
+      "sha256": "239793343485de1c969ffa79501fd6bb1ab6d042fb0833cdd1ac7c9d6eb98553"
     },
     {
       "path": "apps/web/src/Projects.tsx",
@@ -201,12 +201,16 @@
       "sha256": "bd88a2b05d6ce2db0a422af09e4f0503fc91b8a9b974479de062563f25dd9f4c"
     },
     {
+      "path": "apps/web/src/identity.css",
+      "sha256": "e7d5538b8c930baa8ad12fd4bdf13aa65742e7ed046bbee04b8a2e23f5a96c52"
+    },
+    {
       "path": "apps/web/src/landing.css",
       "sha256": "974de49fdf50b2a27be61e46d4e5b033d7b887e1c29adf2ddeb53afc37cbbf05"
     },
     {
       "path": "apps/web/src/main.tsx",
-      "sha256": "000e9c721bfde2043b4a705c379bbc10efabcba9c8d9a2ac52ed1c8eaa231562"
+      "sha256": "fdad7b315fab412df08385e1fdb82e9cda09d8aca4b2220554e08561d5c6fe03"
     },
     {
       "path": "apps/web/src/metrics.ts",
@@ -390,7 +394,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "d952644b4cd0359b5101a38ca6536ccb486f6942938d5f5891136435e4d9f205"
+      "sha256": "d8ecc3f2948270e7c6d179b1a9dfba94525bea9f3ee6311032f81f249fd563b2"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -410,7 +414,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "af20eafc9a8bd83c4fee7f645477dfb753a95b920568ebc110ce6d922e84993a"
+      "sha256": "53b3f9633b2c7872f97e531212419c465adbe2021313c9fe9281ffc08b47df40"
     },
     {
       "path": "docs/demo-script.md",
@@ -443,6 +447,10 @@
     {
       "path": "docs/frontend-blue-completion-2026-10-11.md",
       "sha256": "a9dd12c5d3fec1388eb43734e77a0af146d8f13bf515f936592c77ce7a849e43"
+    },
+    {
+      "path": "docs/frontend-identity-review-2026-10-11.md",
+      "sha256": "928e2a48596ff72eedf04900b38b805c155f93106a79949d7ae9aa88f39468a2"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",

@@ -187,3 +187,7 @@ Serve the existing animated introduction publicly; invited users retain separate
 ## 11 October 2026 — water-blue services landing
 
 Follow the owner’s UI-only request with a blue/navy/sky identity, denser service storytelling and an animated accessible FAQ. Reuse React, Motion and Lucide; no new framework or package. The public landing explains the product while existing sign-in gates workspace actions. Keep invited accounts, ownership and original expiry; worldwide signup is deferred. Decorative visuals remain labelled illustrations rather than claimed allocation or field results. Correct workflow-card buttons that returned the load handler instead of calling it. New local code is not a live-update claim until the existing manual publication succeeds.
+
+## 11 October 2026 — professional identity and review before authentication
+
+The owner authorized the recommended implementation order, with an explicit UI review before continuing to Google/email signup and sign-in. Use navy, electric blue and cyan, direct functional descriptions and existing Motion interactions. Remove slogan-style copy. The owner rejected AWS deployment in navigation and a dedicated AWS section; retain only a natural hosting note. Future AWS expansion should support actual product functions within the unchanged cost authorization. Genuine coordinator data is unavailable; suitable public data may be researched later, with labelled examples acceptable if none is found. No authentication or AWS resource change belongs to this UI review checkpoint.
