@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T07:47:26.003Z",
+  "generated_at": "2026-10-11T07:56:29.213Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "e4f8ab913ab1b4a03f83f8813ea261e29f1d27bf",
+  "git_commit": "2948bb3790cb619041a34496406fda98afeeb5d4",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T07:47:25.662Z",
-  "deployed_demo_verified_at": "2026-10-11T07:47:26.003Z",
+  "public_repository_verified_at": "2026-10-11T07:56:28.904Z",
+  "deployed_demo_verified_at": "2026-10-11T07:56:29.213Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -94,7 +94,7 @@
     },
     {
       "path": "apps/web/src/Overview.tsx",
-      "sha256": "239793343485de1c969ffa79501fd6bb1ab6d042fb0833cdd1ac7c9d6eb98553"
+      "sha256": "9ca134e93a221edef06fa646f33d48446f777f88a97e3b70564e8e9af5531d19"
     },
     {
       "path": "apps/web/src/Projects.tsx",
@@ -202,7 +202,7 @@
     },
     {
       "path": "apps/web/src/identity.css",
-      "sha256": "e7d5538b8c930baa8ad12fd4bdf13aa65742e7ed046bbee04b8a2e23f5a96c52"
+      "sha256": "b4b6be0c145a4b121b888eebb893fe83cf62ac26de886bcd4ea977edc972395f"
     },
     {
       "path": "apps/web/src/landing.css",
@@ -394,7 +394,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "d8ecc3f2948270e7c6d179b1a9dfba94525bea9f3ee6311032f81f249fd563b2"
+      "sha256": "2eabfcbd742a7231f853852d698534bad700f899588f679175a8698a1e39dde5"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -414,7 +414,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "53b3f9633b2c7872f97e531212419c465adbe2021313c9fe9281ffc08b47df40"
+      "sha256": "1b0cb092d54d67fa884c310c2ae6ef68399b233cf85736e7878762bb1f1f2c15"
     },
     {
       "path": "docs/demo-script.md",
@@ -450,7 +450,7 @@
     },
     {
       "path": "docs/frontend-identity-review-2026-10-11.md",
-      "sha256": "928e2a48596ff72eedf04900b38b805c155f93106a79949d7ae9aa88f39468a2"
+      "sha256": "d6fc27158f604cdbcb68598cd1e45e16a9aca221a52326ed40735c4efd77b952"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",

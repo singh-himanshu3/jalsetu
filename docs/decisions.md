@@ -191,3 +191,7 @@ Follow the owner’s UI-only request with a blue/navy/sky identity, denser servi
 ## 11 October 2026 — professional identity and review before authentication
 
 The owner authorized the recommended implementation order, with an explicit UI review before continuing to Google/email signup and sign-in. Use navy, electric blue and cyan, direct functional descriptions and existing Motion interactions. Remove slogan-style copy. The owner rejected AWS deployment in navigation and a dedicated AWS section; retain only a natural hosting note. Future AWS expansion should support actual product functions within the unchanged cost authorization. Genuine coordinator data is unavailable; suitable public data may be researched later, with labelled examples acceptable if none is found. No authentication or AWS resource change belongs to this UI review checkpoint.
+
+## 11 October 2026 — lighter palette after owner review
+
+The owner rejected the large dark hero followed by white sections and the wide left-aligned closing call-to-action. Use a continuous pale blue background, light aqua/periwinkle cards and a lighter illustrative map with readable dark labels. Center the final card at a maximum 640 pixels and shorten its heading to “Try the guided example.” Keep the current animations and product behavior. UI review remains the next gate before Google/email authentication; this local revision does not publish to AWS or create resources.
