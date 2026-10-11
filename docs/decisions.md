@@ -195,3 +195,7 @@ The owner authorized the recommended implementation order, with an explicit UI r
 ## 11 October 2026 — lighter palette after owner review
 
 The owner rejected the large dark hero followed by white sections and the wide left-aligned closing call-to-action. Use a continuous pale blue background, light aqua/periwinkle cards and a lighter illustrative map with readable dark labels. Center the final card at a maximum 640 pixels and shorten its heading to “Try the guided example.” Keep the current animations and product behavior. UI review remains the next gate before Google/email authentication; this local revision does not publish to AWS or create resources.
+
+## 11 October 2026 — solid heading and meaningful navigation cues
+
+Follow the owner’s review: use solid blue on “planning,” remove arrows that suggest a destination on noninteractive illustrations and give the footer slightly more space and useful navigation. External-link arrows belong to actual external destinations; in-page or workspace navigation uses ordinary navigation cues. Retain route-sequence notation where it conveys stop order. Share one footer between the landing and workspace, using existing destinations only. Authentication and live publication remain pending UI review.

@@ -14,7 +14,7 @@ export default function WorkspaceNav({tab,onNavigate,onExample,real,cloud,busy}:
       <span className="nav-caption review-caption">REVIEW & LEARN</span>
       <details className="more-nav" open={more} onToggle={e=>setMore(e.currentTarget.open)}><summary>More <span aria-hidden="true">⌄</span></summary><div>{[['Compare','Compare options'],...(real&&!cloud?[['History','Original plan']]:[]),['Evidence',real?'About the records':'About the example']].map(([name,label])=><button key={name} aria-current={tab===name?'page':undefined} className={tab===name?'nav active':'nav'} onClick={()=>{onNavigate(name);if(!window.matchMedia('(min-width:861px)').matches)setMore(false);}}><NavIcon name={name}/><span>{label}</span></button>)}</div></details>
     </nav>
-    <div className="nav-help"><NavIcon name="Evidence"/><strong>A little guidance goes a long way.</strong><p>Try a sample run. We’ll walk you through each step.</p><button className="nav-example" disabled={busy} onClick={onExample}>Try the guided example <span aria-hidden="true">↗</span></button></div>
+    <div className="nav-help"><NavIcon name="Evidence"/><strong>A little guidance goes a long way.</strong><p>Try a sample run. We’ll walk you through each step.</p><button className="nav-example" disabled={busy} onClick={onExample}>Try the guided example</button></div>
     <a className="repo-link" href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">View on GitHub ↗</a>
     <span className="shell-status"><span className="status-dot"/>{cloud?'Hosted example':'Local workspace'}<small>Delhi pilot · IST</small></span>
   </aside>;

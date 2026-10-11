@@ -11,6 +11,7 @@ import HistoricalComparison from './HistoricalComparison';
 import Marginal, {type Analysis} from './Marginal';
 import Overview from './Overview';
 import WorkspaceNav from './WorkspaceNav';
+import SiteFooter from './SiteFooter';
 import { PageTransition } from './Motion';
 import Setup from './Setup';
 import ExampleGuide, { ExampleWelcome } from './ExampleGuide';
@@ -149,7 +150,7 @@ export default function App({cloud=false}:{cloud?:boolean}) {
       {tab === 'History' && real && !cloud && input && <HistoricalComparison key={JSON.stringify(input)} input={input} busy={busy}/>}
       {tab === 'Evidence' && <><div className="section-head"><div><h2>{real?'About these records':'About the example'}</h2><p>{real?'Review declared sources and what still needs checking.':'Understand what the sample can show and what still needs checking.'}</p></div></div><Sources input={input}/><PublicRoadEvidence/></>}
       </PageTransition>
-      <footer><span className="footer-brand">JalSetu</span><span>Heat relief dispatch · Delhi pilot</span><span>{cloud?'Authenticated AWS example workspace':'Local workspace'}</span></footer>
+      <SiteFooter onNavigate={navigateTab} cloud={cloud}/>
     </main>
   </div>;
 }

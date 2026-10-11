@@ -1,6 +1,6 @@
 # Visual identity review checkpoint — 11 October 2026
 
-The owner reviewed the navy/cyan version and requested lighter colors and a smaller centered closing card. The revised pale-blue/aqua interface, lighter schematic and compact “Try the guided example” card are implemented and checked locally. No dedicated AWS navigation or section; only a small hosting note. Typecheck/build, guided-example and hosted-package checks pass, with desktop and 390-pixel phone inspection. Owner review is pending before Google/email authentication work. This version is not published to Amplify. See [review checkpoint](frontend-identity-review-2026-10-11.md). Earlier checkpoints below are historical.
+The owner reviewed the navy/cyan version and requested lighter colors and a smaller centered closing card. The revised pale-blue/aqua interface, lighter schematic and compact “Try the guided example” card are implemented and checked locally. Further owner feedback removes the gradient heading and decorative link arrows and expands the shared footer with real navigation links. No dedicated AWS navigation or section; only a small hosting note. Typecheck/build, guided-example and hosted-package checks pass, with desktop and 390-pixel phone inspection. Owner review is pending before Google/email authentication work. This version is not published to Amplify. See [review checkpoint](frontend-identity-review-2026-10-11.md). Earlier checkpoints below are historical.
 
 # Water-blue frontend checkpoint — 11 October 2026
 

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T07:56:29.213Z",
+  "generated_at": "2026-10-11T08:06:55.726Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "2948bb3790cb619041a34496406fda98afeeb5d4",
+  "git_commit": "0e7ce88c5a581b58ef59458cb7fe168139df1c2e",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T07:56:28.904Z",
-  "deployed_demo_verified_at": "2026-10-11T07:56:29.213Z",
+  "public_repository_verified_at": "2026-10-11T08:06:55.485Z",
+  "deployed_demo_verified_at": "2026-10-11T08:06:55.726Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -58,7 +58,7 @@
     },
     {
       "path": "apps/web/src/App.tsx",
-      "sha256": "ab601ea085861a76de855beab1d5e92853a8ae58ceada095ad04241c6d0b32fa"
+      "sha256": "f8a257768402586725a28936db5896bf12201db1d74aa186315456961284663c"
     },
     {
       "path": "apps/web/src/ComparisonCharts.tsx",
@@ -78,7 +78,7 @@
     },
     {
       "path": "apps/web/src/LandingServices.tsx",
-      "sha256": "9c780c761028199585bec0ae55deb933530d9b9729c2e8cc93defd77fa7f128e"
+      "sha256": "e2b736456ef4ffef9e1c3e3632c09d848252284f8ff66d1d2a1940ef30439111"
     },
     {
       "path": "apps/web/src/Marginal.tsx",
@@ -94,7 +94,7 @@
     },
     {
       "path": "apps/web/src/Overview.tsx",
-      "sha256": "9ca134e93a221edef06fa646f33d48446f777f88a97e3b70564e8e9af5531d19"
+      "sha256": "d674a5b63b9dd4f33d5d24a24cda65349f0d719fb5737cba27a4491285a6a966"
     },
     {
       "path": "apps/web/src/Projects.tsx",
@@ -126,11 +126,15 @@
     },
     {
       "path": "apps/web/src/RouteMap.tsx",
-      "sha256": "0fdd6fd64c6b87385b7cd7d07aeb3e2995eee6e9cc854cd353bf7db373cedfb2"
+      "sha256": "50a6a6163cbfb694d0dc10cf1fe4508a2980936f75aa4d24d2f286e940fe6b4a"
     },
     {
       "path": "apps/web/src/Setup.tsx",
       "sha256": "86274afca6a4d7c9e05d78a002e3e8b30dd5a67006aad9884b16614ba13c9911"
+    },
+    {
+      "path": "apps/web/src/SiteFooter.tsx",
+      "sha256": "d167d991d43b22fd3eed7cfbe514015265be030e109aacd797bc6eff8e247ccb"
     },
     {
       "path": "apps/web/src/SiteImport.tsx",
@@ -142,11 +146,11 @@
     },
     {
       "path": "apps/web/src/Startup.tsx",
-      "sha256": "deaf3c1425fc0856ce5ad972ee5fb8969c0e58419d4ebeb00aaad057497d2044"
+      "sha256": "135ffe8482efd2d4f87fab156f3a344974383d92f127795af5b87b2bac3aa503"
     },
     {
       "path": "apps/web/src/WorkspaceNav.tsx",
-      "sha256": "e87863345c9a14d231587610cb2ff9f7ce640b35d5bd56503e0007330cce59d8"
+      "sha256": "abb14a6fe00f203d439d7e9730cd6e6fc835a3091a86de9042c443e525430ccf"
     },
     {
       "path": "apps/web/src/api.ts",
@@ -202,7 +206,7 @@
     },
     {
       "path": "apps/web/src/identity.css",
-      "sha256": "b4b6be0c145a4b121b888eebb893fe83cf62ac26de886bcd4ea977edc972395f"
+      "sha256": "889f13f3dfdbfe787b1a18753c8901b068d63f2b1bd025ee9dd591caab5988f6"
     },
     {
       "path": "apps/web/src/landing.css",
@@ -394,7 +398,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "2eabfcbd742a7231f853852d698534bad700f899588f679175a8698a1e39dde5"
+      "sha256": "fbca1a1a45320c43998357de3dbef48153894fe58220730e2196834988e57fb3"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -414,7 +418,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "1b0cb092d54d67fa884c310c2ae6ef68399b233cf85736e7878762bb1f1f2c15"
+      "sha256": "00d5e5f9b478b25bdddd01289f24db98749172eeebdae9fe8b0b6c9a1fe22587"
     },
     {
       "path": "docs/demo-script.md",
@@ -450,7 +454,7 @@
     },
     {
       "path": "docs/frontend-identity-review-2026-10-11.md",
-      "sha256": "d6fc27158f604cdbcb68598cd1e45e16a9aca221a52326ed40735c4efd77b952"
+      "sha256": "5c71358ef0ec6025135b1f69c82ecd34f6b05c2aecef5d3c042967108537499a"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",

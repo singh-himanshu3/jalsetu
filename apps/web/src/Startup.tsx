@@ -4,6 +4,7 @@ import {loadConfig,cloudConfig} from './config';
 import {completeSignIn,idToken,signIn,signOut} from './auth';
 import {api} from './api';
 import Overview from './Overview';
+import SiteFooter from './SiteFooter';
 import { Droplets, ArrowRight } from 'lucide-react';
 
 // One shared promise also prevents duplicate code exchanges under React StrictMode.
@@ -31,7 +32,7 @@ export function PublicLanding({expired,error,onEnter}:{expired:boolean;error:str
         {expired&&<div className="public-access-note"><strong>This example workspace has expired.</strong><span>The introduction remains available; planning and saved records are closed.</span></div>}
         {error&&<p role="alert" className="error">{error}</p>}
         <Overview publicView input={null} busy={expired} hasPlan={false} onLoad={onEnter} onNavigate={onEnter}/>
-        <footer><span className="footer-brand">JalSetu</span><span>Water relief planning · Labelled Delhi example</span><a href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">Explore the source ↗</a></footer>
+        <SiteFooter/>
       </main>
     </div>;
 }
