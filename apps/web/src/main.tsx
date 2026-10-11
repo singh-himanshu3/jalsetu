@@ -10,4 +10,5 @@ import Startup from './Startup';
 import './styles.css';
 import './workspace.css';
 import './experience.css';
+import './landing.css';
 createRoot(document.getElementById('root')!).render(<React.StrictMode><LazyMotion features={domAnimation} strict><MotionConfig reducedMotion="user"><Startup /></MotionConfig></LazyMotion></React.StrictMode>);

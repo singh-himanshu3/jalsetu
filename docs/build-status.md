@@ -1,3 +1,7 @@
+# Water-blue frontend checkpoint — 11 October 2026
+
+The new blue public landing page, service showcase and smooth accessible FAQ are implemented locally. Typecheck/build, guided-example, hosted-package and five release/restart groups pass. New visual browser acceptance and Amplify publication are pending; the existing live URL still serves the prior release. See [frontend checkpoint](frontend-blue-completion-2026-10-11.md). Authentication changes remain deferred.
+
 # Hosted release checkpoint — 11 October 2026
 
 **Live:** https://main.d2d0jtitb5ozce.amplifyapp.com. The application stack is CREATE_COMPLETE and Amplify publication succeeded. Five actual hosted acceptance groups pass: invited sign-ins/protected API, ownership, validated planning/retries, approved delivery/recovery/replanning with exact water accounting, and project archive/restore preserving operations. Built frontend/configuration/sign-in-page checks pass. Visual/phone/map and interactive browser callback checks remain pending because Computer Use could not reliably verify the Windows browser URL. See [the release report](aws-hosted-release-2026-10-11.md). Original expiry: 17 October 2026, 22:57:30 IST. AWS cleanup is explicit, not automatic. Previous checkpoints below are historical.

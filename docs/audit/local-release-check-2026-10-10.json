@@ -1,7 +1,7 @@
 {
   "scope": "Isolated built-app localhost release check; example data; no AWS calls or external user validation",
-  "recorded_at": "2026-10-10T17:15:56.218Z",
-  "duration_seconds": 38.56,
+  "recorded_at": "2026-10-11T07:17:49.534Z",
+  "duration_seconds": 30.01,
   "checks": [
     "Built HTML, JavaScript and CSS; HEAD; same-origin connection policy; no source/state/cloud-config or traversal access; duplicate startup stops with a readable port-conflict message",
     "Invalid-input failure is terminal, publishes no routes and releases the slot; next comparison completes; retry and busy safeguards",
@@ -9,6 +9,6 @@
     "Real process restart preserves complete operation, Unicode project, archive state and retry receipts; stale writes still rejected; project restore; job cache intentionally resets",
     "Corrupt saved file stops startup and remains unchanged; restoring the test snapshot allows startup and identical operation reads"
   ],
-  "saved_operation_sha256": "4e7f254226c13f86ba959ece9007a503ac417246bd953ba570fb289fc83d0bc6",
+  "saved_operation_sha256": "d445394f2bd5109a87cc531c286d21d15b3f552c7b181144e7f3ca5ddcfe601b",
   "persistence": "Projects, approvals, events, revisions and write receipts persist; transient planning jobs do not"
 }

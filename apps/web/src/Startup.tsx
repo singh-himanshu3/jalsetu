@@ -19,12 +19,12 @@ export default function Startup() {
     const enter=()=>{if(!expired)void signIn().catch(e=>setError((e as Error).message));};
     return <div className="public-home">
       <a className="skip-link" href="#workspace">Skip to main content</a>
-      <header className="public-header"><a className="brand" href="#workspace"><span className="mark"><Droplets aria-hidden="true"/></span><span>JalSetu<small>WATER RELIEF WORKSPACE</small></span></a><a className="repo-link" href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">View on GitHub ↗</a><button className="secondary" disabled={expired} onClick={enter}>Sign in <ArrowRight size={16}/></button></header>
+      <header className="public-header"><a className="brand" href="#workspace"><span className="mark"><Droplets aria-hidden="true"/></span><span>JalSetu<small>WATER RELIEF WORKSPACE</small></span></a><nav aria-label="About JalSetu"><a href="#services">What we do</a><a href="#how-it-works">How it works</a><a href="#questions">Questions</a></nav><a className="repo-link" href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">View on GitHub ↗</a><button className="secondary" disabled={expired} onClick={enter}>Sign in <ArrowRight size={16}/></button></header>
       <main id="workspace" tabIndex={-1}>
-        <div className="public-access-note"><strong>{expired?'This example workspace has expired.':'Explore the idea. Sign in to try a complete run.'}</strong><span>{expired?'The introduction remains available; planning and saved records are closed.':'An invited demo account keeps your sample plans and reports separate. No vehicles are dispatched.'}</span></div>
+        {expired&&<div className="public-access-note"><strong>This example workspace has expired.</strong><span>The introduction remains available; planning and saved records are closed.</span></div>}
         {error&&<p role="alert" className="error">{error}</p>}
-        <Overview input={null} busy={expired} hasPlan={false} onLoad={enter} onNavigate={enter}/>
-        <footer><span className="footer-brand">JalSetu</span><span>Example workspace · Delhi pilot</span></footer>
+        <Overview publicView input={null} busy={expired} hasPlan={false} onLoad={enter} onNavigate={enter}/>
+        <footer><span className="footer-brand">JalSetu</span><span>Water relief planning · Labelled Delhi example</span><a href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">Explore the source ↗</a></footer>
       </main>
     </div>;
   }

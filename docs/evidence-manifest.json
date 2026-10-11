@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T07:04:38.483Z",
+  "generated_at": "2026-10-11T07:19:25.496Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "fa0e22e2a8f4f40ea6786f7df4239f0b67a4302d",
+  "git_commit": "48a4d4b7b78d74054ae612c5fdcd49788b2e836d",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T07:04:38.160Z",
-  "deployed_demo_verified_at": "2026-10-11T07:04:38.483Z",
+  "public_repository_verified_at": "2026-10-11T07:19:25.251Z",
+  "deployed_demo_verified_at": "2026-10-11T07:19:25.496Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -77,6 +77,10 @@
       "sha256": "4f73dd6572ee608fb58b86c9c34163b59a85203c8d30145843ed238dd70e7088"
     },
     {
+      "path": "apps/web/src/LandingServices.tsx",
+      "sha256": "e6c7cf6557420efea6b675c632952c5622bcb5d88f2a0a7afdea937f033e63cd"
+    },
+    {
       "path": "apps/web/src/Marginal.tsx",
       "sha256": "4b16cf8c6ba8b25a27872a731ef2c95bc4a2d3074c8d5fb7b1e108fef93cdab3"
     },
@@ -90,7 +94,7 @@
     },
     {
       "path": "apps/web/src/Overview.tsx",
-      "sha256": "b22b5647acd4ebeeaff92ff51769dcbb386d1919be1734494f015b7bb915a4d9"
+      "sha256": "6ae346cb0a631679b2684f16a8024521c46f313e0735c30f128e4effb4021ccc"
     },
     {
       "path": "apps/web/src/Projects.tsx",
@@ -138,7 +142,7 @@
     },
     {
       "path": "apps/web/src/Startup.tsx",
-      "sha256": "f7d8b95c026ca0ce1f817c6043fe5d666f7c5f6ec7b675dd63b77023b0ecfc41"
+      "sha256": "7d6fb5da8b95cc0a6612af3672988bb9ce292b7d59522dd68773a3050038417c"
     },
     {
       "path": "apps/web/src/WorkspaceNav.tsx",
@@ -182,7 +186,7 @@
     },
     {
       "path": "apps/web/src/experience.css",
-      "sha256": "82de0ab85daccac57f9c4a215b581322bdb8cf64d92e5c2bdc9b05a452621ae2"
+      "sha256": "d4bca6114d9d1b8e97316040d310b26da81a3756d3a18bc0a88fe64f9386fbaf"
     },
     {
       "path": "apps/web/src/exports.ts",
@@ -197,8 +201,12 @@
       "sha256": "bd88a2b05d6ce2db0a422af09e4f0503fc91b8a9b974479de062563f25dd9f4c"
     },
     {
+      "path": "apps/web/src/landing.css",
+      "sha256": "c89bd1e5fc500350240ecd0c1a6d7d8dd4715a5f30115dec66104bc94c5ccd02"
+    },
+    {
       "path": "apps/web/src/main.tsx",
-      "sha256": "2a11d3a8d2b40004e0ad8a4e66d12d9a5aac5a25a1e5d5761d418d7e0e7c6227"
+      "sha256": "000e9c721bfde2043b4a705c379bbc10efabcba9c8d9a2ac52ed1c8eaa231562"
     },
     {
       "path": "apps/web/src/metrics.ts",
@@ -222,7 +230,7 @@
     },
     {
       "path": "apps/web/src/styles.css",
-      "sha256": "a38d9cded7c3d15d740cbeb958e0d7aacd7f65918d7041d834e1c6f4a74048b3"
+      "sha256": "686976fabc539045213b70d0425692edaa354950d2fd3b4cb36c6318d77d7f01"
     },
     {
       "path": "apps/web/src/vite-env.d.ts",
@@ -230,7 +238,7 @@
     },
     {
       "path": "apps/web/src/workspace.css",
-      "sha256": "66d7706ee7a3219cda6176b0e8a2edf5d677ad59a1ed1cbb4598d153bcfd2a83"
+      "sha256": "2c6a3dc22051460c0dc7aa94f043d5aafbe08cf06444f6ecd77c783719140c58"
     },
     {
       "path": "apps/web/tsconfig.json",
@@ -322,7 +330,7 @@
     },
     {
       "path": "docs/audit/local-release-check-2026-10-10.json",
-      "sha256": "c6855cc665d0c154db95cfb22d06960bb1c351f0bc6eb399ec61a6ab1baa58f3"
+      "sha256": "8871233e86d8d1f6ec135f4e5c109e3ce6d19c95df0c3ae1ccbd0578868baa1a"
     },
     {
       "path": "docs/audit/restart-reference.json",
@@ -378,7 +386,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "b21691db7b746c56f2fcb9c339dc3c87c8d2352110fae7608cec1ea74cc83963"
+      "sha256": "eaf4e9cbb603d2f23379dedd71d639819b7b2384b4e1ebf2a4bbcd3c30c26efc"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -398,7 +406,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "a4b96761c972a025a2c8800e87ed2479f5632b582ce2aac5c4476b63b5b38e89"
+      "sha256": "af20eafc9a8bd83c4fee7f645477dfb753a95b920568ebc110ce6d922e84993a"
     },
     {
       "path": "docs/demo-script.md",
@@ -427,6 +435,10 @@
     {
       "path": "docs/freeze-and-contingency.md",
       "sha256": "40e4031941cdfeec857026643bbb54b370d7c4c8379e771657925ec9642dcf06"
+    },
+    {
+      "path": "docs/frontend-blue-completion-2026-10-11.md",
+      "sha256": "0de751d9f5a6574a3820924a9629184010e47d1a7e530f140c947ac0438aa093"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",
