@@ -1,18 +1,19 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-10T17:24:03.701Z",
-  "scope": "local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed",
-  "git_commit": "80acf09fbed594a04761cfc49a80d4cc6fcb670a",
-  "working_tree_dirty": false,
+  "generated_at": "2026-10-11T07:04:38.483Z",
+  "scope": "local and hosted example software evidence; no field outcome or submission claimed",
+  "git_commit": "fa0e22e2a8f4f40ea6786f7df4239f0b67a4302d",
+  "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
     "repository": "https://github.com/singh-himanshu3/jalsetu",
-    "deployed_demo": null,
+    "deployed_demo": "https://main.d2d0jtitb5ozce.amplifyapp.com",
     "video": null,
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-10T17:24:03.486Z",
+  "public_repository_verified_at": "2026-10-11T07:04:38.160Z",
+  "deployed_demo_verified_at": "2026-10-11T07:04:38.483Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -41,7 +42,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "cb887f0021abb9a000a63a556896f7cfb08dfbb83e1ae531f56540c6a3aae59a"
+      "sha256": "2a9bf1c90b510f9f4eb27b4f4730fbe6ea27b6b6babe66732ab3c1324d1479bb"
     },
     {
       "path": "Start JalSetu.cmd",
@@ -137,7 +138,7 @@
     },
     {
       "path": "apps/web/src/Startup.tsx",
-      "sha256": "8e05f250f38959b81c32373e80c6df20cb6246081ea8f493158e0ce9bd7eaf00"
+      "sha256": "f7d8b95c026ca0ce1f817c6043fe5d666f7c5f6ec7b675dd63b77023b0ecfc41"
     },
     {
       "path": "apps/web/src/WorkspaceNav.tsx",
@@ -181,7 +182,7 @@
     },
     {
       "path": "apps/web/src/experience.css",
-      "sha256": "4c840a6e477d40680537763569dd7285c12ad817db566f6051a9630894d77c12"
+      "sha256": "82de0ab85daccac57f9c4a215b581322bdb8cf64d92e5c2bdc9b05a452621ae2"
     },
     {
       "path": "apps/web/src/exports.ts",
@@ -308,6 +309,18 @@
       "sha256": "032a33566aaa20727a96091ccf970c9b13783212791aba8b853905e4e8c83aae"
     },
     {
+      "path": "docs/audit/hosted-acceptance-2026-10-11.json",
+      "sha256": "e8e7a5ea577a44b3188212f516ae197bf91d09d72f2875ea9292bccb2a98fb3d"
+    },
+    {
+      "path": "docs/audit/hosted-foundation-2026-10-11.json",
+      "sha256": "2d4d1a2c4f914ae5071e553f65a87e87ffabb042565fc8d11b614d6c6bc156fb"
+    },
+    {
+      "path": "docs/audit/hosted-frontend-2026-10-11.json",
+      "sha256": "364bdf8255da7a4420bbf3be574d090b3c2654d2e259b0542e86a1415844297d"
+    },
+    {
       "path": "docs/audit/local-release-check-2026-10-10.json",
       "sha256": "c6855cc665d0c154db95cfb22d06960bb1c351f0bc6eb399ec61a6ab1baa58f3"
     },
@@ -324,12 +337,20 @@
       "sha256": "2311f0030c4ea0bec17e3ffeb08f35c512b14b060ddbb8afb4168274022a2719"
     },
     {
+      "path": "docs/aws-deployment-progress-2026-10-10.md",
+      "sha256": "0df85145563f6f11a46f436df793e017d93b73a3cbdf1984adb945913c95af68"
+    },
+    {
       "path": "docs/aws-deployment-review-2026-10-10.md",
       "sha256": "e751c268c24c08460c2464c6c43ae94ad84a1c009e42234aad6589b261774831"
     },
     {
       "path": "docs/aws-foundation.md",
       "sha256": "2ae06d7c8cfb9772cc904c43ed5ab51da46500f93b84c75744868c51056956ec"
+    },
+    {
+      "path": "docs/aws-hosted-release-2026-10-11.md",
+      "sha256": "9fe87e5f7e3d466c3b57d28b40bbb4e2a34fb24e416d07b2cc0d08962ef6fc5b"
     },
     {
       "path": "docs/aws-policy-validation-2026-10-10.json",
@@ -357,7 +378,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "c92c1f76abca738757cc0cc8b2bc659c66abb8ac3582e7e342efa1b277aaea08"
+      "sha256": "b21691db7b746c56f2fcb9c339dc3c87c8d2352110fae7608cec1ea74cc83963"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -377,7 +398,7 @@
     },
     {
       "path": "docs/decisions.md",
-      "sha256": "dcb1049558f51e3aa4654093395e3f36a9c2a83281ecc58ee64dbe5f7fc0a1d0"
+      "sha256": "a4b96761c972a025a2c8800e87ed2479f5632b582ce2aac5c4476b63b5b38e89"
     },
     {
       "path": "docs/demo-script.md",
@@ -745,7 +766,7 @@
     },
     {
       "path": "infra/app.mjs",
-      "sha256": "e2d89683c378e4204b397a2e2644d983f3c62b36961e65f8f5fb79b7fa7dd9a7"
+      "sha256": "6a75db8ff2897555e1f0c5ccca64bed64c3a2d78d934d69682f648324a306678"
     },
     {
       "path": "infra/bootstrap-LICENSE.txt",
@@ -753,7 +774,7 @@
     },
     {
       "path": "infra/bootstrap-template.json",
-      "sha256": "54f4b64c240f45432700d273d60afebe2a307ab27845d89364684daca3381307"
+      "sha256": "711fa104eabbe3e009e74a1682095cf7da07b8c885e1b98687ada8c36f30fcbf"
     },
     {
       "path": "infra/deployment-scope.mjs",
@@ -761,7 +782,7 @@
     },
     {
       "path": "infra/test-foundation.mjs",
-      "sha256": "b6c7c7e75dbf85eb7b99a7673e3af81cc8073aaad29e72dc81f8a4bb72341d1c"
+      "sha256": "71a5aa225d63683e7a3db0cd03ba7351015324690b6a906cb4e47d53513d8b74"
     },
     {
       "path": "package.json",
@@ -797,7 +818,7 @@
     },
     {
       "path": "scripts/evidence-manifest.mjs",
-      "sha256": "8d80b2b4723c6e3a8cdb53be8156fe8022a46075cbf36e0019da370cf37d2f8f"
+      "sha256": "c99d49a09855b4c371bd2ded743128383eb7238437e9f4da9f5160f2b6fba98a"
     },
     {
       "path": "scripts/local-api.mjs",
@@ -825,7 +846,11 @@
     },
     {
       "path": "scripts/prepare-hosted-web.mjs",
-      "sha256": "8b6ebc125c25b4cda705174a195a6fd310487f5e959929ac1092b2fcd37ed5a2"
+      "sha256": "dcdb7ebf69280d0246af3164b4804d1946f1457826f2e94a3e0267f425641d82"
+    },
+    {
+      "path": "scripts/publish-hosted-web.ps1",
+      "sha256": "6d18d9b2e46f065b9eb5ac583fcfe9c74602bef33edee7263064d0072fc09bba"
     },
     {
       "path": "scripts/python.mjs",

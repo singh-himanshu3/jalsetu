@@ -1,5 +1,6 @@
 import {readFile, writeFile, readdir, mkdir} from 'node:fs/promises';
 import {resolve, extname} from 'node:path';
+import {realpathSync} from 'node:fs';
 import {deploymentScope} from '../infra/deployment-scope.mjs';
 
 const fields = ['mode', 'region', 'apiBaseUrl', 'clientId', 'loginBaseUrl', 'redirectUri', 'expiresAt'];
@@ -57,7 +58,7 @@ export async function prepareHostedWeb({outputs, build, destination, now = Date.
   return [...files.keys()];
 }
 
-if (process.argv[1] === import.meta.filename) {
+if (process.argv[1] && realpathSync(process.argv[1]) === import.meta.filename) {
   try {
     const [outputsFile, destination] = process.argv.slice(2);
     if (!outputsFile || !destination) throw new Error('Usage: pnpm prepare:hosting <CDK outputs file> <new bundle folder>');

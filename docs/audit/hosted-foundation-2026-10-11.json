@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-11T06:59:02.869Z",
+  "region": "ap-south-1",
+  "stack_status": "CREATE_COMPLETE",
+  "frontend_url": "https://main.d2d0jtitb5ozce.amplifyapp.com",
+  "expires_at": "2026-10-17T17:27:30Z",
+  "account_plan": "FREE",
+  "account_status": "ACTIVE",
+  "credit_read_is_not_realtime_cost_cap": true,
+  "reserved_lambda_concurrency": [
+    1,
+    2
+  ],
+  "daily_planning_limit": 100,
+  "api_requests_per_second": 5,
+  "api_burst": 10,
+  "private_encrypted_snapshot_storage": true,
+  "state_ttl_enabled": true,
+  "invitation_only_signin": true,
+  "api_body_tracing": false,
+  "automatic_infrastructure_deletion": false,
+  "retained_failed_attempts": 2,
+  "field_outcome_claimed": false,
+  "credit_preflight_passed": true,
+  "authorized_project_budget_usd": 100,
+  "minimum_release_credit_balance_usd": 30
+}

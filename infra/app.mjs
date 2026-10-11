@@ -13,7 +13,14 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
   // Private state is retained on accidental stack deletion. Cleanup is explicit.
   const table = new dynamodb.Table(stack, 'State', { partitionKey: { name: 'pk', type: dynamodb.AttributeType.STRING }, sortKey: { name: 'sk', type: dynamodb.AttributeType.STRING }, billingMode: dynamodb.BillingMode.PAY_PER_REQUEST, timeToLiveAttribute: 'expires_at', removalPolicy: RemovalPolicy.RETAIN });
   const snapshots = new s3.Bucket(stack, 'Snapshots', { encryption: s3.BucketEncryption.S3_MANAGED, blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, enforceSSL: true, removalPolicy: RemovalPolicy.RETAIN, lifecycleRules: [{ expiration: Duration.days(8) }] });
-  const hosting = new amplify.CfnApp(stack, 'Hosting', { name: 'jalsetu-example-demo', platform: 'WEB', customRules: [{ source: '/<*>', target: '/index.html', status: '404-200' }] });
+  const publicHeaders = { customHeaders: [{ pattern: '**/*', headers: [
+    { key: 'X-Content-Type-Options', value: 'nosniff' },
+    { key: 'X-Frame-Options', value: 'DENY' },
+    { key: 'Referrer-Policy', value: 'no-referrer' },
+    { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+    { key: 'Content-Security-Policy', value: `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://*.execute-api.${region}.amazonaws.com https://*.auth.${region}.amazoncognito.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'` },
+  ] }, { pattern: '/config.json', headers: [{ key: 'Cache-Control', value: 'no-store' }] }] };
+  const hosting = new amplify.CfnApp(stack, 'Hosting', { name: 'jalsetu-example-demo', platform: 'WEB', customHeaders: JSON.stringify(publicHeaders), customRules: [{ source: '/<*>', target: '/index.html', status: '404-200' }] });
   new amplify.CfnBranch(stack, 'MainBranch', { appId: hosting.attrAppId, branchName: 'main', stage: 'PRODUCTION', enableAutoBuild: false });
   const origin = `https://main.${hosting.attrDefaultDomain}`;
   const pool = new cognito.UserPool(stack, 'Coordinators', { selfSignUpEnabled: false, signInAliases: { username: true }, passwordPolicy: { minLength: 12, requireDigits: true, requireLowercase: true, requireUppercase: true, requireSymbols: true }, removalPolicy: RemovalPolicy.RETAIN });
@@ -38,10 +45,10 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
   fallback.next(stages[6]);
   for (const task of stages) task.addCatch(task === stages[5] ? fallback : failJob, { resultPath: sfn.JsonPath.DISCARD });
   const definition = stages.reduce((chain, task) => chain ? chain.next(task) : sfn.Chain.start(task), null);
-  const workflow = new sfn.StateMachine(stack, 'PlanningWorkflow', { definitionBody: sfn.DefinitionBody.fromChainable(definition), stateMachineType: sfn.StateMachineType.STANDARD, timeout: Duration.minutes(6), tracingEnabled: false });
+  const workflow = new sfn.StateMachine(stack, 'PlanningWorkflow', { stateMachineName: 'JalSetuDemo-PlanningWorkflow', definitionBody: sfn.DefinitionBody.fromChainable(definition), stateMachineType: sfn.StateMachineType.STANDARD, timeout: Duration.minutes(6), tracingEnabled: false });
   // Workflow-level timeouts cannot be caught inside the state machine. Status
   // events repair the durable job; GET also repairs after the lease deadline.
-  new events.Rule(stack, 'WorkflowTerminalFailure', { eventPattern: { source: ['aws.states'], detailType: ['Step Functions Execution Status Change'], detail: { stateMachineArn: [workflow.stateMachineArn], status: ['FAILED', 'TIMED_OUT', 'ABORTED'] } }, targets: [new targets.LambdaFunction(worker, { retryAttempts: 2, maxEventAge: Duration.minutes(5) })] });
+  new events.Rule(stack, 'WorkflowTerminalFailure', { ruleName: 'JalSetuDemo-WorkflowTerminalFailure', eventPattern: { source: ['aws.states'], detailType: ['Step Functions Execution Status Change'], detail: { stateMachineArn: [workflow.stateMachineArn], status: ['FAILED', 'TIMED_OUT', 'ABORTED'] } }, targets: [new targets.LambdaFunction(worker, { retryAttempts: 2, maxEventAge: Duration.minutes(5) })] });
   const apiFunction = new lambda.DockerImageFunction(stack, 'Api', { code, memorySize: 512, timeout: Duration.seconds(25), reservedConcurrentExecutions: 2, environment: { ...environment, PLANNER_WORKFLOW: workflow.stateMachineArn }, logGroup: apiLogs });
   table.grantReadWriteData(apiFunction); table.grantReadWriteData(worker);
   snapshots.grantReadWrite(apiFunction); snapshots.grantReadWrite(worker);

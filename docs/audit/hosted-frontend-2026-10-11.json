@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-11T07:02:13.857Z",
+  "frontend_url": "https://main.d2d0jtitb5ozce.amplifyapp.com",
+  "html_status": 200,
+  "built_assets_checked": 2,
+  "configuration_matches_origin": true,
+  "configuration_cache_control": "no-store",
+  "cognito_authorization_page_status": 200,
+  "security_headers": [
+    {
+      "name": "content-security-policy",
+      "present": true
+    },
+    {
+      "name": "x-content-type-options",
+      "present": true
+    },
+    {
+      "name": "x-frame-options",
+      "present": true
+    },
+    {
+      "name": "referrer-policy",
+      "present": true
+    },
+    {
+      "name": "permissions-policy",
+      "present": true
+    }
+  ],
+  "visual_browser_check": "Pending: Computer Use could not reliably verify the Windows browser URL",
+  "interactive_oauth_callback_check": "Pending browser verification; two-user SRP/API acceptance passes",
+  "field_outcome_claimed": false
+}

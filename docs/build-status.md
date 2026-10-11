@@ -1,3 +1,11 @@
+# Hosted release checkpoint — 11 October 2026
+
+**Live:** https://main.d2d0jtitb5ozce.amplifyapp.com. The application stack is CREATE_COMPLETE and Amplify publication succeeded. Five actual hosted acceptance groups pass: invited sign-ins/protected API, ownership, validated planning/retries, approved delivery/recovery/replanning with exact water accounting, and project archive/restore preserving operations. Built frontend/configuration/sign-in-page checks pass. Visual/phone/map and interactive browser callback checks remain pending because Computer Use could not reliably verify the Windows browser URL. See [the release report](aws-hosted-release-2026-10-11.md). Original expiry: 17 October 2026, 22:57:30 IST. AWS cleanup is explicit, not automatic. Previous checkpoints below are historical.
+
+# Current AWS deployment checkpoint — 10 October 2026
+
+The owner has now authorized deployment. Fresh AWS checks confirm FREE / ACTIVE, $100 remaining credits and 400 available Lambda slots. The exact reviewed CDKToolkit foundation is CREATE_COMPLETE. Application deployment stopped at AWS's rejection of root role assumption; the limited deployment IAM user is now explicitly approved, created and verified, with secure sign-in in progress. No JalSetuDemo stack, published frontend or live link is claimed. Public landing-page preparation and repeatable frontend publishing are added; typechecking/build/hosting package and Linux container checks pass. Hosted acceptance remains pending. See [deployment progress](aws-deployment-progress-2026-10-10.md). Earlier no-deployment/no-resources checkpoints are historical.
+
 # Build status
 
 Started 8 October 2026 (Asia/Kolkata).

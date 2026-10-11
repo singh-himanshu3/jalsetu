@@ -22,6 +22,17 @@ if(process.argv.includes('--verify-public-repository')){
 }
 const status=spawnSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'});
 const records=await Promise.all(files.sort().map(async path=>({path:relative(root,path).replaceAll('\\','/'),sha256:createHash('sha256').update(await readFile(path)).digest('hex')})));
-const manifest={schema_version:'1.0',generated_at:new Date().toISOString(),scope:'local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed',git_commit:revision.status===0?revision.stdout.trim():null,working_tree_dirty:status.status===0?Boolean(status.stdout.trim()):null,submitted_commit:null,urls:{repository,deployed_demo:null,video:null,article:null},public_repository_verified:publicVerified,public_repository_verified_at:publicVerifiedAt,limitations:'docs/limitations.md',files:records};
+let deployedDemo=null, deployedVerifiedAt=null;
+const deployedFlag=process.argv.indexOf('--verify-deployed-demo');
+if(deployedFlag!==-1){
+  const url=new URL(process.argv[deployedFlag+1]);
+  if(url.protocol!=='https:'||!/^main\.[a-z0-9]+\.amplifyapp\.com$/.test(url.hostname)||url.href!==url.origin+'/')throw new Error('Expected the existing Amplify HTTPS site origin.');
+  const [page,configuration]=await Promise.all([fetch(url),fetch(new URL('/config.json',url))]);
+  if(!page.ok||!configuration.ok)throw new Error('The deployed page and public configuration must be available.');
+  const html=await page.text(),config=await configuration.json();
+  if(!html.includes('JalSetu')||!html.includes('type="module"')||config.mode!=='aws_live'||config.region!=='ap-south-1'||config.redirectUri!==url.origin||Date.parse(config.expiresAt)<=Date.now())throw new Error('The live JalSetu frontend, matching Mumbai configuration and active expiry could not be verified.');
+  deployedDemo=url.origin;deployedVerifiedAt=new Date().toISOString();
+}
+const manifest={schema_version:'1.0',generated_at:new Date().toISOString(),scope:deployedDemo?'local and hosted example software evidence; no field outcome or submission claimed':'local example and declared-record software evidence; no field outcome, cloud deployment or submission claimed',git_commit:revision.status===0?revision.stdout.trim():null,working_tree_dirty:status.status===0?Boolean(status.stdout.trim()):null,submitted_commit:null,urls:{repository,deployed_demo:deployedDemo,video:null,article:null},public_repository_verified:publicVerified,public_repository_verified_at:publicVerifiedAt,deployed_demo_verified_at:deployedVerifiedAt,limitations:'docs/limitations.md',files:records};
 await writeFile(resolve(root,'docs/evidence-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-console.log(`Recorded ${records.length} artifact hashes; public repository ${publicVerified?'verified through GitHub':'not verified on this run'}; deployment and submission remain unclaimed.`);
+console.log(`Recorded ${records.length} artifact hashes; public repository ${publicVerified?'verified through GitHub':'not verified on this run'}; hosted frontend ${deployedDemo?'verified over HTTPS':'unclaimed'}; submission unclaimed.`);

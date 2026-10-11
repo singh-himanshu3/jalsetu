@@ -18,11 +18,20 @@ for (const name of ['FilePublishingRole', 'ImagePublishingRole', 'LookupRole', '
   assert.ok(trust.every(s => s.Principal.AWS.Ref === 'AWS::AccountId'));
 }
 const executionStatements = bootstrap.Resources.CloudFormationExecutionRole.Properties.Policies[0].PolicyDocument.Statement;
+const bootstrapVersionRead = executionStatements.find(s => s.Action.includes('ssm:GetParameters'));
+assert.deepEqual(bootstrapVersionRead.Action, ['ssm:GetParameters']);
+assert.equal(bootstrapVersionRead.Resource['Fn::Sub'], 'arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/cdk-bootstrap/${Qualifier}/version');
+const lambdaLoggingAttachment = executionStatements.find(s => s.Condition?.ArnEquals?.['iam:PolicyARN']?.['Fn::Sub']?.endsWith('/AWSLambdaBasicExecutionRole'));
+assert.deepEqual(lambdaLoggingAttachment.Action, ['iam:AttachRolePolicy', 'iam:DetachRolePolicy']);
+assert.deepEqual(lambdaLoggingAttachment.Resource.map(r => r['Fn::Sub']), [
+  'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-ApiServiceRole*',
+  'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-PlannerServiceRole*',
+]);
 for (const statement of executionStatements) {
   const actions = Array.isArray(statement.Action) ? statement.Action : [statement.Action];
   assert.ok(actions.every(a => !/^(organizations|account|billing|bedrock|geo):/.test(a)));
   if (actions.some(a => a.startsWith('iam:'))) {
-    assert.equal(statement.Resource['Fn::Sub'], 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-*');
+    if (statement !== lambdaLoggingAttachment) assert.equal(statement.Resource['Fn::Sub'], 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/JalSetuDemo-*');
     assert.ok(!actions.some(a => /User|AccessKey|LoginProfile|CreatePolicy|PolicyVersion/.test(a)));
   }
   if (actions.includes('iam:PassRole')) {
@@ -58,7 +67,8 @@ const stack = createFoundation(app, { region: 'ap-south-1', expiry: '2099-01-01T
 const template = Template.fromStack(stack);
 template.resourceCountIs('AWS::Lambda::Function', 2);
 template.resourceCountIs('AWS::StepFunctions::StateMachine', 1);
-template.hasResourceProperties('AWS::StepFunctions::StateMachine', { StateMachineType: 'STANDARD' });
+template.hasResourceProperties('AWS::StepFunctions::StateMachine', { StateMachineType: 'STANDARD', StateMachineName: 'JalSetuDemo-PlanningWorkflow' });
+template.hasResourceProperties('AWS::Events::Rule', { Name: 'JalSetuDemo-WorkflowTerminalFailure' });
 template.hasResourceProperties('AWS::Events::Rule', { EventPattern: { source: ['aws.states'], 'detail-type': ['Step Functions Execution Status Change'], detail: { status: ['FAILED', 'TIMED_OUT', 'ABORTED'] } } });
 const machine = Object.values(template.findResources('AWS::StepFunctions::StateMachine'))[0].Properties;
 const definition = JSON.parse(machine.DefinitionString['Fn::Join'][1].map(part => typeof part === 'string' ? part : 'TOKEN').join(''));
@@ -78,6 +88,11 @@ for (const [index, name] of names.entries()) {
 assert.equal(definition.States.DeterministicExplanation.Next, 'CompleteJob');
 assert.equal(definition.States.FailJob.Next, 'PlanningFailed');
 template.resourceCountIs('AWS::Cognito::UserPool', 1);
+const hostingHeaders = JSON.parse(Object.values(template.findResources('AWS::Amplify::App'))[0].Properties.CustomHeaders).customHeaders;
+const pageHeaders = hostingHeaders.find(h => h.pattern === '**/*').headers;
+assert.ok(pageHeaders.some(h => h.key === 'Content-Security-Policy' && h.value.includes("script-src 'self'") && h.value.includes('https://tile.openstreetmap.org')));
+assert.ok(pageHeaders.some(h => h.key === 'Referrer-Policy' && h.value === 'no-referrer'));
+assert.deepEqual(hostingHeaders.find(h => h.pattern === '/config.json').headers, [{ key: 'Cache-Control', value: 'no-store' }]);
 template.hasResourceProperties('AWS::Cognito::UserPool', { AdminCreateUserConfig: { AllowAdminCreateUserOnly: true } });
 template.hasResourceProperties('AWS::Cognito::UserPoolClient', { GenerateSecret: false, AllowedOAuthFlows: ['code'] });
 template.hasResourceProperties('AWS::S3::Bucket', { PublicAccessBlockConfiguration: { BlockPublicAcls: true, BlockPublicPolicy: true, IgnorePublicAcls: true, RestrictPublicBuckets: true } });

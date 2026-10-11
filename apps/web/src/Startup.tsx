@@ -3,6 +3,8 @@ import App from './App';
 import {loadConfig,cloudConfig} from './config';
 import {completeSignIn,idToken,signIn,signOut} from './auth';
 import {api} from './api';
+import Overview from './Overview';
+import { Droplets, ArrowRight } from 'lucide-react';
 
 // One shared promise also prevents duplicate code exchanges under React StrictMode.
 let startup:Promise<boolean>|undefined;
@@ -12,5 +14,19 @@ export default function Startup() {
   useEffect(()=>{let active=true;startup??=initialize();startup.then(value=>{if(active)setReady(value);}).catch(e=>{if(active){setError((e as Error).message);setReady(false);}});return()=>{active=false;};},[]);
   if(ready&&cloudConfig())return <><div className="cloud-session">AWS live · Mumbai · EXAMPLE DATA <button onClick={signOut}>Sign out</button></div><App cloud/></>;
   if(ready)return <App/>;
+  if(ready===false&&cloudConfig()) {
+    const expired=Date.parse(cloudConfig()!.expiresAt)<=Date.now();
+    const enter=()=>{if(!expired)void signIn().catch(e=>setError((e as Error).message));};
+    return <div className="public-home">
+      <a className="skip-link" href="#workspace">Skip to main content</a>
+      <header className="public-header"><a className="brand" href="#workspace"><span className="mark"><Droplets aria-hidden="true"/></span><span>JalSetu<small>WATER RELIEF WORKSPACE</small></span></a><a className="repo-link" href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">View on GitHub ↗</a><button className="secondary" disabled={expired} onClick={enter}>Sign in <ArrowRight size={16}/></button></header>
+      <main id="workspace" tabIndex={-1}>
+        <div className="public-access-note"><strong>{expired?'This example workspace has expired.':'Explore the idea. Sign in to try a complete run.'}</strong><span>{expired?'The introduction remains available; planning and saved records are closed.':'An invited demo account keeps your sample plans and reports separate. No vehicles are dispatched.'}</span></div>
+        {error&&<p role="alert" className="error">{error}</p>}
+        <Overview input={null} busy={expired} hasPlan={false} onLoad={enter} onNavigate={enter}/>
+        <footer><span className="footer-brand">JalSetu</span><span>Example workspace · Delhi pilot</span></footer>
+      </main>
+    </div>;
+  }
   return <main className="signin"><h1>JalSetu · example workspace</h1>{ready===null?<p role="status">Checking deployment and sign-in…</p>:<><p>Sign in to save your own synthetic planning exercises. This hosted version uses labelled examples only.</p>{error&&<p role="alert" className="error">{error}</p>}{cloudConfig()&&<button className="primary" onClick={()=>signIn().catch(e=>setError((e as Error).message))}>Sign in</button>}</>}</main>;
 }

@@ -1,4 +1,6 @@
-# JalSetu · local prototype
+# JalSetu · water relief workspace
+
+**Live example:** [Open JalSetu](https://main.d2d0jtitb5ozce.amplifyapp.com). The public introduction is live; invited accounts can plan and save synthetic exercises. Actual hosted workflow/ownership checks pass. [Release report and update instructions](docs/aws-hosted-release-2026-10-11.md). Planning access closes on **17 October 2026, 22:57:30 IST**; reviewed AWS cleanup remains required. Hosted visual/browser-callback checking is pending.
 
 **Public source:** [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu). The owner authorized public visibility on 10 October 2026; the project license remains unselected. This is source publication, not a hosted deployment or hackathon submission.
 
@@ -10,7 +12,7 @@
 
 **New driver view:** choose a vehicle, load its numbered street map, and open ordered Google Maps directions, including the depot return. Printable instructions include the links. Dashed map lines show stop order, not road geometry; examples remain previews. See [driver-map workflow and checks](docs/driver-map-completion-2026-10-10.md). No AWS deployment or GPS tracking was added.
 
-**Current instruction: keep AWS prepared; do not deploy.** No AWS resources were created. Temporary CLI credentials were logged out/cleared after the read-only review; a future deployment needs fresh checks and explicit authorization.
+**Deployment checkpoint — 11 October:** CDKToolkit and JalSetuDemo are created; Amplify frontend publication succeeded and five hosted acceptance groups passed. The original expiry and $100 credits-only project limit remain unchanged. See [current deployment progress and the code-update process](docs/aws-deployment-progress-2026-10-10.md). This supersedes the earlier pause below.
 
 **AWS access update:** Mumbai now has **400 unreserved Lambda slots**. Temporary local CLI works; the active free plan has **$100 remaining credits**. [The deployment review](docs/aws-deployment-review-2026-10-10.md) contains validated templates, reviewed permissions and refreshed pricing. Resource creation and hosted acceptance are pending; earlier quota-10/CloudShell-only blockers below are historical. No AWS deployment is claimed.
 
@@ -18,13 +20,13 @@ JalSetu turns confirmed water requests, limited stock and vehicle constraints in
 
 **New local workflow:** create an empty operational-record project, enter anonymized records, preview a full receiving-point CSV, and explicitly fetch matching public-road estimates. See the [beginner guide](docs/using-operational-records.md) and [implementation checkpoint](docs/local-records-completion-2026-10-10.md). The prepared hosted release remains example-only.
 
-**This is working local application code, not the completed AWS product.** The normal example uses synthetic resources, locations and travel. A separate [public-road research check](docs/public-road-checkpoint-2026-10-10.md) now uses sourced OSRM/OpenStreetMap estimates with example relief inputs. No NGO inventory, permissions, traffic observations or field impact are claimed.
+**This is an example application with a verified hosted workflow, not a field-tested relief service.** The normal example uses synthetic resources, locations and travel. A separate [public-road research check](docs/public-road-checkpoint-2026-10-10.md) now uses sourced OSRM/OpenStreetMap estimates with example relief inputs. No NGO inventory, permissions, traffic observations or field impact are claimed.
 
 **New local evidence workflow:** **More → Compare original plan** previews the original dispatch CSV, optionally adds reported delivery rows, and downloads a readable comparison using unchanged original stops and the same resources/roads. See [the step-by-step guide](docs/comparing-original-delivery-plans.md). Genuine records and field benefit remain unverified.
 
 **Latest evidence:** 80 retained public-road/reference/sensitivity calculations passed independent checking; 237 Python tests pass. Open **More → About the example → What we checked on public roads** for readable comparisons. `pnpm evaluate:roads` reproduces the experiment from the saved response without network requests; `pnpm render:roads` regenerates the report without solving.
 
-The [remaining-phase checkpoint](docs/remaining-phases-2026-10-10.md) adds validated frontend hosting-package preparation. `pnpm check:hosting` checks the built files and prepared infrastructure locally. Fresh console checks still show Mumbai Lambda quota 10, the increase request Case Opened and CloudShell verification pending; no AWS deployment is claimed.
+The [remaining-phase checkpoint](docs/remaining-phases-2026-10-10.md) adds validated frontend hosting-package preparation. `pnpm check:hosting` checks the built files and prepared infrastructure locally. That checkpoint recorded the earlier quota/CloudShell blockers; the hosted-release report above supersedes those deployment statements.
 
 The [production launcher and local release checkpoint](docs/local-release-readiness-2026-10-10.md) adds one-server startup and a complete isolated restart/failure gate. Open **Start JalSetu.cmd** for the built app, or run `pnpm check:local` for release validation.
 
