@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T08:14:10.056Z",
+  "generated_at": "2026-10-11T08:18:37.082Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "6e8ede2172cfbd14aade0a267b7506cd22df858a",
+  "git_commit": "292c41b0e22b278503e1c9b68fcb1ebb32a60d16",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T08:14:09.716Z",
-  "deployed_demo_verified_at": "2026-10-11T08:14:10.056Z",
+  "public_repository_verified_at": "2026-10-11T08:18:36.750Z",
+  "deployed_demo_verified_at": "2026-10-11T08:18:37.082Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -206,7 +206,7 @@
     },
     {
       "path": "apps/web/src/identity.css",
-      "sha256": "e0451f601386c2a0c6f357b21a6f2dbff62dac4a2c67e1e0165e49eb9cfdcc14"
+      "sha256": "767635864fa02a9cb365ed7fc1ae92b7f5005cbe6304f69b6c0fcb345162353d"
     },
     {
       "path": "apps/web/src/landing.css",
@@ -454,7 +454,7 @@
     },
     {
       "path": "docs/frontend-identity-review-2026-10-11.md",
-      "sha256": "b26f9b423b4974e5768a4b53284d1a532eaa730640f9c3fd99c4d7b556d0eb0d"
+      "sha256": "f5b4be286b57aa439f29796e55418087c0f3bcc37729330caab116f0c64a6683"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",
