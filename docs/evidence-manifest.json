@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T08:06:55.726Z",
+  "generated_at": "2026-10-11T08:14:10.056Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "0e7ce88c5a581b58ef59458cb7fe168139df1c2e",
+  "git_commit": "6e8ede2172cfbd14aade0a267b7506cd22df858a",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T08:06:55.485Z",
-  "deployed_demo_verified_at": "2026-10-11T08:06:55.726Z",
+  "public_repository_verified_at": "2026-10-11T08:14:09.716Z",
+  "deployed_demo_verified_at": "2026-10-11T08:14:10.056Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -78,7 +78,7 @@
     },
     {
       "path": "apps/web/src/LandingServices.tsx",
-      "sha256": "e2b736456ef4ffef9e1c3e3632c09d848252284f8ff66d1d2a1940ef30439111"
+      "sha256": "3c9e9c069d177bd25ffd1dc0bd4d06dccacfd7de60731b3b1088783061c5f346"
     },
     {
       "path": "apps/web/src/Marginal.tsx",
@@ -206,7 +206,7 @@
     },
     {
       "path": "apps/web/src/identity.css",
-      "sha256": "889f13f3dfdbfe787b1a18753c8901b068d63f2b1bd025ee9dd591caab5988f6"
+      "sha256": "e0451f601386c2a0c6f357b21a6f2dbff62dac4a2c67e1e0165e49eb9cfdcc14"
     },
     {
       "path": "apps/web/src/landing.css",
@@ -454,7 +454,7 @@
     },
     {
       "path": "docs/frontend-identity-review-2026-10-11.md",
-      "sha256": "5c71358ef0ec6025135b1f69c82ecd34f6b05c2aecef5d3c042967108537499a"
+      "sha256": "b26f9b423b4974e5768a4b53284d1a532eaa730640f9c3fd99c4d7b556d0eb0d"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",

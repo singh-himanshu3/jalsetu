@@ -4,7 +4,8 @@ body,:root .public-home{background:#edf5fa}
 .primary{background:#1760dd;border-color:#1760dd;box-shadow:0 5px 16px #1757ab24}
 .primary:hover{background:#0b51c8;border-color:#0b51c8;box-shadow:0 8px 22px #1757ab35}
 .primary:active,.primary:disabled{box-shadow:none}
-.public-header{background:#edf5faf2;border-color:#d0e2ee;padding-top:19px;padding-bottom:19px}
+.public-header{background:#edf5faf2;border-color:#ffffffa6;padding-top:19px;padding-bottom:19px;box-shadow:0 4px 24px #285e8510}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.public-header{background:#edf5fa70;backdrop-filter:blur(20px) saturate(145%);-webkit-backdrop-filter:blur(20px) saturate(145%)}}
 .public-header .brand{color:#173b57}.public-header .brand small{color:#547186}
 .public-header .brand .mark{background:#dbedf8;border-color:#bbd8ea;color:#1675b5}
 .public-header nav a,.public-header .repo-link{color:#40637e}
@@ -60,6 +61,14 @@ body,:root .public-home{background:#edf5fa}
 .service-planning .service-card-label{color:#266ba3}.service-planning .service-card-label svg{background:#c5e2f4}
 .service-card h3{line-height:1.3}.service-planning h3{color:#244e70;font-size:28px}.service-planning p{color:#496a85}
 .service-planning .service-foot{color:#496a85}.service-foot{align-items:flex-start;line-height:1.8}.service-foot svg{flex-shrink:0;margin-top:2px}
+/* Sequential pulses cross the two centered connectors in one repeating cycle. */
+.delivery-visual{justify-items:center;max-width:240px;width:100%;margin:32px auto 0}
+.delivery-visual>span{justify-content:center;font-size:13px;gap:9px;padding:12px 10px;min-height:46px}
+.delivery-line{position:relative;justify-self:center;margin-left:0;height:28px;width:2px;background:#86c3ec;box-shadow:0 0 7px #2d92d04d}
+.delivery-line::after{content:'';position:absolute;left:50%;top:0;width:7px;height:7px;border-radius:50%;background:#197ac0;box-shadow:0 0 7px #197ac0a6,0 0 13px #197ac04d;opacity:0;animation:delivery-flow-dot 4s linear infinite}
+.delivery-line:nth-of-type(2)::after{animation-delay:2s}
+@keyframes delivery-flow-dot{0%{opacity:0;transform:translate(-50%,-4px)}6%{opacity:1;transform:translate(-50%,0)}42%{opacity:1;transform:translate(-50%,24px)}48%,100%{opacity:0;transform:translate(-50%,28px)}}
+@media(prefers-reduced-motion:reduce){.delivery-line::after{animation:none}}
 .service-compare{background:#e8f0ff;border-color:#cfdbef}.service-replan{background:#dff3f8;border-color:#c7e3ed}
 .allocation-visual{border-color:#bbd6ec;border-radius:10px;background:#ffffff80}.allocation-visual>span{color:#266ba3}.allocation-visual strong{color:#244e70;font-weight:500}.allocation-row>span,.allocation-visual small,.allocation-visual>div:not(.allocation-row){color:#496a85}.allocation-row>div{background:#c3dbed}.allocation-row i{background:linear-gradient(90deg,#2586e7,#51deee)}
 .workflow-heading h2{font:600 36px/1.2 'DM Sans',sans-serif;letter-spacing:-1.2px}.workflow-heading p{font-size:12px}
