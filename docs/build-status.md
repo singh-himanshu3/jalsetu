@@ -1,6 +1,6 @@
 # Water-blue frontend checkpoint — 11 October 2026
 
-The new blue public landing page, service showcase and smooth accessible FAQ are implemented locally. Typecheck/build, guided-example, hosted-package and five release/restart groups pass. New visual browser acceptance and Amplify publication are pending; the existing live URL still serves the prior release. See [frontend checkpoint](frontend-blue-completion-2026-10-11.md). Authentication changes remain deferred.
+The new blue public landing page, service showcase and smooth accessible FAQ are implemented locally. Typecheck/build, guided-example, hosted-package and five release/restart groups pass. Desktop and 390-pixel phone landing/FAQ checks pass locally. Amplify publication is pending; the existing live URL still serves the prior release. See [frontend checkpoint](frontend-blue-completion-2026-10-11.md). Authentication changes remain deferred.
 
 # Hosted release checkpoint — 11 October 2026
 

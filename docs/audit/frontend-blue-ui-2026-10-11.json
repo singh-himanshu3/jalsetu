@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-11",
+  "scope": "isolated local UI preview of the shared public landing component; not live release acceptance",
+  "tool": "Windows Computer Use through Chrome",
+  "checks": [
+    "Desktop blue hero and service navigation",
+    "Service cards; dark-panel heading contrast corrected and rechecked",
+    "FAQ click opens the connected answer region",
+    "Space key closes the focused FAQ; closed answer removed from accessibility tree",
+    "390px responsive hero and service cards",
+    "390px expanded FAQ fits within screen",
+    "390px final action heading contrast and button fit"
+  ],
+  "limitations": [
+    "No worldwide signup or authentication-provider change",
+    "No fresh AWS publication",
+    "Reduced-motion preference implemented; not separately toggled in browser",
+    "No road-tile or live authenticated-workspace browser acceptance in this UI check"
+  ]
+}

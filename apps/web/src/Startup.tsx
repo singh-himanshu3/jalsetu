@@ -17,16 +17,21 @@ export default function Startup() {
   if(ready===false&&cloudConfig()) {
     const expired=Date.parse(cloudConfig()!.expiresAt)<=Date.now();
     const enter=()=>{if(!expired)void signIn().catch(e=>setError((e as Error).message));};
-    return <div className="public-home">
+    return <PublicLanding expired={expired} error={error} onEnter={enter}/>;
+  }
+  return <main className="signin"><h1>JalSetu · example workspace</h1>{ready===null?<p role="status">Checking deployment and sign-in…</p>:<><p>Sign in to save your own synthetic planning exercises. This hosted version uses labelled examples only.</p>{error&&<p role="alert" className="error">{error}</p>}{cloudConfig()&&<button className="primary" onClick={()=>signIn().catch(e=>setError((e as Error).message))}>Sign in</button>}</>}</main>;
+}
+
+// The introduction is also rendered by the isolated UI-review harness.
+export function PublicLanding({expired,error,onEnter}:{expired:boolean;error:string;onEnter:()=>void}) {
+  return <div className="public-home">
       <a className="skip-link" href="#workspace">Skip to main content</a>
-      <header className="public-header"><a className="brand" href="#workspace"><span className="mark"><Droplets aria-hidden="true"/></span><span>JalSetu<small>WATER RELIEF WORKSPACE</small></span></a><nav aria-label="About JalSetu"><a href="#services">What we do</a><a href="#how-it-works">How it works</a><a href="#questions">Questions</a></nav><a className="repo-link" href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">View on GitHub ↗</a><button className="secondary" disabled={expired} onClick={enter}>Sign in <ArrowRight size={16}/></button></header>
+      <header className="public-header"><a className="brand" href="#workspace"><span className="mark"><Droplets aria-hidden="true"/></span><span>JalSetu<small>WATER RELIEF WORKSPACE</small></span></a><nav aria-label="About JalSetu"><a href="#services">What we do</a><a href="#how-it-works">How it works</a><a href="#questions">Questions</a></nav><a className="repo-link" href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">View on GitHub ↗</a><button className="secondary" disabled={expired} onClick={onEnter}>Sign in <ArrowRight size={16}/></button></header>
       <main id="workspace" tabIndex={-1}>
         {expired&&<div className="public-access-note"><strong>This example workspace has expired.</strong><span>The introduction remains available; planning and saved records are closed.</span></div>}
         {error&&<p role="alert" className="error">{error}</p>}
-        <Overview publicView input={null} busy={expired} hasPlan={false} onLoad={enter} onNavigate={enter}/>
+        <Overview publicView input={null} busy={expired} hasPlan={false} onLoad={onEnter} onNavigate={onEnter}/>
         <footer><span className="footer-brand">JalSetu</span><span>Water relief planning · Labelled Delhi example</span><a href="https://github.com/singh-himanshu3/jalsetu" target="_blank" rel="noreferrer">Explore the source ↗</a></footer>
       </main>
     </div>;
-  }
-  return <main className="signin"><h1>JalSetu · example workspace</h1>{ready===null?<p role="status">Checking deployment and sign-in…</p>:<><p>Sign in to save your own synthetic planning exercises. This hosted version uses labelled examples only.</p>{error&&<p role="alert" className="error">{error}</p>}{cloudConfig()&&<button className="primary" onClick={()=>signIn().catch(e=>setError((e as Error).message))}>Sign in</button>}</>}</main>;
 }

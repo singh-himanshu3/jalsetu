@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-11T07:19:25.496Z",
+  "generated_at": "2026-10-11T07:25:35.280Z",
   "scope": "local and hosted example software evidence; no field outcome or submission claimed",
-  "git_commit": "48a4d4b7b78d74054ae612c5fdcd49788b2e836d",
+  "git_commit": "a5ecb573e30e5438e220408a8b027c448b6b0484",
   "working_tree_dirty": true,
   "submitted_commit": null,
   "urls": {
@@ -12,8 +12,8 @@
     "article": null
   },
   "public_repository_verified": true,
-  "public_repository_verified_at": "2026-10-11T07:19:25.251Z",
-  "deployed_demo_verified_at": "2026-10-11T07:19:25.496Z",
+  "public_repository_verified_at": "2026-10-11T07:25:34.903Z",
+  "deployed_demo_verified_at": "2026-10-11T07:25:35.280Z",
   "limitations": "docs/limitations.md",
   "files": [
     {
@@ -142,7 +142,7 @@
     },
     {
       "path": "apps/web/src/Startup.tsx",
-      "sha256": "7d6fb5da8b95cc0a6612af3672988bb9ce292b7d59522dd68773a3050038417c"
+      "sha256": "deaf3c1425fc0856ce5ad972ee5fb8969c0e58419d4ebeb00aaad057497d2044"
     },
     {
       "path": "apps/web/src/WorkspaceNav.tsx",
@@ -202,7 +202,7 @@
     },
     {
       "path": "apps/web/src/landing.css",
-      "sha256": "c89bd1e5fc500350240ecd0c1a6d7d8dd4715a5f30115dec66104bc94c5ccd02"
+      "sha256": "974de49fdf50b2a27be61e46d4e5b033d7b887e1c29adf2ddeb53afc37cbbf05"
     },
     {
       "path": "apps/web/src/main.tsx",
@@ -317,6 +317,10 @@
       "sha256": "032a33566aaa20727a96091ccf970c9b13783212791aba8b853905e4e8c83aae"
     },
     {
+      "path": "docs/audit/frontend-blue-ui-2026-10-11.json",
+      "sha256": "f15408e5bc736615b9e5e5c9726c4a98c58f36b130e58cdf048902a8308599b4"
+    },
+    {
       "path": "docs/audit/hosted-acceptance-2026-10-11.json",
       "sha256": "e8e7a5ea577a44b3188212f516ae197bf91d09d72f2875ea9292bccb2a98fb3d"
     },
@@ -386,7 +390,7 @@
     },
     {
       "path": "docs/build-status.md",
-      "sha256": "eaf4e9cbb603d2f23379dedd71d639819b7b2384b4e1ebf2a4bbcd3c30c26efc"
+      "sha256": "d952644b4cd0359b5101a38ca6536ccb486f6942938d5f5891136435e4d9f205"
     },
     {
       "path": "docs/builder-article-draft.md",
@@ -438,7 +442,7 @@
     },
     {
       "path": "docs/frontend-blue-completion-2026-10-11.md",
-      "sha256": "0de751d9f5a6574a3820924a9629184010e47d1a7e530f140c947ac0438aa093"
+      "sha256": "a9dd12c5d3fec1388eb43734e77a0af146d8f13bf515f936592c77ce7a849e43"
     },
     {
       "path": "docs/frontend-motion-completion-2026-10-10.md",
