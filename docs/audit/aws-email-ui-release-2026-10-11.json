@@ -1,0 +1,32 @@
+{
+  "tests": {
+    "python": 240,
+    "infra_and_bundle": "passed",
+    "frontend_auth_dom": "passed",
+    "lint": "passed",
+    "linux_runtime": "passed"
+  },
+  "auth_provider": "Email",
+  "frontend_asset": "/assets/index-CW6_UuPK.js",
+  "stack_status": "UPDATE_COMPLETE",
+  "google_identity_providers": 0,
+  "account_plan": "FREE",
+  "amplify_job": {
+    "id": "2",
+    "status": "SUCCEED"
+  },
+  "project_credit_ceiling_usd": 100,
+  "account_plan_status": "ACTIVE",
+  "frontend_url": "https://main.d2d0jtitb5ozce.amplifyapp.com",
+  "verified_at": "2026-10-11T13:33:59.1826494Z",
+  "unchanged_resources": {
+    "SnapshotBucket": true,
+    "StateTable": true,
+    "UserPoolId": true,
+    "FrontendUrl": true
+  },
+  "anonymous_api_status": 401,
+  "expires_at": "2026-10-17T17:27:30Z",
+  "manual_email_delivery": "pending",
+  "credits_check": "Checked privately against the approved project ceiling; account balance withheld from public evidence"
+}

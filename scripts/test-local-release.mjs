@@ -82,6 +82,9 @@ try {
     assert.ok((await asset.arrayBuffer()).byteLength > 0);
   }
   const head = await fetch(base + '/', {method:'HEAD'});
+  for(const route of ['/local-workspace','/auth/callback','/workspace','/workspace/deliveries']){
+    const page=await fetch(base+route);assert.equal(page.status,200);assert.equal(await page.text(),index,'A permitted SPA route serves only the same built entry');
+  }
   assert.equal(head.status, 200); assert.equal(await head.text(), '');
   assert.ok(Number(head.headers.get('content-length')) > 0);
   for (const path of ['/README.md','/.env','/local-state/operations.json','/scripts/local-api.mjs',
@@ -138,6 +141,7 @@ try {
   const revision = await write(operationPath + '/replan', {replan_at:at}, operation.version);
   assert.equal(revision.status, 202);
   operation = (await waitJob(revision.value.job_id)).operation;
+  assert.ok(operation.revision_draft);const draftSnapshot=structuredClone(operation);await stop();await start();assert.deepEqual((await read(operationPath)).operation,draftSnapshot,'Unapproved draft, reports and ledger survive process restart');checks.push('Pending draft restores durably through the operation API before a separate approval');
   const revisionApproval = await write(operationPath + '/approve-revision', {actor:'Release recovery revision'}, operation.version);
   assert.equal(revisionApproval.status, 200); operation = revisionApproval.value.operation;
   assert.equal(operation.ledger.depot_litres, 12000 - route.planned_load_litres + 300);

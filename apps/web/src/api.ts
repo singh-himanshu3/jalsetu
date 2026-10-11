@@ -1,11 +1,12 @@
 import { cloudConfig } from './config';
-import { idToken } from './auth';
+import { getIdentityToken,sessionExpired } from './auth';
 
 export async function api<T>(url: string, options?: RequestInit): Promise<T> {
-  const config=cloudConfig(),token=config?idToken():null;
-  if(config&&!token)throw new Error('Your session expired. Sign out and sign in again; saved projects remain available.');
+  const config=cloudConfig(),token=config?await getIdentityToken():null;
+  if(config&&!token){sessionExpired();throw new Error('Your session expired. Sign in again; saved records remain available.');}
   const headers=new Headers(options?.headers);if(token)headers.set('Authorization',token);
   const res = await fetch((config?.apiBaseUrl??'')+url, {...options,headers});
+  if(config&&res.status===401){sessionExpired();throw new Error('Your session expired. Sign in again.');}
   let value;
   try { value = await res.json(); }
   catch { throw new Error('The service could not complete this request. Please try again.'); }

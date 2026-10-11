@@ -13,6 +13,8 @@ export async function localWeb(directory) {
   catch { throw new Error('The built app is missing. Run pnpm build, then start JalSetu again.'); }
   files.set('/', {body:index, type:'text/html; charset=utf-8'});
   files.set('/index.html', files.get('/'));
+  // Explicit SPA pages only: this is not an unrestricted source-file fallback.
+  for(const route of ['/auth/callback','/local-workspace','/workspace','/workspace/inputs','/workspace/plan','/workspace/deliveries','/workspace/compare','/workspace/history','/workspace/evidence','/dashboard'])files.set(route,files.get('/'));
   async function assets(path, prefix) {
     for (const item of await readdir(path, {withFileTypes:true})) {
       const full = resolve(path, item.name), url = `${prefix}/${item.name}`;

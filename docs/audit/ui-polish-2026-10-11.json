@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-11",
+  "scope": "local source changes; isolated synthetic records; no deployment",
+  "checks": {
+    "pnpm check:local": "passed, exit 0",
+    "python_tests": {
+      "passed": 240,
+      "warnings": 3,
+      "warning_type": "existing SWIG deprecations"
+    },
+    "local_release_acceptance_groups": 6,
+    "pnpm check:hosting": "passed, exit 0; CDK synthesis and public bundle checks only; no AWS calls",
+    "whitespace_check": "git -c core.whitespace=cr-at-eol diff --check passed; existing Windows CRLF source retained"
+  },
+  "browser": {
+    "source": "local isolated preview",
+    "workflow": [
+      "setup",
+      "generate",
+      "compare",
+      "approve",
+      "loading",
+      "cumulative delivery",
+      "breakdown",
+      "physical recovery",
+      "replan",
+      "refresh restores approved revision/reports/ledger/pending draft",
+      "interactive tiles loaded"
+    ],
+    "responsive_css_widths": [
+      374,
+      376,
+      769,
+      1440
+    ],
+    "notes": "Requested 375/768/1440 targets; browser zoom required viewport scaling. One-column mobile, two-column tablet and four-column desktop revision metrics, no page overflow; horizontal table scrolling; drawer Escape returns focus; measured setup action clearance actual bar height plus 16px. Error/loading cases also verified through DOM tests."
+  },
+  "landing_result": "current planner reproduced 12000 L planned, 4100 L unmet, 8 of 8 minimum; demand-proportional comparison +900 L, +0.9 km",
+  "unverified": [
+    "Cognito managed-page branding: requires cloud configuration/approval",
+    "live hosted changes: not deployed or verified",
+    "comprehensive accessibility/assistive-technology audit",
+    "real-world delivery outcomes"
+  ],
+  "limitations_document": "docs/ui-polish-2026-10-11.md"
+}

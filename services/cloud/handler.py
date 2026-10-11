@@ -41,6 +41,18 @@ def digest(value):
 
 def identity(event):
     claims = event.get("requestContext", {}).get("authorizer", {}).get("claims", {})
+    google_only = os.environ.get("GOOGLE_ONLY") == "true"
+    auth_methods = os.environ.get("AUTH_METHODS")
+    if google_only or auth_methods in ("google_email", "email"):
+        try:
+            providers = json.loads(claims.get("identities", "[]"))
+            google = isinstance(providers, list) and bool(providers) and all(isinstance(p, dict) and p.get("providerName") == "Google" for p in providers)
+            native = "identities" not in claims or providers == []
+        except (TypeError, ValueError):
+            google = False
+            native = False
+        if not (google and auth_methods != "email" or not google_only and native) or not claims.get("email") or claims.get("token_use") != "id" or claims.get("aud") != os.environ.get("AUTH_CLIENT_ID") or claims.get("email_verified") not in (True, "true"):
+            raise ApiError(401, "UNAUTHENTICATED", "Sign in with a verified account to open the workspace")
     sub = claims.get("sub")
     try:
         UUID(sub)

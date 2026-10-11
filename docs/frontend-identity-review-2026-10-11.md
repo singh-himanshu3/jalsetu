@@ -32,3 +32,24 @@ The owner requested only a glass navbar and a continuously looping delivery-step
 ## Connector bounds and consistent service text
 
 The owner requested only two further corrections: prevent the dot from appearing on a delivery box, and match text across the other service cards without redesigning their boxes. The dot now travels from 3 to 18 pixels within each 28-pixel connector; vertical clipping confines its glow to that gap, and it fades before the next box. Service headings share a size at each breakpoint, labels/body text use 13 pixels with consistent line spacing, and supporting notes use 11 pixels. Existing box widths, borders, colors, padding and layout are retained; text naturally takes the space it needs. Build/typechecking, hosted-package checks and diff checks pass. Desktop browser inspection confirms matching service text and dot positions confined to the connector gaps. This remains a local preview revision.
+
+
+## Landing usability review and no invented totals
+
+The owner authorized the supplied frontend review, then explicitly instructed: **do not add example numbers**. The landing illustration contains no invented litres, demand percentages, delivery totals or performance claims. Step numbers and stop-selection identifiers remain navigation aids; actual workspace quantities continue to come from the current input and computed plan.
+
+- Mobile headings use 40–44 pixels at narrow phone widths, body copy uses 16 pixels, and small supporting labels use at least 12 pixels. Map labels scale to readable sizes; point buttons and workflow controls are at least 44 pixels.
+- The glass header uses a single row with the logo, sign-in action and accessible menu at phone/tablet widths. Section selection closes the menu; Escape closes it and returns focus to its button.
+- Plan, Review and Report update the active tab, selected-point explanation, prominent status and route presentation. Reporting uses checked markers and a dashed remaining path. Transitions last 250 milliseconds; the existing finite route drawing and Replay action remain. Stable detail/result regions and a persistent legend avoid content jumping between stages.
+- One compact illustration disclosure replaces repeated nearby warnings. The schematic remains visibly distinct from calculated road routes and real records.
+- Breakdown recovery now follows the main preview. The capabilities/process sections are combined into one input → plan → approve → report → replan flow. Its actions enter the existing guide/workspace; they do not calculate, approve or record an operation automatically.
+- White service/evidence panels separate the light-blue page and stronger recovery panel. Four service cards share typography, border, radius, padding and icon foundations, with responsive columns and tighter section spacing. Decorative allocation bars and fabricated quantities are absent.
+- Existing FAQ transitions, keyboard controls, visible focus, hover/active feedback and reduced-motion handling are preserved. There are no new decorative bitmap assets to lazy-load; the existing actual driver map remains loaded separately.
+
+Verification: production typecheck/build, hosted-package checks, guided-example checks and five real localhost release/restart acceptance groups pass. Browser inspection covers 320, 375, 768, 1024 and 1440 CSS-pixel widths, including mobile menu selection/Escape focus return, receiving-point selection, preview stage changes, FAQ opening and keyboard Space closure, and desktop cards/footer. The narrowest preview detail and result text fit their reserved regions. Core text/button colour pairs were checked mathematically: primary text 10.58:1, muted body text 5.10:1, pale-banner text 5.94:1 and white-on-blue actions 5.48:1. These are targeted checks, not a complete accessibility audit or external customer study. Reduced-motion paths were inspected in code.
+
+Review URL: http://127.0.0.1:50019/ . This harness renders the actual public landing component; its sign-in action demonstrates the interface only. The live Amplify URL still serves the earlier published release. Google/email authentication and republishing remain subsequent work after owner review. No AWS resources or calls were added.
+
+## Google-auth handoff
+
+The final targeted UI changes, public/protected routing and compact onboarding are recorded in `google-auth-frontend-completion-2026-10-11.md`. The preview now uses qualitative states and the shortened disclosure, with a real disruption scroll/highlight action. All five requested widths and anonymous/missing-configuration behavior were checked. The screenshot in `docs/screenshots/google-ui-desktop-2026-10-11.png` is the local review, not a hosted Google release.

@@ -46,4 +46,6 @@ Driver-view base-map tiles are served by OpenStreetMap, with visible attribution
 
 ## Frontend animation, icons and typography
 
+Frontend DOM tests use jsdom 26.1.0 (MIT), a development dependency that is not bundled in the website. Its license is retained under `docs/licenses/jsdom-MIT.txt`.
+
 Motion for React (MIT), Lucide React (ISC), and locally bundled DM Sans / DM Serif Display fonts (SIL Open Font License 1.1) are used. Upstream license text is retained under `docs/licenses/`. These dependencies do not choose the project's license. Font files are bundled with the frontend; no runtime Google Fonts request is required. The introductory map is an original SVG illustration, explicitly labelled schematic. No reference-site assets or branding were copied.

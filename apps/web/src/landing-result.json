@@ -1,0 +1,12 @@
+{
+  "fixture": "data/evaluation/finish_by_close_parallel/north_delhi_example.json",
+  "inputSnapshotSha256": "2e2b0d10ac8bfea3e7b88b561b0d60eb5f69aee0bd5b5ec4ffb5f6730ff5755f",
+  "serviceWindowPolicy": "finish_by_close",
+  "loadingMode": "parallel",
+  "planned": 12000,
+  "unmet": 4100,
+  "minimum": 8,
+  "confirmed": 8,
+  "additional": 900,
+  "extraTravelKm": 0.9
+}

@@ -1,12 +1,16 @@
 # JalSetu · water relief workspace
 
-**Live example:** [Open JalSetu](https://main.d2d0jtitb5ozce.amplifyapp.com). The public introduction is live; invited accounts can plan and save synthetic exercises. Actual hosted workflow/ownership checks pass. [Release report and update instructions](docs/aws-hosted-release-2026-10-11.md). Planning access closes on **17 October 2026, 22:57:30 IST**; reviewed AWS cleanup remains required. Hosted visual/browser-callback checking is pending.
+**Live example:** [Open JalSetu](https://main.d2d0jtitb5ozce.amplifyapp.com). The public introduction and email/password account access are live; verified accounts can plan and save synthetic exercises. Actual hosted workflow/ownership checks pass. [Release report and update instructions](docs/aws-hosted-release-2026-10-11.md). Planning access closes on **17 October 2026, 22:57:30 IST**; reviewed AWS cleanup remains required. The latest email-only pages are browser-checked; real self-registration and inbox acceptance remain pending.
 
 **Public source:** [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu). The owner authorized public visibility on 10 October 2026; the project license remains unselected. This is source publication, not a hosted deployment or hackathon submission.
 
-**Latest frontend:** [Visual and motion redesign](docs/frontend-motion-completion-2026-10-10.md). The home page now introduces the workflow with original animated route artwork, selectable preview stages, readable next steps, locally bundled fonts and Lucide icons. Motion respects reduced-motion preferences. The existing planning, approval, map and reporting workflows are retained.
+**Latest frontend and account access (live):** The blue UI and email/password signup/sign-in are published. Google authentication was removed from scope. [Current release, verification and update guide](docs/aws-email-ui-release-2026-10-11.md). Real sign-in and authenticated reload now pass after [the callback correction](docs/signin-callback-fix-2026-10-11.md). Inbox confirmation/password-reset acceptance remains to be checked.
 
-![JalSetu desktop introduction](docs/screenshots/frontend-motion-desktop-2026-10-10.jpg)
+**Offline practice:** `pnpm dev` opens the explicitly labelled loopback developer workspace at `http://127.0.0.1:5173/local-workspace`. The Windows launcher uses `/local-workspace` on port 8787. This local mode does not authenticate Google users or unlock protected hosted routes.
+
+Historical desktop snapshot from the earlier frontend release:
+
+![Earlier JalSetu desktop introduction](docs/screenshots/frontend-motion-desktop-2026-10-10.jpg)
 
 **New frontend workspace:** a clearer guided start, desktop/phone navigation, linked map and stop details, mobile request cards, explicit comparison trade-offs and review-before-save reports. See [the frontend handoff and actual browser checks](docs/frontend-workspace-completion-2026-10-10.md). The existing deterministic workflow is preserved; no AWS deployment was added.
 
@@ -170,3 +174,5 @@ The repository is public at [singh-himanshu3/jalsetu](https://github.com/singh-h
 ## Next-phase evidence
 
 [Current checkpoint](docs/local-release-readiness-2026-10-10.md), [architecture](docs/architecture.md), [source ledger](docs/source-ledger.md), [limitations](docs/limitations.md), [demo script](docs/demo-script.md) and [freeze/contingency checklist](docs/freeze-and-contingency.md) document what is working and which gates remain. `pnpm evaluate` regenerates both raw results and the complete Markdown table. `pnpm evidence:manifest` hashes source/fixtures/evidence and keeps absent deployment/video/submission URLs explicit. Submission and Builder Center files are drafts. Public source publication is verified; no external coordinator, live cloud execution or submitted release tag is claimed.
+
+Latest source verification: [UI and workflow polish](docs/ui-polish-2026-10-11.md). Run `pnpm check:local` and `pnpm check:hosting` to verify locally; neither deploys AWS resources.

@@ -12,4 +12,5 @@ import './workspace.css';
 import './experience.css';
 import './landing.css';
 import './identity.css';
+import './polish.css';
 createRoot(document.getElementById('root')!).render(<React.StrictMode><LazyMotion features={domAnimation} strict><MotionConfig reducedMotion="user"><Startup /></MotionConfig></LazyMotion></React.StrictMode>);

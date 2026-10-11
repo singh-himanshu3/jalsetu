@@ -88,13 +88,21 @@ for (const [index, name] of names.entries()) {
 assert.equal(definition.States.DeterministicExplanation.Next, 'CompleteJob');
 assert.equal(definition.States.FailJob.Next, 'PlanningFailed');
 template.resourceCountIs('AWS::Cognito::UserPool', 1);
+const clientLogicalId=Object.keys(template.findResources('AWS::Cognito::UserPoolClient'))[0];
+template.hasResourceProperties('AWS::ApiGateway::Authorizer',{IdentityValidationExpression:{'Fn::Join':['',['^',{Ref:clientLogicalId},'$']]}});
+template.resourceCountIs('AWS::Cognito::UserPoolIdentityProvider',0);
+assert.ok(!JSON.stringify(template.toJSON()).includes('resolve:secretsmanager:'));
+assert.throws(()=>createFoundation(new App(),{expiry:'2099-01-01T00:00:00Z',authProvider:'GoogleAndEmail'}),/email and password authentication only/);
 const hostingHeaders = JSON.parse(Object.values(template.findResources('AWS::Amplify::App'))[0].Properties.CustomHeaders).customHeaders;
 const pageHeaders = hostingHeaders.find(h => h.pattern === '**/*').headers;
 assert.ok(pageHeaders.some(h => h.key === 'Content-Security-Policy' && h.value.includes("script-src 'self'") && h.value.includes('https://tile.openstreetmap.org')));
 assert.ok(pageHeaders.some(h => h.key === 'Referrer-Policy' && h.value === 'no-referrer'));
 assert.deepEqual(hostingHeaders.find(h => h.pattern === '/config.json').headers, [{ key: 'Cache-Control', value: 'no-store' }]);
-template.hasResourceProperties('AWS::Cognito::UserPool', { AdminCreateUserConfig: { AllowAdminCreateUserOnly: true } });
-template.hasResourceProperties('AWS::Cognito::UserPoolClient', { GenerateSecret: false, AllowedOAuthFlows: ['code'] });
+template.hasResourceProperties('AWS::Cognito::UserPool', { AdminCreateUserConfig: { AllowAdminCreateUserOnly: false },AutoVerifiedAttributes:['email'],AccountRecoverySetting:{RecoveryMechanisms:[{Name:'verified_email',Priority:1}]},UserAttributeUpdateSettings:{AttributesRequireVerificationBeforeUpdate:['email']} });
+const poolProperties=Object.values(template.findResources('AWS::Cognito::UserPool'))[0].Properties;
+assert.equal(poolProperties.AliasAttributes,undefined,'Keep existing username pool identity settings; do not introduce immutable email aliases.');
+assert.equal(poolProperties.UsernameAttributes,undefined);
+template.hasResourceProperties('AWS::Cognito::UserPoolClient', { GenerateSecret: false, AllowedOAuthFlows: ['code'],SupportedIdentityProviders:['COGNITO'],ExplicitAuthFlows:['ALLOW_REFRESH_TOKEN_AUTH'],EnableTokenRevocation:true,AllowedOAuthScopes:['openid','email','profile'] });
 template.hasResourceProperties('AWS::S3::Bucket', { PublicAccessBlockConfiguration: { BlockPublicAcls: true, BlockPublicPolicy: true, IgnorePublicAcls: true, RestrictPublicBuckets: true } });
 template.hasResourceProperties('AWS::DynamoDB::Table', { BillingMode: 'PAY_PER_REQUEST', TimeToLiveSpecification: { AttributeName: 'expires_at', Enabled: true } });
 for (const resource of Object.values(template.findResources('AWS::ApiGateway::Method'))) {
@@ -105,4 +113,12 @@ for (const resource of Object.values(template.findResources('AWS::Lambda::Functi
   assert.equal(resource.Properties.Environment.Variables.DAILY_JOB_LIMIT, '100');
 }
 app.synth();
+const emailApp=new App({outdir:resolve(import.meta.dirname,'../../../work/infra-email-synth')});
+const emailTemplate=Template.fromStack(createFoundation(emailApp,{region:'ap-south-1',expiry:'2099-01-01T00:00:00Z',authProvider:'Email'}));
+emailTemplate.resourceCountIs('AWS::Cognito::UserPoolIdentityProvider',0);
+emailTemplate.hasResourceProperties('AWS::Cognito::UserPoolClient',{SupportedIdentityProviders:['COGNITO'],AllowedOAuthFlows:['code']});
+assert.ok(!JSON.stringify(emailTemplate.toJSON()).includes('resolve:secretsmanager:'));
+assert.deepEqual(Object.keys(emailTemplate.findResources('AWS::Cognito::UserPool')),Object.keys(template.findResources('AWS::Cognito::UserPool')),'Email-first release preserves existing pool logical identity');
+assert.deepEqual(Object.keys(emailTemplate.findResources('AWS::Cognito::UserPoolClient')),Object.keys(template.findResources('AWS::Cognito::UserPoolClient')));
+emailApp.synth();
 console.log('CDK synth and foundation assertions passed locally. No AWS resources were deployed.');

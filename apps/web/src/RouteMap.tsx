@@ -10,7 +10,8 @@ const External = ({href,children}: {href:string;children:React.ReactNode}) => <a
 export default function RouteMap({input,routes,approved=false,states={},closed=[],reported={}}:{input:DriverInput;routes:DriverRoute[];approved?:boolean;states?:Record<string,DriverState>;closed?:string[];reported?:Record<string,number>}) {
   const [vehicle,setVehicle]=useState(routes[0]?.vehicle_id??'');
   const [enabled,setEnabled]=useState(false);
-  const [mapError,setMapError]=useState(false);
+  const [mapState,setMapState]=useState<'unloaded'|'loading'|'loaded'|'failed'>('unloaded');
+  const [attempt,setAttempt]=useState(0);
   const [selectedOrder,setSelectedOrder]=useState(1);
   const [mobileView,setMobileView]=useState('map');
   const container=useRef<HTMLDivElement>(null);
@@ -37,17 +38,17 @@ export default function RouteMap({input,routes,approved=false,states={},closed=[
     if(!mapVisible||!container.current)return;
     let alive=true;
     const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const instance=L.map(container.current,{scrollWheelZoom:false,zoomAnimation:!reduced,fadeAnimation:!reduced,markerZoomAnimation:!reduced}).setView([28.7,77.2],12);
-    map.current=instance;setMapError(false);
+    let instance:L.Map;try{instance=L.map(container.current,{scrollWheelZoom:false,zoomAnimation:!reduced,fadeAnimation:!reduced,markerZoomAnimation:!reduced}).setView([28.7,77.2],12);}catch{setMapState('failed');return;}
+    map.current=instance;setMapState('loading');let failed=false;const timeout=setTimeout(()=>{if(alive)setMapState('failed');},15000);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:19,crossOrigin:true,referrerPolicy:'strict-origin-when-cross-origin',keepBuffer:0,updateWhenIdle:true,
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).on('tileerror',()=>{if(alive)setMapError(true);}).addTo(instance);
+    }).on('tileerror',()=>{failed=true;clearTimeout(timeout);if(alive)setMapState('failed');}).on('load',()=>{clearTimeout(timeout);if(alive&&!failed)setMapState('loaded');}).addTo(instance);
     // Resizing must not undo the user's zoom. Only a new route or Fit route resets it.
-    const resize=new ResizeObserver(()=>instance.invalidateSize({pan:false}));
-    resize.observe(container.current);
-    return ()=>{alive=false;resize.disconnect();instance.remove();map.current=null;routeBounds.current=null;markers.current.clear();};
-  },[mapVisible]);
+    const resize=typeof ResizeObserver!=='undefined'?new ResizeObserver(()=>instance.invalidateSize({pan:false})):null;
+    resize?.observe(container.current);
+    return ()=>{alive=false;clearTimeout(timeout);resize?.disconnect();instance.remove();map.current=null;routeBounds.current=null;markers.current.clear();};
+  },[mapVisible,attempt]);
 
   useEffect(()=>{
     if(!mapVisible||!map.current)return;
@@ -62,7 +63,7 @@ export default function RouteMap({input,routes,approved=false,states={},closed=[
         text.textContent=p.name;
         const marker=L.marker([p.latitude,p.longitude],{
           title:`${p.order?`Stop ${p.order}`:'Depot'}: ${p.name}`,
-          icon:L.divIcon({className:`route-pin ${p.order?'':'depot-pin'}`,html:`<span>${p.order||'D'}</span>`,iconSize:[36,36],iconAnchor:[18,18]}),
+          icon:L.divIcon({className:`route-pin ${p.order?'':'depot-pin'}`,html:`<span>${p.order||'D'}</span>`,iconSize:[44,44],iconAnchor:[22,22]}),
         }).bindTooltip(text).on('click',()=>setSelectedOrder(p.order)).addTo(group);
         marker.getElement()?.setAttribute('aria-label',`${p.order?`Stop ${p.order}`:'Depot'}: ${p.name}`);
         marker.getElement()?.addEventListener('keydown',event=>{
@@ -74,14 +75,14 @@ export default function RouteMap({input,routes,approved=false,states={},closed=[
       map.current.fitBounds(routeBounds.current.pad(.15),{maxZoom:14,animate:false});
     }
     return ()=>{group.remove();markers.current.clear();};
-  },[mapVisible,pointsKey]);
+  },[mapVisible,pointsKey,attempt]);
   useEffect(()=>{
     markers.current.forEach((marker,index)=>{
       marker.getElement()?.classList.toggle('selected-pin',index===order);
       marker.getElement()?.setAttribute('aria-pressed',String(index===order));
       marker.setZIndexOffset(index===order?1000:0);
     });
-  },[mapVisible,pointsKey,order]);
+  },[mapVisible,pointsKey,order,attempt]);
 
   if(!route)return <section className="panel"><h3>Route workspace</h3><p>No vehicle route was scheduled. Review available vehicles and confirmed requests in Set up.</p></section>;
   const parts=points?directionsParts(points):[];
@@ -96,9 +97,9 @@ export default function RouteMap({input,routes,approved=false,states={},closed=[
     <div className="map-view-switch" aria-label="Route view"><button className={mobileView==='map'?'selected':''} aria-pressed={mobileView==='map'} onClick={()=>setMobileView('map')}>Map</button><button className={mobileView==='stops'?'selected':''} aria-pressed={mobileView==='stops'} onClick={()=>setMobileView('stops')}>Stop list</button></div>
     <div className={`route-workspace mobile-${mobileView}`}>
       <div className="map-column">
-        <div className="map-toolbar"><span><span className="depot-key">D</span> Depot <span className="stop-key">1</span> Receiving point</span><button className="text-button" disabled={!mapVisible} onClick={()=>{if(routeBounds.current)map.current?.fitBounds(routeBounds.current.pad(.15),{maxZoom:14,animate:false});}}>Fit route</button></div>
-        {!points?<div className="map-placeholder"><strong>Map unavailable for this route</strong><p>Coordinates are missing or invalid. Update the setup and create a checked plan; no stops will be skipped. The full stop list is still available.</p><button className="secondary" onClick={()=>setMobileView('stops')}>See stop list</button></div>:!enabled?<div className="map-placeholder"><svg aria-hidden="true" viewBox="0 0 80 80"><path d="m10 18 20-8 20 8 20-8v52l-20 8-20-8-20 8ZM30 10v52M50 18v52" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M20 42h40" stroke="currentColor" strokeWidth="3" strokeDasharray="4 4"/></svg><strong>See the whole route.</strong><p>Load the street map to explore numbered stops. Map tiles come from OpenStreetMap.</p><button className="primary" onClick={()=>setEnabled(true)}>Load street map</button></div>:<div className="driver-map" ref={container} role="region" aria-label="Interactive map of the selected vehicle’s stop order"/>}
-        {mapError&&<p className="attention" role="status">Some street tiles could not load. Your stop list and Google Maps links still work.</p>}
+        <div className="map-toolbar"><span><span className="depot-key">D</span> Depot <span className="stop-key">1</span> Receiving point</span>{mapState==='loaded'&&<button className="text-button" onClick={()=>{if(routeBounds.current)map.current?.fitBounds(routeBounds.current.pad(.15),{maxZoom:14,animate:false});}}>Fit route</button>}</div>
+        {!points?<div className="map-placeholder"><strong>Map unavailable for this route</strong><p>Coordinates are missing or invalid. Update the setup and create a checked plan; no stops will be skipped. The full stop list is still available.</p><button className="secondary" onClick={()=>setMobileView('stops')}>See stop list</button></div>:!enabled?<div className="map-placeholder"><svg aria-hidden="true" viewBox="0 0 80 80"><path d="m10 18 20-8 20 8 20-8v52l-20 8-20-8-20 8ZM30 10v52M50 18v52" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M20 42h40" stroke="currentColor" strokeWidth="3" strokeDasharray="4 4"/></svg><strong>See the whole route.</strong><p>Load the street map to explore numbered stops. Map tiles come from OpenStreetMap.</p><button className="primary" onClick={()=>{setMapState('loading');setEnabled(true);}}>Load interactive map</button></div>:<div className="driver-map" ref={container} role="region" aria-label="Interactive map of the selected vehicle’s stop order"/>}
+        {mapState==='loading'&&<p role="status" aria-live="polite"><span className="spinner"/> Loading interactive map…</p>}{mapState==='failed'&&<div className="attention" role="status"><p>Street tiles could not load. Your stop list and Google Maps links still work.</p><button className="secondary" onClick={()=>{setMapState('loading');setAttempt(n=>n+1);}}>Retry map</button></div>}
         <p className="map-caption"><span className="dash-key"/> Dashed lines show stop order, not roads to drive.</p>
         {points&&!blocked&&<div className="directions-overview"><h4>{parts.length===1?'Road directions':'Road directions · follow parts in order'}</h4><div className="actions">{parts.map((part,i)=><External key={part.first} href={part.url}>{parts.length===1?'View route in Google Maps':`Part ${i+1}: ${part.from} → ${part.to}`}</External>)}</div>{parts.length>1&&<small>Phone-friendly parts include every stop and the depot return. Check the numbered list if Maps omits a stop.</small>}</div>}
       </div>

@@ -1,34 +1,17 @@
-import { useEffect, useRef } from 'react';
-import { m, useReducedMotion } from 'motion/react';
+import {m,useReducedMotion} from 'motion/react';
 
-import { exampleSteps } from './example-progress';
-
-export function ExampleWelcome({ busy, onStart, onClose }: {busy:boolean;onStart:(guided:boolean)=>void;onClose:()=>void}) {
-  const dialog = useRef<HTMLDialogElement>(null);
-  useEffect(() => { const previous=document.activeElement as HTMLElement|null;const modal=dialog.current;modal?.showModal();return()=>{modal?.close();previous?.focus();}; }, []);
-  return <dialog ref={dialog} className="example-welcome" aria-labelledby="example-welcome-title" onCancel={onClose}>
-    <button className="text-button welcome-close" aria-label="Close example introduction" onClick={onClose}>Close ×</button>
-    <span className="eyebrow">YOUR FIRST RELIEF RUN</span><h2 id="example-welcome-title">Let’s plan it together.</h2>
-    <p>Start with a filled-in sample. We’ll show you the next step as you go.</p>
-    <ol>{exampleSteps.map((step,index) => <li key={step}><span>{index+1}</span>{step}</li>)}</ol>
-    <p className="hint">Sample water, vehicles and requests. Nothing is dispatched. You choose the operating rules, approve the plan and save each report yourself.</p>
-    <div className="actions"><button className="primary" disabled={busy} onClick={() => onStart(true)}>Start guided example →</button><button className="text-button" disabled={busy} onClick={() => onStart(false)}>Explore without the guide</button></div>
-  </dialog>;
+export function ExampleWelcome({busy,onStart,onClose}:{busy:boolean;onStart:(guided:boolean)=>void;onClose:()=>void}){
+  return <section className="example-welcome" aria-labelledby="example-welcome-title"><button className="text-button welcome-close" aria-label="Close example introduction" onClick={onClose}>Close ×</button><span className="preview-badge">Sample</span><h2 id="example-welcome-title">Welcome to JalSetu.</h2><p>Review sample resources, prepare a delivery plan, approve it and record what happens during delivery.</p><div className="actions"><button className="primary" disabled={busy} onClick={()=>onStart(true)}>Start guided example</button><button className="secondary" disabled={busy} onClick={()=>onStart(false)}>Explore on my own</button></div></section>;
 }
-
-export default function ExampleGuide({step,loaded,busy,onNavigate,onHide}:{step:number;loaded:boolean;busy:boolean;onNavigate:(tab:string)=>void;onHide:()=>void}) {
+export default function ExampleGuide({step,loaded,disrupted=false,draftReady=false,busy,onNavigate,onHide,onLeave}:{step:number;loaded:boolean;disrupted?:boolean;draftReady?:boolean;busy:boolean;onNavigate:(tab:string)=>void;onHide:()=>void;onLeave:()=>void}){
   const reduced=useReducedMotion();
-  const copy = [
-    ['Start with two simple choices.', 'Review the sample water. Choose when unloading must finish and whether vehicles load together or one at a time.', 'Inputs', 'Review the sample'],
-    ['Your sample is ready to review.', 'Continue through Vehicles and Water requests, then choose Create delivery plan. You can change the sample details.', 'Inputs', 'Continue setup'],
-    ['See where the water will go.', 'Review the stops and unmet requests. Enter a name or team label to approve when you’re ready. Approval does not report a delivery.', 'Plan', 'Review & approve'],
-    loaded ? ['Now record a delivery.', 'Choose Delivery made, select the loaded vehicle and its receiving point. Use the example details or enter the total litres delivered so far, then save the report.', 'Operations', 'Record a delivery'] : ['Record loading first.', 'Choose Water loaded, select a vehicle and use its example loading time. Save the report to move its planned water from the depot onto that vehicle.', 'Operations', 'Record loading'],
-    ['You’ve completed your first example.', 'You’ve created a plan, approved it and recorded a delivery. Explore resource comparisons, download instructions or keep practising with a breakdown and an updated plan.', 'Compare', 'Compare your options'],
-  ][Math.min(step,4)];
-  return <section className="example-guide" aria-label="Your example guide">
-    <div className="guide-progress-track" aria-hidden="true"><m.div initial={false} animate={{scaleX:Math.min(step,4)/4}} transition={{duration:reduced?0:.4}}/></div>
-    <div className="guide-top"><span className="eyebrow">{step===4 ? 'EXAMPLE COMPLETE' : `YOUR GUIDE · STEP ${step+1} OF 4`}</span><button className="text-button" onClick={onHide}>Hide guide</button></div>
-    <ol aria-label="Example progress">{exampleSteps.map((label,index) => <li key={label} aria-current={index===step ? 'step' : undefined} className={index<step ? 'done' : index===step ? 'current' : ''}><span aria-hidden="true">{index<step?'✓':index+1}</span>{label}</li>)}</ol>
-    <div className="guide-next"><div><h2>{copy[0]}</h2><p>{copy[1]}</p></div><button className="secondary" disabled={busy} onClick={() => onNavigate(copy[2])}>{copy[3]} →</button></div>
-  </section>;
+  const copy=[
+    ['Review the sample inputs.','Choose the unloading deadline rule and whether vehicles load together or one at a time. Sample resources are already filled in.','Inputs','Review inputs'],
+    ['Generate a proposed plan.','Review Vehicles and Water requests, then choose Create delivery plan. You can edit the sample inputs.','Inputs','Continue setup'],
+    ['Review and approve.','Check the stops, quantities and unmet requests. Enter a team label and approve when ready. Approval does not record a delivery.','Plan','Review & approve'],
+    loaded?['Track a sample delivery.','Choose Delivery made, select the loaded vehicle and receiving point, then save the cumulative delivered quantity and time.','Operations','Record a delivery']:['Record loading first.','Choose Water loaded, select a vehicle and use its sample loading time. Save the report before reporting a delivery.','Operations','Record loading'],
+    draftReady?['Draft ready for review.','Review changed allocations and unmet requests. Approval remains a separate action.','Operations','Review draft']:disrupted?['Review the remaining plan.','Create the remaining plan, then deliberately review its allocations. Review does not approve the draft.','Operations','Review remaining deliveries']:['Handle a sample disruption.','Choose Vehicle breakdown in the report form. Select an active vehicle and a time after its earlier reports, then save. Record recovery if needed before replanning.','Operations','Record a breakdown'],
+    ['Guided example complete.','You reviewed a revised plan after a disruption. This sample does not represent verified deliveries. You can keep practising or compare alternatives.','Compare','Compare plans'],
+  ][Math.min(step,5)];
+  return <section className="example-guide" aria-label="Your example guide"><div className="guide-progress-track" aria-hidden="true"><m.div initial={false} animate={{scaleX:Math.min(step,5)/5}} transition={{duration:reduced?0:.25}}/></div><div className="guide-top"><span className="eyebrow">{step===5?'SAMPLE COMPLETE':`Step ${Math.min(step+1,5)} of 5`}</span><div><button className="text-button" onClick={onHide}>Hide guide</button><button className="text-button" onClick={onLeave}>Leave guide</button></div></div><div className="guide-next"><div><h2>{copy[0]}</h2><p>{copy[1]}</p></div><button className="secondary" disabled={busy} onClick={()=>onNavigate(copy[2])}>{copy[3]}</button></div></section>;
 }

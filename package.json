@@ -4,13 +4,13 @@
   "private": true,
   "packageManager": "pnpm@11.22.0",
   "scripts": {
-    "typecheck": "tsc --noEmit && pnpm --filter @jalsetu/web typecheck",
+    "typecheck": "tsc --noEmit --singleThreaded && pnpm --filter @jalsetu/web typecheck",
     "lint": "pnpm typecheck && node scripts/python.mjs -m ruff check services/planner services/cloud",
     "test": "node scripts/python.mjs -m pytest services/planner/tests -q",
     "dev": "node scripts/dev.mjs",
     "start": "pnpm build && node scripts/local-api.mjs --serve-web",
     "test:release": "pnpm build && node scripts/test-local-release.mjs",
-    "check:local": "pnpm lint && pnpm test && pnpm test:csv && pnpm test:storage && pnpm test:operations && pnpm test:exports && pnpm test:projects && pnpm test:metrics && pnpm test:revision-diff && pnpm test:report-time && pnpm test:example-guide && pnpm test:history && pnpm test:records && pnpm test:driver-route && pnpm test:comparison-summary && pnpm test:release",
+    "check:local": "pnpm lint && pnpm test && pnpm test:csv && pnpm test:storage && pnpm test:operations && pnpm test:exports && pnpm test:projects && pnpm test:metrics && pnpm test:revision-diff && pnpm test:report-time && pnpm test:example-guide && pnpm test:history && pnpm test:records && pnpm test:driver-route && pnpm test:comparison-summary && pnpm test:release && pnpm test:polish && pnpm test:google && pnpm test:site-closure",
     "build": "pnpm --filter @jalsetu/web build",
     "evaluate": "node scripts/python.mjs -m jalsetu_planner evaluate --fixtures data/evaluation/finish_by_close_parallel --output docs/evaluation.json --markdown docs/evaluation.md",
     "test:api": "node scripts/test-local-api.mjs",
@@ -27,6 +27,7 @@
     "test:report-time": "node scripts/test-report-time.mjs",
     "evidence:manifest": "node scripts/evidence-manifest.mjs",
     "test:example-guide": "node scripts/test-example-guide.mjs",
+    "test:google": "node scripts/test-google-frontend.mjs",
     "test:site-closure": "node scripts/test-local-site-closure.mjs",
     "prepare:hosting": "node scripts/prepare-hosted-web.mjs",
     "test:hosting": "node scripts/test-hosted-web.mjs",
@@ -37,7 +38,8 @@
     "test:records": "node scripts/test-records.mjs",
     "test:history": "node scripts/test-history.mjs",
     "test:driver-route": "node scripts/test-driver-route.mjs",
-    "test:comparison-summary": "node scripts/test-comparison-summary.mjs"
+    "test:comparison-summary": "node scripts/test-comparison-summary.mjs",
+    "test:polish": "node scripts/test-ui-polish.mjs && node scripts/verify-landing-result.mjs"
   },
   "devDependencies": {
     "aws-cdk-lib": "2.273.0",

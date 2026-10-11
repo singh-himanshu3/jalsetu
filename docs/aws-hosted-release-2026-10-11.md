@@ -1,3 +1,5 @@
+> **Current checkpoint — 11 October 2026:** The updated frontend and email-only Cognito configuration are deployed. Google sign-in is removed from scope. CloudFormation UPDATE_COMPLETE and Amplify release 2 SUCCEED were verified. Real signup-code receipt, password login and reset with the owner’s inbox remain pending. [Current release and checks](aws-email-ui-release-2026-10-11.md) supersede earlier activation/publishing statements below.
+
 # Hosted example release — 11 October 2026
 
 **Live website:** https://main.d2d0jtitb5ozce.amplifyapp.com

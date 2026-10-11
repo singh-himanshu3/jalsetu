@@ -5,15 +5,16 @@ import {tmpdir} from 'node:os';
 import {hostedConfig, prepareHostedWeb} from './prepare-hosted-web.mjs';
 
 const now = Date.parse('2026-10-10T00:00:00Z');
-const config = {mode:'aws_live', region:'ap-south-1', apiBaseUrl:'https://example123.execute-api.ap-south-1.amazonaws.com/prod',
+const config = {mode:'aws_live',authProvider:'GoogleAndEmail',issuer:'https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_example123', region:'ap-south-1', apiBaseUrl:'https://example123.execute-api.ap-south-1.amazonaws.com/prod',
   clientId:'exampleclient123', loginBaseUrl:'https://jalsetu-example.auth.ap-south-1.amazoncognito.com',
-  redirectUri:'https://main.example123.amplifyapp.com', expiresAt:'2026-10-17T00:00:00Z'};
-const outputs = value => ({JalSetuDemo:{WebConfig:JSON.stringify(value), FrontendUrl:config.redirectUri,
+  redirectUri:'https://main.example123.amplifyapp.com/auth/callback',logoutUri:'https://main.example123.amplifyapp.com/', expiresAt:'2026-10-17T00:00:00Z'};
+const outputs = value => ({JalSetuDemo:{WebConfig:JSON.stringify(value), FrontendUrl:new URL(config.redirectUri).origin,
   SnapshotBucket:'private-example-bucket', StateTable:'private-example-table'}});
 assert.deepEqual(hostedConfig(outputs(config), now), config);
+assert.deepEqual(hostedConfig(outputs({...config,authProvider:'Email'}),now),{...config,authProvider:'Email'});
 assert.throws(() => hostedConfig({}, now));
 for (const edit of [
-  {mode:'offline_fixture'}, {region:'us-east-1'}, {expiresAt:'2026-10-18T00:00:00Z'}, {expiresAt:'2026-10-10T00:00:00Z'},
+  {mode:'offline_fixture'}, {authProvider:'COGNITO'}, {issuer:'https://example.com/pool'}, {logoutUri:'https://example.com/'}, {region:'us-east-1'}, {expiresAt:'2026-10-18T00:00:00Z'}, {expiresAt:'2026-10-10T00:00:00Z'},
   {clientSecret:'never-publish'}, {apiBaseUrl:'https://example.com/prod'}, {apiBaseUrl:config.apiBaseUrl + '?token=private'},
   {apiBaseUrl:'https://example123.execute-api.us-east-1.amazonaws.com/prod'},
   {loginBaseUrl:'https://example.com'}, {redirectUri:config.redirectUri + '/other'},

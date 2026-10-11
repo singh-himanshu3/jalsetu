@@ -3,7 +3,7 @@ import {resolve, extname} from 'node:path';
 import {realpathSync} from 'node:fs';
 import {deploymentScope} from '../infra/deployment-scope.mjs';
 
-const fields = ['mode', 'region', 'apiBaseUrl', 'clientId', 'loginBaseUrl', 'redirectUri', 'expiresAt'];
+const fields = ['mode','authProvider','issuer','region','apiBaseUrl','clientId','loginBaseUrl','redirectUri','logoutUri','expiresAt'];
 const assetTypes = new Set(['.js', '.css', '.svg', '.png', '.jpg', '.jpeg', '.ico', '.webp', '.woff', '.woff2']);
 
 // Only public browser configuration is copied from the deployed stack outputs.
@@ -13,12 +13,12 @@ export function hostedConfig(outputs, now = Date.now()) {
   const config = JSON.parse(stack.WebConfig);
   if (!config || Array.isArray(config) || Object.keys(config).sort().join() !== [...fields].sort().join()
       || fields.some(key => typeof config[key] !== 'string' || !config[key])) {
-    throw new Error('WebConfig must contain only the seven public browser fields.');
+    throw new Error('WebConfig must contain only the ten public browser fields.');
   }
-  if (config.mode !== 'aws_live') throw new Error('Expected the prepared AWS hosting mode.');
+  if (config.mode !== 'aws_live'||!['Google','GoogleAndEmail','Email'].includes(config.authProvider)) throw new Error('Expected the prepared AWS hosting mode.');
   deploymentScope({JALSETU_REGION:config.region, JALSETU_EXPIRES_AT:config.expiresAt}, now);
-  const api = new URL(config.apiBaseUrl), login = new URL(config.loginBaseUrl), web = new URL(config.redirectUri);
-  for (const url of [api, login, web]) {
+  const api = new URL(config.apiBaseUrl), login = new URL(config.loginBaseUrl), web = new URL(config.redirectUri),logout=new URL(config.logoutUri),issuer=new URL(config.issuer);
+  for (const url of [api, login, web,logout,issuer]) {
     if (url.protocol !== 'https:' || url.port || url.username || url.password || url.search || url.hash) {
       throw new Error('Hosted addresses must use HTTPS without credentials, queries or fragments.');
     }
@@ -29,7 +29,7 @@ export function hostedConfig(outputs, now = Date.now()) {
   if (!/^[a-z0-9-]+\.auth\.ap-south-1\.amazoncognito\.com$/.test(login.hostname) || login.pathname !== '/') {
     throw new Error('Expected a Mumbai Cognito sign-in address.');
   }
-  if (!/^main\.[a-z0-9]+\.amplifyapp\.com$/.test(web.hostname) || config.redirectUri !== web.origin
+  if (!/^main\.[a-z0-9]+\.amplifyapp\.com$/.test(web.hostname) || web.pathname!=='/auth/callback'||config.logoutUri!==web.origin+'/'||issuer.origin!=='https://cognito-idp.ap-south-1.amazonaws.com'||!/^\/ap-south-1_[A-Za-z0-9]+$/.test(issuer.pathname)
       || stack.FrontendUrl !== web.origin || !/^[a-z0-9]+$/.test(config.clientId)) {
     throw new Error('Sign-in callback must match the prepared Amplify frontend.');
   }

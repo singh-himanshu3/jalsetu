@@ -199,3 +199,30 @@ The owner rejected the large dark hero followed by white sections and the wide l
 ## 11 October 2026 — solid heading and meaningful navigation cues
 
 Follow the owner’s review: use solid blue on “planning,” remove arrows that suggest a destination on noninteractive illustrations and give the footer slightly more space and useful navigation. External-link arrows belong to actual external destinations; in-page or workspace navigation uses ordinary navigation cues. Retain route-sequence notation where it conveys stop order. Share one footer between the landing and workspace, using existing destinations only. Authentication and live publication remain pending UI review.
+
+
+## 11 October 2026 — landing usability review, without illustrative totals
+
+The owner explicitly authorizes the supplied mobile/layout/preview review and then excludes example numbers. Implement qualitative workflow states instead of invented litres, percentages or delivery/performance totals. Keep real workspace calculations, stop identifiers and numbered navigation. Combine capabilities/process explanations, bring breakdown recovery forward, use a compact accessible phone/tablet menu and keep the light water-blue identity, glass header, centered delivery pulses and finite map animation. No new dependencies or backend operating rules are needed. This is a local UI review checkpoint: preserve the review-before-authentication sequence and do not publish to AWS during it.
+
+## 11 October 2026 — Google-only workspace entry
+
+The owner's explicit frontend/authentication brief supersedes the earlier Google-plus-email proposal: Google is the only identity provider. Reuse the existing Cognito pool/client, code flow with PKCE and owner-subject API model. Keep landing/preview public, protect workspace paths, preserve safe return routes and validate signed Google identity claims in the SPA and trusted provider/audience claims in the cloud adapter. Store the Google secret in Secrets Manager through a dynamic reference; no secret-bearing browser config or mock-user fallback. IAM additions remain an exact-resource example policy pending manual application.
+
+Welcome is an in-page panel using the requested copy/actions. Remember its successful entry choice per authenticated subject; guide progress stays temporary. The guide now ends after reviewing a revised plan following an explicit disruption, not after a first delivery report. Keep approvals/reports/recovery explicit. Offline practice has an explicitly enabled loopback route and does not unlock hosted routes. Existing expiry, credits-only budget and application limits remain unchanged. Activation/publication and real Google acceptance are pending, as detailed in the completion report.
+
+## 11 October 2026 — Email/password added alongside Google
+
+The owner's later request supersedes Google-only entry. Keep Google and add email/password signup, verified email and Cognito-managed sign-in/password recovery. Use email as the existing username pool's username; do not change immutable aliases or replace the pool. Signup/confirmation/resend go directly to Cognito, passwords never enter browser storage or JalSetu's API, and both login paths retain code flow/PKCE and signature/state/nonce checks. The dual-provider configuration explicitly permits verified native identities; Google-only configurations retain their restriction. Saved data is still owned by Cognito subject, with no email-based account merging. No new SES resources, AWS changes or charges are made during local implementation. Identity activation, real email/reset/Google acceptance and publication remain pending.
+
+## Email-only authentication — 11 October 2026
+
+The owner explicitly removed Google authentication to simplify access and setup. Keep Cognito email/password signup, email verification, managed sign-in and verified-email recovery. Remove the Google button/setup notices and Google infrastructure/provider/secret configuration. Preserve existing pool/client identities and subject-owned records. Do not change Google Maps driver directions. The reviewed stack and frontend were deployed with the original Mumbai expiry and $100 credits-only ceiling. No real email round trip is claimed until the owner tests their inbox. See `aws-email-ui-release-2026-10-11.md`.
+
+## Hosted callback normalization — 11 October 2026
+
+Amplify adds a trailing slash to extensionless routes. Normalize the pathname for internal route and callback identification while retaining the exact registered redirect URI in OAuth exchange. Keep all existing PKCE/state/nonce/signature/verified-email checks. Show callback errors on the sign-in gate. Regression tests now exercise the actual Startup component and the observed host redirect. Release 3 was accepted with real user sign-in and authenticated reload.
+
+## UI/workflow polish — 11 October 2026
+
+Persist only subject-scoped navigation/job references in browser storage; restore durable operations and drafts through the authorized API. Preserve versioned reports and separate draft review from approval. Derive unscheduled water from draft depot stock minus additional scheduled water. Describe a capacity ceiling only when validated vehicle/route evidence establishes it; otherwise expose the diagnostic limitation. Reproduce landing sample figures with the current documented fixture. No deployment or Cognito branding changes in this task. See [UI polish](ui-polish-2026-10-11.md).

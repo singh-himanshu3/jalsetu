@@ -1,0 +1,85 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {pathToFileURL} from 'node:url';
+import {resolve} from 'node:path';
+import {readFile} from 'node:fs/promises';
+import {webcrypto} from 'node:crypto';
+const web=resolve(import.meta.dirname,'../apps/web'),require=createRequire(resolve(web,'package.json'));
+const {JSDOM}=await import(pathToFileURL(require.resolve('jsdom')).href);
+const {createServer}=await import(pathToFileURL(require.resolve('vite')).href);
+const dom=new JSDOM('<div id="root"></div>',{url:'http://localhost:5173/',pretendToBeVisual:true});
+for(const name of ['window','document','sessionStorage','localStorage','HTMLElement','HTMLDialogElement','HTMLDetailsElement','Element','SVGElement','MouseEvent','KeyboardEvent','Event','MutationObserver','getComputedStyle','requestAnimationFrame','cancelAnimationFrame'])Object.defineProperty(globalThis,name,{value:['getComputedStyle','requestAnimationFrame','cancelAnimationFrame'].includes(name)?dom.window[name].bind(dom.window):dom.window[name],configurable:true});
+Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});
+Object.defineProperty(globalThis,'location',{value:window.location,configurable:true});
+Object.defineProperty(globalThis,'history',{value:window.history,configurable:true});
+Object.defineProperty(globalThis,'crypto',{value:webcrypto,configurable:true});
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+window.matchMedia=q=>({matches:q.includes('prefers-reduced-motion'),addEventListener(){},removeEventListener(){},addListener(){},removeListener(){}});
+window.scrollTo=()=>{};window.confirm=()=>true;
+HTMLElement.prototype.scrollIntoView=function(){this.dataset.scrolled='true';};
+HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};
+const server=await createServer({root:web,server:{middlewareMode:true},appType:'custom'});
+let root;
+try {
+  globalThis.fetch=async()=>new Response('',{status:404});const cfg=await server.ssrLoadModule('/src/config.ts');await cfg.loadConfig();
+  const React=await import(pathToFileURL(require.resolve('react')).href),{createRoot}=await import(pathToFileURL(require.resolve('react-dom/client')).href),{act}=React;
+  const motion=await server.ssrLoadModule('motion/react'),{default:App}=await server.ssrLoadModule('/src/App.tsx'),{default:Operations}=await server.ssrLoadModule('/src/Operations.tsx'),refs=await server.ssrLoadModule('/src/active-run.ts');
+  const fixture=JSON.parse(await readFile(resolve(web,'../../data/evaluation-events/failure_after_delivery.json'),'utf8'));
+  const operation={...fixture.operation,revision_draft:fixture.revision_draft};
+  root=createRoot(document.getElementById('root'));
+  const render=async element=>act(async()=>root.render(React.createElement(motion.LazyMotion,{features:motion.domAnimation,strict:true},element)));
+  const click=async element=>{assert.ok(element);await act(async()=>element.dispatchEvent(new MouseEvent('click',{bubbles:true})));};
+  const button=text=>[...document.querySelectorAll('button')].find(e=>e.textContent.trim()===text);
+  const settle=async()=>act(async()=>new Promise(r=>setTimeout(r,40)));
+  const change=async(el,value)=>act(async()=>{Object.getOwnPropertyDescriptor(el.tagName==='SELECT'?dom.window.HTMLSelectElement.prototype:dom.window.HTMLInputElement.prototype,'value').set.call(el,value);el.dispatchEvent(new Event(el.tagName==='SELECT'?'change':'input',{bubbles:true}));});
+  refs.rememberActiveRun('subject-a',operation.operation_id);let release;
+  globalThis.fetch=async url=>String(url).includes('/v1/operations/')?new Promise(r=>release=r):Response.json({projects:[]});
+  window.history.replaceState(null,'','/workspace/deliveries');await render(React.createElement(App,{key:'restore-a',cloud:true,onboardingScope:'subject-a'}));await click(button('Deliveries'));
+  assert.match(document.body.textContent,/Restoring your saved run/);assert.ok(!document.body.textContent.includes('Approve a plan to start tracking'));
+  await act(async()=>release(Response.json({operation})));await settle();
+  assert.match(document.body.textContent,/Pending draft revision/);assert.match(document.body.textContent,/Reported delivered/);
+  assert.equal(refs.readActiveRun('subject-a'),operation.operation_id);assert.equal(refs.readActiveRun('subject-b'),null);
+  const evidence=await server.ssrLoadModule('/src/revision-accounting.ts');assert.equal(evidence.revisionCapacityEvidence(operation)?.capacity,7000);const missing=structuredClone(operation);delete missing.revision_draft.pending_input_snapshot;assert.equal(evidence.revisionCapacityEvidence(missing),null);const failedVehicle=structuredClone(operation);failedVehicle.ledger.vehicles['VEH-2'].failed=true;assert.equal(evidence.revisionCapacityEvidence(failedVehicle),null);const partial=structuredClone(operation);partial.revision_draft.vehicle_routes[0].planned_load_litres-=100;assert.equal(evidence.revisionCapacityEvidence(partial),null);
+  const accounting=operation.revision_draft.revision_accounting;
+  assert.equal(accounting.reported_delivered_litres,Object.values(operation.ledger.reported_delivered_litres).reduce((a,b)=>a+b,0));
+  const depotUnscheduled=operation.revision_draft.stock_ledger.depot_litres-accounting.additional_scheduled_litres;
+  assert.ok(depotUnscheduled>=0);assert.ok(document.body.textContent.includes(depotUnscheduled.toLocaleString('en-IN')+' L'));
+  await act(async()=>window.dispatchEvent(new Event('jalsetu:session-expired')));assert.equal(refs.readActiveRun('subject-a'),null);assert.ok(!document.body.textContent.includes('Pending draft revision'));
+  refs.rememberActiveRun('subject-a',operation.operation_id);
+  globalThis.fetch=async url=>String(url).includes('/v1/operations/')?new Promise(r=>release=r):Response.json({projects:[]});
+  await render(React.createElement(App,{key:'race-a',onboardingScope:'subject-a'}));await click(button('Deliveries'));
+  await act(async()=>window.dispatchEvent(new Event('jalsetu:session-expired')));
+  await render(React.createElement(App,{key:'race-b',onboardingScope:'subject-b'}));await act(async()=>release(Response.json({operation})));await click(button('Deliveries'));assert.ok(!document.body.textContent.includes('Pending draft revision'));
+  refs.rememberActiveRun('subject-error',operation.operation_id);globalThis.fetch=async()=>Response.json({error:{message:'Isolated restoration failure'}},{status:503});
+  await render(React.createElement(App,{key:'error',onboardingScope:'subject-error'}));await click(button('Deliveries'));await settle();assert.ok(button('Retry'));assert.ok(button('Open saved runs'));assert.ok(!document.body.textContent.includes('Approve a plan to start tracking'));
+  globalThis.fetch=async()=>Response.json({operation});await click(button('Retry'));await settle();assert.match(document.body.textContent,/Pending draft revision/);
+  refs.rememberActiveRun('subject-job',operation.operation_id);refs.pendingRunJob('subject-job','test-job');const newer=structuredClone(operation);newer.version++;delete newer.revision_draft;globalThis.fetch=async url=>String(url).includes('/v1/planning-jobs/')?new Promise(r=>release=r):String(url).includes('/v1/operations/')?Response.json({operation:newer}):Response.json({projects:[]});await render(React.createElement(App,{key:'job-race',onboardingScope:'subject-job'}));await click(button('Deliveries'));await settle();await act(async()=>release(Response.json({job_id:'test-job',status:'completed',operation})));assert.ok(!document.body.textContent.includes('Pending draft revision'),'An older job result cannot replace the newer authorized run snapshot');assert.equal(refs.pendingRunJob('subject-job'),null);
+  console.log('Run restoration: loading without empty flash, authorized snapshot/draft, accounting, retry, subject isolation, sign-out cleanup and stale response rejection passed.');
+  let nonce=0,accepted=false,calls=0,finish;
+  const props={cloud:false,operation,busy:false,onRestore(){},onNeedPlan(){},onAction:async()=>{calls++;return accepted;}};
+  for(const kind of ['vehicle_loaded','delivery_reported','vehicle_failed']){
+    await render(React.createElement(Operations,{key:'reports',...props,reportRequest:{kind,nonce:++nonce}}));await settle();assert.equal(document.querySelector('#report-form select').value,kind);assert.equal(document.activeElement,document.querySelector('#report-form .form-grid label:nth-child(2) select'));assert.equal(document.querySelector('#report-form').dataset.scrolled,'true');
+  }
+  await click(button('Use 10 minutes after last report'));
+  const time=document.querySelector('#report-form input[type="datetime-local"]');
+  assert.equal(new Date(time.value+'+05:30').getTime(),new Date(operation.events.at(-1).occurred_at).getTime()+600000);
+  await change(document.querySelector('#report-form .form-grid label:nth-child(2) select'),Object.keys(operation.ledger.vehicles)[0]);
+  await change(time,'2026-10-09T00:00:00');await click(button('Save report'));assert.match(document.body.textContent,/cannot be earlier/);assert.equal(document.querySelector('dialog'),null);
+  await click(button('Use 10 minutes after last report'));await click(button('Save report'));assert.ok(document.querySelector('dialog'));
+  await click(button('Confirm & save report'));assert.ok(document.querySelector('dialog'),'Failed submission keeps dialog and fields');assert.ok(time.value);
+  accepted=true;await click(button('Confirm & save report'));assert.match(document.body.textContent,/Report saved/);assert.equal(document.querySelector('#report-form select').value,'');assert.equal(document.querySelector('#report-form input[type="datetime-local"]').value,'');assert.equal(operation.events.length,fixture.operation.events.length);
+  // Equal timestamps remain valid at the frontend, matching the backend ordering rule.
+  await render(React.createElement(Operations,{key:'equal',...props,reportRequest:{kind:'vehicle_failed',nonce:++nonce}}));await settle();await change(document.querySelector('#report-form .form-grid label:nth-child(2) select'),Object.keys(operation.ledger.vehicles)[0]);
+  const date=await server.ssrLoadModule('/src/date-time.ts');await change(document.querySelector('#report-form input[type="datetime-local"]'),date.istLocalValue(operation.events.at(-1).occurred_at));await click(button('Save report'));assert.ok(document.querySelector('dialog'),'Equal times are not rejected by the frontend');
+  const duplicateProps={...props,onAction:()=>{calls++;return new Promise(r=>finish=r);}};await render(React.createElement(Operations,{key:'equal',...duplicateProps}));const before=calls;await click(button('Confirm & save report'));await click(button('Confirm & save report'));assert.equal(calls,before+1);await act(async()=>finish(true));
+  assert.equal(date.istLocalValue(new Date(new Date('2026-10-10T23:55:00+05:30').getTime()+600000).toISOString()),'2026-10-11T00:05:00');
+  console.log('Guided reports: type/focus/scroll, IST rollover, earlier rejection/equal acceptance, failed-field retention, success reset and duplicate submission guard passed.');
+  await render(React.createElement(Operations,{key:'map',...props}));await settle();await change(document.querySelector('.driver-heading select'),'VEH-2');assert.equal(button('Fit route'),undefined);await click(button('Load interactive map'));assert.ok(document.body.textContent.includes('Loading interactive map'));assert.equal(button('Fit route'),undefined);
+  const tiles=[...document.querySelectorAll('img.leaflet-tile')];assert.ok(tiles.length);await act(async()=>tiles[0].dispatchEvent(new Event('error')));assert.ok(button('Retry map'));assert.equal(button('Fit route'),undefined);assert.ok(document.querySelector('a.direction-link'));
+  await click(button('Retry map'));await act(async()=>{for(const tile of document.querySelectorAll('img.leaflet-tile'))tile.dispatchEvent(new Event('load'));});assert.ok(button('Fit route'));
+  console.log('Map DOM states passed: unloaded, loading, failed/retry with fallback links, loaded Fit route. Tile events are simulated; provider access is a separate browser check.');
+
+  const luminance=hex=>{const c=hex.replace('#','').match(/../g).map(n=>parseInt(n,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
+  for(const [text,bg] of [['#173b57','#ffffff'],['#526a80','#ffffff'],['#526a80','#edf5fb'],['#ffffff','#1768c6'],['#854b0c','#fff4df'],['#b42318','#fff2f0'],['#176044','#edf8f2'],['#0b746e','#f2f8fb']]){const a=luminance(text),b=luminance(bg);assert.ok((Math.max(a,b)+.05)/(Math.min(a,b)+.05)>=4.5,`${text} on ${bg} meets AA`);}
+  console.log('Central text palette contrast pairs meet WCAG AA (4.5:1).');
+} finally {if(root){const React=await import(pathToFileURL(require.resolve('react')).href);await React.act(async()=>root.unmount());}await server.close();dom.window.close();}

@@ -1,8 +1,15 @@
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
-import {writeFile} from 'node:fs/promises';
+import {writeFile,mkdtemp,rm} from 'node:fs/promises';
+import {spawn} from 'node:child_process';
+import {join,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {once} from 'node:events';
 
-const base = 'http://127.0.0.1:8787';
+const directory=await mkdtemp(join(tmpdir(),'jalsetu-closure-'));
+const child=spawn(process.execPath,['scripts/local-api.mjs'],{cwd:resolve(import.meta.dirname,'..'),env:{...process.env,JALSETU_PORT:'0',JALSETU_STATE_DIR:directory,JALSETU_LOCAL_STATE:''},stdio:['ignore','pipe','pipe'],windowsHide:true});
+try {
+const base=await new Promise((accept,reject)=>{let output='';const timer=setTimeout(()=>reject(new Error('Isolated closure server startup timed out')),20000);child.stdout.on('data',chunk=>{output+=chunk;const match=output.match(/JalSetu local API: (http:\/\/127\.0\.0\.1:\d+)/);if(match){clearTimeout(timer);accept(match[1]);}});child.once('error',e=>{clearTimeout(timer);reject(e);});child.once('exit',code=>{clearTimeout(timer);reject(new Error('Closure server exited: '+code));});});
 async function post(path, body, version, key = randomUUID()) {
   const response = await fetch(base + path, {method:'POST', headers:{'Content-Type':'application/json',
     'Idempotency-Key':key, ...(version === undefined ? {} : {'If-Match':String(version)})}, body:JSON.stringify(body)});
@@ -81,3 +88,5 @@ await writeFile(new URL('../docs/audit/site-closure-example-2026-10-10.json', im
   input:original.input, initial:checkpoint(original), closed_revision:checkpoint(closedRevision), reopened_revision:checkpoint(operation),
 }, null, 2) + '\n');
 console.log('Local site-closure API check passed: retry/version safeguards, exclusion, approval, explicit reopening, rescheduling, unchanged stock, history and saved reads.');
+
+} finally {if(child.exitCode===null){const exit=once(child,'exit');child.kill();await exit;}await rm(directory,{recursive:true,force:true});}

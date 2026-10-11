@@ -4,8 +4,9 @@ import { resolve } from 'node:path';
 import { realpathSync } from 'node:fs';
 import { deploymentScope } from './deployment-scope.mjs';
 
-export function createFoundation(app, { region = 'ap-south-1', expiry, account } = {}) {
+export function createFoundation(app, { region = 'ap-south-1', expiry, account, authProvider='Email' } = {}) {
   if (!expiry || Number.isNaN(Date.parse(expiry))) throw new Error('Set an explicit ISO deployment expiry; hosting is authorized for seven days.');
+  if(authProvider!=='Email')throw new Error('JalSetu uses email and password authentication only.');
   const stack = new Stack(app, 'JalSetuDemo', { env: { region, ...(account ? { account } : {}) } });
   Tags.of(stack).add('Project', 'JalSetu');
   Tags.of(stack).add('DataMode', 'example-only');
@@ -18,16 +19,18 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
     { key: 'X-Frame-Options', value: 'DENY' },
     { key: 'Referrer-Policy', value: 'no-referrer' },
     { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-    { key: 'Content-Security-Policy', value: `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://*.execute-api.${region}.amazonaws.com https://*.auth.${region}.amazoncognito.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'` },
+    { key: 'Content-Security-Policy', value: `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self' https://*.execute-api.${region}.amazonaws.com https://*.auth.${region}.amazoncognito.com https://cognito-idp.${region}.amazonaws.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'` },
   ] }, { pattern: '/config.json', headers: [{ key: 'Cache-Control', value: 'no-store' }] }] };
   const hosting = new amplify.CfnApp(stack, 'Hosting', { name: 'jalsetu-example-demo', platform: 'WEB', customHeaders: JSON.stringify(publicHeaders), customRules: [{ source: '/<*>', target: '/index.html', status: '404-200' }] });
   new amplify.CfnBranch(stack, 'MainBranch', { appId: hosting.attrAppId, branchName: 'main', stage: 'PRODUCTION', enableAutoBuild: false });
   const origin = `https://main.${hosting.attrDefaultDomain}`;
-  const pool = new cognito.UserPool(stack, 'Coordinators', { selfSignUpEnabled: false, signInAliases: { username: true }, passwordPolicy: { minLength: 12, requireDigits: true, requireLowercase: true, requireUppercase: true, requireSymbols: true }, removalPolicy: RemovalPolicy.RETAIN });
-  const client = pool.addClient('WebClient', { generateSecret: false, oAuth: { flows: { authorizationCodeGrant: true }, scopes: [cognito.OAuthScope.OPENID], callbackUrls: [origin], logoutUrls: [origin] }, preventUserExistenceErrors: true, idTokenValidity: Duration.hours(1), accessTokenValidity: Duration.hours(1), refreshTokenValidity: Duration.days(1) });
+  const pool = new cognito.UserPool(stack, 'Coordinators', { selfSignUpEnabled: true, signInAliases: { username: true }, autoVerify:{email:true},keepOriginal:{email:true},accountRecovery:cognito.AccountRecovery.EMAIL_ONLY, passwordPolicy: { minLength: 12, requireDigits: true, requireLowercase: true, requireUppercase: true, requireSymbols: true }, removalPolicy: RemovalPolicy.RETAIN });
+  const attributes=new cognito.ClientAttributes().withStandardAttributes({email:true,fullname:true,profilePicture:true});
+  const readable=new cognito.ClientAttributes().withStandardAttributes({email:true,emailVerified:true,fullname:true,profilePicture:true});
+  const client = pool.addClient('WebClient', { generateSecret: false, supportedIdentityProviders:[cognito.UserPoolClientIdentityProvider.COGNITO],authFlows:{userPassword:false,userSrp:false,adminUserPassword:false,custom:false},readAttributes:readable,writeAttributes:attributes,enableTokenRevocation:true,oAuth: { flows: { authorizationCodeGrant: true }, scopes: [cognito.OAuthScope.OPENID,cognito.OAuthScope.EMAIL,cognito.OAuthScope.PROFILE], callbackUrls: [origin+'/auth/callback','http://localhost:5173/auth/callback','http://127.0.0.1:5173/auth/callback'], logoutUrls: [origin+'/','http://localhost:5173/','http://127.0.0.1:5173/'] }, preventUserExistenceErrors: true, idTokenValidity: Duration.hours(1), accessTokenValidity: Duration.hours(1), refreshTokenValidity: Duration.days(1) });
   const domain = pool.addDomain('LoginDomain', { cognitoDomain: { domainPrefix: `jalsetu-${stack.account}-${region}` } });
   const code = lambda.DockerImageCode.fromImageAsset(resolve(import.meta.dirname, '..'), { file: 'services/cloud/Dockerfile', exclude: ['node_modules', 'apps', 'docs', 'local-state', '.git', 'cdk.out', 'infra'] });
-  const environment = { TABLE_NAME: table.tableName, SNAPSHOT_BUCKET: snapshots.bucketName, DEMO_EXPIRES_AT: expiry, DAILY_JOB_LIMIT: '100', WEB_ORIGIN: origin };
+  const environment = { TABLE_NAME: table.tableName, SNAPSHOT_BUCKET: snapshots.bucketName, DEMO_EXPIRES_AT: expiry, DAILY_JOB_LIMIT: '100', WEB_ORIGIN: origin, AUTH_METHODS:'email', AUTH_CLIENT_ID:client.userPoolClientId };
   const workerLogs = new logs.LogGroup(stack, 'PlannerLogs', { retention: logs.RetentionDays.ONE_WEEK, removalPolicy: RemovalPolicy.RETAIN });
   const apiLogs = new logs.LogGroup(stack, 'ApiLogs', { retention: logs.RetentionDays.ONE_WEEK, removalPolicy: RemovalPolicy.RETAIN });
   const worker = new lambda.DockerImageFunction(stack, 'Planner', { code: lambda.DockerImageCode.fromImageAsset(resolve(import.meta.dirname, '..'), { file: 'services/cloud/Dockerfile', cmd: ['cloud.workflow.stage_handler'], exclude: ['node_modules', 'apps', 'docs', 'local-state', '.git', 'cdk.out', 'infra'] }), memorySize: 2048, timeout: Duration.seconds(120), reservedConcurrentExecutions: 1, environment, logGroup: workerLogs, retryAttempts: 2, maxEventAge: Duration.minutes(5) });
@@ -55,11 +58,14 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
   workflow.grantStartExecution(apiFunction);
   const gatewayLogs = new logs.LogGroup(stack, 'GatewayLogs', { retention: logs.RetentionDays.ONE_WEEK, removalPolicy: RemovalPolicy.RETAIN });
   const authorizer = new apigateway.CognitoUserPoolsAuthorizer(stack, 'Authorization', { cognitoUserPools: [pool] });
+  // Cognito's L2 construct does not expose this L1 audience restriction.
+  authorizer.node.defaultChild.identityValidationExpression=`^${client.userPoolClientId}$`;
   const rest = new apigateway.RestApi(stack, 'RestApi', { restApiName: 'jalsetu-example-api', defaultMethodOptions: { authorizer, authorizationType: apigateway.AuthorizationType.COGNITO }, defaultCorsPreflightOptions: { allowOrigins: [origin], allowMethods: ['GET', 'POST', 'PUT', 'OPTIONS'], allowHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key', 'If-Match'] }, deployOptions: { throttlingRateLimit: 5, throttlingBurstLimit: 10, dataTraceEnabled: false, accessLogDestination: new apigateway.LogGroupLogDestination(gatewayLogs), accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields({ caller: false, user: false }) } });
   rest.root.addProxy({ defaultIntegration: new apigateway.LambdaIntegration(apiFunction), defaultMethodOptions: { authorizer, authorizationType: apigateway.AuthorizationType.COGNITO } });
+  rest.latestDeployment.addToLogicalId({allowedClient:client.userPoolClientId,authPolicyVersion:'verified-email-v1'});
   for (const type of [apigateway.ResponseType.DEFAULT_4XX, apigateway.ResponseType.DEFAULT_5XX]) rest.addGatewayResponse(`Cors${type.responseType}`, { type, responseHeaders: { 'Access-Control-Allow-Origin': `'${origin}'`, 'Access-Control-Allow-Headers': "'Content-Type,Authorization,Idempotency-Key,If-Match'" } });
   // The browser receives only public configuration; no AWS credentials or client secret.
-  const config = { mode: 'aws_live', region, apiBaseUrl: rest.url.replace(/\/$/, ''), clientId: client.userPoolClientId, loginBaseUrl: domain.baseUrl(), redirectUri: origin, expiresAt: expiry };
+  const config = { mode: 'aws_live', authProvider, issuer:`https://cognito-idp.${region}.amazonaws.com/${pool.userPoolId}`, region, apiBaseUrl: rest.url.replace(/\/$/, ''), clientId: client.userPoolClientId, loginBaseUrl: domain.baseUrl(), redirectUri: origin+'/auth/callback', logoutUri:origin+'/', expiresAt: expiry };
   new CfnOutput(stack, 'WebConfig', { value: stack.toJsonString(config) });
   new CfnOutput(stack, 'FrontendUrl', { value: origin });
   new CfnOutput(stack, 'AmplifyAppId', { value: hosting.attrAppId });
@@ -76,6 +82,6 @@ export function createFoundation(app, { region = 'ap-south-1', expiry, account }
 // path just as Node resolves the imported module before detecting direct use.
 if (process.argv[1] && realpathSync(process.argv[1]) === import.meta.filename) {
   const app = new App();
-  createFoundation(app, deploymentScope(process.env));
+  createFoundation(app, {...deploymentScope(process.env),authProvider:process.env.JALSETU_AUTH_PROVIDER??'Email'});
   app.synth();
 }

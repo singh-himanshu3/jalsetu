@@ -1,0 +1,28 @@
+{
+  "verified_at": "2026-10-11T13:47:03.060060+00:00",
+  "frontend_url": "https://main.d2d0jtitb5ozce.amplifyapp.com/",
+  "amplify_job": {
+    "id": "3",
+    "status": "SUCCEED"
+  },
+  "frontend_asset": "/assets/index-Cu3BOzta.js",
+  "observed_host_callback_status": 301,
+  "observed_host_callback_destination": "/auth/callback/",
+  "auth_provider": "Email",
+  "real_signin_workspace": true,
+  "real_authenticated_reload": true,
+  "callback_query_cleared": true,
+  "onboarding_visible": true,
+  "signup_email_delivery": "not independently verified",
+  "password_reset": "pending",
+  "checks": [
+    "TypeScript/Ruff lint",
+    "signed-token authentication and DOM tests",
+    "full Startup StrictMode regression",
+    "production build",
+    "CDK assertions",
+    "public hosting bundle"
+  ],
+  "infrastructure_changed": false,
+  "expires_at": "2026-10-17T17:27:30Z"
+}
