@@ -1,178 +1,116 @@
-# JalSetu · water relief workspace
+# JalSetu
 
-**Live example:** [Open JalSetu](https://main.d2d0jtitb5ozce.amplifyapp.com). The public introduction and email/password account access are live; verified accounts can plan and save synthetic exercises. Actual hosted workflow/ownership checks pass. [Release report and update instructions](docs/aws-hosted-release-2026-10-11.md). Planning access closes on **17 October 2026, 22:57:30 IST**; reviewed AWS cleanup remains required. The latest email-only pages are browser-checked; real self-registration and inbox acceptance remain pending.
+Water-relief planning, delivery reporting and recovery after disruptions.
 
-**Public source:** [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu). The owner authorized public visibility on 10 October 2026; the project license remains unselected. This is source publication, not a hosted deployment or hackathon submission.
+**[Live demo](https://main.d2d0jtitb5ozce.amplifyapp.com/)** · **[Architecture](docs/architecture.md)** · **[Data and limitations](docs/limitations.md)**
 
-**Latest frontend and account access (live):** The blue UI and email/password signup/sign-in are published. Google authentication was removed from scope. [Current release, verification and update guide](docs/aws-email-ui-release-2026-10-11.md). Real sign-in and authenticated reload now pass after [the callback correction](docs/signin-callback-fix-2026-10-11.md). Inbox confirmation/password-reset acceptance remains to be checked.
+JalSetu helps coordinators allocate limited water across confirmed requests, compare delivery plans, approve vehicle instructions and replan when deliveries change. The hosted demo uses labelled synthetic exercises. It is a planning prototype, not a field-tested relief service.
 
-**Offline practice:** `pnpm dev` opens the explicitly labelled loopback developer workspace at `http://127.0.0.1:5173/local-workspace`. The Windows launcher uses `/local-workspace` on port 8787. This local mode does not authenticate Google users or unlock protected hosted routes.
+![JalSetu revised-plan review](docs/screenshots/ui-polish-revision-2026-10-11.png)
 
-Historical desktop snapshot from the earlier frontend release:
+*Screenshot from the locally verified UI revision; the live website may run an earlier release. GitHub changes do not automatically deploy the website.*
 
-![Earlier JalSetu desktop introduction](docs/screenshots/frontend-motion-desktop-2026-10-10.jpg)
+## Features
 
-**New frontend workspace:** a clearer guided start, desktop/phone navigation, linked map and stop details, mobile request cards, explicit comparison trade-offs and review-before-save reports. See [the frontend handoff and actual browser checks](docs/frontend-workspace-completion-2026-10-10.md). The existing deterministic workflow is preserved; no AWS deployment was added.
+- **Set up:** depot water, available vehicles, receiving-point requests, priorities and operating windows.
+- **Compare:** JalSetu, equal-share, demand-proportional and priority-first greedy plans under the same rules.
+- **Approve:** review allocations and stop sequences before activating vehicle instructions.
+- **Report:** loading, cumulative deliveries, breakdowns, physical water recovery, returns, stock changes and receiving-point closure/reopening.
+- **Adapt:** calculate revised allocations for eligible unused vehicles at the depot, preserving previous reports. Draft review and approval remain separate.
+- **Resume:** reopen saved runs with report history, the water ledger, approved revision and pending revised draft. The latest source supports account-scoped refresh restoration through the authorized API.
+- **Navigate and export:** numbered map stops, external Google Maps directions, delivery CSVs and printable vehicle instructions.
 
-**New driver view:** choose a vehicle, load its numbered street map, and open ordered Google Maps directions, including the depot return. Printable instructions include the links. Dashed map lines show stop order, not road geometry; examples remain previews. See [driver-map workflow and checks](docs/driver-map-completion-2026-10-10.md). No AWS deployment or GPS tracking was added.
+## Try the example
 
-**Deployment checkpoint — 11 October:** CDKToolkit and JalSetuDemo are created; Amplify frontend publication succeeded and five hosted acceptance groups passed. The original expiry and $100 credits-only project limit remain unchanged. See [current deployment progress and the code-update process](docs/aws-deployment-progress-2026-10-10.md). This supersedes the earlier pause below.
+1. Open the live demo. Create an email/password account, verify your email and sign in. Google authentication is not used.
+2. Start the guided example. Review **Water & timing**, **Vehicles** and **Water requests**. Choose loading and closing rules explicitly.
+3. Generate delivery options, compare alternatives, then review and approve your chosen plan.
+4. Open **Deliveries**. Record loading and cumulative delivery totals. Repeating the same delivered total adds no water.
+5. Record a breakdown and any water physically recovered at the depot. Calculate a revised draft, review its allocation changes and approve it deliberately.
 
-**AWS access update:** Mumbai now has **400 unreserved Lambda slots**. Temporary local CLI works; the active free plan has **$100 remaining credits**. [The deployment review](docs/aws-deployment-review-2026-10-10.md) contains validated templates, reviewed permissions and refreshed pricing. Resource creation and hosted acceptance are pending; earlier quota-10/CloudShell-only blockers below are historical. No AWS deployment is claimed.
+Approval does not dispatch vehicles or report deliveries. Reported quantities are coordinator-entered, not independently verified. Water remaining on a failed vehicle stays stranded until an explicit recovery report.
 
-JalSetu turns confirmed water requests, limited stock and vehicle constraints into a checked delivery plan. It also records loading, cumulative delivery reports, failures and recovery, then replans using water that is actually available. The local prototype supports a labelled North Delhi practice exercise and blank record-based projects for small Delhi-area comparisons.
+## Reproducible sample results
 
-**New local workflow:** create an empty operational-record project, enter anonymized records, preview a full receiving-point CSV, and explicitly fetch matching public-road estimates. See the [beginner guide](docs/using-operational-records.md) and [implementation checkpoint](docs/local-records-completion-2026-10-10.md). The prepared hosted release remains example-only.
+The documented North Delhi fixture uses **finish-by-close**, **parallel loading**, 100-litre planning increments and seed 42.
 
-**This is an example application with a verified hosted workflow, not a field-tested relief service.** The normal example uses synthetic resources, locations and travel. A separate [public-road research check](docs/public-road-checkpoint-2026-10-10.md) now uses sourced OSRM/OpenStreetMap estimates with example relief inputs. No NGO inventory, permissions, traffic observations or field impact are claimed.
+| Modelled result | Value |
+| --- | ---: |
+| Water planned | 12,000 L |
+| Unmet requested water | 4,100 L |
+| Points receiving their stated minimum | 8 of 8 |
+| More planned than demand proportional | 900 L |
+| Additional estimated travel versus demand proportional | 0.9 km |
 
-**New local evidence workflow:** **More → Compare original plan** previews the original dispatch CSV, optionally adds reported delivery rows, and downloads a readable comparison using unchanged original stops and the same resources/roads. See [the step-by-step guide](docs/comparing-original-delivery-plans.md). Genuine records and field benefit remain unverified.
+These are checked sample calculations, not measured deliveries or real-world impact. JalSetu does not outperform every alternative on every metric, and global optimality is not claimed. `pnpm test:polish` reproduces the displayed results with the current planner and verifies the fixture hash and rules. See [evaluation](docs/evaluation.md).
 
-**Latest evidence:** 80 retained public-road/reference/sensitivity calculations passed independent checking; 237 Python tests pass. Open **More → About the example → What we checked on public roads** for readable comparisons. `pnpm evaluate:roads` reproduces the experiment from the saved response without network requests; `pnpm render:roads` regenerates the report without solving.
+## AWS architecture
 
-The [remaining-phase checkpoint](docs/remaining-phases-2026-10-10.md) adds validated frontend hosting-package preparation. `pnpm check:hosting` checks the built files and prepared infrastructure locally. That checkpoint recorded the earlier quota/CloudShell blockers; the hosted-release report above supersedes those deployment statements.
+| Service | Role |
+| --- | --- |
+| AWS Amplify Hosting | React frontend hosting |
+| Amazon Cognito | Email/password access and OAuth authorization code with PKCE |
+| Amazon API Gateway | Authorized backend endpoints |
+| AWS Lambda | Backend handlers and bounded planning workers |
+| AWS Step Functions Standard | Planning stages, retries and completion/failure handling |
+| Amazon DynamoDB | Account-scoped projects, jobs, operations and reports |
+| Amazon S3 | Private snapshots and immutable planning results |
+| Amazon CloudWatch | Application logs with bounded retention |
+| Amazon EventBridge | Terminal workflow failure handling |
 
-The [production launcher and local release checkpoint](docs/local-release-readiness-2026-10-10.md) adds one-server startup and a complete isolated restart/failure gate. Open **Start JalSetu.cmd** for the built app, or run `pnpm check:local` for release validation.
+The Python planner uses Pydantic and OR-Tools, followed by independent validation. The local Node adapter supports development without AWS. The hosted exercise uses stored travel estimates and deterministic explanations; it does not call Amazon Location or Amazon Bedrock.
 
-The [local recovery checkpoint](docs/local-recovery-completion-2026-10-10.md) adds receiving-point closure and explicit reopening, preserves stock and reports, and verifies both actual customer downloads.
+Cognito subject identifiers scope user ownership. Browser storage is a navigation aid, never an authorization mechanism. Backend authorization, conditional versions and idempotency safeguards protect saved operations.
 
-The [customer interface cleanup](docs/customer-interface-2026-10-10.md) removes JSON editors/downloads, hashes and developer diagnostics from the product, including delivery downloads.
+## Run locally
 
-The [deployment-only release checkpoint](docs/deployment-only-release-2026-10-10.md) keeps the prepared AWS backend/hosting stack while excluding Amazon Location and Bedrock calls. Printable instructions now include a coordinator overview, per-point unmet quantities and preserved reports for revisions.
-
-The [10 October usability update](docs/usability-update-2026-10-10.md) makes the example a one-click start, breaks setup into three steps, and adds clear approval/reporting actions. It builds on the [design refresh](docs/design-refresh-2026-10-10.md) within the existing application.
-
-## Open it on this computer
-
-Dependencies are already installed in this workspace. Open **Start JalSetu.cmd**: it builds the app and starts one local server. Keep its terminal window open and visit **http://127.0.0.1:8787** once it is ready. Press Ctrl+C to stop it. If a development copy is running, stop it first; a second copy on the same API port will be rejected.
-
-For development, `pnpm dev` still opens the Vite interface at **http://127.0.0.1:5173** with the API at 8787. The built launcher and developer path use the same normal saved-data files. Dependencies must be installed before using this local fallback; it is not a standalone installer.
-
-The local API binds to `127.0.0.1:8787`. Neither service is exposed publicly. There are no AWS calls or cloud charges in this path.
-
-## Try the complete example workflow
-
-1. On **Home**, click **Try the example**, then **Start guided example**. A four-step guide follows your progress from setup to your first delivery report. **Explore without the guide** skips the guidance; **Hide guide** and **Show my example guide** keep your current exercise intact. The sample is labelled and unsaved. To persist a draft, expand **Saved projects & new exercises** and create a project with a name, operating date, explicit example mode and synthetic-data acknowledgement.
-2. **Set up** has three steps: Water & timing, Vehicles, and Water requests. Choose the loading and closing rules explicitly; neither is preselected. Review stock, available vehicles and confirmed requests. Back/Next retains your edits. Hours, CSV import and resource editing are in expandable sections.
-3. Click **Create delivery plan**. **Your plan** shows vehicle instructions, quantities and unmet requests. **Compare other options** lets you review each strategy before choosing.
-4. Use **Review & approve**, enter your name or team label, then **Approve example plan & track deliveries**. Approval saves the plan; all water remains at the depot.
-5. In **Deliveries**, choose **Water loaded**, select a vehicle, and enter the date/time in IST. The example helper can copy its planned loading time. Click **Save report**.
-6. Choose **Delivery made**, select a receiving point on that vehicle, and enter the total delivered to that point so far. The example helper copies sample quantities and time. Saving the same cumulative total twice adds no water.
-7. Record **Vehicle broke down** when applicable. Remaining onboard water becomes stranded. Expand **Need to update the remaining deliveries?**, choose an explicit time at or after the last event, and create an updated plan. Review the preserved reports and old/new assignments, enter a team label and approve it. Only unused vehicles at the depot can take new routes.
-8. **More → Compare options** retains the four-strategy comparison and five configurable example resource alternatives. Each alternative and a fresh baseline is solved separately. The batch leaves saved resources and operations unchanged.
-9. **More → About the example** explains the sample data, checks and practical limits in plain language.
-
-For a receiving-point closure, choose **Point closed**, select the point, enter its IST report time and save. The summary keeps earlier deliveries and the unmet request visible. Affected routes cannot be loaded until updated or the point is explicitly reopened. **Record a reopening** saves availability only; review and approve a new revision to reschedule an unvisited point. Positive delivery reports remain fixed, even after reopening.
-
-Recovery is separate: explicitly report litres recovered **at the depot** before they can be scheduled again. A vehicle return puts remaining onboard water back at the depot and ends that vehicle's only trip. Signed depot-stock adjustments are also supported.
-
-The conservation equation is checked after every accepted event:
-
-`depot + onboard + reported delivered + stranded = initial stock + signed adjustments`
-
-Physical reports retain exact integer litres. A revision can schedule only complete configured planning units; any remainder stays at the depot and is explicitly disclosed. It is not rounded away from the physical ledger.
-
-## Import, save and export
-
-- CSV import previews **updates to existing example point IDs**. Unknown IDs, duplicate IDs, malformed fields and invalid planning inputs are rejected. Applying the validated preview changes the draft and clears its old planning results.
-- Saved approvals, immutable events and revisions survive API restarts in `local-state/operations.json`. **Open a saved run** restores them. Do not publish that file or store real confidential operational data in this unauthenticated local adapter.
-- Project drafts persist separately in `local-state/projects.json`, with conditional versions. Use **Save changes** in More setup options after edits. Unsaved changes, quick examples and background jobs remain in memory; planning results need regeneration after a restart. The local job cache retains up to 50 records.
-- **Archive project** hides a saved draft; **Open archived projects** lets you restore it. Approved operations and reports stay in their separate store. This does not extend the hosted demo's expiry or existing retention period.
-- Your plan and Deliveries export readable CSV delivery sheets and printable vehicle instructions. They use names, litres and IST times; internal hashes/job references are excluded. The CSV now has customer-facing column headings, so it does not preserve the earlier audit-export schema. Open the HTML file and use the browser's Print command to print or save as PDF.
-
-## What is verified
-
-As of 10 October 2026 (latest checkpoint: `docs/public-road-checkpoint-2026-10-10.md`; local release gate: `docs/local-release-readiness-2026-10-10.md`; earlier local UI gate: `docs/phase-2-completion-2026-10-09.md`):
-
-- **237 Python tests pass**, covering both operating policies, all four strategies, validator corruption checks, deterministic routes, failure accounting, retries, revision approval, exact stock remainders, cloud ownership, SDK boundaries and public-road/evidence integrity. Current staged-workflow evidence is in `docs/phase-4-readiness-2026-10-09.md`; the earlier checkpoint is preserved in `docs/continuation-2026-10-09.md`.
-- TypeScript checks, Ruff and the production frontend build pass. `pnpm check:local` runs all local release gates in one command, including an isolated real-process restart/failure check.
-- Local API integration checks pass for request idempotency, stale-version rejection, approval, failure, completed-report preservation and revision approval. The production release check also preserves project archive state, operations and retry receipts through actual restart, rejects corrupt saved data without resetting it, and verifies web serving cannot expose source/state/cloud configuration.
-- CSV parsing/export, durable-storage, conditional project save/reopen and metric-formatting checks pass, including Unicode handling. Local CDK synthesis and security/concurrency assertions pass without deployment.
-- Added regressions verify delayed stale writes, the bounded revision cache, malformed persisted files and strategy-specific approval labels. Export contents and deferred Blob cleanup pass; an actual API restart preserved the complete saved operation.
-- Browser checks passed project creation, save/reopen, separate CSV preview/application, invalid drafts, unconfirmed-site exclusion and comparison. Earlier checks passed approval, loading, delivery reporting, failure and revision approval; see `docs/browser-verification.md`. Desktop and phone layouts were inspected. The delivery CSV and printable HTML now return completed download events and saved files; their contents were checked. See the local recovery checkpoint for evidence. CSV-template and hosted private-export acceptance remain separate.
-- A local burst of 100 health reads succeeded. A burst of ten planning submissions accepted one and returned a busy response for nine; the accepted job completed. This is **not a public visitor or AWS load benchmark**.
-
-See `docs/evaluation.md` for all 20 measured synthetic comparison results, `docs/evaluation.json` for raw metrics, and `docs/local-load-check.json` for the bounded local-load check. Evaluation settings are explicitly **finish-by-close, parallel loading, 100-litre increments and seed 42**. These test settings do not settle the team's unanswered operating-policy choices.
-
-JalSetu does not win every metric. The North Delhi example schedules 12,000 litres versus demand proportional's 11,100; equal share gives better minimum fulfilment in the stock-shortage fixture. The comparison keeps those tradeoffs visible. None of these numbers establish real-world impact.
-
-On this Windows machine, memory pressure caused numerical-library and build-tool failures during development. Numerical-library threads are now bounded to one. The final frontend checks succeeded with the development servers stopped; running the build while other applications exhaust memory can still fail. Three OR-Tools SWIG deprecation warnings remain in the Python test output.
-
-## Architecture kept simple
-
-`React UI → loopback Node API → shared planning stages → bounded Python planner → independent validator → result`
-
-The prepared AWS path uses API Gateway/Cognito → Step Functions Standard → the existing worker image. Job details show recorded stage completions. The local comparison preview runs those same stages without AWS; its job snapshots remain ephemeral.
-
-The Python core uses Pydantic, OR-Tools CP-SAT for allocation, and OR-Tools routing for one-trip schedules. The allocation includes per-vehicle packing assignments and the router respects those assignments. Routing remains a bounded heuristic; globally optimal dispatch is not claimed. All strategies share the stored matrix and independent validator.
-
-Operational updates use a small file store with atomic replacement, conditional record versions and idempotency keys. One local calculation/update is admitted at a time. Excess requests receive a clear busy response rather than spawning an unbounded worker backlog. This file adapter is a development component and will not be deployed as the public service.
-
-## Remaining scope
-
-The full supplied specification is preserved in `docs/build-specification.md`; it is not all implemented.
-
-- Live AWS deployment and verification. The foundation, Cognito frontend and cloud project/job/operations adapter are locally prepared. Reversible archive/restore, SDK-boundary checks and offline container execution now pass. Mumbai's Lambda quota of 10 blocks the current stack's three reserved slots; at least 103 available slots are needed. Step Functions Standard is now locally prepared with named stages, retry receipts, immutable results and terminal failure repair; live acceptance remains pending.
-- Operational road routing, public weather/source ingestion and cache/refresh wiring. Phase 5 now has a real frozen OSRM/OpenStreetMap research snapshot and 80 checked comparisons, alongside offline source/cache helpers. The research is separate from the guided example and does not enable live operator routing or refresh. Developer evidence remains in the repository; the customer interface shows readable comparisons and limits without raw records. Current route lines are schematics, not road navigation.
-- Genuine operational records and independent coordinator/field feedback. Automated local historical-plan comparison is now implemented; actual records and outcome validation remain unavailable. Local operator onboarding, new-point CSV preview/application and explicit public-road acquisition are implemented. Real records remain unavailable; testing uses labelled synthetic declarations. The hosted release stays example-only.
-- Active-vehicle position/fixed-stop replanning and additional disruption types. Receiving-point closure and explicit reopening are implemented. Current revisions support unused depot vehicles; any active vehicle blocks a depot-based revision until it returns or is reported failed. Any point with a positive delivery report stays fixed; a second visit is outside this prototype.
-- Separate en-route/arrived stop transitions, reviewed bilingual output, live optional Bedrock integration, cloud load testing/security acceptance and pilot feedback. Resource scenarios and the local revision difference are implemented.
-
-Revision route metrics describe **pending routes only**. `revision_accounting` separately preserves reported deliveries and computes remaining unmet demand against all originally confirmed requests, including deficits at points already visited. Reports are never presented as independently verified deliveries.
-
-The current spending ceiling is **$100 in credits, with no out-of-pocket spending**, superseding the earlier reported $449. A read-only Billing check on 9 October showed **$100.00 USD remaining**, **183 days remaining** and a **free plan that does not get charged**. Preserve that plan; an upgrade is not authorized. **Mumbai (`ap-south-1`), seven days, example-only** hosting remains the selected scope, including the existing operations workflow. Preparation has resumed, but deployment still needs service eligibility, a reviewed estimate and completed release prerequisites. No billable resources have been deployed by this project. See `docs/aws-foundation.md`; budget alerts alone are not a monetary cap.
-
-The team's operating choices remain open: must unloading finish by closing or only start by closing, and can depot vehicles load concurrently or only one at a time? The prototype supports both, but does not select them for the team.
-
-## Reproduce on another computer
-
-Use Node 24, pnpm 11.22.0 and Python 3.12. On Windows, from this folder:
+Requirements: **Node 24**, **pnpm 11.22.0** and **Python 3.12**.
 
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r services/planner/requirements.txt
 pnpm install --frozen-lockfile
 pnpm start
-# For development instead:
-pnpm dev
 ```
 
-On Linux/macOS, create `.venv` with `python3 -m venv .venv`, install the same requirements using `.venv/bin/python`, then run the same pnpm commands. Alternatively set `JALSETU_PYTHON` to an existing compatible interpreter.
+Open **http://127.0.0.1:8787/local-workspace**. On Windows, **Start JalSetu.cmd** builds and starts the same loopback application. Keep its terminal open; press Ctrl+C to stop it.
 
-Useful checks (the complete gate is `pnpm check:local`):
+For development, `pnpm dev` serves **http://127.0.0.1:5173/local-workspace**, with the local API on port 8787. Both paths use the normal local saved-data directory. Avoid running two servers on the same port.
+
+On Linux/macOS, create `.venv` with `python3 -m venv .venv`, then install requirements with `.venv/bin/python`. Alternatively set `JALSETU_PYTHON` to a compatible interpreter. Local development is explicitly labelled as unauthenticated and does not unlock protected hosted routes.
+
+## Verification
 
 ```powershell
 pnpm check:local
-pnpm test:release
-pnpm test
-pnpm lint
-pnpm build
-pnpm test:csv
-pnpm test:storage
-pnpm test:operations
-# With the local API running:
-pnpm test:site-closure
-pnpm test:exports
-pnpm test:projects
-pnpm test:metrics
-pnpm test:report-time
-pnpm infra:test
-pnpm estimate:aws
-# Historical Phase 3 estimate:
-node scripts/estimate-aws-cost.mjs --phase3
-pnpm evaluate
+pnpm check:hosting
+pnpm test:polish
 ```
 
-With the local servers running, `pnpm test:api` creates clearly named synthetic test exercises. `node scripts/test-local-load.mjs` performs only the bounded localhost check. The tests never require AWS credentials.
+The latest implementation gate passed lint, TypeScript checks, **240 Python tests**, frontend/authentication regressions and **six local release/restart acceptance groups**. The hosting gate checks production files and synthesizes infrastructure locally; it does not deploy AWS resources. Three existing SWIG deprecation warnings and a frontend bundle-size advisory remain.
 
-The latest checkpoint has **167 passing Python tests**. With Docker's Linux engine running, build the Lambda image with `docker build --platform linux/amd64 --provenance=false -t jalsetu-local-check:2026-10-10 -f services/cloud/Dockerfile .`, then run `pnpm test:container`. Its checks disable networking and use inert credentials. See [Phase 4 readiness](docs/phase-4-readiness-2026-10-09.md) and [Phase 5 preparation](docs/phase-5-preparation-2026-10-09.md) and the [seven-day estimate](docs/aws-cost-estimate-2026-10-09.md); estimates are not monetary caps.
+Checks cover water conservation, cumulative delivery totals, durable pending drafts, restoration errors/retries, subject isolation, report guidance, event ordering, map failure/retry states and reproducible sample results. Browser checks use isolated synthetic records. See [UI/workflow verification](docs/ui-polish-2026-10-11.md) and its [audit](docs/audit/ui-polish-2026-10-11.json).
 
-The `.env.example` flags describe reserved future cloud configuration; changing them does not enable an AWS deployment. No passwords or access keys belong in this repository.
+## Data and limitations
 
-The repository is public at [singh-himanshu3/jalsetu](https://github.com/singh-himanshu3/jalsetu), as authorized on 10 October 2026. The project license remains unselected. Public source publication alone does not complete submission requirements. Dependency notices and the AI tool disclosure are in `NOTICE.md`.
+- The hosted release is **example-only**. Local projects additionally support operator-entered records, CSV previews and historical comparisons: [records guide](docs/using-operational-records.md), [original-plan comparison](docs/comparing-original-delivery-plans.md).
+- [Public-road research](docs/public-road-checkpoint-2026-10-10.md) uses sourced OSRM/OpenStreetMap estimates alongside example relief inputs. It does not prove field benefit or provide live traffic tracking.
+- Dashed map connections show **stop order**, not navigable road geometry. External directions require coordinator/driver review.
+- Current revisions use unused depot vehicles. Active-vehicle/fixed-stop replanning and second visits to positively reported points are outside this prototype.
+- A capacity ceiling is explained only when actual draft and ledger evidence establish it. Other cases explicitly state that a verified limiting-constraint explanation is unavailable.
+- Automatic active-run restoration requires browser storage. Local in-flight jobs are ephemeral across server restarts; completed operations and drafts remain saved.
+- Genuine operational records, independent coordinator feedback, real-inbox signup/reset acceptance and a comprehensive accessibility audit remain separate validation work.
 
-## Next-phase evidence
+## Hosting and updates
 
-[Current checkpoint](docs/local-release-readiness-2026-10-10.md), [architecture](docs/architecture.md), [source ledger](docs/source-ledger.md), [limitations](docs/limitations.md), [demo script](docs/demo-script.md) and [freeze/contingency checklist](docs/freeze-and-contingency.md) document what is working and which gates remain. `pnpm evaluate` regenerates both raw results and the complete Markdown table. `pnpm evidence:manifest` hashes source/fixtures/evidence and keeps absent deployment/video/submission URLs explicit. Submission and Builder Center files are drafts. Public source publication is verified; no external coordinator, live cloud execution or submitted release tag is claimed.
+The existing Mumbai demo has an original planning expiry of **17 October 2026, 22:57:30 IST**. Application expiry does not delete infrastructure; reviewed cleanup is still necessary.
 
-Latest source verification: [UI and workflow polish](docs/ui-polish-2026-10-11.md). Run `pnpm check:local` and `pnpm check:hosting` to verify locally; neither deploys AWS resources.
+The project spending boundary is **$100 in credits, with no out-of-pocket spending**. Current account balances are not published here. Preserve the existing free plan; estimates and budget alerts are not monetary caps.
+
+GitHub pushes do **not** automatically deploy this manually published Amplify branch. The latest UI polish is source-verified, not claimed as deployed. A reviewed frontend publication uses `scripts/publish-hosted-web.ps1`, which checks the free-plan/credit safeguard, existing hosting identity, production bundle and unchanged expiry. Infrastructure and Cognito changes require a separate review. Never commit passwords, temporary sessions or AWS access keys.
+
+[Hosted release history](docs/aws-hosted-release-2026-10-11.md) · [Email-only access](docs/aws-email-ui-release-2026-10-11.md) · [Callback correction](docs/signin-callback-fix-2026-10-11.md) · [Build status](docs/build-status.md)
+
+## Source and notices
+
+The repository is public. A project license has not yet been selected; public visibility alone does not grant a reuse license. Dependency notices and AI-tool disclosure are in [NOTICE.md](NOTICE.md). Historical phase documents are retained as development evidence; current checkpoints supersede their older status statements.
